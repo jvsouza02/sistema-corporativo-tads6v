@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from application.entities.comentario import Comentario
+from data.models.comentario_model import ComentarioModel
 
 class IComentarioRepository(ABC):
     @abstractmethod
@@ -7,15 +8,15 @@ class IComentarioRepository(ABC):
         pass
 
     @abstractmethod
-    def listar_todos(self) -> list[Comentario]:
+    def listar_todos(self) -> list[ComentarioModel]:
         pass
 
     @abstractmethod
-    def buscar_por_id(self, comentario_id: str) -> Comentario | None:
+    def buscar_por_id(self, comentario_id: str) -> ComentarioModel | None:
         pass
 
     @abstractmethod
-    def atualizar(self, comentario: Comentario) -> Comentario:
+    def atualizar(self, comentario: ComentarioModel) -> Comentario:
         pass
 
     @abstractmethod
