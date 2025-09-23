@@ -1,9 +1,8 @@
-from entities.comentario import Comentario
-from data.repositories.comentario_repository import ComentarioRepository
-from data.models.comentario_model import ComentarioModel
+from codificacao.backend.src.application.entities.comentario_entity import Comentario
+from application.repositories.comentario_repository import IComentarioRepository
 
 class ComentarioService:
-    def __init__(self, repository: ComentarioRepository):
+    def __init__(self, repository: IComentarioRepository):
         self.repository = repository
 
     def adicionar_comentario(self, comentario_texto: str) -> Comentario:
@@ -12,7 +11,7 @@ class ComentarioService:
             raise ValueError("Comentário inválido.")
         return self.repository.salvar(comentario)
 
-    def listar_comentarios(self) -> list[ComentarioModel]:
+    def listar_comentarios(self) -> list[Comentario]:
         return self.repository.listar_todos()
     
     def editar_comentario(self, comentario_id: str, novo_texto: str) -> Comentario:
@@ -20,7 +19,7 @@ class ComentarioService:
         if not comentario:
             raise ValueError("Comentário não encontrado.")
         
-        # comentario.comentario = novo_texto
+        comentario.comentario = novo_texto
         return self.repository.atualizar(comentario)
     
     def deletar_comentario(self, comentario_id: str) -> None:

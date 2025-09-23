@@ -1,11 +1,17 @@
 from config.database import SessionLocal
 from data.models.comentario_model import ComentarioModel
-from application.entities.comentario import Comentario
+from codificacao.backend.src.application.entities.comentario_entity import Comentario
 from application.repositories.comentario_repository import IComentarioRepository
 
 class ComentarioRepository(IComentarioRepository):
     def __init__(self):
         self.db = SessionLocal()
+
+    def _to_entity(self, model: ComentarioModel) -> Comentario:
+        return Comentario(
+            id_comentario=str(model.id_comentario),
+            comentario=str(model.comentario)
+        )
 
     def salvar(self, comentario: Comentario) -> Comentario:
         self.db.add(comentario)
@@ -13,10 +19,11 @@ class ComentarioRepository(IComentarioRepository):
         self.db.refresh(comentario)
         return comentario
 
-    def listar_todos(self) -> list[ComentarioModel]:
-        return self.db.query(ComentarioModel).order_by(ComentarioModel.data_criacao).all()
+    def listar_todos(self) -> list[Comentario]:
+        comentarios: list[ComentarioModel] = self.db.query(ComentarioModel).order_by(ComentarioModel.data_criacao).all()
+        return [self._to_entity(comentario) for comentario in comentarios]
 
-    def buscar_por_id(self, comentario_id: str) -> ComentarioModel | None:
+    def buscar_por_id(self, comentario_id: str) -> Comentario | None:
         return self.db.query(ComentarioModel).filter(ComentarioModel.id_comentario == comentario_id).first()
 
     def atualizar(self, comentario: Comentario) -> Comentario:
