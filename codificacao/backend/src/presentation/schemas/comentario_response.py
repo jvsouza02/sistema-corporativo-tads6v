@@ -1,7 +1,6 @@
 from pydantic import BaseModel
-from typing import Optional
 
 class ComentarioResponse(BaseModel):
+    id_comentario: str
     comentario: str
-    data_criacao: str
-    data_atualizacao: Optional[str] = None
+    data_atualizacao: str

@@ -1,39 +1,58 @@
 from config.database import SessionLocal
-from data.models.comentario_model import ComentarioModel
-from codificacao.backend.src.application.entities.comentario_entity import Comentario
-from application.repositories.comentario_repository import IComentarioRepository
+from sqlalchemy import select as Select
+from src.application.entities.comentario_entity import Comentario
+from src.data.models.comentario_model import ComentarioModel
 
-class ComentarioRepository(IComentarioRepository):
+class ComentarioRepository():
     def __init__(self):
         self.db = SessionLocal()
 
-    def _to_entity(self, model: ComentarioModel) -> Comentario:
-        return Comentario(
-            id_comentario=str(model.id_comentario),
-            comentario=str(model.comentario)
-        )
+    def _to_entity(self, model: ComentarioModel):
+        return (str(model.id_comentario), str(model.comentario), str(model.data_criacao), str(model.data_atualizacao))
 
-    def salvar(self, comentario: Comentario) -> Comentario:
-        self.db.add(comentario)
-        self.db.commit()
-        self.db.refresh(comentario)
+    def salvar(self, comentario):
+        comentario_salvo = ComentarioModel(
+            id_comentario=comentario.id_comentario,
+            comentario=comentario.comentario,
+            data_criacao=comentario.data_criacao,
+            data_atualizacao=comentario.data_atualizacao
+        )
+        try:
+            self.db.add(comentario_salvo)
+            self.db.commit()
+        except Exception as e:
+            self.db.rollback()
+            raise e
         return comentario
 
-    def listar_todos(self) -> list[Comentario]:
-        comentarios: list[ComentarioModel] = self.db.query(ComentarioModel).order_by(ComentarioModel.data_criacao).all()
-        return [self._to_entity(comentario) for comentario in comentarios]
+    def listar_todos(self):
+        result = self.db.execute(Select(ComentarioModel).order_by(ComentarioModel.data_atualizacao.desc()))
+        return result.scalars().all()
 
-    def buscar_por_id(self, comentario_id: str) -> Comentario | None:
+    def buscar_por_id(self, comentario_id: str):
         return self.db.query(ComentarioModel).filter(ComentarioModel.id_comentario == comentario_id).first()
 
-    def atualizar(self, comentario: Comentario) -> Comentario:
-        self.db.merge(comentario)
-        self.db.commit()
-        self.db.refresh(comentario)
+    def atualizar(self, id_comentario, comentario):
+        comentario_model = self.db.query(ComentarioModel).filter(ComentarioModel.id_comentario == id_comentario).first()
+        if not comentario_model:
+            return None
+        comentario_model.comentario = comentario
+        try:
+            self.db.merge(comentario_model)
+            self.db.commit()
+            self.db.refresh(comentario)
+        except Exception as e:
+            self.db.rollback()
+            raise e
         return comentario
 
-    def deletar(self, comentario_id: str) -> None:
+    def deletar(self, comentario_id: str):
         comentario = self.buscar_por_id(comentario_id)
         if comentario:
-            self.db.delete(comentario)
-            self.db.commit()
+            try:
+                self.db.delete(comentario)
+                self.db.commit()
+            except Exception as e:
+                self.db.rollback()
+                raise e
+        return comentario
