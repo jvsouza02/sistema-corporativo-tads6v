@@ -41,10 +41,10 @@ A atividade **Especificar** converte a visão de alto nível em **requisitos cla
 | Elemento | Descrição |
 | :--- | :--- |
 | **Entradas** | **[Documento de Visão](artefatos.md#1-documento-de-visão)**, Requisitos Gerais. |
-| **Saídas** | **[Documento de Espeficação](artefatos.md#2-documento-de-especificacao)**|
+| **Saídas** | **[História de Usuário](artefatos.md#2-história-de-usuário)**|
 
 ### Tarefas Principais
-1. **Criação de Especificações:** Detalhar funcionalidades no **[Documento de espeficação](artefatos.md#2-documento-de-especificacao)** no formato “Como... quero... para que...”.  
+1. **Criação de Especificações:** Detalhar funcionalidades no **[História de Usuário](artefatos.md#2-história-de-usuário)** no formato “Como... quero... para que...”.  
 2. **Critérios de Aceitação:** Estabelecer condições que definem quando uma especificação está concluída.  
 3. **Validação com a [Equipe](papeis.md#papeis):** Discutir requisitos com o **[Desenvolvedor](papeis.md#desenvolvedor)** para garantir clareza e viabilidade.  
 
@@ -53,7 +53,7 @@ A atividade **Especificar** converte a visão de alto nível em **requisitos cla
 ## 3. Codificar
 
 ### Objetivo
-A atividade **Codificar** corresponde à implementação. Nessa fase, o time desenvolve e integra o **código-fonte**, transformando o **[Documento de Especificação](artefatos.md#2-documento-de-especificacao)** em um **[Produto Executável](artefatos.md#3-produto-software-executável)** de acordo com os padrões de qualidade.
+A atividade **Codificar** corresponde à implementação. Nessa fase, o time desenvolve e integra o **código-fonte**, transformando o **[História de Usuário](artefatos.md#2-história-de-usuário)** em um **[Produto Executável](artefatos.md#3-produto-software-executável)** de acordo com os padrões de qualidade.
 
 ### Responsável
 **[Desenvolvedor](papeis.md#desenvolvedor)**.
@@ -62,7 +62,7 @@ A atividade **Codificar** corresponde à implementação. Nessa fase, o time des
 
 | Elemento | Descrição |
 | :--- | :--- |
-| **Entradas** | **[Documento de Especificação](artefatos.md#2-história-de-usuário)** com Critérios de Aceitação. |
+| **Entradas** | **[História de Usuário](artefatos.md#2-história-de-usuário)** com Critérios de Aceitação. |
 | **Saídas** | **[Produto Executável](artefatos.md#3-produto-software-executável)**, Código-fonte, Testes Unitários aprovados. |
 
 ### Tarefas Principais
