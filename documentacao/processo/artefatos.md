@@ -4,7 +4,17 @@ Este documento descreve os artefatos fundamentais que orientam e materializam o 
 
 ---
 
-# Documento de Visão do Produto
+## 1. Documento de Visão do Produto
+
+### Finalidade
+O **Documento de Visão** é o alicerce estratégico do projeto. Ele articula a razão de ser do produto, define suas fronteiras em alto nível e apresenta a justificativa de negócio que impulsiona sua construção. Funciona como o principal ponto de alinhamento entre as partes interessadas (negócio, produto, tecnologia), estabelecendo **o que** precisa ser feito e **por quê**.
+
+### Template
+
+```markdown
+# Visão do Produto: [Nome do Projeto]
+
+# Documento de Visão do Produto — [Nome do Sistema]
 
 ## 1. Visão Geral do Produto
 *(Descrição em alto nível do sistema, seus principais objetivos e o problema que resolve. Destaque o diferencial ou propósito central.)*  
@@ -49,6 +59,7 @@ Este documento descreve os artefatos fundamentais que orientam e materializam o 
 
 1. [Funcionalidade crítica 1]  
 2. [Funcionalidade crítica 2]  
+
 
 ```
 
