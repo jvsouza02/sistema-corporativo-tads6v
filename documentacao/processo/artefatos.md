@@ -4,34 +4,51 @@ Este documento descreve os artefatos fundamentais que orientam e materializam o 
 
 ---
 
-## 1. Documento de Visão do Produto
+# Documento de Visão do Produto
 
-### Finalidade
-O **Documento de Visão** é o alicerce estratégico do projeto. Ele articula a razão de ser do produto, define suas fronteiras em alto nível e apresenta a justificativa de negócio que impulsiona sua construção. Funciona como o principal ponto de alinhamento entre as partes interessadas (negócio, produto, tecnologia), estabelecendo **o que** precisa ser feito e **por quê**.
+## 1. Visão Geral do Produto
+*(Descrição em alto nível do sistema, seus principais objetivos e o problema que resolve. Destaque o diferencial ou propósito central.)*  
 
-### Template
+**Exemplo:** Uma plataforma web que centraliza o gerenciamento de [tipo de negócio], incluindo cadastro de entidades principais, configuração de serviços, agenda, histórico e controle de status.
 
-```markdown
-# Visão do Produto: [Nome do Projeto]
+## 2. Público-alvo
+- **[Tipo de Usuário 1]** — *(descrição das responsabilidades e objetivos deste ator dentro do sistema).*  
+- **[Tipo de Usuário 2]** — *(descrição).*  
+- **[Tipo de Usuário 3]** — *(descrição).*  
 
-## 1. Justificativa e Oportunidade de Negócio
-*(Detalhamento do cenário atual, o problema a ser resolvido ou a oportunidade de mercado que este software visa capturar. Qual dor estamos curando?)*
+## 3. Necessidade de Negócio / Justificativa
+*(Quais problemas o sistema resolve? Quais ganhos ele traz? Pode ser separado em dimensões como Operacional, Comercial, Decisional, etc.)*  
 
-**Exemplo:** A gestão de inventário é realizada por meio de planilhas, resultando em inconsistências de dados, falhas na reposição de produtos e, consequentemente, perda de vendas e insatisfação dos clientes.
+- **Operacional:** [Exemplo: eliminar uso de papel, reduzir conflitos de horário].  
+- **Comercial:** [Exemplo: melhorar retenção de clientes e personalização de atendimento].  
+- **Decisional:** [Exemplo: fornecer relatórios de desempenho].  
 
-## 2. Escopo e Fronteiras do Produto
-*(Delimite de forma clara o que o produto se propõe a fazer e, crucialmente, o que está fora de seu escopo para evitar desvios de foco.)*
+## 4. Escopo (o que está incluído / excluído)
+**Incluído:**  
+- [Funcionalidade essencial 1]  
+- [Funcionalidade essencial 2]  
+- [Funcionalidade essencial 3]  
 
-- **Capacidades Essenciais (Alto Nível):**
-    - [Exemplo: Gerenciamento centralizado de produtos e fornecedores]
-    - [Exemplo: Monitoramento do inventário em tempo real]
-    - [Exemplo: Alertas automáticos para estoque baixo]
+**Excluído:**  
+- [Funcionalidade fora do escopo 1]  
+- [Funcionalidade fora do escopo 2]  
 
-- **Fora do Escopo (Exclusões Explícitas):**
-    - [Exemplo: Módulo de faturamento e emissão de notas fiscais]
-    - [Exemplo: Integração nativa com sistemas de CRM de terceiros]
-## 3. Diagrama de Casos de Uso (Simplificado)
-*(Representação visual simples das principais funcionalidades e dos atores que as utilizam.)*
+## 5. Principais Funcionalidades / Épicos
+1. **[Nome do Épico 1]:** descrição breve.  
+2. **[Nome do Épico 2]:** descrição breve.  
+3. **[Nome do Épico 3]:** descrição breve.  
+*(Liste os principais blocos de funcionalidades do sistema.)*  
+
+## 6. Riscos
+*(Liste riscos que podem afetar a adoção, uso ou sucesso do sistema.)*  
+
+**Exemplo:** Baixa adoção por resistência à mudança de processo manual.  
+
+## 7. Prioridades Iniciais
+*(Defina quais funcionalidades ou épicos têm prioridade no desenvolvimento inicial.)*  
+
+1. [Funcionalidade crítica 1]  
+2. [Funcionalidade crítica 2]  
 
 ```
 
