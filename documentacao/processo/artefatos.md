@@ -65,7 +65,7 @@ O **Documento de Visão** é o alicerce estratégico do projeto. Ele articula a 
 
 ---
 
-## 2. Documento de Expecificação
+## 2. História de Usuário
 
 ### Propósito
 O **Documento de Expecificação** descreve uma funcionalidade do sistema a partir da perspectiva de quem a utiliza. Seu principal objetivo é focar no **valor** entregue ao usuário, detalhando o requisito de forma concisa e testável. É a principal unidade de trabalho para a equipe de desenvolvimento.
