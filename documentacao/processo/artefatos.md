@@ -73,7 +73,7 @@ O **Documento de Expecificação** descreve uma funcionalidade do sistema a part
 ### Template
 
 ```markdown
-# Documento de Especificação: [ID - Título da Funcionalidade]
+# Histórias de Usuário: [ID - Título da Funcionalidade]
 
 ## 1. Narrativa (O Quê, Quem, Por Quê)
 **COMO UM** [Perfil de Usuário],
@@ -82,27 +82,27 @@ O **Documento de Expecificação** descreve uma funcionalidade do sistema a part
 
 **Exemplo:**
 **Como um** *Gerente de Produto*,
-**Eu desejo** *visualizar um dashboard com o progresso das especificações por status (A Fazer, Em Andamento, Concluído)*,
+**Eu desejo** *visualizar um dashboard com o progresso das histórias de usuário por status (A Fazer, Em Andamento, Concluído)*,
 **Para que** *eu possa identificar gargalos e comunicar o andamento do projeto com mais clareza*.
 
 ## 2. Critérios de Aceitação (Regras de Negócio e Cenários)
-*(Condições objetivas que, uma vez atendidas, confirmam que a especificação foi implementada corretamente. São a base para os testes de qualidade.)*
+*(Condições objetivas que, uma vez atendidas, confirmam que a história foi implementada corretamente. São a base para os testes de qualidade.)*
 
 - **Cenário 1:** Visualização padrão do dashboard.
     - **Dado** que eu acessei a página do dashboard.
     - **Quando** a página carregar completamente.
     - **Então** eu devo ver três colunas: 'A Fazer', 'Em Andamento' e 'Concluído'.
-    - **E** cada especificação deve ser exibida na coluna correspondente ao seu status atual.
+    - **E** cada história deve ser exibida na coluna correspondente ao seu status atual.
 
-- **Cenário 2:** A atualização do status de uma especificação reflete no dashboard.
-    - **Dado** que a especificação "ABC-123" está na coluna 'A Fazer'.
-    - **Quando** eu movo a especificação "ABC-123" para 'Em Andamento'.
+- **Cenário 2:** A atualização do status de uma história reflete no dashboard.
+    - **Dado** que a história "ABC-123" está na coluna 'A Fazer'.
+    - **Quando** eu movo a história "ABC-123" para 'Em Andamento'.
     - **Então** o dashboard deve ser atualizado automaticamente, mostrando "ABC-123" na coluna 'Em Andamento'.
 ```
 
 ## 3. Produto (Software Executável)
 
-O Produto é o artefato final e tangível de todo o processo. Representa o software funcional, testado e pronto para ser entregue aos usuários ou disponibilizado em um ambiente de produção/teste. É a manifestação concreta das especificações implementadas.
+O Produto é o artefato final e tangível de todo o processo. Representa o software funcional, testado e pronto para ser entregue aos usuários ou disponibilizado em um ambiente de produção/teste. É a manifestação concreta das histórias implementadas.
 
 ### Template
 
