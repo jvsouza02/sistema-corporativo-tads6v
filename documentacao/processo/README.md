@@ -1,5 +1,17 @@
 # Definição de Padrões e Processo de Desenvolvimento de Software #
 
+## Fases
+
+No nosso processo usamos estas fases/colunas para gerir o trabalho:
+
+- **Indefinido**: Itens levantados, mas ainda não analisados/não priorizados.
+- **Pronto**: Itens analisados, com critérios de aceitação e prontos para iniciar.
+- **Em Andamento**: Itens sendo implementados ou testados ativamente.
+- **Revisão**: Etapa para revisão (código/requisitos) e verificação antes da conclusão final.
+- **Feito**: Itens concluídos e aceitos (entregues).
+
+Cada item deve ter responsável e critérios de aceitação. Movimentação entre fases só deve ocorrer quando os critérios da fase anterior forem atendidos.
+
 ## Processo
 
 **Papeis**
@@ -12,6 +24,7 @@
 - [Analisar Negócio](atividades.md#1-analisar-negócio): Identificar e compreender as necessidades da barbearia e de seus clientes, definindo as funcionalidades essenciais do sistema e gerando o documento de visão e escopo do projeto.
 - [Especificar](atividades.md#2-especificar-funcionalidades): Documentar os requisitos funcionais e não funcionais do sistema, especificando funcionalidades com base no documento de visão.
 - [Codificar](atividades.md#3-codificar): Implementar as funcionalidades do sistema com base nos requisitos especificados, garantindo que o código seja funcional.
+- [Revisar](atividades.md#4-revisar): Assegurar qualidade, aderência aos padrões e conformidade com os critérios de aceitação antes da entrega final.
 
 **Artefatos**
 - [Documento de Visão](artefatos.md#1-documento-de-visao): Artefato responsável por descrever de forma geral o sistema, seus objetivos, público-alvo e funcionalidades principais, alinhando expectativas entre o cliente e a equipe.

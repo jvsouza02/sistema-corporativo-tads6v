@@ -69,4 +69,30 @@ A atividade **Codificar** corresponde à implementação. Nessa fase, o time des
 1. **Planejamento Técnico:** Definir a arquitetura de baixo nível (classes, funções, módulos).  
 2. **Implementação:** Escrever o código de acordo com as histórias de usuário.  
 3. **Integração:** Unir os módulos ao sistema e resolver dependências.  
-4. **Entrega do Produto:** Compilar e gerar o **[Produto Executável](artefatos.md#3-produto-software-executável)** para testes.  
+4. **Entrega do Produto:** Compilar e gerar o **[Produto Executável](artefatos.md#3-produto-software-executável)** para testes.
+
+## 4. Revisar
+
+### Objetivo
+Verificar qualidade do código e aderência aos requisitos, garantindo que a entrega atenda padrões.
+
+### Responsável
+**[Desenvolvedor](papeis.md#desenvolvedor)**, **[Testador](papeis.md#testador)**.
+
+| Elemento | Descrição |
+| :--- | :--- |
+| **Entradas** | **[História de Usuário](artefatos.md#2-história-de-usuário)** com Critérios de Aceitação, Documentação. |
+| **Saídas** | Aprovação ou devolução com comentários,  observações/pendências documentadas.|
+
+## 5. Testar
+
+### Objetivo
+Validar que o produto cumpre os requisitos funcionais e não-funcionais e que os defeitos foram encontrados antes da entrega.
+
+### Responsável
+**[Testador](papeis.md#testador)**.
+
+| Elemento | Descrição |
+| :--- | :--- |
+| **Entradas** | **[Plano de Teste](artefatos.md#2-plano-de-teste)**, Critérios de Aceitação, Código|
+| **Saídas** |  Bugs/defeitos registrados (issues) com severidade e evidências, Verificação dos critérios de saída para mover item a **[Feito](README.md#fases)**|

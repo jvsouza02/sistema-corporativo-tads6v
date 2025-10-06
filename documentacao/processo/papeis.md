@@ -38,4 +38,23 @@ Responsável em expecificar o que é necessário para que se cheque no produto f
 
 * [Codificar](atividades.md#3-codificar): Elaborar a arquitetura e os detalhes técnicos da aplicação. Implementar funcionalidades, escrever código e realizar a integração dos componentes.  
     1. **Entrada Principal**: [História de Usuário](artefatos.md#2-história-de-usuário)  
-    2. **Saída Principal**: [Produto/Código](artefatos.md#3-produto-software-executável)  
+    2. **Saída Principal**: [Produto/Código](artefatos.md#3-produto-software-executável)
+
+## Testador (QA / Testador)
+
+**Perfil**
+
+Profissional focado em qualidade do produto, responsável por elaborar e executar estratégias e casos de teste (manuais e automatizados). Deve conhecer critérios de aceitação, técnicas de teste.
+
+**Atividades**
+
+- Elaborar o Plano de Testes.
+- Executar testes e registrar evidências/defeitos.
+- Trabalhar com desenvolvedores e analistas para esclarecer requisitos.
+ 
+
+**Atividades**  
+
+* [Testar](atividades.md#5-testar): Elaborar plano de teste, registrar defeitos e validar correções.  
+    1. **Entrada Principal**: [História de Usuário](artefatos.md#2-história-de-usuário) com critérios de aceitação
+    2. **Saída Principal**: Registro de defeitos (issues com passos, evidências e severidade)
