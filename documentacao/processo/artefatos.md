@@ -108,3 +108,61 @@ O Produto é o artefato final e tangível de todo o processo. Representa o softw
 
 ```markdown
 ```
+
+## 4. Plano de Testes
+
+O Plano de Testes define a estratégia, o escopo e os critérios de validação do produto.
+Inclui os tipos de teste a serem realizados (unitário e aceitação), ferramentas, responsáveis e métricas de sucesso.
+
+### Template
+
+```markdown
+# Plano de Testes — [Nome do Sistema]
+
+## 1. Objetivo
+Descrever a abordagem e o planejamento das atividades de teste para garantir que o produto atenda aos requisitos funcionais e não funcionais.
+
+## 2. Escopo
+- Módulos a serem testados.
+- Tipos de teste: unitário, integração, sistema e aceitação.
+
+## 3. Estratégia de Teste
+- Ferramentas: JUnit, Postman, Selenium, etc.
+- Frequência e responsáveis.
+- Critérios de entrada e saída de cada fase.
+
+## 4. Tipos de Teste
+### Testes Unitários
+- Responsável: Desenvolvedor.
+- Objetivo: validar o comportamento isolado de classes e métodos.
+- Ferramenta: JUnit.
+- Local: `tests/unit/`.
+
+### Testes de Integração
+- Responsável: Testador (QA) e Desenvolvedor.
+- Objetivo: validar a comunicação entre módulos.
+- Ferramenta: Postman, RestAssured.
+
+### Testes de Sistema e Aceitação
+- Responsável: Testador (QA).
+- Objetivo: garantir que o sistema atenda aos requisitos e critérios de aceitação.
+- Ferramenta: Selenium, Cypress.
+
+## 5. Cronograma
+| Iteração | Atividade | Responsável | Entregável |
+|-----------|------------|--------------|-------------|
+| Iteração 1 | Testes unitários dos módulos X e Y | Dev | Relatório de execução |
+| Iteração 2 | Testes de integração | QA | Log de validação |
+| Iteração 3 | Testes de aceitação | QA | Relatório final |
+
+## 6. Critérios de Aceitação
+- 100% dos testes unitários devem passar.
+- Nenhum defeito crítico pendente antes da entrega.
+- Cobertura mínima de testes automatizados: 80%.
+
+## 7. Registro de Resultados
+- Local dos relatórios: `/tests/reports/`
+- Processo de acompanhamento de falhas: issues no repositório.
+
+
+```
