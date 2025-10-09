@@ -24,12 +24,35 @@ Entender o contexto do cliente, levantar o minimundo/domínio, identificar objet
 2. Documentar o minimundo (modelo de domínio / diagrama de classes).
 3. Identificar funcionalidades essenciais e restrições.
 4. Escrever a Declaração de Escopo (contexto, objetivo, funções principais, performance/restrições).
-5. Priorizar épicos/funcionalidades iniciais (entrada para a EAP).
-6. Encaminhar artefatos para o Analista de Req/Q para especificação. 
+5. Encaminhar artefatos para o Analista de Req/Q para especificação. 
 
 ---
 
-## 2. Especificar
+## 2. Gerenciamento do Escopo do Projeto
+
+### Objetivo
+Criar a Estrutura Analítica do Projeto (EAP) com base nos requisitos levantados, detalhando todas as entregas e subdivisões necessárias para o desenvolvimento completo do projeto.
+
+### Responsável
+**[Analista de Req/Q](papeis.md#analista-de-reqq-analista-de-requisitos-e-qualidade)**.
+
+### Artefatos
+
+| Elemento | Descrição |
+| :--- | :--- |
+| **Entradas** | **[Documento de Visão](artefatos.md#1-documento-de-visão)**, Declaração de Escopo, Minimundo / Modelo de Caso de Uso |
+| **Saídas** | **[História de Usuário](artefatos.md#2-gerenciamento-do-escopo-do-projeto)**|
+
+### Tarefas principais
+1. Redigir Histórias de Usuário no formato: *Como um / Eu desejo / Para que*.
+2. Definir Critérios de Aceitação (Dado / Quando / Então) para cada história.
+4. Mapear requisitos para elementos do Diagrama de Classes (entidades/atributos/relacionamentos).
+5. Estimar esforço inicial e indicar dependências para a EAP.
+6. Revisar com AN e Desenvolvedor para checar clareza e viabilidade.
+
+---
+
+## 3. Especificar
 
 ### Objetivo
 Converter visão/escopo em requisitos claros, verificáveis e rastreáveis (Histórias de Usuário, REQ.xxx).
@@ -53,7 +76,7 @@ Converter visão/escopo em requisitos claros, verificáveis e rastreáveis (Hist
 
 ---
 
-## 3. Codificar
+## 4. Codificar
 
 ### Objetivo
 A atividade **Codificar** corresponde à implementação. Nessa fase, o time desenvolve e integra o **código-fonte**, transformando o **[História de Usuário](artefatos.md#2-história-de-usuário)** em um **[Produto Executável](artefatos.md#3-produto-software-executável)** de acordo com os padrões de qualidade. Além disso, o desenvolvedor é responsável pela criação e manutenção dos **testes unitários**, garantindo que cada módulo do código funcione de forma isolada e conforme especificado.
