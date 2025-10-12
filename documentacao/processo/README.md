@@ -1,47 +1,118 @@
-# Definição de Padrões e Processo de Desenvolvimento de Software #
+# Definição de Padrões e Processo de Desenvolvimento de Software
 
-## Fases
+## Fases (colunas)
 
-No nosso processo usamos estas fases/colunas para gerir o trabalho:
+No nosso processo usamos estas fases/colunas para gerir o trabalho. Cada fase possui critérios claros de entrada e saída — **um item só pode ser movido para a próxima fase quando os critérios da fase atual estiverem atendidos**.
 
-- **Indefinido**: Itens levantados, mas ainda não analisados/não priorizados.
-- **Pronto**: Itens analisados, com critérios de aceitação e prontos para iniciar.
-- **Em Andamento**: Itens sendo implementados ou testados ativamente.
-- **Revisão**: Etapa para revisão (código/requisitos) e verificação antes da conclusão final.
-- **Feito**: Itens concluídos e aceitos (entregues).
+### 1. Indefinido
 
-Cada item deve ter responsável e critérios de aceitação. Movimentação entre fases só deve ocorrer quando os critérios da fase anterior forem atendidos.
+* **Descrição:** Itens levantados, mas ainda não analisados nem priorizados.
+* **Quando usar:** Qualquer item que **não tenha** ao menos **data**, **responsável (atribuição)**, e **iteração** definidos deve ser criado/colocado na coluna *Indefinido*.
+
+  > **Regra obrigatória:** se faltar **qualquer** um desses quatro elementos (data, atribuição, prioridade, iteração) o item DEVE permanecer em *Indefinido* até que o gerente de projeto o configure.
+* **Critérios de saída (para ir a *Pronto*):**
+
+  * Documento/descrição mínima do item criada.
+  * Dono/responsável atribuído.
+  * Data(s) inicial e final previstas ou iteração atribuída.
+
+### 2. Pronto
+
+* **Descrição:** Itens analisados e detalhados; prontos para iniciar desenvolvimento.
+* **Critérios de entrada:**
+
+  * Atendeu todos os requisitos de saída da fase *Indefinido*.
+* **Critérios de saída (para ir a *Em Andamento*):**
+
+  * Aprovação do Gerente de Projeto quando for necessário iniciar na iteração atual.
+
+### 3. Em Andamento
+
+* **Descrição:** Itens sendo implementados ou testados ativamente.
+* **Critérios de entrada:** Itens que saíram de *Pronto* e tiveram início documentado (data/hora de início, branch/ambiente de desenvolvimento, etc).
+* **Boas práticas durante esta fase:**
+
+  * Commits frequentes e atrelados ao ID do item.
+
+* **Critérios de saída (para ir a *Revisão*):**
+
+  * Implementação concluída conforme critérios de aceitação.
+
+### 4. Revisão
+
+* **Descrição:** Verificação final — revisão de código e validação de requisitos.
+* **Atividades típicas:**
+
+  * Verificação de impacto em outras áreas/sistemas.
+
+* **Critérios de saída (para ir a *Feito*):**
+
+  * Aprovados os resultados de aceitação.
+  * Documentação atualizada (se necessário).
+
+### 5. Feito
+
+* **Descrição:** Itens concluídos e aceitos (entregues).
+* **Critérios de entrada:**
+
+  * Validação final pelo gerente de projeto.
+---
 
 ## Processo
 
-**Papeis**
+### Papéis
 
-- [Analista de Negócio](papeis.md#analista-de-negocio): Responsável por compreender as necessidades do dono da barbearia e dos clientes, traduzindo-as em funcionalidades que agregam valor.
-- [Analista de Requisitos](papeis.md#analista-de-requisitos): Responsável por documentar e detalhar as necessidades da barbearia, transformando-as em requisitos claros e organizados.
-- [Desenvolvedor](papeis.md#desenvolvedor): Responsável por construir e implementar o sistema, transformando os requisitos em funcionalidades práticas.
+* [Gerente de Projeto](papeis.md#gerente-de-projeto): definir e configurar tudo sobre as tarefas (atribuir responsáveis quando necessário, definir datas, prioridade e iteração), aprovar início de iterações e coordenar a comunicação entre papéis. O Gerente de Projeto é a autoridade para mover itens da coluna *Indefinido* para *Pronto* quando todos os requisitos formais estiverem atendidos, ou para recuar itens quando for necessário. Além disso ele também é responsável pelas revisões dos itens.
+* [Analista de Negócio](papeis.md#analista-de-negocio)
+  Responsável por compreender as necessidades do dono da barbearia e dos clientes, traduzindo-as em funcionalidades que agregam valor. Produz visão de negócio e valida entregas com o cliente.
+* [Analista de Requisitos](papeis.md#analista-de-requisitos)
+  Responsável por documentar e detalhar as necessidades, transformando-as em requisitos claros, critérios de aceitação e roteiros de testes.
+* [Desenvolvedor](papeis.md#desenvolvedor)
+  Responsável por construir e implementar o sistema, transformando os requisitos em funcionalidades práticas, escrevendo código, testes e mantendo a qualidade.
 
-**Atividades**
-- [Analisar Negócio](atividades.md#1-analisar-negócio): Identificar e compreender as necessidades da barbearia e de seus clientes, definindo as funcionalidades essenciais do sistema e gerando o documento de visão e escopo do projeto.
-- [Especificar](atividades.md#2-especificar-funcionalidades): Documentar os requisitos funcionais e não funcionais do sistema, especificando funcionalidades com base no documento de visão.
-- [Codificar](atividades.md#3-codificar): Implementar as funcionalidades do sistema com base nos requisitos especificados, garantindo que o código seja funcional.
-- [Revisar](atividades.md#4-revisar): Assegurar qualidade, aderência aos padrões e conformidade com os critérios de aceitação antes da entrega final.
+### Atividades
 
-**Artefatos**
-- [Documento de Visão](artefatos.md#1-documento-de-visao): Artefato responsável por descrever de forma geral o sistema, seus objetivos, público-alvo e funcionalidades principais, alinhando expectativas entre o cliente e a equipe.
-- [Especificação de Funcionalidade](artefatos.md#2-especificacao-de-funcionalidade): Documento que detalha os requisitos funcionais do sistema, descrevendo como cada funcionalidade deve se comportar.
-- [Produto](artefatos.md#3-produto): Artefato resultante da codificação, que representa aquilo que atende aos requisitos especificados e está disponível para uso pelos usuários.
+* [Reunião de Análise de Demanda](atividades.md#5-reuniao-de-analise-de-demanda): detalhar novas demandas levantadas, decidir prioridades iniciais, identificar dependências e definir os elementos mínimos necessários para que um item **saiba** se permanecerá em *Indefinido* ou seja promovido a *Pronto* (data, responsável, prioridade, iteração, critérios de aceitação mínimos).
+* [Analisar Negócio](atividades.md#1-analisar-negocio)
+  Identificar e compreender as necessidades da barbearia e de seus clientes; gerar o Documento de Visão.
+* [Especificar](atividades.md#2-especificar-funcionalidades)
+  Documentar requisitos funcionais e não-funcionais; escrever critérios de aceitação testáveis.
+* [Codificar](atividades.md#3-codificar)
+  Implementar funcionalidades seguindo padrões de código e cobertura de testes.
+* [Revisar](atividades.md#4-revisar)
+  Revisar código, requisitos e validar critérios de aceitação antes da entrega final.
+
+
+---
+
+## Artefatos
+
+* [Documento de Visão](artefatos.md#1-documento-de-visao)
+  Descreve objetivos, público, escopo e funcionalidades principais do sistema.
+* [Especificação de Funcionalidade](artefatos.md#2-especificacao-de-funcionalidade)
+  Detalha requisitos funcionais com critérios de aceitação e exemplos de uso.
+* [Produto](artefatos.md#3-produto)
+  Resultado da codificação e integração, disponível para uso.
+
+---
 
 ## Padrões Estabelecidos para o Desenvolvimento
 
-**Padrão de Diretórios** - Artefatos só podem ser criados dentro dessa estrutura estabelecida.
-- [Requisitos](requisitos/): Artefatos que detalham as funcionalidades funcionais e não funcionais do sistema, incluindo diagramas de casos de uso e a especificação de funcionalidades.
-- [Código Fonte](codificacao/): Artefatos relacionados à codificação do sistema, ou seja, o produto final e suas funcionalidades implementadas.
+### Padrão de Diretórios
 
-**Padrão para criar os Artefatos de Requisitos** - Cada artefato de requisitos deve representar uma funcionalidade específica, seguir o padrão de nomenclatura definido pelo ambiente e ser organizado em uma estrutura de diretórios com nomes significativos dentro do diretório padrão de [Requisitos](requisitos/).
+Artefatos só podem ser criados dentro desta estrutura:
 
-- A estrutura de diretórios que armazenará os artefatos de requisitos criados e mantidos no diretório [Requisitos](requisitos/) deverá seguir a seguinte classificação primária: os artefatos relacionados às necessidades do domínio do problema, como as funcionalidades do sistema da barbearia, deverão ser organizados no diretório [Requisitos Funcionais](requisitos/requisitos-funcionais/) Funcionais; os artefatos que descrevem características de qualidade do produto, como desempenho, segurança e usabilidade, deverão ser organizados no diretório [Requisitos Não-Funcionais](requisitos/requisitos-nao-funcionais/).
+* `requisitos/` — Artefatos que detalham funcionalidades e qualidade (com diagramas, casos de uso e especificações).
 
-- Padrão de Nomenclatura
-    - `REQ.` como prefixo para identificar os artefatos de requisitos que irão contextualizar (indexam / contextualizam) especificações de requisitos arquivos que carregam a documentação;
-    - Em seguida, dentro do diretório no qual ele será criado, uma identificação numérica de três dígitos (REQ.000) que consiga identificar o artefato de modo único e exclusivo.
-    - Por fim, utilizaremos a extensão .md para permitir a utilização da Linguagem de Marcação Markdown com intuito de formatar os artefatos de requisitos, possibilitando criar artefatos organizados e de estrutura fluida. (ex.: REQ.000.md)
+  * `requisitos/requisitos-funcionais/`
+  * `requisitos/requisitos-nao-funcionais/`
+* `codificacao/` — Código fonte, scripts de build, instruções de deploy e demais artefatos de implementação.
+
+### Padrão para criar os Artefatos de Requisitos
+
+* **Cada artefato** de requisito deve representar uma funcionalidade específica.
+* **Nomenclatura:** `REQ.` + identificação numérica de **3 dígitos** + `.md`
+
+  * Ex.: `REQ.000.md`, `REQ.101.md`
+
+* Organização: os arquivos devem ficar nos diretórios corretos (`requisitos-funcionais` ou `requisitos-nao-funcionais`) conforme sua natureza.
