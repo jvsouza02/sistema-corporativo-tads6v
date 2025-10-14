@@ -1,5 +1,5 @@
 ### Título
-**Registrar e consultar histórico de atendimentos**
+**Registrar Atendimentos**
 
 ### Descrição
 **Como** usuário autorizado da barbearia (proprietário ou cabeleireiro)  
@@ -13,3 +13,4 @@
 - **CA4 — Editar:** O usuário autorizado consegue editar um comentário existente e a alteração é persistida.  
 - **CA5 — Excluir:** O usuário autorizado consegue excluir um comentário e este deixa de aparecer na lista.   
 - **CA6 — Persistência:** Todos os registros ficam armazenados no banco de dados e disponíveis para futuras consultas.
+
