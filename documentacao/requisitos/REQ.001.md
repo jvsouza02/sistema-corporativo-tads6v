@@ -1,16 +1,15 @@
-### Título
-**Registrar Atendimentos**
+# Título  
+**Registrar Atendimento**
 
-### Descrição
-**Como** usuário autorizado da barbearia (proprietário ou cabeleireiro)  
-**Eu quero** registrar, consultar, editar e excluir observações sobre atendimentos (cada observação com data e hora)  
+## Descrição  
+**Como** Cabeleireiro  
+**Eu quero** registrar detalhes do serviço, incluindo produtos utilizados e observações sobre o cliente, além de poder consultar, alterar e excluir este registro.  
 **Para que** eu possa documentar os serviços realizados e personalizar futuros atendimentos.
 
-### Critérios de Aceitação
-- **CA1 — Criar registro:** Ao submeter um comentário válido, o sistema salva o comentário com **timestamp** e o exibe na lista.  
-- **CA2 — Validação:** Se o campo comentário estiver vazio, o sistema não salva e mostra erro informando que o comentário é obrigatório.  
-- **CA3 — Listagem:** O usuário autorizado consegue visualizar todos os comentários salvos, cada um com texto, data e hora.  
-- **CA4 — Editar:** O usuário autorizado consegue editar um comentário existente e a alteração é persistida.  
-- **CA5 — Excluir:** O usuário autorizado consegue excluir um comentário e este deixa de aparecer na lista.   
-- **CA6 — Persistência:** Todos os registros ficam armazenados no banco de dados e disponíveis para futuras consultas.
-
+## Critérios de Aceitação  
+- **CA1 — Condição:** O Cabeleireiro só deve conseguir registrar o atendimento se o agendamento estiver com o status “Reservado”.  
+- **CA2 — Registro:** O Cabeleireiro deve conseguir inserir os detalhes do atendimento (produtos utilizados e observações), e o sistema deve registrar a informação no histórico.  
+- **CA3 — Consulta:** O Cabeleireiro deve conseguir visualizar os detalhes de um atendimento que já foram registrados no histórico.  
+- **CA4 — Edição:** O Cabeleireiro deve conseguir modificar (alterar) o registro do atendimento e o sistema deve persistir a alteração.  
+- **CA5 — Exclusão:** O Cabeleireiro deve conseguir remover (apagar) um registro de atendimento, se necessário.  
+- **CA6 — Confiabilidade:** O sistema deve garantir a integridade dos dados e armazenar o registro do atendimento no histórico para consultas futuras.
