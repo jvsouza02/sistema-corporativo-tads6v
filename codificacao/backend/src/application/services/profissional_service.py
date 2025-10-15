@@ -3,8 +3,8 @@ from src.data.repositories.profissional_repository import ProfissionalRepository
 
 repository = ProfissionalRepository()
 class ProfissionalService:
-    def cadastrar_profissional(self, nome, horario_trabalho):
-        profissional = Profissional(nome, horario_trabalho)
+    def cadastrar_profissional(self, nome, horario_inicio, horario_fim):
+        profissional = Profissional(nome, horario_inicio, horario_fim)
         if not profissional.vefificar_nome() or not profissional.verificar_horario():
             raise ValueError("Profissional inválido.")
         return repository.cadastrar_profissional(profissional)
@@ -12,8 +12,8 @@ class ProfissionalService:
     def listar_profissionais(self):
         return repository.listar_todos()
     
-    def editar_horario(self, id_profissional, horario_trabalho):
-        return repository.editar_horario(id_profissional, horario_trabalho)
+    def editar_horario(self, id_profissional, horario_inicio, horario_fim):
+        return repository.editar_horario(id_profissional, horario_inicio, horario_fim)
     
     def deletar_profissional(self, id_profissional):
         profissional = repository.deletar(id_profissional)

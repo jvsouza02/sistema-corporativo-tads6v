@@ -9,7 +9,12 @@ class ProfissionalRepository:
         self.db = SessionLocal()
 
     def cadastrar_profissional(self, profissional: Profissional):
-        profissional_model = ProfissionalModel(**profissional.dict())
+        profissional_model = ProfissionalModel(
+            id_profissional=profissional.id_profissional,
+            nome=profissional.nome,
+            horario_inicio=profissional.horario_inicio,
+            horario_fim=profissional.horario_fim
+        )
         self.db.add(profissional_model)
         self.db.commit()
         self.db.refresh(profissional_model)
@@ -19,11 +24,12 @@ class ProfissionalRepository:
         result = self.db.execute(Select(ProfissionalModel).order_by(ProfissionalModel.data_atualizacao.desc()))
         return result.scalars().all()
     
-    def editar_horario(self, id_profissional, horario_trabalho):
+    def editar_horario(self, id_profissional, horario_inicio, horario_fim):
         profissional_model = self.db.query(ProfissionalModel).filter(ProfissionalModel.id_profissional == id_profissional).first()
         if not profissional_model:
             return None
-        profissional_model.horario_trabalho = horario_trabalho
+        profissional_model.horario_inicio = horario_inicio
+        profissional_model.horario_fim = horario_fim
         try:
             self.db.merge(profissional_model)
             self.db.commit()

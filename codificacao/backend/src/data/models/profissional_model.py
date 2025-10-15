@@ -10,6 +10,7 @@ class ProfissionalModel(Base):
     
     id_profissional = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     nome = Column(String, nullable=False)
-    horario_trabalho = Column(String, nullable=False)
+    horario_inicio = Column(String, nullable=False)
+    horario_fim = Column(String, nullable=False)
     data_criacao = Column(DateTime, default=datetime.now, nullable=False)
     data_atualizacao = Column(DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
