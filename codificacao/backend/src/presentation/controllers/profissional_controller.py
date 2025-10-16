@@ -6,6 +6,9 @@ class ProfissionalController:
 
     def cadastrar_profissional(self, nome, horario_inicio, horario_fim):
         return self.profissional_service.cadastrar_profissional(nome, horario_inicio, horario_fim)
+    
+    def buscar_profissional(self, id_profissional):
+        return self.profissional_service.buscar_profissional(id_profissional)
 
     def listar_profissionais(self):
         return self.profissional_service.listar_profissionais()

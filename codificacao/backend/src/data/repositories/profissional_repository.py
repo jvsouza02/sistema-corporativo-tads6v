@@ -19,6 +19,10 @@ class ProfissionalRepository:
         self.db.commit()
         self.db.refresh(profissional_model)
         return profissional_model
+    
+    def buscar_profissional(self, id_profissional):
+        profissional = self.db.query(ProfissionalModel).filter(ProfissionalModel.id_profissional == id_profissional).first()
+        return profissional
 
     def listar_todos(self):
         result = self.db.execute(Select(ProfissionalModel).order_by(ProfissionalModel.data_atualizacao.desc()))

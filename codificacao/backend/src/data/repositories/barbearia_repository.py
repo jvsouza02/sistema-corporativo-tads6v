@@ -9,7 +9,7 @@ class BarbeariaRepository():
 
     def _to_entity(self, model: BarbeariaModel):
         return (str(model.id_barbearia), str(model.nome), str(model.email), str(model.endereco),
-                str(model.telefone), str(model.horario_funcionamento), str(model.horario_fechamento),
+                str(model.telefone), str(model.horario_abertura), str(model.horario_fechamento),
                 str(model.descricao), str(model.foto_url), model.data_criacao, model.data_atualizacao)
 
     def salvar(self, nova_barbearia):
@@ -19,7 +19,7 @@ class BarbeariaRepository():
             email=nova_barbearia.email,
             endereco=nova_barbearia.endereco,
             telefone=nova_barbearia.telefone,
-            horario_funcionamento=nova_barbearia.horario_funcionamento,
+            horario_abertura=nova_barbearia.horario_abertura,
             horario_fechamento=nova_barbearia.horario_fechamento,
             descricao=nova_barbearia.descricao,
             foto_url=nova_barbearia.foto_url

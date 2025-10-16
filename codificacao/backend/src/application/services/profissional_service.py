@@ -9,6 +9,9 @@ class ProfissionalService:
             raise ValueError("Profissional inválido.")
         return repository.cadastrar_profissional(profissional)
     
+    def buscar_profissional(self, id_profissional):
+        return repository.buscar_profissional(id_profissional)
+    
     def listar_profissionais(self):
         return repository.listar_todos()
     

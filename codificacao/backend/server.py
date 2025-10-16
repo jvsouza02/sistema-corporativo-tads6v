@@ -33,7 +33,17 @@ def cadastrar_profissional(nome: str = Body(...), horario_inicio: str = Body(...
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-@app.get('/profissional', status_code=status.HTTP_200_OK)
+@app.get('/profissional/{id}', status_code=status.HTTP_200_OK)
+def buscar_profissional(id: str = Path(...)):
+    controller = ProfissionalController()
+    try:
+        return controller.buscar_profissional(id)
+    except ValueError as ve:
+        raise HTTPException(status_code=404, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.get('/profissionais', status_code=status.HTTP_200_OK)
 def listar_profissional():
     controller = ProfissionalController()
     try:
@@ -41,17 +51,17 @@ def listar_profissional():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-@app.put('/profissional/{id_profissional}', status_code=status.HTTP_200_OK)
-def editar_horario(id_profissional: str = Path(...), horario_inicio: str = Body(...), horario_fim: str = Body(...)):
+@app.put('/profissional/{id}', status_code=status.HTTP_200_OK)
+def editar_horario(id: str = Path(...), horario_inicio: str = Body(...), horario_fim: str = Body(...)):
     controller = ProfissionalController()
     try:
-        return controller.editar_horario(id_profissional, horario_inicio, horario_fim)
+        return controller.editar_horario(id, horario_inicio, horario_fim)
     except ValueError as ve:
         raise HTTPException(status_code=404, detail=str(ve))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-@app.delete('/profissional/{id_profissional}', status_code=status.HTTP_204_NO_CONTENT)
+@app.delete('/profissional/{id_profissional}', status_code=status.HTTP_200_OK)
 def deletar_profissional(id_profissional: str = Path(...)):
     controller = ProfissionalController()
     try:

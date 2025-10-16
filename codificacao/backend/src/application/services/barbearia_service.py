@@ -12,7 +12,7 @@ class BarbeariaService:
                 raise ValueError("Já existe uma barbearia com esse nome ou email.")
         barbearia = Barbearia(nome, email, endereco, telefone, horario_funcionamento,
                               horario_fechamento, descricao, foto_url)
-        if not barbearia.vefificar_nome() or not barbearia.verificar_horario():
+        if not barbearia.verificar_nome():
             raise ValueError("Barbearia inválida.")
         return repository.salvar(barbearia)
     

@@ -12,7 +12,7 @@ class BarbeariaModel(Base):
     email = Column(String, nullable=False)
     endereco = Column(String, nullable=False)
     telefone = Column(String, nullable=False)
-    horario_funcionamento = Column(String, nullable=False)
+    horario_abertura = Column(String, nullable=False)
     horario_fechamento = Column(String, nullable=False)
     descricao = Column(String, nullable=False)
     foto_url = Column(String, nullable=False)

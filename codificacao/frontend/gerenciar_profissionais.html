@@ -1,40 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Cabeleireiros</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/form_barbearia.css">
     <style>
         body {
             background-color: #f8f9fa;
-            padding: 20px 0;
         }
+
         .container {
             max-width: 900px;
         }
+
         .card {
             border: none;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         .professional-item {
             padding: 15px;
             border-bottom: 1px solid #e9ecef;
             transition: background-color 0.2s;
         }
+
         .professional-item:last-child {
             border-bottom: none;
         }
+
         .professional-item:hover {
             background-color: #f8f9fa;
         }
     </style>
 </head>
+
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-cut"></i> BarberPro
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="loginLink">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="registerLink">Cadastrar Barbearia</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <h2 class="mb-4">Gerenciar Profissionais</h2>
-        
+
         <!-- Formulário de Cadastro -->
         <div class="card mb-4">
             <div class="card-body">
@@ -43,7 +72,7 @@
                     <div class="row g-3">
                         <div class="col-md-4">
                             <label for="nomeCabeleireiro" class="form-label">Nome Completo</label>
-                            <input type="text" class="form-control" id="nomeCabeleireiro" required>
+                            <input type="text" class="form-control" id="nome" required>
                         </div>
                         <div class="col-md-4">
                             <label for="horarioInicio" class="form-label">Horário Início</label>
@@ -78,7 +107,8 @@
                             <button class="btn btn-sm btn-outline-primary me-2" onclick="editarCabeleireiro(1)">
                                 Editar
                             </button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="removerCabeleireiro(1, 'Ana Souza', true)">
+                            <button class="btn btn-sm btn-outline-danger"
+                                onclick="removerCabeleireiro(1, 'Ana Souza', true)">
                                 Remover
                             </button>
                         </div>
@@ -99,10 +129,6 @@
                 <div class="modal-body">
                     <form id="formEditar">
                         <input type="hidden" id="editarId">
-                        <div class="mb-3">
-                            <label for="editarNome" class="form-label">Nome Completo</label>
-                            <input type="text" class="form-control" id="editarNome" required>
-                        </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="editarHorarioInicio" class="form-label">Horário Início</label>
@@ -148,7 +174,7 @@
         function cadastrarProfissional() {
             event.preventDefault();
             // Lógica para cadastrar um novo cabeleireiro
-            fetch('http://localhost:8000/cadastrar_profissional', {
+            fetch('http://localhost:8000/profissional', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -159,10 +185,16 @@
                     horario_fim: document.getElementById('horarioFim').value
                 })
             })
+            .then(response => response.json())
+            .then(data => {
+                listarProfissionais();
+            })
+
+
         }
 
         function listarProfissionais() {
-            fetch('http://localhost:8000/listar_profissionais')
+            fetch('http://localhost:8000/profissionais', {method: 'GET'})
                 .then(response => response.json())
                 .then(data => {
                     const listaCabeleireiros = document.getElementById('listaCabeleireiros');
@@ -174,9 +206,9 @@
                         card.innerHTML = `
                             <div class="card-body">
                                 <h5 class="card-title">${cabeleireiro.nome}</h5>
-                                <p class="card-text">Horário de Trabalho: ${cabeleireiro.horario_trabalho}</p>
-                                <button class="btn btn-primary" onclick="editarCabeleireiro(${cabeleireiro.id})">Editar</button>
-                                <button class="btn btn-danger" onclick="removerCabeleireiro(${cabeleireiro.id}, '${cabeleireiro.nome}')">Remover</button>
+                                <p class="card-text">Horário: ${cabeleireiro.horario_inicio} - ${cabeleireiro.horario_fim}</p>
+                                <button class="btn btn-primary" onclick="editarProfissional('${cabeleireiro.id_profissional}')">Editar</button>
+                                <button class="btn btn-danger" onclick="deletarProfissional('${cabeleireiro.id_profissional}')">Remover</button>
                             </div>
                         `;
                         listaCabeleireiros.appendChild(card);
@@ -184,28 +216,53 @@
                 });
         }
 
-        function editarCabeleireiro(id) {
-            fetch(`http://localhost:8000/editar_profissional/${id}`)
+        async function editarProfissional(id) {
+            const resp = await fetch(`http://localhost:8000/profissional/${id}`, {method: 'GET'});
+            if (!resp.ok) throw new Error('Erro ao buscar profissional');
+            const data = await resp.json();
+
+            // preenche campos do modal
+            document.getElementById('editarId').value = id;
+            document.getElementById('editarHorarioInicio').value = data.horario_inicio || '';
+            document.getElementById('editarHorarioFim').value = data.horario_fim || '';
+
+            // abre modal no Bootstrap 5 (sem jQuery)
+            const modalEl = document.getElementById('modalEditar');
+            const modal = new bootstrap.Modal(modalEl);
+            modal.show();
+        }
+
+        function salvarEdicao() {
+            const id = document.getElementById('editarId').value;
+            const horarioInicio = document.getElementById('editarHorarioInicio').value;
+            const horarioFim = document.getElementById('editarHorarioFim').value;
+            fetch(`http://localhost:8000/profissional/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ horario_inicio: horarioInicio, horario_fim: horarioFim })
+            })
                 .then(response => response.json())
                 .then(data => {
-                    // Lógica para preencher os campos de edição com os dados do cabeleireiro
-                    document.getElementById('editarId').value = data.id;
-                    document.getElementById('editarNome').value = data.nome;
-                    document.getElementById('editarHorarioInicio').value = data.horario_trabalho.split('-')[0];
-                    document.getElementById('editarHorarioFim').value = data.horario_trabalho.split('-')[1];
+                    listarProfissionais();
                 });
         }
 
-        function deletarProfissional(id) {
-            fetch(`http://localhost:8000/deletar_profissional/${id}`, {
+        function deletarProfissional(id_profissional) {
+            fetch(`http://localhost:8000/profissional/${id_profissional}`, {
                 method: 'DELETE'
             })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data);
                     // Lógica para atualizar a lista de cabeleireiros
                     listarProfissionais();
                 });
         }
+
+        listarProfissionais();
     </script>
 </body>
+
 </html>

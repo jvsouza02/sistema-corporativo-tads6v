@@ -1,12 +1,13 @@
 document.getElementById("saveChangesBtn").addEventListener("click", async () => {
-    const nome = document.getElementById("editName").value;
-    const email = document.getElementById("editEmail").value;
-    const endereco = document.getElementById("editAddress").value;
-    const telefone = document.getElementById("editPhone").value;
-    const descricao = document.getElementById("editDescription").value;
-    const horario_abertura = document.getElementById("editOpeningTime").value;
-    const horario_fechamento = document.getElementById("editClosingTime").value;
-    const foto = document.getElementById("editPhoto").files[0];
+    event.preventDefault();
+    const nome = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const endereco = document.getElementById("address").value;
+    const telefone = document.getElementById("phone").value;
+    const descricao = document.getElementById("description").value;
+    const horario_abertura = document.getElementById("openingTime").value;
+    const horario_fechamento = document.getElementById("closingTime").value;
+    const foto = document.getElementById("photo").files[0];
 
     const data = {
         nome: nome,
