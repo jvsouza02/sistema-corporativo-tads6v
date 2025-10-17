@@ -7,7 +7,7 @@ from datetime import datetime
 class BarbeariaModel(Base):
     __tablename__ = "barbearias"
 
-    id_barbearia = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id_barbearias = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     nome = Column(String, nullable=False)
     email = Column(String, nullable=False)
     endereco = Column(String, nullable=False)
@@ -16,5 +16,5 @@ class BarbeariaModel(Base):
     horario_fechamento = Column(String, nullable=False)
     descricao = Column(String, nullable=False)
     foto_url = Column(String, nullable=False)
-    data_criacao = Column(DateTime, default=datetime.now, nullable=False)
+    data_cadastro = Column(DateTime, default=datetime.now, nullable=False)
     data_atualizacao = Column(DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)

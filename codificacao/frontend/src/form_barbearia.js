@@ -34,7 +34,8 @@ document.getElementById("saveChangesBtn").addEventListener("click", async () => 
             document.getElementById("editBarbershopForm").reset();
             const modal = bootstrap.Modal.getInstance(document.getElementById("editInfoModal"));
             modal.hide();
-        } else {
+        } 
+        else {
             const error = await response.json();
             alert("Erro ao cadastrar: " + error.detail);
         }

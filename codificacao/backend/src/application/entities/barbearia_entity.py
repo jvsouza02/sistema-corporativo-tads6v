@@ -3,7 +3,7 @@ from datetime import datetime, time
 
 class Barbearia:
     def __init__(self, nome, email, endereco, telefone, horario_abertura, horario_fechamento, descricao, foto_url=None):
-        self.id_barbearia = str(uuid4())
+        self.id_barbearias = str(uuid4())
         self.nome = nome
         self.email = email
         self.endereco = endereco
