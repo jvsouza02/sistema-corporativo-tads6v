@@ -1,8 +1,8 @@
 # Definição de Padrões e Processo de Desenvolvimento de Software
 
-## Fases (colunas)
+## Status (colunas)
 
-No nosso processo usamos estas fases/colunas para gerir o trabalho. Cada fase possui critérios claros de entrada e saída — **um item só pode ser movido para a próxima fase quando os critérios da fase atual estiverem atendidos**.
+No nosso processo usamos estes status para gerir o trabalho. Cada status possui critérios claros de entrada e saída — **um item só pode ser movido para o próximo status quando os critérios do status atual estiverem atendidos**.
 
 ### 1. Indefinido
 

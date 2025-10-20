@@ -7,6 +7,7 @@ Este documento descreve os artefatos fundamentais que orientam e materializam o 
 ## 1. Documento de Visão do Produto
 
 ### Finalidade
+
 A **Documento de Visão** é o alicerce estratégico do projeto. Ele articula a razão de ser do produto, define suas fronteiras em alto nível e apresenta a justificativa de negócio que impulsiona sua construção. Funciona como o principal ponto de alinhamento entre as partes interessadas (negócio, produto, tecnologia), estabelecendo **o que** precisa ser feito e **por quê**.
 
 ### Template
@@ -60,7 +61,6 @@ A **Documento de Visão** é o alicerce estratégico do projeto. Ele articula a 
 1. [Funcionalidade crítica 1]  
 2. [Funcionalidade crítica 2]  
 
-
 ```
 
 ---
@@ -68,6 +68,7 @@ A **Documento de Visão** é o alicerce estratégico do projeto. Ele articula a 
 ## 2. História de Usuário
 
 ### Propósito
+
 As **Histórias de Usuários** descreve uma funcionalidade do sistema a partir da perspectiva de quem a utiliza. Seu principal objetivo é focar no **valor** entregue ao usuário, detalhando o requisito de forma concisa e testável. É a principal unidade de trabalho para a equipe de desenvolvimento.
 
 ### Template
@@ -100,19 +101,53 @@ As **Histórias de Usuários** descreve uma funcionalidade do sistema a partir d
     - **Então** o dashboard deve ser atualizado automaticamente, mostrando "ABC-123" na coluna 'Em Andamento'.
 ```
 
-## 3. Produto (Software Executável)
+---
 
-O Produto é o artefato final e tangível de todo o processo. Representa o software funcional, testado e pronto para ser entregue aos usuários ou disponibilizado em um ambiente de produção/teste. É a manifestação concreta das histórias implementadas.
+## 3. Dicionário de Dados
+
+### Finalidade
+
+O **Dicionário de Dados** descreve detalhadamente todas as entidades, atributos e relacionamentos utilizados no sistema. Ele define o significado de cada dado, o tipo, formato, restrições, e sensibilidade (LGPD), garantindo consistência e clareza entre as fases de análise, especificação e desenvolvimento.
+
+### Estrutura Recomendada
+
+| Campo                       | Descrição                                                          |
+| --------------------------- | ------------------------------------------------------------------ |
+| **Tabela.Campo**            | Nome completo (ex.: `usuarios.email`).                             |
+| **Nome lógico**             | Nome legível e intuitivo do campo.                                 |
+| **Tipo (SGBD)**             | Tipo de dado (ex.: `varchar(255)`, `uuid`, `timestamp`).           |
+| **Obrigatório**             | Indica se o campo é obrigatório.                                   |
+| **Descrição / Significado** | Explica o propósito do campo.                                      |
+| **Exemplo**                 | Valor típico do campo.                                             |
+| **Restrições / Validações** | Regras como único, PK, FK, formato, intervalo.                     |
+| **Chave (PK/FK/Índice)**    | Indica função do campo na estrutura do banco.                      |
+| **Dono do Dado**            | Responsável pelo dado (ex.: Produto, RH, Financeiro).              |
+| **Sensibilidade**           | Classificação conforme LGPD (Pessoal, Sensível, Interno, Público). |
+| **Versão**                  | Versão do documento.                                               |
 
 ### Template
 
 ```markdown
+# Dicionário de Dados — [Nome do Sistema]
+
+| Tabela.Campo | Nome lógico | Tipo (SGBD) | Obrigatório | Descrição / Significado | Exemplo | Restrições / Validações | Chave (PK/FK/Índice) | Dono do Dado | Sensibilidade | Versão |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `usuarios.id` | ID do usuário | `uuid` | Sim | Identificador único do usuário | `3fa85f64-5717-4562-b3fc-2c963f66afa6` | PK, não nulo | PK | Time de Auth | Pessoal | 1.0 |
+| `usuarios.email` | E-mail do usuário | `varchar(255)` | Sim | E-mail para login e contato | `joao@example.com` | único, formato email | Índice único | Produto | Pessoal | 1.0 |
+| `pedidos.total` | Total do pedido | `numeric(10,2)` | Sim | Valor total do pedido | `149.90` | >=0 | — | Financeiro | Interno | 1.0 |
 ```
 
-## 4. Plano de Testes
+---
 
-O Plano de Testes define a estratégia, o escopo e os critérios de validação do produto.
-Inclui os tipos de teste a serem realizados (unitário e aceitação), ferramentas, responsáveis e métricas de sucesso.
+## 4. Produto (Software Executável)
+
+O Produto é o artefato final e tangível de todo o processo. Representa o software funcional, testado e pronto para ser entregue aos usuários ou disponibilizado em um ambiente de produção/teste. É a manifestação concreta das histórias implementadas.
+
+---
+
+## 5. Plano de Testes
+
+O Plano de Testes define a estratégia, o escopo e os critérios de validação do produto. Inclui os tipos de teste a serem realizados (unitário e aceitação), ferramentas, responsáveis e métricas de sucesso.
 
 ### Template
 
@@ -163,6 +198,4 @@ Descrever a abordagem e o planejamento das atividades de teste para garantir que
 ## 7. Registro de Resultados
 - Local dos relatórios: `/tests/reports/`
 - Processo de acompanhamento de falhas: issues no repositório.
-
-
 ```

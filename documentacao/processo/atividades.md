@@ -16,8 +16,8 @@ Detalhar e configurar novas demandas levantadas, decidindo prioridade, responsá
 
 | Elemento     | Descrição                                                                                                                                                                   |
 | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Entradas** | Solicitações de stakeholders, Documento de Visão (quando disponível).                                                                     |
-| **Saídas**   | Tarefas com: responsável, prioridade, iteração, datas previstas, critérios de aceitação mínimos, dependências, ações/prazo e responsáveis. |
+| **Entradas** | Solicitações de stakeholders, Documento de Visão (quando disponível), Produto.                                                                    |
+| **Saídas**   | Iteração |
 
 ### Tarefas principais
 
@@ -64,12 +64,12 @@ Converter visão/escopo em requisitos claros, verificáveis e rastreáveis (Hist
 | Elemento | Descrição |
 | :--- | :--- |
 | **Entradas** | **[Documento de Visão](artefatos.md#1-documento-de-visão)**, Declaração de Escopo, Modelo de Domínio / Diagrama de Classes |
-| **Saídas** | **[História de Usuário](artefatos.md#2-história-de-usuário)**|
+| **Saídas** | **[História de Usuário](artefatos.md#2-história-de-usuário)**, **[Dicionário de Dados](artefatos.md#3-dicionário-de-dados)**|
 
 ### Tarefas principais
 1. Redigir Histórias de Usuário no formato: *Como um / Eu desejo / Para que*.
 2. Definir Critérios de Aceitação (Dado / Quando / Então) para cada história.
-4. Mapear requisitos para elementos do Diagrama de Classes (entidades/atributos/relacionamentos).
+4. Atualizar dicionário de dados.
 5. Estimar esforço inicial e indicar dependências para a EAP.
 6. Revisar com AN e Desenvolvedor para checar clareza e viabilidade.
 
@@ -88,8 +88,8 @@ A atividade **Codificar** corresponde à implementação. Nessa fase, o time des
 
 | Elemento | Descrição |
 | :--- | :--- |
-| **Entradas** | **[História de Usuário](artefatos.md#2-história-de-usuário)** com Critérios de Aceitação, Requisitos e Diagramas |
-| **Saídas** | **[Produto Executável](artefatos.md#3-produto-software-executável)**, Código-fonte, Testes Unitários aprovados. |
+| **Entradas** | **[História de Usuário](artefatos.md#2-história-de-usuário)** com Critérios de Aceitação, Requisitos e Diagramas, **[Dicionário de Dados](artefatos.md#3-dicionário-de-dados)**|
+| **Saídas** | **[Produto Executável](artefatos.md#3-produto-software-executável)**, Código-fonte, Testes Unitários. |
 
 ### Tarefas Principais
 1. **Planejamento Técnico:** Definir a arquitetura de baixo nível (classes, funções, módulos).  
