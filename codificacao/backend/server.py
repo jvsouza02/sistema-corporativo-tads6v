@@ -1,5 +1,7 @@
-from fastapi import FastAPI, Body, HTTPException, status , Path
+from typing import Optional
+from fastapi import FastAPI, Body, Form, HTTPException, status , Path
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from src.presentation.controllers.profissional_controller import ProfissionalController
 from src.presentation.controllers.comentario_controller import ComentarioController
@@ -19,9 +21,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class EmailCheckRequest(BaseModel):
+class BarbeariaRequest(BaseModel):
+    nome: str
     email: str
-    disponivel: bool
+    endereco: str
+    telefone: str
+    foto_url: Optional[str] = None
+    horario_abertura: str
+    horario_fechamento: str
+    descricao: str
 
 @app.post('/profissional', status_code=status.HTTP_201_CREATED)
 def cadastrar_profissional(nome: str = Body(...), horario_inicio: str = Body(...), horario_fim: str = Body(...)):
@@ -110,10 +118,31 @@ def deletar_observacao(id_comentario: str):
         raise HTTPException(status_code=500, detail=str(e))
     
 @app.post("/criar_barbearia", status_code=status.HTTP_201_CREATED)
-def criar_barbearia(barbearia: BarbeariaRequest = Body(...)) -> BarbeariaResponse:
+def criar_barbearia(
+    nome: str = Form(...),
+    email: str = Form(...),
+    endereco: str = Form(...),
+    telefone: str = Form(...),
+    foto_url: Optional[str] = Form(None),
+    horario_abertura: str = Form(...),
+    horario_fechamento: str = Form(...),
+    descricao: str = Form(...),
+    ):
+
+    barbearia = BarbeariaRequest(
+        nome=nome,
+        email=email,
+        endereco=endereco,
+        telefone=telefone,
+        foto_url=foto_url,
+        horario_abertura=horario_abertura,
+        horario_fechamento=horario_fechamento,
+        descricao=descricao
+    )
     controller = BarbeariaController()
     try:
-        return controller.cadastrar_barbearia(barbearia)
+        controller.cadastrar_barbearia(barbearia)
+        return RedirectResponse(url="http://localhost:5173/frontend/index.html", status_code=status.HTTP_303_SEE_OTHER)
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
     except Exception as e:

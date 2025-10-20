@@ -12,7 +12,7 @@ class BarbeariaController:
     
     def cadastrar_barbearia(self, barbearia_request: BarbeariaRequest) -> BarbeariaResponse:
         return self.service.cadastrar_barbearia(barbearia_request.nome, barbearia_request.email, barbearia_request.endereco, barbearia_request.telefone, barbearia_request.horario_abertura,
-                              barbearia_request.horario_fechamento, barbearia_request.descricao, barbearia_request.foto)
+                              barbearia_request.horario_fechamento, barbearia_request.descricao, barbearia_request.foto_url)
     
     # def obter_barbearia_por_id(self, barbearia_id: str) -> BarbeariaResponse:
     #     return self.service.obter_barbearia(barbearia_id)
