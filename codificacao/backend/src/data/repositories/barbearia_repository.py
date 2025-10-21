@@ -8,13 +8,13 @@ class BarbeariaRepository():
         self.db = SessionLocal()
 
     def _to_entity(self, model: BarbeariaModel):
-        return (str(model.id_barbearias), str(model.nome), str(model.email), str(model.endereco),
+        return (str(model.id_barbearia), str(model.nome), str(model.email), str(model.endereco),
                 str(model.telefone), str(model.horario_abertura), str(model.horario_fechamento),
                 str(model.descricao), str(model.foto_url), model.data_cadastro, model.data_atualizacao)
 
     def salvar(self, nova_barbearia):
         nova_barbearia = BarbeariaModel(
-            id_barbearias=nova_barbearia.id_barbearias,
+            id_barbearia=nova_barbearia.id_barbearia,
             nome=nova_barbearia.nome,
             email=nova_barbearia.email,
             endereco=nova_barbearia.endereco,

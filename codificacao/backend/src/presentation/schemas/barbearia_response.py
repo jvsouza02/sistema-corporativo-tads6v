@@ -4,7 +4,7 @@ from uuid import UUID
 from datetime import time
 
 class BarbeariaResponse(BaseModel):
-    id_barbearias: UUID              
+    id_barbearia: UUID              
     nome: str
     email: str
     endereco: str

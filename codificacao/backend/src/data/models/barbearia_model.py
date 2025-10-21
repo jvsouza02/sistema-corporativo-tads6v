@@ -7,7 +7,7 @@ from datetime import datetime
 class BarbeariaModel(Base):
     __tablename__ = "barbearias"
 
-    id_barbearias = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id_barbearia = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     nome = Column(String, nullable=False)
     email = Column(String, nullable=False)
     endereco = Column(String, nullable=False)

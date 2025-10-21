@@ -1,16 +1,16 @@
 from typing import Optional
-from fastapi import FastAPI, Body, Form, HTTPException, status , Path
+from fastapi import FastAPI, Body, File, Form, HTTPException, UploadFile, status , Path
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
+from src.presentation.schemas.proprietario_request import ProprietarioRequest
 from src.presentation.controllers.profissional_controller import ProfissionalController
 from src.presentation.controllers.comentario_controller import ComentarioController
 from src.presentation.schemas.comentario_request import ComentarioRequest
 from src.presentation.schemas.comentario_response import ComentarioResponse
 from src.presentation.controllers.barbearia_controller import BarbeariaController
 from src.presentation.schemas.barberia_request import BarbeariaRequest
-from src.presentation.schemas.barbearia_response import BarbeariaResponse
-from src.presentation.controllers.barbearia_controller import BarbeariaController
+from src.presentation.controllers.proprietario_controller import ProprietarioController
 app = FastAPI()
 
 app.add_middleware(
@@ -117,32 +117,59 @@ def deletar_observacao(id_comentario: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-@app.post("/criar_barbearia", status_code=status.HTTP_201_CREATED)
-def criar_barbearia(
+@app.post("/criar_proprietario", status_code=status.HTTP_201_CREATED)
+def criar_proprietario(
+    nome_proprietario: str = Form(...),
+    email_proprietario: str = Form(...),
+    senha_proprietario: str = Form(...),
     nome: str = Form(...),
     email: str = Form(...),
     endereco: str = Form(...),
     telefone: str = Form(...),
-    foto_url: Optional[str] = Form(None),
+    foto_url: Optional[UploadFile] = File(None),
     horario_abertura: str = Form(...),
     horario_fechamento: str = Form(...),
-    descricao: str = Form(...),
-    ):
-
-    barbearia = BarbeariaRequest(
-        nome=nome,
-        email=email,
-        endereco=endereco,
-        telefone=telefone,
-        foto_url=foto_url,
-        horario_abertura=horario_abertura,
-        horario_fechamento=horario_fechamento,
-        descricao=descricao
-    )
-    controller = BarbeariaController()
+    descricao: str = Form(...)
+):
     try:
-        controller.cadastrar_barbearia(barbearia)
-        return RedirectResponse(url="http://localhost:5173/frontend/index.html", status_code=status.HTTP_303_SEE_OTHER)
+        # Cria o proprietário
+        proprietario = ProprietarioRequest(
+            nome=nome_proprietario,
+            email=email_proprietario,
+            senha=senha_proprietario
+        )
+        proprietario_controller = ProprietarioController()
+        novo_proprietario = proprietario_controller.cadastrar_proprietario(proprietario)
+
+        # Se uma imagem foi enviada, salva e obtém o nome/URL
+        caminho_imagem = None
+        if foto_url:
+            import os, uuid
+            nome_arquivo = f"{uuid.uuid4()}_{foto_url.filename}"
+            caminho_imagem = f"uploads/{nome_arquivo}"
+
+            os.makedirs("uploads", exist_ok=True)
+            with open(caminho_imagem, "wb") as f:
+                f.write(foto_url.file.read())
+
+        # Cria a barbearia vinculada
+        barbearia = BarbeariaRequest(
+            nome=nome,
+            email=email,
+            endereco=endereco,
+            telefone=telefone,
+            foto_url=caminho_imagem or "",
+            horario_abertura=horario_abertura,
+            horario_fechamento=horario_fechamento,
+            descricao=descricao,
+            id_proprietario=str(novo_proprietario.id_proprietario)
+        )
+
+        barbearia_controller = BarbeariaController()
+        barbearia_controller.cadastrar_barbearia(barbearia)
+
+        return {"message": "Proprietário e barbearia cadastrados com sucesso!"}
+
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
     except Exception as e:
