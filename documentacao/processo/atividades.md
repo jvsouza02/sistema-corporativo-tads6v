@@ -2,7 +2,7 @@
 
 Este documento apresenta as etapas do processo de desenvolvimento, destacando os objetivos de cada atividade, seus responsáveis e os artefatos envolvidos.
 
-## 0. Reunião de Análise de Demanda
+## 1. Planejamento de Demandas
 
 ### Objetivo
 
