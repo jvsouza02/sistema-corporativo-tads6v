@@ -72,7 +72,7 @@ No nosso processo usamos estes status para gerir o trabalho. Cada status possui 
 
 ### Atividades
 
-* [Reunião de Análise de Demanda](atividades.md#5-reuniao-de-analise-de-demanda): detalhar novas demandas levantadas, decidir prioridades iniciais, identificar dependências e definir os elementos mínimos necessários para que um item **saiba** se permanecerá em *Indefinido* ou seja promovido a *Pronto* (data, responsável, prioridade, iteração, critérios de aceitação mínimos).
+* [Planejamento de Demandas](atividades.md#1-planejamento-de-demandas): detalhar novas demandas levantadas, decidir prioridades iniciais, identificar dependências e definir os elementos mínimos necessários para que um item **saiba** se permanecerá em *Indefinido* ou seja promovido a *Pronto* (data, responsável, prioridade, iteração, critérios de aceitação mínimos).
 * [Analisar Negócio](atividades.md#1-analisar-negocio)
   Identificar e compreender as necessidades da barbearia e de seus clientes; gerar o Documento de Visão.
 * [Especificar](atividades.md#2-especificar-funcionalidades)
