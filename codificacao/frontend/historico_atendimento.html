@@ -1,268 +1,400 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Histórico de Atendimento</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarberPro - Histórico de Atendimentos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/historico_gerenciamento.css">
+    <link rel="stylesheet" href="styles/form_barbearia.css">
+
 </head>
+<body>
 
-<body class="bg-dark text-light">
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-cut"></i> BarberPro
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="loginLink">
+                            <i class="fas fa-sign-in-alt me-1"></i>Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="form_barbearia.html">
+                            <i class="fas fa-plus-circle me-1"></i>Cadastrar Barbearia
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gerenciar_profissionais.html">
+                            <i class="fas fa-users me-1"></i>Gerenciar Profissionais
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="historico_atendimento.html">
+                            <i class="fas fa-history me-1"></i>Histórico
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <div class="container mt-5">
-    <div class="card bg-secondary shadow-lg">
-      <div class="card-header text-center">
-        <h3>Histórico de Atendimento</h3>
-      </div>
-      <div class="card-body">
-
-        <div class="d-flex mb-3">
-          <input type="text" id="comentario" class="form-control me-2" placeholder="Digite um comentário...">
-          <button class="btn btn-light" onclick="adicionarComentario()">Adicionar</button>
+    <section class="container mt-4">
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="h3 mb-1">Histórico de Atendimentos</h1>
+                        <p class="text-muted mb-0">Acompanhe todos os serviços realizados na sua barbearia</p>
+                    </div>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newAttendanceModal">
+                        <i class="fas fa-plus me-1"></i> Novo Atendimento
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div id="mensagem" class="alert d-none" role="alert"></div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-list me-2"></i>Últimos Atendimentos
+                        </h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="card attendance-card status-completed mb-3 m-3">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2">
+                                        <strong>15/12/2024</strong>
+                                        <br>
+                                        <small class="text-muted">10:30 - 11:15</small>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <strong>João Silva</strong>
+                                        <br>
+                                        <small class="text-muted">Barbeiro</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong>Marcos Oliveira</strong>
+                                        <br>
+                                        <small class="text-muted">Cliente</small>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="badge bg-primary service-badge">Corte Social</span>
+                                        <span class="badge bg-secondary service-badge">Barba</span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <strong class="text-success">R$ 45,00</strong>
+                                    </div>
+                                    <div class="col-md-1 text-end">
+                                        <span class="badge bg-success">Concluído</span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <small class="text-muted">
+                                            <i class="fas fa-comment me-1"></i>
+                                            Cliente satisfeito com o serviço, retornará em 15 dias.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <table class="table table-dark table-striped table-bordered text-center align-middle">
-          <thead>
-            <tr>
-              <th>Comentário</th>
-              <th>Data e Hora</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody id="historico">
-            <tr>
-              <td colspan="3" class="text-center">
-                <div class="spinner-border spinner-border-sm me-2" role="status">
-                  <span class="visually-hidden">Carregando...</span>
+                        <div class="card attendance-card status-completed mb-3 m-3">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2">
+                                        <strong>15/12/2024</strong>
+                                        <br>
+                                        <small class="text-muted">09:00 - 09:45</small>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <strong>Pedro Santos</strong>
+                                        <br>
+                                        <small class="text-muted">Barbeiro</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong>Roberto Costa</strong>
+                                        <br>
+                                        <small class="text-muted">Cliente</small>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="badge bg-primary service-badge">Corte Degradê</span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <strong class="text-success">R$ 35,00</strong>
+                                    </div>
+                                    <div class="col-md-1 text-end">
+                                        <span class="badge bg-success">Concluído</span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <small class="text-muted">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            Avaliação: 5/5
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card attendance-card status-cancelled mb-3 m-3">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2">
+                                        <strong>14/12/2024</strong>
+                                        <br>
+                                        <small class="text-muted">16:00 - 16:45</small>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <strong>Carlos Oliveira</strong>
+                                        <br>
+                                        <small class="text-muted">Barbeiro</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong>Antônio Silva</strong>
+                                        <br>
+                                        <small class="text-muted">Cliente</small>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="badge bg-danger service-badge">Sobrancelha</span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <strong class="text-danger">R$ 15,00</strong>
+                                    </div>
+                                    <div class="col-md-1 text-end">
+                                        <span class="badge bg-danger">Cancelado</span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <small class="text-muted">
+                                            <i class="fas fa-comment me-1"></i>
+                                            Cliente não compareceu ao horário marcado.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card attendance-card status-completed mb-3 m-3">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2">
+                                        <strong>14/12/2024</strong>
+                                        <br>
+                                        <small class="text-muted">14:30 - 15:30</small>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <strong>João Silva</strong>
+                                        <br>
+                                        <small class="text-muted">Barbeiro</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong>Fernando Lima</strong>
+                                        <br>
+                                        <small class="text-muted">Cliente VIP</small>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="badge bg-primary service-badge">Corte Social</span>
+                                        <span class="badge bg-secondary service-badge">Barba</span>
+                                        <span class="badge bg-info service-badge">Hidratação</span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <strong class="text-success">R$ 65,00</strong>
+                                    </div>
+                                    <div class="col-md-1 text-end">
+                                        <span class="badge bg-success">Concluído</span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <small class="text-muted">
+                                            <i class="fas fa-comment me-1"></i>
+                                            Pacote completo realizado com sucesso.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card attendance-card status-pending mb-3 m-3">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2">
+                                        <strong>16/12/2024</strong>
+                                        <br>
+                                        <small class="text-muted">11:00 - 11:45</small>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <strong>Pedro Santos</strong>
+                                        <br>
+                                        <small class="text-muted">Barbeiro</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong>Ricardo Almeida</strong>
+                                        <br>
+                                        <small class="text-muted">Cliente</small>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="badge bg-primary service-badge">Corte Masculino</span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <strong class="text-warning">R$ 30,00</strong>
+                                    </div>
+                                    <div class="col-md-1 text-end">
+                                        <span class="badge bg-warning text-dark">Pendente</span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <small class="text-muted">
+                                            <i class="fas fa-clock me-1"></i>
+                                            Agendamento confirmado para amanhã.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                Carregando comentários...
-              </td>
-            </tr>
-          </tbody>
-        </table>
 
-      </div>
+                <nav aria-label="Page navigation" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Próxima</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="newAttendanceModal" tabindex="-1" aria-labelledby="newAttendanceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newAttendanceModalLabel">Registrar Novo Atendimento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newAttendanceForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="clientSelect" class="form-label">Cliente</label>
+                                <select class="form-select" id="clientSelect" required>
+                                    <option value="">Selecione um cliente</option>
+                                    <option value="1">Marcos Oliveira</option>
+                                    <option value="2">Roberto Costa</option>
+                                    <option value="3">Fernando Lima</option>
+                                    <option value="4">Ricardo Almeida</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="barberSelect" class="form-label">Barbeiro</label>
+                                <select class="form-select" id="barberSelect" required>
+                                    <option value="">Selecione um barbeiro</option>
+                                    <option value="1">João Silva</option>
+                                    <option value="2">Pedro Santos</option>
+                                    <option value="3">Carlos Oliveira</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="attendanceDate" class="form-label">Data</label>
+                                <input type="date" class="form-control" id="attendanceDate" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="attendanceTime" class="form-label">Horário</label>
+                                <input type="time" class="form-control" id="attendanceTime" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Serviços</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="corte" id="serviceCorte">
+                                <label class="form-check-label" for="serviceCorte">
+                                    Corte de Cabelo - R$ 30,00
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="barba" id="serviceBarba">
+                                <label class="form-check-label" for="serviceBarba">
+                                    Barba - R$ 20,00
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="sobrancelha" id="serviceSobrancelha">
+                                <label class="form-check-label" for="serviceSobrancelha">
+                                    Sobrancelha - R$ 15,00
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="hidratacao" id="serviceHidratacao">
+                                <label class="form-check-label" for="serviceHidratacao">
+                                    Hidratação - R$ 25,00
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="totalAmount" class="form-label">Valor Total</label>
+                            <input type="text" class="form-control" id="totalAmount" value="R$ 0,00" readonly>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="observations" class="form-label">Observações</label>
+                            <textarea class="form-control" id="observations" rows="3" placeholder="Observações sobre o atendimento..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveAttendanceBtn">Salvar Atendimento</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
+    <footer class="custom-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-cut"></i> BarberPro</h5>
+                    <p>Sistema de gerenciamento para barbearias.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2023 BarberPro. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    function mostrarMensagem(texto, tipo = 'info') {
-      const mensagemDiv = document.getElementById('mensagem');
-      mensagemDiv.className = `alert alert-${tipo}`;
-      mensagemDiv.textContent = texto;
-      mensagemDiv.classList.remove('d-none');
-      
-      setTimeout(() => {
-        mensagemDiv.classList.add('d-none');
-      }, 3000);
-    }
-
-    
-    async function tratarResposta(response) {
-      if (!response.ok) {
-        const errorText = await response.text();
-        let errorMessage;
-        
-        try {
-          const errorJson = JSON.parse(errorText);
-          errorMessage = errorJson.detail || errorJson.message || `Erro ${response.status}`;
-        } catch {
-          errorMessage = `Erro ${response.status}: ${response.statusText}`;
-        }
-        
-        throw new Error(errorMessage);
-      }
-      
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        return await response.json();
-      }
-      
-      return null;
-    }
-
-    async function carregarComentarios() {
-      try {
-        const response = await fetch('http://localhost:8000/observacoes');
-        const data = await tratarResposta(response);
-        
-        const tabela = document.getElementById("historico");
-        
-        
-        if (!data || !Array.isArray(data)) {
-          console.error('Resposta inválida da API:', data);
-          tabela.innerHTML = `
-            <tr>
-              <td colspan="3" class="text-center text-warning">
-                Erro: Resposta inválida do servidor
-              </td>
-            </tr>
-          `;
-          return;
-        }
-
-        
-        tabela.innerHTML = "";
-
-        
-        if (data.length === 0) {
-          tabela.innerHTML = `
-            <tr>
-              <td colspan="3" class="text-center text-muted">
-                Nenhum comentário encontrado
-              </td>
-            </tr>
-          `;
-          return;
-        }
-
-        
-        data.forEach(comentario => {
-          
-          if (!comentario.comentario || !comentario.data_atualizacao) {
-            console.warn('Comentário com dados incompletos:', comentario);
-            return;
-          }
-
-          const dataFormatada = new Date(comentario.data_atualizacao).toLocaleDateString('pt-BR');
-          const horaFormatada = new Date(comentario.data_atualizacao).toLocaleTimeString('pt-BR', { 
-            hour: '2-digit', 
-            minute: '2-digit' 
-          });
-
-          const novaLinha = `
-            <tr>
-              <td>${comentario.comentario}</td>
-              <td>${dataFormatada} ${horaFormatada}</td>
-              <td>
-                <button class="btn btn-warning btn-sm me-1" onclick="editarComentario('${comentario.id_comentario}', this)">
-                  Editar
-                </button>
-                <button class="btn btn-danger btn-sm" onclick="apagarComentario('${comentario.id_comentario}', this)">
-                  Apagar
-                </button>
-              </td>
-            </tr>
-          `;
-          tabela.innerHTML += novaLinha;
-        });
-
-      } catch (error) {
-        console.error('Erro ao carregar comentários:', error);
-        const tabela = document.getElementById("historico");
-        tabela.innerHTML = `
-          <tr>
-            <td colspan="3" class="text-center text-danger">
-              Erro ao carregar comentários: ${error.message}
-            </td>
-          </tr>
-        `;
-      }
-    }
-
-    
-    carregarComentarios();
-
-    async function adicionarComentario() {
-      const comentarioInput = document.getElementById('comentario');
-      const comentarioTexto = comentarioInput.value.trim();
-
-      
-      if (!comentarioTexto) {
-        mostrarMensagem('Por favor, digite um comentário', 'warning');
-        comentarioInput.focus();
-        return;
-      }
-
-      try {
-        const response = await fetch('http://localhost:8000/observacoes', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ 
-            comentario: comentarioTexto 
-          })
-        });
-
-        await tratarResposta(response);
-        
-        // Limpar campo e recarregar
-        comentarioInput.value = '';
-        await carregarComentarios();
-
-      } catch (error) {
-        console.error('Erro ao adicionar comentário:', error);
-      }
-    }
-
-    async function editarComentario(id,botao) {
-      const linha = botao.closest("tr");
-      const comentarioAtual = linha.children[0].textContent;
-
-      const novoComentario = prompt("Edite o comentário:", comentarioAtual);
-      
-      if (!novoComentario?.trim()) {
-        return;
-      }
-
-      try {
-        const response = await fetch(`http://localhost:8000/observacoes/`, {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json' 
-          },
-          body: JSON.stringify({
-            id_comentario: id,  
-            comentario: novoComentario.trim() 
-          })
-
-          
-        });
-
-        
-        mostrarMensagem('Comentário editado com sucesso!', 'success');
-        await carregarComentarios();
-
-      } catch (error) {
-        console.error('Erro ao editar comentário:', error);
-      }
-    }
-
-    async function apagarComentario(id, botao) {
-      const linha = botao.closest("tr");
-      const comentarioAtual = linha.children[0].textContent;
-
-      if (!confirm(`Tem certeza que deseja apagar o comentário: "${comentarioAtual}"?`)) {
-        return;
-      }
-
-      try {
-        const response = await fetch(`http://localhost:8000/observacoes/${id}`, { 
-          method: 'DELETE' 
-        });
-
-        
-        mostrarMensagem('Comentário removido com sucesso!', 'success');
-        await carregarComentarios();
-
-      } catch (error) {
-        console.error('Erro ao remover comentário:', error);
-        
-      }
-    }
-
-    document.getElementById('comentario').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        adicionarComentario();
-      }
-    });
-  </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

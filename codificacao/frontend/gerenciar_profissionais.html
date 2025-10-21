@@ -64,7 +64,6 @@
     <div class="container">
         <h2 class="mb-4">Gerenciar Profissionais</h2>
 
-        <!-- Formulário de Cadastro -->
         <div class="card mb-4">
             <div class="card-body">
                 <h5 class="card-title mb-3">Cadastrar Novo Cabeleireiro</h5>
@@ -92,7 +91,6 @@
             </div>
         </div>
 
-        <!-- Lista de Cabeleireiros -->
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title mb-3">Profissionais Cadastrados</h5>
@@ -118,7 +116,6 @@
         </div>
     </div>
 
-    <!-- Modal de Edição -->
     <div class="modal fade" id="modalEditar" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -149,7 +146,6 @@
         </div>
     </div>
 
-    <!-- Modal de Confirmação -->
     <div class="modal fade" id="modalConfirmar" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -173,7 +169,6 @@
     <script>
         function cadastrarProfissional() {
             event.preventDefault();
-            // Lógica para cadastrar um novo cabeleireiro
             fetch('http://localhost:8000/profissional', {
                 method: 'POST',
                 headers: {
@@ -221,12 +216,10 @@
             if (!resp.ok) throw new Error('Erro ao buscar profissional');
             const data = await resp.json();
 
-            // preenche campos do modal
             document.getElementById('editarId').value = id;
             document.getElementById('editarHorarioInicio').value = data.horario_inicio || '';
             document.getElementById('editarHorarioFim').value = data.horario_fim || '';
 
-            // abre modal no Bootstrap 5 (sem jQuery)
             const modalEl = document.getElementById('modalEditar');
             const modal = new bootstrap.Modal(modalEl);
             modal.show();
@@ -256,7 +249,6 @@
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
-                    // Lógica para atualizar a lista de cabeleireiros
                     listarProfissionais();
                 });
         }

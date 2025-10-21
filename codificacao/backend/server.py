@@ -132,7 +132,6 @@ def criar_proprietario(
     descricao: str = Form(...)
 ):
     try:
-        # Cria o proprietário
         proprietario = ProprietarioRequest(
             nome=nome_proprietario,
             email=email_proprietario,
@@ -141,18 +140,16 @@ def criar_proprietario(
         proprietario_controller = ProprietarioController()
         novo_proprietario = proprietario_controller.cadastrar_proprietario(proprietario)
 
-        # Se uma imagem foi enviada, salva e obtém o nome/URL
-        caminho_imagem = None
-        if foto_url:
-            import os, uuid
-            nome_arquivo = f"{uuid.uuid4()}_{foto_url.filename}"
-            caminho_imagem = f"uploads/{nome_arquivo}"
+        # caminho_imagem = None
+        # if foto_url:
+        #     import os, uuid
+        #     nome_arquivo = f"{uuid.uuid4()}_{foto_url.filename}"
+        #     caminho_imagem = f"uploads/{nome_arquivo}"
 
-            os.makedirs("uploads", exist_ok=True)
-            with open(caminho_imagem, "wb") as f:
-                f.write(foto_url.file.read())
+        #     os.makedirs("uploads", exist_ok=True)
+        #     with open(caminho_imagem, "wb") as f:
+        #         f.write(foto_url.file.read())
 
-        # Cria a barbearia vinculada
         barbearia = BarbeariaRequest(
             nome=nome,
             email=email,
