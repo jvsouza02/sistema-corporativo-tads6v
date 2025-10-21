@@ -34,3 +34,5 @@
 - **Dado** que o barbeiro deseja remover um registro do histórico.  
 - **Quando** ele clica em “Excluir” e confirma a ação.  
 - **Então** o registro deve ser removido do histórico, garantindo a integridade dos demais dados.
+
+
