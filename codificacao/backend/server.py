@@ -1,4 +1,5 @@
 from typing import Optional
+from urllib.parse import urlencode
 from fastapi import FastAPI, Body, File, Form, HTTPException, UploadFile, status , Path
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
@@ -140,15 +141,15 @@ def criar_proprietario(
         proprietario_controller = ProprietarioController()
         novo_proprietario = proprietario_controller.cadastrar_proprietario(proprietario)
 
-        # caminho_imagem = None
-        # if foto_url:
-        #     import os, uuid
-        #     nome_arquivo = f"{uuid.uuid4()}_{foto_url.filename}"
-        #     caminho_imagem = f"uploads/{nome_arquivo}"
+        caminho_imagem = None
+        if foto_url:
+            import os, uuid
+            nome_arquivo = f"{uuid.uuid4()}_{foto_url.filename}"
+            caminho_imagem = f"uploads/{nome_arquivo}"
 
-        #     os.makedirs("uploads", exist_ok=True)
-        #     with open(caminho_imagem, "wb") as f:
-        #         f.write(foto_url.file.read())
+            os.makedirs("uploads", exist_ok=True)
+            with open(caminho_imagem, "wb") as f:
+                f.write(foto_url.file.read())
 
         barbearia = BarbeariaRequest(
             nome=nome,
@@ -163,9 +164,20 @@ def criar_proprietario(
         )
 
         barbearia_controller = BarbeariaController()
-        barbearia_controller.cadastrar_barbearia(barbearia)
+        nova_barbearia = barbearia_controller.cadastrar_barbearia(barbearia)
 
-        return {"message": "Proprietário e barbearia cadastrados com sucesso!"}
+        params = urlencode({
+            "id_barbearia": nova_barbearia.id_barbearia,
+            "nome": nome,
+            "email": email,
+            "endereco": endereco,
+            "telefone": telefone,
+            "foto_url": caminho_imagem or "",
+            "horario_abertura": horario_abertura,
+            "horario_fechamento": horario_fechamento,
+            "descricao": descricao
+        })
+        return RedirectResponse(url=f"http://localhost:5173/index.html?{params}", status_code=303)
 
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
