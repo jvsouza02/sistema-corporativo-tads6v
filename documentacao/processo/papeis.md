@@ -8,7 +8,7 @@ Responsável pela coordenação, planejamento e governança dos trabalhos do pro
 
 **Atividades**
 
-* [Gerenciar Projeto](atividades.md#0-reuniao-de-analide-do-demandado): Planejar iterações, priorizar, definir datas, atribuir responsáveis, aprovar início de iterações e acompanhar o andamento das entregas.
+* [Planejamento de Demandas](atividades.md#1-planejamento-de-demandas): Planejar iterações, priorizar, definir datas, atribuir responsáveis, aprovar início de iterações e acompanhar o andamento das entregas.
 
   1. **Entrada Principal**: Demandas / Itens em *Indefinido*
   2. **Saída Principal**: Tarefas configurados (responsável, prioridade, datas, iteração) e plano de iteração/cronograma
