@@ -8,15 +8,15 @@ class ProprietarioRepository():
     def __init__(self):
         self.db = SessionLocal()
 
-    def salvar(self, nome, email, senha):
-        proprietario = ProprietarioModel(
-            id_proprietario=proprietario.id_comentario,
+    def salvar(self, proprietario):
+        proprietario_model = ProprietarioModel(
+            id_proprietario=proprietario.id_proprietario,
             nome=proprietario.nome,
             email=proprietario.email,
             senha=proprietario.senha
         )
         try:
-            self.db.add(proprietario)
+            self.db.add(proprietario_model)
             self.db.commit()
         except Exception as e:
             self.db.rollback()
@@ -27,8 +27,8 @@ class ProprietarioRepository():
         result = self.db.execute(Select(ProprietarioModel).order_by(ProprietarioModel.data_atualizacao.desc()))
         return result.scalars().all()
 
-    def buscar_por_id(self, comentario_id: str):
-        return self.db.query(ProprietarioModel).filter(ProprietarioModel.id_proprietario == comentario_id).first()
+    def buscar_por_id(self, proprietario_id: str):
+        return self.db.query(ProprietarioModel).filter(ProprietarioModel.id_proprietario == proprietario_id).first()
 
     def atualizar(self, id_proprietario, nome, email, senha):
         proprietario_model = self.db.query(ProprietarioModel).filter(ProprietarioModel.id_proprietario == id_proprietario).first()
@@ -46,7 +46,7 @@ class ProprietarioRepository():
             raise e
         return nome, email, senha
 
-    def deletar(self, id_proprietario: uuid):
+    def deletar(self, id_proprietario):
         proprietario = self.buscar_por_id(id_proprietario)
         if proprietario:
             try:

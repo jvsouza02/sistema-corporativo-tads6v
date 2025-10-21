@@ -9,7 +9,6 @@ from src.presentation.controllers.comentario_controller import ComentarioControl
 from src.presentation.schemas.comentario_request import ComentarioRequest
 from src.presentation.schemas.comentario_response import ComentarioResponse
 from src.presentation.controllers.barbearia_controller import BarbeariaController
-from src.presentation.schemas.barberia_request import BarbeariaRequest
 from src.presentation.controllers.proprietario_controller import ProprietarioController
 app = FastAPI()
 
@@ -30,6 +29,7 @@ class BarbeariaRequest(BaseModel):
     horario_abertura: str
     horario_fechamento: str
     descricao: str
+    id_proprietario: str
 
 @app.post('/profissional', status_code=status.HTTP_201_CREATED)
 def cadastrar_profissional(nome: str = Body(...), horario_inicio: str = Body(...), horario_fim: str = Body(...)):
@@ -162,7 +162,7 @@ def criar_proprietario(
             horario_abertura=horario_abertura,
             horario_fechamento=horario_fechamento,
             descricao=descricao,
-            id_proprietario=str(novo_proprietario.id_proprietario)
+            id_proprietario=novo_proprietario.id_proprietario
         )
 
         barbearia_controller = BarbeariaController()

@@ -10,7 +10,7 @@ class BarbeariaRepository():
     def _to_entity(self, model: BarbeariaModel):
         return (str(model.id_barbearia), str(model.nome), str(model.email), str(model.endereco),
                 str(model.telefone), str(model.horario_abertura), str(model.horario_fechamento),
-                str(model.descricao), str(model.foto_url), model.data_cadastro, model.data_atualizacao)
+                str(model.descricao), str(model.foto_url), str(model.id_proprietario), model.data_cadastro, model.data_atualizacao)
 
     def salvar(self, nova_barbearia):
         nova_barbearia = BarbeariaModel(
@@ -22,7 +22,8 @@ class BarbeariaRepository():
             horario_abertura=nova_barbearia.horario_abertura,
             horario_fechamento=nova_barbearia.horario_fechamento,
             descricao=nova_barbearia.descricao,
-            foto_url=nova_barbearia.foto_url
+            foto_url=nova_barbearia.foto_url,
+            id_proprietario=nova_barbearia.id_proprietario
         )
         try:
             self.db.add(nova_barbearia)

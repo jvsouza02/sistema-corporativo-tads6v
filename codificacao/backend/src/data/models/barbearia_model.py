@@ -16,5 +16,6 @@ class BarbeariaModel(Base):
     horario_fechamento = Column(String, nullable=False)
     descricao = Column(String, nullable=False)
     foto_url = Column(String, nullable=False)
+    id_proprietario = Column(String, nullable=False)
     data_cadastro = Column(DateTime, default=datetime.now, nullable=False)
     data_atualizacao = Column(DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)

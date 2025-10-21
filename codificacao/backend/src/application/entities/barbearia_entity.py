@@ -2,7 +2,7 @@ from uuid import uuid4
 from datetime import datetime, time
 
 class Barbearia:
-    def __init__(self, nome, email, endereco, telefone, horario_abertura, horario_fechamento, descricao, foto_url=None):
+    def __init__(self, nome, email, endereco, telefone, horario_abertura, horario_fechamento, descricao, id_proprietario, foto_url=None):
         self.id_barbearia = str(uuid4())
         self.nome = nome
         self.email = email
@@ -12,6 +12,7 @@ class Barbearia:
         self.horario_fechamento = horario_fechamento
         self.descricao = descricao
         self.foto_url = foto_url
+        self.id_proprietario = id_proprietario
         self.data_cadastro = datetime.now()
         self.data_atualizacao = datetime.now()
 

@@ -4,8 +4,8 @@ class ProprietarioController:
     def __init__(self):
         self.proprietario_service = ProprietarioService()
 
-    def cadastrar_proprietario(self, nome, email, senha):
-        return self.proprietario_service.cadastrar_proprietario(nome, email, senha)
+    def cadastrar_proprietario(self, proprietario):
+        return self.proprietario_service.cadastrar_proprietario(proprietario.nome, proprietario.email, proprietario.senha)
 
     def listar_profissionais(self):
         return self.proprietario_service.listar_proprietarios()
