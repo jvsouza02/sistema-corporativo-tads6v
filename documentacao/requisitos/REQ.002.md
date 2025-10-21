@@ -38,3 +38,4 @@
 - **Dado** que já existe uma barbearia registrada com determinado e-mail.  
 - **Quando** o proprietário tenta cadastrar outra barbearia usando o mesmo e-mail.  
 - **Então** o sistema deve impedir o cadastro e exibir uma mensagem de erro informando que o e-mail já está em uso.
+
