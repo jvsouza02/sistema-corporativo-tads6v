@@ -153,47 +153,24 @@ O Plano de Testes define a estratégia, o escopo e os critérios de validação 
 # Plano de Testes — [Nome do Sistema]
 
 ## 1. Objetivo
-Descrever a abordagem e o planejamento das atividades de teste para garantir que o produto atenda aos requisitos funcionais e não funcionais.
 
-## 2. Escopo
-- Módulos a serem testados.
-- Tipos de teste: unitário, integração, sistema e aceitação.
+Descrever o objetivo principal do plano de testes, como garantir que o sistema ou aplicação atenda aos requisitos e especificações definidas, validando a qualidade e funcionalidade do produto.
 
-## 3. Estratégia de Teste
-- Ferramentas: JUnit, Postman, Selenium, etc.
-- Frequência e responsáveis.
-- Critérios de entrada e saída de cada fase.
+---
 
-## 4. Tipos de Teste
-### Testes Unitários
-- Responsável: Desenvolvedor.
-- Objetivo: validar o comportamento isolado de classes e métodos.
-- Ferramenta: JUnit.
-- Local: `tests/unit/`.
+## 2. Estratégia
 
-### Testes de Integração
-- Responsável: Testador (QA) e Desenvolvedor.
-- Objetivo: validar a comunicação entre módulos.
-- Ferramenta: Postman, RestAssured.
+Definir a abordagem geral para os testes, incluindo os tipos de testes que serão realizados (como testes de funcionalidade, de desempenho, de segurança, etc.) e como os testes serão distribuídos ao longo do ciclo de vida do desenvolvimento.
 
-### Testes de Sistema e Aceitação
-- Responsável: Testador (QA).
-- Objetivo: garantir que o sistema atenda aos requisitos e critérios de aceitação.
-- Ferramenta: Selenium, Cypress.
+---
 
-## 5. Cronograma
-| Iteração | Atividade | Responsável | Entregável |
-|-----------|------------|--------------|-------------|
-| Iteração 1 | Testes unitários dos módulos X e Y | Dev | Relatório de execução |
-| Iteração 2 | Testes de integração | QA | Log de validação |
-| Iteração 3 | Testes de aceitação | QA | Relatório final |
+## 3. Técnica
 
-## 6. Critérios de Aceitação
-- 100% dos testes unitários devem passar.
-- Nenhum defeito crítico pendente antes da entrega.
-- Cobertura mínima de testes automatizados: 80%.
+Especificar as técnicas de teste que serão aplicadas, como testes manuais, automação de testes, testes exploratórios, etc. Incluir também os métodos que serão utilizados para garantir a cobertura de testes eficiente.
 
-## 7. Registro de Resultados
-- Local dos relatórios: `/tests/reports/`
-- Processo de acompanhamento de falhas: issues no repositório.
+---
+
+## 4. Indicadores
+
+Definir os indicadores que serão usados para medir o sucesso dos testes, como taxa de defeitos encontrados, cobertura de código, tempo de execução de testes, entre outros. Estes indicadores ajudarão a avaliar a qualidade do processo de testes e a efetividade das atividades realizadas.
 ```
