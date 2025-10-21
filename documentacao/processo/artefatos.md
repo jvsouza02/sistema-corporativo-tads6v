@@ -107,7 +107,7 @@ As **Histórias de Usuários** descreve uma funcionalidade do sistema a partir d
 
 ### Finalidade
 
-O **Dicionário de Dados** descreve detalhadamente todas as entidades, atributos e relacionamentos utilizados no sistema. Ele define o significado de cada dado, o tipo, formato, restrições, e sensibilidade (LGPD), garantindo consistência e clareza entre as fases de análise, especificação e desenvolvimento.
+O **Dicionário de Dados** descreve detalhadamente todas as entidades, atributos e relacionamentos utilizados no sistema. Ele define o significado de cada dado, o tipo, formato e restrições, garantindo consistência e clareza entre as fases de análise, especificação e desenvolvimento.
 
 ### Estrutura Recomendada
 
@@ -121,8 +121,6 @@ O **Dicionário de Dados** descreve detalhadamente todas as entidades, atributos
 | **Exemplo**                 | Valor típico do campo.                                             |
 | **Restrições / Validações** | Regras como único, PK, FK, formato, intervalo.                     |
 | **Chave (PK/FK/Índice)**    | Indica função do campo na estrutura do banco.                      |
-| **Dono do Dado**            | Responsável pelo dado (ex.: Produto, RH, Financeiro).              |
-| **Sensibilidade**           | Classificação conforme LGPD (Pessoal, Sensível, Interno, Público). |
 | **Versão**                  | Versão do documento.                                               |
 
 ### Template
@@ -130,11 +128,11 @@ O **Dicionário de Dados** descreve detalhadamente todas as entidades, atributos
 ```markdown
 # Dicionário de Dados — [Nome do Sistema]
 
-| Tabela.Campo | Nome lógico | Tipo (SGBD) | Obrigatório | Descrição / Significado | Exemplo | Restrições / Validações | Chave (PK/FK/Índice) | Dono do Dado | Sensibilidade | Versão |
+| Tabela.Campo | Nome lógico | Tipo (SGBD) | Obrigatório | Descrição / Significado | Exemplo | Restrições / Validações | Chave (PK/FK/Índice) | Versão |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `usuarios.id` | ID do usuário | `uuid` | Sim | Identificador único do usuário | `3fa85f64-5717-4562-b3fc-2c963f66afa6` | PK, não nulo | PK | Time de Auth | Pessoal | 1.0 |
-| `usuarios.email` | E-mail do usuário | `varchar(255)` | Sim | E-mail para login e contato | `joao@example.com` | único, formato email | Índice único | Produto | Pessoal | 1.0 |
-| `pedidos.total` | Total do pedido | `numeric(10,2)` | Sim | Valor total do pedido | `149.90` | >=0 | — | Financeiro | Interno | 1.0 |
+| `usuarios.id` | ID do usuário | `uuid` | Sim | Identificador único do usuário | `3fa85f64-5717-4562-b3fc-2c963f66afa6` | PK, não nulo | PK | 1.0 |
+| `usuarios.email` | E-mail do usuário | `varchar(255)` | Sim | E-mail para login e contato | `joao@example.com` | único, formato email | Índice único | 1.0 |
+| `pedidos.total` | Total do pedido | `numeric(10,2)` | Sim | Valor total do pedido | `149.90` | >=0 | — | 1.0 |
 ```
 
 ---
