@@ -7,7 +7,7 @@ class ComentarioController:
         self.comentario_service = ComentarioService()
 
     def criar_comentario(self, comentario_request: ComentarioRequest):
-        comentario = self.comentario_service.adicionar_comentario(comentario_request.comentario)
+        comentario = self.comentario_service.adicionar_comentario(comentario_request.comentario, comentario_request.id_profissional)
         return ComentarioResponse(
             id_comentario=str(comentario.id_comentario),
             comentario=str(comentario.comentario),

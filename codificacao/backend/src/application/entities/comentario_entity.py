@@ -3,9 +3,10 @@ from dataclasses import dataclass, field
 from datetime import datetime
 
 class Comentario:
-    def __init__(self, comentario: str):
+    def __init__(self, comentario: str, id_profissional):
         self.id_comentario: str = str(uuid4())
         self.comentario: str = comentario
+        self.id_profissional: str = id_profissional
         self.data_criacao: datetime = datetime.now()
         self.data_atualizacao: datetime = datetime.now()
 

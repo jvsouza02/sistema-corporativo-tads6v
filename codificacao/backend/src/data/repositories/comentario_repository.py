@@ -8,12 +8,13 @@ class ComentarioRepository():
         self.db = SessionLocal()
 
     def _to_entity(self, model: ComentarioModel):
-        return (str(model.id_comentario), str(model.comentario), str(model.data_criacao), str(model.data_atualizacao))
+        return (str(model.id_comentario), str(model.comentario), str(model.id_profissional), str(model.data_criacao), str(model.data_atualizacao))
 
     def salvar(self, comentario):
         comentario_salvo = ComentarioModel(
             id_comentario=comentario.id_comentario,
             comentario=comentario.comentario,
+            id_profissional=comentario.id_profissional,
             data_criacao=comentario.data_criacao,
             data_atualizacao=comentario.data_atualizacao
         )
