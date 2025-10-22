@@ -70,8 +70,7 @@ Converter visão/escopo em requisitos claros, verificáveis e rastreáveis (Hist
 1. Redigir Histórias de Usuário no formato: *Como um / Eu desejo / Para que*.
 2. Definir Critérios de Aceitação (Dado / Quando / Então) para cada história.
 4. Atualizar dicionário de dados.
-5. Estimar esforço inicial e indicar dependências para a EAP.
-6. Revisar com AN e Desenvolvedor para checar clareza e viabilidade.
+5. Revisar com AN e Desenvolvedor para checar clareza e viabilidade.
 
 ---
 
