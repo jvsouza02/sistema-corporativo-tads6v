@@ -41,25 +41,31 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="fas fa-cut"></i> BarberPro
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="loginLink">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#" id="registerLink">Cadastrar Barbearia</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="container">
+      <a class="navbar-brand" href="gerenciar_barbearia.html">
+        <i class="fas fa-cut"></i> BarberPro
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="loginLink">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="form_barbearia.html">Cadastrar Barbearia</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gerenciar_profissionais.html">Gerenciar Profissionais</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="historico_atendimento.html">Histórico</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
     <div class="container">
         <h2 class="mb-4">Gerenciar Profissionais</h2>
@@ -238,7 +244,6 @@
                     listarProfissionais();
                 });
         }
-
         listarProfissionais();
     </script>
 </body>

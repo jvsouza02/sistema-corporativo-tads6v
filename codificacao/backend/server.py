@@ -89,25 +89,36 @@ def listar_observacoes():
         raise HTTPException(status_code=500, detail=str(e))
     
 @app.post("/observacoes", status_code=status.HTTP_201_CREATED)
-def criar_observacao(comentario: ComentarioRequest = Body(...)) -> ComentarioResponse:
+def criar_observacao(comentario_request: ComentarioRequest):
     controller = ComentarioController()
     try:
-        return controller.criar_comentario(comentario)
+        return controller.criar_comentario(comentario_request)
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-@app.post("/observacoes/", status_code=status.HTTP_200_OK)
-def atualizar_observacao(comentario = Body(...)):
+@app.put("/observacoes/{id_comentario}", status_code=status.HTTP_200_OK)
+def atualizar_observacao(id_comentario: str, comentario_request: ComentarioRequest):
     controller = ComentarioController()
     try:
-        return {controller.atualizar_comentario(comentario)}
+        comentario_request_dict = comentario_request.dict()
+        comentario_request_dict["id_comentario"] = id_comentario
+        return controller.atualizar_comentario(comentario_request_dict)
     except ValueError as ve:
         raise HTTPException(status_code=404, detail=str(ve))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
+@app.delete("/observacoes/{id_comentario}", status_code=status.HTTP_204_NO_CONTENT)
+def deletar_observacao(id_comentario: str):
+    controller = ComentarioController()
+    try:
+        controller.deletar_comentario(id_comentario)
+    except ValueError as ve:
+        raise HTTPException(status_code=404, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 @app.delete("/observacoes/{id_comentario}", status_code=status.HTTP_204_NO_CONTENT)
 def deletar_observacao(id_comentario: str):
     controller = ComentarioController()
@@ -177,7 +188,7 @@ def criar_proprietario(
             "horario_fechamento": horario_fechamento,
             "descricao": descricao
         })
-        return RedirectResponse(url=f"http://localhost:5173/index.html?{params}", status_code=303)
+        return RedirectResponse(url=f"http://localhost:5173/gerenciar_barbearia.html?{params}", status_code=303)
 
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
