@@ -33,10 +33,10 @@ class BarbeariaRequest(BaseModel):
     id_proprietario: str
 
 @app.post('/profissional', status_code=status.HTTP_201_CREATED)
-def cadastrar_profissional(nome: str = Body(...), horario_inicio: str = Body(...), horario_fim: str = Body(...)):
+def cadastrar_profissional(nome: str = Body(...), horario_inicio: str = Body(...), horario_fim: str = Body(...), id_barbearia: str = Body(...)):
     controller = ProfissionalController()
     try:
-        return controller.cadastrar_profissional(nome, horario_inicio, horario_fim)
+        return controller.cadastrar_profissional(nome, horario_inicio, horario_fim, id_barbearia)
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
     except Exception as e:

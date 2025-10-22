@@ -12,5 +12,6 @@ class ProfissionalModel(Base):
     nome = Column(String, nullable=False)
     horario_inicio = Column(String, nullable=False)
     horario_fim = Column(String, nullable=False)
+    id_barbearia = Column(String, nullable=False)
     data_criacao = Column(DateTime, default=datetime.now, nullable=False)
     data_atualizacao = Column(DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)

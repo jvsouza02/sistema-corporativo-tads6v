@@ -13,7 +13,8 @@ class ProfissionalRepository:
             id_profissional=profissional.id_profissional,
             nome=profissional.nome,
             horario_inicio=profissional.horario_inicio,
-            horario_fim=profissional.horario_fim
+            horario_fim=profissional.horario_fim,
+            id_barbearia=profissional.id_barbearia
         )
         self.db.add(profissional_model)
         self.db.commit()

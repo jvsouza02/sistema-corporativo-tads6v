@@ -95,22 +95,6 @@
             <div class="card-body">
                 <h5 class="card-title mb-3">Profissionais Cadastrados</h5>
                 <div id="listaCabeleireiros">
-                    <!-- Cabeleireiros exemplo -->
-                    <div class="professional-item d-flex justify-content-between align-items-center" data-id="1">
-                        <div>
-                            <strong>Ana Souza</strong>
-                            <div class="text-muted small">08:00 - 17:00</div>
-                        </div>
-                        <div>
-                            <button class="btn btn-sm btn-outline-primary me-2" onclick="editarCabeleireiro(1)">
-                                Editar
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger"
-                                onclick="removerCabeleireiro(1, 'Ana Souza', true)">
-                                Remover
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -169,6 +153,7 @@
     <script>
         function cadastrarProfissional() {
             event.preventDefault();
+            const barbearia = JSON.parse(localStorage.getItem("barbearia") || "{}");
             fetch('http://localhost:8000/profissional', {
                 method: 'POST',
                 headers: {
@@ -177,7 +162,8 @@
                 body: JSON.stringify({
                     nome: document.getElementById('nome').value,
                     horario_inicio: document.getElementById('horarioInicio').value,
-                    horario_fim: document.getElementById('horarioFim').value
+                    horario_fim: document.getElementById('horarioFim').value,
+                    id_barbearia: barbearia.id_barbearia
                 })
             })
             .then(response => response.json())

@@ -4,8 +4,8 @@ class ProfissionalController:
     def __init__(self):
         self.profissional_service = ProfissionalService()
 
-    def cadastrar_profissional(self, nome, horario_inicio, horario_fim):
-        return self.profissional_service.cadastrar_profissional(nome, horario_inicio, horario_fim)
+    def cadastrar_profissional(self, nome, horario_inicio, horario_fim, id_barbearia):
+        return self.profissional_service.cadastrar_profissional(nome, horario_inicio, horario_fim, id_barbearia)
     
     def buscar_profissional(self, id_profissional):
         return self.profissional_service.buscar_profissional(id_profissional)
