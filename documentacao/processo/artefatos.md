@@ -65,40 +65,59 @@ A **Documento de Visão** é o alicerce estratégico do projeto. Ele articula a 
 
 ---
 
-## 2. História de Usuário
+## 2. Especificação
 
 ### Propósito
 
-As **Histórias de Usuários** descreve uma funcionalidade do sistema a partir da perspectiva de quem a utiliza. Seu principal objetivo é focar no **valor** entregue ao usuário, detalhando o requisito de forma concisa e testável. É a principal unidade de trabalho para a equipe de desenvolvimento.
+As **Especificações** descrevem uma funcionalidade do sistema a partir da perspectiva de quem a utiliza. Seu principal objetivo é focar no **valor** entregue ao usuário, detalhando o requisito de forma concisa e testável. Cada especificação funciona como uma unidade de trabalho para a equipe de desenvolvimento e normalmente inclui atores, pré/pós-condições, fluxo normal e fluxos de exceção, critérios de aceitação e requisitos relacionados.
 
 ### Template
 
 ```markdown
-# Histórias de Usuário: [ID - Título da Funcionalidade]
+CDU## — <Título do Caso de Uso>
 
-## 1. Narrativa (O Quê, Quem, Por Quê)
-**COMO UM** [Perfil de Usuário],
-**EU DESEJO** [Realizar uma ação ou ter uma capacidade],
-**PARA QUE** [Eu possa alcançar um objetivo ou obter um benefício].
+ESCOPO:
 
-**Exemplo:**
-**Como um** *Gerente de Produto*,
-**Eu desejo** *visualizar um dashboard com o progresso das histórias de usuário por status (A Fazer, Em Andamento, Concluído)*,
-**Para que** *eu possa identificar gargalos e comunicar o andamento do projeto com mais clareza*.
+* [Funcionalidade essencial 1]
+* [Funcionalidade essencial 2]
+* [Funcionalidade essencial 3]
 
-## 2. Critérios de Aceitação (Regras de Negócio e Cenários)
-*(Condições objetivas que, uma vez atendidas, confirmam que a história foi implementada corretamente. São a base para os testes de qualidade.)*
+PROPÓSITO:
 
-- **Cenário 1:** Visualização padrão do dashboard.
-    - **Dado** que eu acessei a página do dashboard.
-    - **Quando** a página carregar completamente.
-    - **Então** eu devo ver três colunas: 'A Fazer', 'Em Andamento' e 'Concluído'.
-    - **E** cada história deve ser exibida na coluna correspondente ao seu status atual.
+* [Propósito resumido do caso de uso]
 
-- **Cenário 2:** A atualização do status de uma história reflete no dashboard.
-    - **Dado** que a história "ABC-123" está na coluna 'A Fazer'.
-    - **Quando** eu movo a história "ABC-123" para 'Em Andamento'.
-    - **Então** o dashboard deve ser atualizado automaticamente, mostrando "ABC-123" na coluna 'Em Andamento'.
+ATOR:
+
+* [Ator principal]
+* [Ator secundário / sistema externo]
+
+PRÉ-CONDIÇÕES:
+
+* [Pré-condição 1]
+* [Pré-condição 2]
+
+PÓS-CONDIÇÕES:
+
+* [Pós-condição 1]
+* [Pós-condição 2]
+
+FLUXO NORMAL:
+
+1. [Ator] Acessa "<nome da funcionalidade>".
+2. [Ator] Seleciona [profissional] e [período desejado].
+3. [Sistema] Exibe [horários] e [agendamentos].
+4. [Ator] Executa ação (bloquear / liberar / reorganizar horários).
+
+FLUXO EXCEÇÃO:
+
+* [Exceção 1] — [Comportamento esperado do sistema]
+* [Exceção 2] — [Mensagem de erro / validação]
+
+REQUISITOS RELACIONADOS:
+
+* RF## — [Requisito funcional relacionado 1]
+* RF## — [Requisito funcional relacionado 2]
+* RN## — [Requisito não funcional relacionado]
 ```
 
 ---
@@ -121,18 +140,17 @@ O **Dicionário de Dados** descreve detalhadamente todas as entidades, atributos
 | **Exemplo**                 | Valor típico do campo.                                             |
 | **Restrições / Validações** | Regras como único, PK, FK, formato, intervalo.                     |
 | **Chave (PK/FK/Índice)**    | Indica função do campo na estrutura do banco.                      |
-| **Versão**                  | Versão do documento.                                               |
 
 ### Template
 
 ```markdown
 # Dicionário de Dados — [Nome do Sistema]
 
-| Tabela.Campo | Nome lógico | Tipo (SGBD) | Obrigatório | Descrição / Significado | Exemplo | Restrições / Validações | Chave (PK/FK/Índice) | Versão |
+| Tabela.Campo | Nome lógico | Tipo (SGBD) | Obrigatório | Descrição / Significado | Exemplo | Restrições / Validações | Chave (PK/FK/Índice) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `usuarios.id` | ID do usuário | `uuid` | Sim | Identificador único do usuário | `3fa85f64-5717-4562-b3fc-2c963f66afa6` | PK, não nulo | PK | 1.0 |
-| `usuarios.email` | E-mail do usuário | `varchar(255)` | Sim | E-mail para login e contato | `joao@example.com` | único, formato email | Índice único | 1.0 |
-| `pedidos.total` | Total do pedido | `numeric(10,2)` | Sim | Valor total do pedido | `149.90` | >=0 | — | 1.0 |
+| `usuarios.id` | ID do usuário | `uuid` | Sim | Identificador único do usuário | `3fa85f64-5717-4562-b3fc-2c963f66afa6` | PK, não nulo | PK |
+| `usuarios.email` | E-mail do usuário | `varchar(255)` | Sim | E-mail para login e contato | `joao@example.com` | único, formato email | Índice único |
+| `pedidos.total` | Total do pedido | `numeric(10,2)` | Sim | Valor total do pedido | `149.90` | >=0 | — |
 ```
 
 ---
