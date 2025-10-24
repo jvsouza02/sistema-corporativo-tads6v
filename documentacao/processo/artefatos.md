@@ -157,13 +157,13 @@ O **Dicionário de Dados** descreve detalhadamente todas as entidades, atributos
 
 ## 4. Produto (Software Executável)
 
-O Produto é o artefato final e tangível de todo o processo. Representa o software funcional, testado e pronto para ser entregue aos usuários ou disponibilizado em um ambiente de produção/teste. É a manifestação concreta das histórias implementadas.
+O Produto é o artefato final e tangível de todo o processo. Representa o software funcional, testado e pronto para ser entregue aos usuários ou disponibilizado em um ambiente de produção/teste. É a manifestação concreta das especificações implementadas.
 
 ---
 
 ## 5. Plano de Testes
 
-O Plano de Testes define a estratégia, o escopo e os critérios de validação do produto. Inclui os tipos de teste a serem realizados (unitário e aceitação), ferramentas, responsáveis e métricas de sucesso.
+Documento que define a estratégia, técnicas e métricas usadas para validar o sistema, garantindo que todas as funcionalidades atendam aos requisitos e critérios de aceitação estabelecidos.
 
 ### Template
 

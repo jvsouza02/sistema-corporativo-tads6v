@@ -38,7 +38,7 @@ Responsável em expecificar o que é necessário para que se cheque no produto f
 * [Especificar](atividades.md#2-especificar): Converter funcionalidades gerais em requisitos claros, objetivos e verificáveis, estabelecendo critérios de aceitação e assegurando sua consistência.  
     1. **Entrada Principal**: [Documento de Visão](artefatos.md#1-documento-de-visão)  
     2. **Saída Principal**: [Especificação](artefatos.md#2-especificação)
-* [Elaborar plano de testes](atividades.md#3-elaborar-plano-de-testes): Elaborar Plano de Testes: Definir a estratégia, técnicas e indicadores que orientarão a execução dos testes, garantindo que o sistema atenda aos requisitos e padrões de qualidade.
+* [Elaborar plano de testes](atividades.md#4-elaborar-plano-de-testes): Elaborar Plano de Testes: Definir a estratégia, técnicas e indicadores que orientarão a execução dos testes, garantindo que o sistema atenda aos requisitos e padrões de qualidade.
     1. **Entrada Principal**: [Especificação](artefatos.md#2-especificação)
     2. **Saída Principal**: [Plano de Testes](artefatos.md#5-plano-de-testes)
 

@@ -77,6 +77,8 @@ No nosso processo usamos estes status para gerir o trabalho. Cada status possui 
   Identificar e compreender as necessidades da barbearia e de seus clientes; gerar o Documento de Visão.
 * [Especificar](atividades.md#2-especificar-funcionalidades)
   Documentar requisitos funcionais e não-funcionais; escrever critérios de aceitação testáveis.
+* [Elaborar Plano de Testes](atividades.md#4-elaborar-plano-de-testes)
+  Definir objetivos, estratégias, técnicas e indicadores para validar requisitos, garantir qualidade e medir a efetividade dos testes ao longo do desenvolvimento.
 * [Codificar](atividades.md#3-codificar)
   Implementar funcionalidades seguindo padrões de código e cobertura de testes.
 * [Revisar](atividades.md#4-revisar)
@@ -89,10 +91,15 @@ No nosso processo usamos estes status para gerir o trabalho. Cada status possui 
 
 * [Documento de Visão](artefatos.md#1-documento-de-visao)
   Descreve objetivos, público, escopo e funcionalidades principais do sistema.
-* [Especificação de Funcionalidade](artefatos.md#2-especificacao-de-funcionalidade)
+* [Especificação](artefatos.md#2-especificacao)
   Detalha requisitos funcionais com critérios de aceitação e exemplos de uso.
+  [Dicionário de Dados](artefatos.md#3-dicionário-de-dados)
+  O Dicionário de Dados documenta entidades, atributos e regras para garantir clareza e consistência no sistema.
 * [Produto](artefatos.md#3-produto)
   Resultado da codificação e integração, disponível para uso.
+* [Plano de Testes](artefatos.md#5-plano-de-testes)
+  A validação do sistema envolve estratégias, técnicas e métricas para assegurar o cumprimento dos requisitos definidos
+
 
 ---
 
