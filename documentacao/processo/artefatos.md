@@ -74,50 +74,50 @@ As **Especificações** descrevem uma funcionalidade do sistema a partir da pers
 ### Template
 
 ```markdown
-CDU## — <Título do Caso de Uso>
+# CDU## — <Título do Caso de Uso>
 
-ESCOPO:
+## ESCOPO
 
-* [Funcionalidade essencial 1]
-* [Funcionalidade essencial 2]
-* [Funcionalidade essencial 3]
+- [Funcionalidade essencial 1]  
+- [Funcionalidade essencial 2]  
+- [Funcionalidade essencial 3]
 
-PROPÓSITO:
+## PROPÓSITO
 
-* [Propósito resumido do caso de uso]
+- [Propósito resumido do caso de uso]
 
-ATOR:
+## ATOR
 
-* [Ator principal]
-* [Ator secundário / sistema externo]
+- [Ator principal]  
+- [Ator secundário / sistema externo]
 
-PRÉ-CONDIÇÕES:
+## PRÉ-CONDIÇÕES
 
-* [Pré-condição 1]
-* [Pré-condição 2]
+- [Pré-condição 1]  
+- [Pré-condição 2]
 
-PÓS-CONDIÇÕES:
+## PÓS-CONDIÇÕES
 
-* [Pós-condição 1]
-* [Pós-condição 2]
+- [Pós-condição 1]  
+- [Pós-condição 2]
 
-FLUXO NORMAL:
+## FLUXO NORMAL
 
-1. [Ator] Acessa "<nome da funcionalidade>".
-2. [Ator] Seleciona [profissional] e [período desejado].
-3. [Sistema] Exibe [horários] e [agendamentos].
-4. [Ator] Executa ação (bloquear / liberar / reorganizar horários).
+1. [Ator] acessa "<nome da funcionalidade>".
+2. [Ator] seleciona [profissional] e [período desejado].
+3. [Sistema] exibe [horários] e [agendamentos].
+4. [Ator] executa ação (bloquear / liberar / reorganizar horários).
 
-FLUXO EXCEÇÃO:
+## FLUXO DE EXCEÇÃO
 
-* [Exceção 1] — [Comportamento esperado do sistema]
-* [Exceção 2] — [Mensagem de erro / validação]
+- [Exceção 1] — [Comportamento esperado do sistema]  
+- [Exceção 2] — [Mensagem de erro / validação]
 
-REQUISITOS RELACIONADOS:
+## REQUISITOS RELACIONADOS
 
-* RF## — [Requisito funcional relacionado 1]
-* RF## — [Requisito funcional relacionado 2]
-* RN## — [Requisito não funcional relacionado]
+- RF## — [Requisito funcional relacionado 1]  
+- RF## — [Requisito funcional relacionado 2]  
+- RN## — [Requisito não funcional relacionado]
 ```
 
 ---
