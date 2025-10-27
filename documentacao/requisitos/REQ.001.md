@@ -2,7 +2,7 @@
 
 ## 1. Narrativa (O Quê, Quem, Por Quê)
 
-**COMO UM** *Barbeiro*,  
+**COMO UM** *[Barbeiro](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/dicionario_de_dados.md#barbeiro)*,  
 **EU DESEJO** *registrar os detalhes do atendimento de um cliente, incluindo produtos utilizados e observações*,  
 **PARA QUE** *eu possa documentar os serviços realizados, acompanhar o histórico de cada cliente e personalizar atendimentos futuros*.
 
@@ -34,5 +34,6 @@
 - **Dado** que o barbeiro deseja remover um registro do histórico.  
 - **Quando** ele clica em “Excluir” e confirma a ação.  
 - **Então** o registro deve ser removido do histórico, garantindo a integridade dos demais dados.
+
 
 
