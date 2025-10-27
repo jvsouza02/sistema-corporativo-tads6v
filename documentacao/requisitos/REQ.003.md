@@ -1,48 +1,70 @@
-# Histórias de Usuário: REQ003- Gerenciar Cabeleireiros
+# CDU003 — Gerenciar Cabeleireiros
 
-## 1. Narrativa (O Quê, Quem, Por Quê)
+## ESCOPO
 
-**COMO UM** *Proprietário da barbearia*,  
-**EU DESEJO** *cadastrar, visualizar, editar e remover os perfis dos profissionais (cabeleireiros)*,  
-**PARA QUE** *eu possa manter a equipe organizada, definir quem está disponível para agendamentos e garantir que a agenda online reflita a capacidade real da barbearia*.
+- Permitir o cadastro de novos profissionais (cabeleireiros).
+- Permitir a edição dos dados cadastrais e horários de trabalho dos profissionais.
+- Permitir a remoção (ou desativação) de profissionais que não possuam vínculos futuros.
+- Apresentar a lista de todos os profissionais cadastrados.
 
-## 2. Critérios de Aceitação (Regras de Negócio e Cenários)
+## PROPÓSITO
 
-### Cenário 1: Cadastrar um novo cabeleireiro com sucesso
+- Manter o cadastro da equipe de profissionais atualizado, organizando quem está disponível para agendamentos e garantindo que a capacidade da barbearia esteja correta na plataforma.
 
-- **Dado** que eu estou logado como Proprietário na página de "Gerenciar Profissionais".
-- **Quando** eu preencho o formulário com os dados de um novo cabeleireiro, incluindo nome e horário de trabalho.
-- **E** eu clico no botão "Salvar".
-- **Então** eu devo ver uma mensagem de sucesso confirmando o cadastro.
-- **E** o novo cabeleireiro deve aparecer na lista de profissionais ativos.
+## ATOR
 
-### Cenário 2: Editar os dados de um cabeleireiro existente
+- **Ator principal:** Proprietário da Barbearia
+- **Ator secundário / sistema externo:** Sistema de Agendamento (é impactado pelas alterações de disponibilidade).
 
-- **Dado** que o cabeleireiro "Carlos Andrade" está cadastrado no sistema.
-- **Quando** eu localizo "Carlos Andrade" na lista e clico em "Editar".
-- **E** eu altero seu horário de trabalho para incluir os sábados.
-- **E** eu clico em "Salvar Alterações".
-- **Então** o sistema deve confirmar a atualização.
-- **E** a agenda de "Carlos Andrade" deve passar a exibir horários disponíveis aos sábados para novos agendamentos.
+## PRÉ-CONDIÇÕES
 
-### Cenário 3: Tentar remover um cabeleireiro com agendamentos futuros
+- O Proprietário deve estar autenticado (logado) no sistema.
+- O Proprietário deve ter permissões de acesso à área de "Gerenciar Profissionais".
 
-- **Dado** que a cabeleireira "Ana Souza" possui agendamentos confirmados para a próxima semana.
-- **Quando** eu tento remover "Ana Souza" da lista de profissionais.
-- **Então** o sistema deve impedir a remoção.
-- **E** eu devo visualizar uma mensagem de erro explicando que "Não é possível remover profissionais com agendamentos futuros".
+## PÓS-CONDIÇÕES
 
-### Cenário 4: Remover um cabeleireiro sem agendamentos futuros
+- A lista de profissionais está atualizada no sistema (após cadastro, edição ou remoção).
+- O Sistema de Agendamento reflete a nova disponibilidade (ou indisponibilidade) do profissional alterado para futuros agendamentos.
 
-- **Dado** que o cabeleireiro "Jorge Martins" não possui nenhum agendamento futuro em seu nome.
-- **Quando** eu clico em "Remover" no perfil de "Jorge Martins".
-- **E** eu confirmo a ação na caixa de diálogo.
-- **Então** "Jorge Martins" deve ser removido da lista de profissionais ativos.
-- **E** ele não deve mais aparecer como uma opção para novos agendamentos.
+## FLUXO NORMAL
 
-### Cenário 5: Visualizar a lista de todos os cabeleireiros
+1.  O [Proprietário] acessa a funcionalidade "Gerenciar Profissionais".
+2.  O [Sistema] exibe a lista de todos os profissionais atualmente cadastrados.
+3.  O [Proprietário] seleciona uma das ações: "Cadastrar Novo Profissional", "Editar" (em um profissional existente) ou "Remover" (em um profissional existente).
 
-- **Dado** que eu estou logado como Proprietário.
-- **Quando** eu acesso a página "Gerenciar Profissionais".
-- **Então** eu devo ver uma lista com o nome de todos os cabeleireiros atualmente cadastrados na barbearia.
+**Fluxo 3a: Cadastrar Novo Profissional (Cenário 1)**
+4.  O [Proprietário] preenche o formulário com os dados do novo profissional (ex: nome, horários de trabalho).
+5.  O [Proprietário] clica em "Salvar".
+6.  O [Sistema] valida os dados, salva o novo profissional.
+7.  O [Sistema] exibe uma mensagem de sucesso e atualiza a lista de profissionais, exibindo o novo cadastro.
 
+**Fluxo 3b: Editar Profissional Existente (Cenário 2)**
+4.  O [Proprietário] localiza o profissional (ex: "Carlos Andrade") e clica em "Editar".
+5.  O [Sistema] exibe os dados atuais do profissional.
+6.  O [Proprietário] altera os dados desejados (ex: altera o horário de trabalho para incluir sábados).
+7.  O [Proprietário] clica em "Salvar Alterações".
+8.  O [Sistema] valida os dados, salva as alterações.
+9.  O [Sistema] exibe uma mensagem de confirmação e atualiza a disponibilidade desse profissional no Sistema de Agendamento.
+
+**Fluxo 3c: Remover Profissional (Cenário 4)**
+4.  O [Proprietário] localiza o profissional (ex: "Jorge Martins") e clica em "Remover".
+5.  O [Sistema] verifica se o profissional *não* possui agendamentos futuros.
+6.  Sendo negativo (sem agendamentos), o [Sistema] exibe uma caixa de diálogo de confirmação.
+7.  O [Proprietário] confirma a ação.
+8.  O [Sistema] remove (ou desativa) o profissional.
+9.  O [Sistema] exibe uma mensagem de sucesso e o profissional não aparece mais na lista de profissionais ativos nem como opção para novos agendamentos.
+
+## FLUXO DE EXCEÇÃO
+
+- **Exceção 1: Tentar salvar com dados obrigatórios ausentes.**
+    - [Fluxo Normal, 3a.5 ou 3b.7] Se o Proprietário tentar salvar sem preencher campos obrigatórios (ex: Nome).
+    - O [Sistema] exibe uma mensagem de validação indicando os campos pendentes e não salva o registro.
+
+- **Exceção 2: Tentar remover profissional com agendamentos futuros (Cenário 3).**
+    - [Fluxo Normal, 3c.5] Se o Proprietário tentar remover um profissional (ex: "Ana Souza") que possui agendamentos futuros confirmados.
+    - O [Sistema] impede a remoção.
+    - O [Sistema] exibe a mensagem de erro: "Não é possível remover profissionais com agendamentos futuros".
+
+## REQUISITOS RELACIONADOS
+
+- **RF002:** Cadastrar Barbearia
