@@ -1,7 +1,9 @@
+from tokenize import String
 from config.database import SessionLocal
-from sqlalchemy import select as Select
+from sqlalchemy import UUID, select as Select
 from src.application.entities.barbearia_entity import Barbearia
 from src.data.models.barbearia_model import BarbeariaModel
+from sqlalchemy import String, cast
 
 class BarbeariaRepository():
     def __init__(self):
@@ -36,6 +38,18 @@ class BarbeariaRepository():
     def listar_todos(self):
         result = self.db.execute(Select(BarbeariaModel).order_by(BarbeariaModel.data_atualizacao.desc()))
         return result.scalars().all()
+    
+    def listar_por_proprietario(self, id_proprietario: str):
+        try:
+            id_str = str(UUID(id_proprietario))
+        except ValueError:
+            raise ValueError(f"ID de proprietário inválido: {id_proprietario}")
+
+        return (
+            self.db.query(BarbeariaModel)
+            .filter(cast(BarbeariaModel.id_proprietario, String) == id_str)
+            .all()
+        )
 
     # def buscar_por_id(self, comentario_id: str):
     #     return self.db.query(ComentarioModel).filter(ComentarioModel.id_comentario == comentario_id).first()

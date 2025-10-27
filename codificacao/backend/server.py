@@ -20,7 +20,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 class BarbeariaRequest(BaseModel):
     nome: str
     email: str
@@ -119,6 +118,7 @@ def deletar_observacao(id_comentario: str):
         raise HTTPException(status_code=404, detail=str(ve))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
 @app.delete("/observacoes/{id_comentario}", status_code=status.HTTP_204_NO_CONTENT)
 def deletar_observacao(id_comentario: str):
     controller = ComentarioController()

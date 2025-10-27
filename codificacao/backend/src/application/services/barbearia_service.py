@@ -16,5 +16,8 @@ class BarbeariaService:
             raise ValueError("Barbearia inválida.")
         return repository.salvar(barbearia)
     
-    def listar_todos(self):
-        return repository.listar_todos()
+    def listar_barbearias_por_proprietario(self, id_proprietario):
+        barbearias = repository.listar_por_proprietario(id_proprietario)
+        if not barbearias:
+            raise ValueError("Nenhuma barbearia encontrada para este proprietário.")
+        return barbearias

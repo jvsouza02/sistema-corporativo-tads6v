@@ -104,137 +104,13 @@
                 </div>
             </div>
             
-            <div class="row mb-5">
-                <div class="col-md-3 mb-3">
-                    <div class="card stat-card border-0">
-                        <div class="card-body text-center p-4">
-                            <div class="stat-icon bg-primary mb-3">
-                                <i class="fas fa-calendar-check text-white"></i>
-                            </div>
-                            <h3 class="stat-number text-primary mb-2">12</h3>
-                            <p class="stat-label text-muted mb-0">Agendamentos Hoje</p>
-                            <small class="text-success">
-                                <i class="fas fa-arrow-up me-1"></i>+2 em relação a ontem
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-3 mb-3">
-                    <div class="card stat-card border-0">
-                        <div class="card-body text-center p-4">
-                            <div class="stat-icon bg-success mb-3">
-                                <i class="fas fa-users text-white"></i>
-                            </div>
-                            <h3 class="stat-number text-success mb-2">156</h3>
-                            <p class="stat-label text-muted mb-0">Clientes Cadastrados</p>
-                            <small class="text-success">
-                                <i class="fas fa-arrow-up me-1"></i>+5 esta semana
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-3 mb-3">
-                    <div class="card stat-card border-0">
-                        <div class="card-body text-center p-4">
-                            <div class="stat-icon bg-warning mb-3">
-                                <i class="fas fa-dollar-sign text-white"></i>
-                            </div>
-                            <h3 class="stat-number text-warning mb-2">R$ 2.850</h3>
-                            <p class="stat-label text-muted mb-0">Faturamento Mensal</p>
-                            <small class="text-success">
-                                <i class="fas fa-arrow-up me-1"></i>+12% este mês
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-3 mb-3">
-                    <div class="card stat-card border-0">
-                        <div class="card-body text-center p-4">
-                            <div class="stat-icon bg-info mb-3">
-                                <i class="fas fa-star text-white"></i>
-                            </div>
-                            <h3 class="stat-number text-info mb-2">4.8</h3>
-                            <p class="stat-label text-muted mb-0">Avaliação Média</p>
-                            <small class="text-muted">Baseado em 47 avaliações</small>
-                        </div>
+            <div class="row" id="listaBarbearias">
+                <h3 class="mb-4">Suas Barbearias</h3>
+                <div class="col-12">
+                    <div id="barbeariasContainer" class="row g-3">
                     </div>
                 </div>
             </div>
-            
-            <div class="row">
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card info-card h-100 border-0">
-                        <div class="card-body p-4 text-center">
-                            <div class="bg-primary rounded-circle p-4 mx-auto mb-3" style="width: 80px; height: 80px;">
-                                <i class="fas fa-store text-white fs-3"></i>
-                            </div>
-                            <h5 class="card-title mb-3">Cadastrar Barbearia</h5>
-                            <p class="card-text text-muted mb-3">
-                                Cadastre uma nova barbearia no sistema e configure suas informações básicas.
-                            </p>
-                            <a href="form_barbearia.html" class="btn btn-primary w-100">
-                                <i class="fas fa-plus-circle me-1"></i> Cadastrar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card info-card h-100 border-0">
-                        <div class="card-body p-4 text-center">
-                            <div class="bg-success rounded-circle p-4 mx-auto mb-3" style="width: 80px; height: 80px;">
-                                <i class="fas fa-calendar-alt text-white fs-3"></i>
-                            </div>
-                            <h5 class="card-title mb-3">Agendamentos</h5>
-                            <p class="card-text text-muted mb-3">
-                                Gerencie os agendamentos, confirme atendimentos e visualize a agenda completa.
-                            </p>
-                            <button class="btn btn-success w-100">
-                                <i class="fas fa-calendar me-1"></i> Ver Agendamentos
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card info-card h-100 border-0">
-                        <div class="card-body p-4 text-center">
-                            <div class="bg-warning rounded-circle p-4 mx-auto mb-3" style="width: 80px; height: 80px;">
-                                <i class="fas fa-history text-white fs-3"></i>
-                            </div>
-                            <h5 class="card-title mb-3">Histórico de Atendimento</h5>
-                            <p class="card-text text-muted mb-3">
-                                Acesse o histórico completo de atendimentos e relatórios de serviços realizados.
-                            </p>
-                            <a href="historico_atendimento.html" class="btn btn-warning w-100">
-                                <i class="fas fa-chart-line me-1"></i> Ver Histórico
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card info-card h-100 border-0">
-                        <div class="card-body p-4 text-center">
-                            <div class="bg-info rounded-circle p-4 mx-auto mb-3" style="width: 80px; height: 80px;">
-                                <i class="fas fa-user-tie text-white fs-3"></i>
-                            </div>
-                            <h5 class="card-title mb-3">Barbeiros</h5>
-                            <p class="card-text text-muted mb-3">
-                                Gerencie sua equipe de barbeiros, horários e comissões de cada profissional.
-                            </p>
-                            <a href="gerenciar_profissionais.html" class="btn btn-info w-100 text-white">
-                                <i class="fas fa-users-cog me-1"></i> Gerenciar Equipe
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <div class="modal fade" id="editInfoModal" tabindex="-1" aria-labelledby="editInfoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -297,7 +173,7 @@
         </div>
     </div>
 
-    <footer class="custom-footer mt-5">
+    <!-- <footer class="custom-footer mt-5">
         <div class="container py-4">
             <div class="row align-items-center">
                 <div class="col-md-6">
@@ -311,12 +187,22 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="src/dashboard.js"></script>
     
 <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        const id_proprietario = params.get("id_proprietario");
+        if (id_proprietario) {
+            console.log("Salvando id_proprietario:", id_proprietario);
+            localStorage.setItem("id_proprietario", id_proprietario);
+        }
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
         const params = new URLSearchParams(window.location.search);
 
@@ -379,6 +265,64 @@
             }
         }
     });
+    
+document.addEventListener("DOMContentLoaded", async () => {
+    const id_proprietario = localStorage.getItem("id_proprietario");
+
+    if (!id_proprietario) {
+        console.error("Proprietário não identificado");
+        alert("Erro: proprietário não identificado.");
+        return;
+    }
+
+    const container = document.getElementById("barbeariasContainer");
+    container.innerHTML = "<p>Carregando barbearias...</p>";
+
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/barbearias/proprietario/${id_proprietario}`);
+        const barbearias = await response.json();
+
+        if (!response.ok) {
+            console.error(barbearias);
+            throw new Error("Erro ao buscar barbearias no servidor.");
+        }
+
+        container.innerHTML = "";
+
+        if (barbearias.length === 0) {
+            container.innerHTML = "<p class='text-muted'>Nenhuma barbearia cadastrada.</p>";
+            return;
+        }
+
+        barbearias.forEach(b => {
+            const card = document.createElement("div");
+            card.className = "col-md-4";
+            card.innerHTML = `
+                <div class="card shadow-sm h-100 border-0">
+                    <div class="card-body text-center">
+                        <img src="${b.foto_url || 'https://via.placeholder.com/150'}" 
+                            class="rounded-circle mb-3" width="100" height="100">
+                        <h5>${b.nome}</h5>
+                        <p class="text-muted small">${b.endereco}</p>
+                        <p><i class="fas fa-phone"></i> ${b.telefone || '-'}</p>
+                        <p><i class="fas fa-clock"></i> ${b.horario_abertura} - ${b.horario_fechamento}</p>
+                        <p>${b.descricao}</p>
+                    </div>
+                </div>`;
+            container.appendChild(card);
+        });
+    } catch (error) {
+        console.error("Erro ao carregar barbearias:", error);
+        container.innerHTML = "<p class='text-danger'>Erro ao carregar barbearias.</p>";
+    }
+});
+
+function abrirDashboard(id_barbearia) {
+    // Salva o ID da barbearia para usar na tela de dashboard
+    localStorage.setItem("id_barbearia", id_barbearia);
+    window.location.href = `index.html?id_barbearia=${id_barbearia}`;
+}
+
 </script>
 </body>
 </html>
