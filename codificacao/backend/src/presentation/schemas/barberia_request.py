@@ -9,3 +9,4 @@ class BarbeariaRequest(BaseModel):
     horario_abertura: str
     horario_fechamento: str
     foto_url: str | None = None
+    id_proprietario: str

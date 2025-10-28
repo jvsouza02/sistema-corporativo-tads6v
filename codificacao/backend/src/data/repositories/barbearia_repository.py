@@ -5,76 +5,61 @@ from src.application.entities.barbearia_entity import Barbearia
 from src.data.models.barbearia_model import BarbeariaModel
 from sqlalchemy import String, cast
 
-class BarbeariaRepository():
+class BarbeariaRepository:
     def __init__(self):
         self.db = SessionLocal()
 
     def _to_entity(self, model: BarbeariaModel):
-        return (str(model.id_barbearia), str(model.nome), str(model.email), str(model.endereco),
-                str(model.telefone), str(model.horario_abertura), str(model.horario_fechamento),
-                str(model.descricao), str(model.foto_url), str(model.id_proprietario), model.data_cadastro, model.data_atualizacao)
+        return {
+            "id_barbearia": str(model.id_barbearia),
+            "nome": model.nome,
+            "email": model.email,
+            "endereco": model.endereco,
+            "telefone": model.telefone,
+            "horario_abertura": model.horario_abertura,
+            "horario_fechamento": model.horario_fechamento,
+            "descricao": model.descricao,
+            "foto_url": model.foto_url,
+            "id_proprietario": str(model.id_proprietario),
+            "data_cadastro": model.data_cadastro.isoformat() if model.data_cadastro else None,
+            "data_atualizacao": model.data_atualizacao.isoformat() if model.data_atualizacao else None
+        }
 
-    def salvar(self, nova_barbearia):
-        nova_barbearia = BarbeariaModel(
-            id_barbearia=nova_barbearia.id_barbearia,
-            nome=nova_barbearia.nome,
-            email=nova_barbearia.email,
-            endereco=nova_barbearia.endereco,
-            telefone=nova_barbearia.telefone,
-            horario_abertura=nova_barbearia.horario_abertura,
-            horario_fechamento=nova_barbearia.horario_fechamento,
-            descricao=nova_barbearia.descricao,
-            foto_url=nova_barbearia.foto_url,
-            id_proprietario=nova_barbearia.id_proprietario
+    def salvar(self, barbearia_entity):
+        model = BarbeariaModel(
+            nome=barbearia_entity.nome,
+            email=barbearia_entity.email,
+            endereco=barbearia_entity.endereco,
+            telefone=barbearia_entity.telefone,
+            horario_abertura=barbearia_entity.horario_abertura, 
+            horario_fechamento=barbearia_entity.horario_fechamento,
+            descricao=barbearia_entity.descricao,
+            foto_url=barbearia_entity.foto_url,
+            id_proprietario=barbearia_entity.id_proprietario
         )
         try:
-            self.db.add(nova_barbearia)
+            self.db.add(model)
             self.db.commit()
+            self.db.refresh(model)
+            return self._to_entity(model)
         except Exception as e:
             self.db.rollback()
             raise e
-        return nova_barbearia
 
     def listar_todos(self):
-        result = self.db.execute(Select(BarbeariaModel).order_by(BarbeariaModel.data_atualizacao.desc()))
-        return result.scalars().all()
-    
+        try:
+            result = self.db.query(BarbeariaModel).all()
+            return [self._to_entity(m) for m in result]
+        except Exception as e:
+            raise e
+        
     def listar_por_proprietario(self, id_proprietario: str):
         try:
-            id_str = str(UUID(id_proprietario))
-        except ValueError:
-            raise ValueError(f"ID de proprietário inválido: {id_proprietario}")
-
-        return (
-            self.db.query(BarbeariaModel)
-            .filter(cast(BarbeariaModel.id_proprietario, String) == id_str)
-            .all()
-        )
-
-    # def buscar_por_id(self, comentario_id: str):
-    #     return self.db.query(ComentarioModel).filter(ComentarioModel.id_comentario == comentario_id).first()
-
-    # def atualizar(self, id_comentario, comentario):
-    #     comentario_model = self.db.query(ComentarioModel).filter(ComentarioModel.id_comentario == id_comentario).first()
-    #     if not comentario_model:
-    #         return None
-    #     comentario_model.comentario = comentario
-    #     try:
-    #         self.db.merge(comentario_model)
-    #         self.db.commit()
-    #         self.db.refresh(comentario)
-    #     except Exception as e:
-    #         self.db.rollback()
-    #         raise e
-    #     return comentario
-
-    # def deletar(self, comentario_id: str):
-    #     comentario = self.buscar_por_id(comentario_id)
-    #     if comentario:
-    #         try:
-    #             self.db.delete(comentario)
-    #             self.db.commit()
-    #         except Exception as e:
-    #             self.db.rollback()
-    #             raise e
-    #     return comentario
+            barbearias = (
+                self.db.query(BarbeariaModel)
+                .filter(BarbeariaModel.id_proprietario == id_proprietario)
+                .all()
+            )
+            return [self._to_entity(b) for b in barbearias]
+        except Exception as e:
+            raise e

@@ -1,5 +1,5 @@
 import uuid
-from sqlalchemy import Column, String, DateTime
+from sqlalchemy import Column, ForeignKey, String, DateTime
 from config.database import Base
 from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime
@@ -15,7 +15,7 @@ class BarbeariaModel(Base):
     horario_abertura = Column(String, nullable=False)
     horario_fechamento = Column(String, nullable=False)
     descricao = Column(String, nullable=False)
-    foto_url = Column(String, nullable=False)
-    id_proprietario = Column(String, nullable=False)
+    foto_url = Column(String, nullable=True)
+    id_proprietario = Column(UUID(as_uuid=True), ForeignKey("proprietarios.id_proprietario"), nullable=False)
     data_cadastro = Column(DateTime, default=datetime.now, nullable=False)
     data_atualizacao = Column(DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)

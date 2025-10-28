@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles/form_barbearia.css">
-    <link rel="stylesheet" href="styles/dashboard.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
@@ -51,10 +50,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-2 text-center">
                         <img src="https://via.placeholder.com/150" alt="Barbearia" 
-                             class="profile-image rounded-circle" id="dashboardPhoto">
-                        <button class="btn btn-sm btn-light mt-2" id="changePhotoBtn">
-                            <i class="fas fa-camera me-1"></i>Alterar
-                        </button>
+                            class="profile-image rounded-circle" id="dashboardPhoto">
                     </div>
                     <div class="col-md-10">
                         <h1 id="dashboardName">Nome da Barbearia</h1>
@@ -86,32 +82,18 @@
             <div class="alert alert-info welcome-alert d-flex align-items-center" role="alert">
                 <i class="fas fa-info-circle me-2 fs-4"></i>
                 <div>
-                    <strong>Bem-vindo de volta!</strong> Sua barbearia está com 12 agendamentos para hoje.
+                    <strong>Bem-vindo de volta!</strong> Aqui estão suas barbearias cadastradas.
                 </div>
             </div>
 
-            <div class="row mb-4">
-                <div class="col-12">
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
-                        <div class="mb-2 mb-md-0">
-                            <h2 class="mb-1">Painel de Controle</h2>
-                            <p class="text-muted mb-0">Gerencie sua barbearia de forma eficiente</p>
-                        </div>
-                        <button class="btn btn-primary" id="editInfoBtn">
-                            <i class="fas fa-edit me-1"></i> Editar Informações
-                        </button>
-                    </div>
-                </div>
+            <div class="container mt-4">
+                <h2>Minhas Barbearias</h2>
+                <div id="listaBarbearias" class="row mt-3"></div>
             </div>
-            
-            <div class="row" id="listaBarbearias">
-                <h3 class="mb-4">Suas Barbearias</h3>
-                <div class="col-12">
-                    <div id="barbeariasContainer" class="row g-3">
-                    </div>
-                </div>
-            </div>
+        </div>
+    </section>
 
+    <!-- Modal de edição -->
     <div class="modal fade" id="editInfoModal" tabindex="-1" aria-labelledby="editInfoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -123,7 +105,7 @@
                     <form id="editBarbershopForm">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="editName" class="form-label">Nome da Barbearia</label>
+                                <label for="editName" class="form-label">Nome</label>
                                 <input type="text" class="form-control" id="editName">
                             </div>
                             <div class="col-md-6 mb-3">
@@ -131,23 +113,20 @@
                                 <input type="email" class="form-control" id="editEmail">
                             </div>
                         </div>
-                        
                         <div class="mb-3">
                             <label for="editAddress" class="form-label">Endereço</label>
                             <input type="text" class="form-control" id="editAddress">
                         </div>
-                        
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="editPhone" class="form-label">Telefone</label>
                                 <input type="text" class="form-control" id="editPhone">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="editPhoto" class="form-label">Foto da Barbearia</label>
+                                <label for="editPhoto" class="form-label">Foto</label>
                                 <input type="file" class="form-control" id="editPhoto" accept="image/*">
                             </div>
                         </div>
-                        
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="editOpeningTime" class="form-label">Horário de Abertura</label>
@@ -158,7 +137,6 @@
                                 <input type="time" class="form-control" id="editClosingTime">
                             </div>
                         </div>
-                        
                         <div class="mb-3">
                             <label for="editDescription" class="form-label">Descrição</label>
                             <textarea class="form-control" id="editDescription" rows="4"></textarea>
@@ -167,162 +145,78 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="saveChangesBtn">Salvar Alterações</button>
+                    <button type="button" class="btn btn-primary" id="saveChangesBtn">Salvar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- <footer class="custom-footer mt-5">
-        <div class="container py-4">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h5 class="d-flex align-items-center">
-                        <i class="fas fa-cut me-2"></i> BarberPro
-                    </h5>
-                    <p class="mb-0 text-muted">Sistema de gerenciamento para barbearias.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p class="mb-0 text-muted">&copy; 2024 BarberPro. Todos os direitos reservados.</p>
-                </div>
-            </div>
-        </div>
-    </footer> -->
-
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="src/dashboard.js"></script>
-    
-<script>
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const params = new URLSearchParams(window.location.search);
-        const id_proprietario = params.get("id_proprietario");
-        if (id_proprietario) {
-            console.log("Salvando id_proprietario:", id_proprietario);
-            localStorage.setItem("id_proprietario", id_proprietario);
-        }
-    });
+    <!-- Script principal -->
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const params = new URLSearchParams(window.location.search);
+            const idProprietario = params.get("id_proprietario") || localStorage.getItem("id_proprietario");
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const params = new URLSearchParams(window.location.search);
-
-        const nome = params.get("nome");
-        const endereco = params.get("endereco");
-        const telefone = params.get("telefone");
-        const email = params.get("email");
-        const horarioAbertura = params.get("horario_abertura");
-        const horarioFechamento = params.get("horario_fechamento");
-        const foto = params.get("foto_url");
-        const descricao = params.get("descricao");
-        const id_barbearia = params.get("id_barbearia");
-
-        console.log("Parâmetros recebidos:", {
-            nome, endereco, telefone, email, horarioAbertura, horarioFechamento, foto, descricao, id_barbearia
-        });
-
-        if (nome) {
-            document.getElementById("dashboardName").textContent = nome;
-            document.getElementById("dashboardDescription").textContent = descricao || "Sem descrição";
-            document.getElementById("dashboardAddress").textContent = endereco || "Endereço não informado";
-            document.getElementById("dashboardPhone").textContent = telefone || "Telefone não informado";
-            document.getElementById("dashboardEmail").textContent = email || "Email não informado";
-            document.getElementById("dashboardHours").textContent = `${horarioAbertura || "?"} - ${horarioFechamento || "?"}`;
-            
-            if (foto && foto !== "null" && foto !== "undefined") {
-                console.log("Tentando carregar foto:", foto);
-                document.getElementById("dashboardPhoto").src = foto;
-                document.getElementById("dashboardPhoto").alt = `Foto da ${nome}`;
+            if (idProprietario) {
+                localStorage.setItem("id_proprietario", idProprietario);
+                console.log("Proprietário:", idProprietario);
             } else {
-                console.log("Nenhuma foto fornecida ou foto inválida:", foto);
-                document.getElementById("dashboardPhoto").src = "https://via.placeholder.com/150";
+                alert("Erro: proprietário não identificado.");
+                return;
             }
 
-            localStorage.setItem("barbearia", JSON.stringify({
-                id_barbearia,
-                nome,
-                endereco,
-                telefone,
-                email,
-                horarioAbertura,
-                horarioFechamento,
-                foto,
-                descricao
-            }));
-        } else {
-            const barbearia = JSON.parse(localStorage.getItem("barbearia") || "{}");
-            if (barbearia.nome) {
-                document.getElementById("dashboardName").textContent = barbearia.nome;
-                document.getElementById("dashboardDescription").textContent = barbearia.descricao || "Sem descrição";
-                document.getElementById("dashboardAddress").textContent = barbearia.endereco || "Endereço não informado";
-                document.getElementById("dashboardPhone").textContent = barbearia.telefone || "Telefone não informado";
-                document.getElementById("dashboardEmail").textContent = barbearia.email || "Email não informado";
-                document.getElementById("dashboardHours").textContent = `${barbearia.horarioAbertura || "?"} - ${barbearia.horarioFechamento || "?"}`;
-                
-                if (barbearia.foto && barbearia.foto !== "null" && barbearia.foto !== "undefined") {
-                    document.getElementById("dashboardPhoto").src = barbearia.foto;
-                    document.getElementById("dashboardPhoto").alt = `Foto da ${barbearia.nome}`;
+            const lista = document.getElementById("listaBarbearias");
+            lista.innerHTML = "<p>Carregando barbearias...</p>";
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/barbearias/${idProprietario}`);
+                const barbearias = await response.json();
+
+                if (!response.ok) throw new Error("Erro ao buscar barbearias");
+
+                lista.innerHTML = "";
+
+                if (barbearias.length === 0) {
+                    lista.innerHTML = `<p class='text-muted'>Nenhuma barbearia cadastrada.</p>`;
+                    return;
                 }
+
+                barbearias.forEach(b => {
+                    const col = document.createElement("div");
+                    col.className = "col-md-4";
+                    col.innerHTML = `
+                        <div class="card mb-4 shadow-sm border-0 h-100">
+                            <img src="http://127.0.0.1:8000/${b.foto_url || 'uploads/default.jpg'}" class="card-img-top" alt="${b.nome}">
+                            <div class="card-body">
+                                <h5 class="card-title">${b.nome}</h5>
+                                <p class="card-text"><i class="fas fa-map-marker-alt"></i> ${b.endereco}</p>
+                                <p class="card-text"><i class="fas fa-phone"></i> ${b.telefone}</p>
+                                <p class="card-text"><i class="fas fa-clock"></i> ${b.horario_abertura} - ${b.horario_fechamento}</p>
+                                <p class="text-muted">${b.descricao}</p>
+                            </div>
+                        </div>
+                    `;
+                    lista.appendChild(col);
+                });
+
+                // Atualiza painel com a primeira barbearia
+                const primeira = barbearias[0];
+                document.getElementById("dashboardName").textContent = primeira.nome;
+                document.getElementById("dashboardDescription").textContent = primeira.descricao || "Sem descrição";
+                document.getElementById("dashboardAddress").textContent = primeira.endereco || "Endereço não informado";
+                document.getElementById("dashboardPhone").textContent = primeira.telefone || "Telefone não informado";
+                document.getElementById("dashboardEmail").textContent = primeira.email || "E-mail não informado";
+                document.getElementById("dashboardHours").textContent = `${primeira.horario_abertura} - ${primeira.horario_fechamento}`;
+                document.getElementById("dashboardPhoto").src = "http://127.0.0.1:8000/" + (primeira.foto_url || "uploads/default.jpg");
+
+            } catch (err) {
+                console.error(err);
+                lista.innerHTML = `<p class='text-danger'>Erro ao carregar barbearias.</p>`;
             }
-        }
-    });
-    
-document.addEventListener("DOMContentLoaded", async () => {
-    const id_proprietario = localStorage.getItem("id_proprietario");
-
-    if (!id_proprietario) {
-        console.error("Proprietário não identificado");
-        alert("Erro: proprietário não identificado.");
-        return;
-    }
-
-    const container = document.getElementById("barbeariasContainer");
-    container.innerHTML = "<p>Carregando barbearias...</p>";
-
-    try {
-        const response = await fetch(`http://127.0.0.1:8000/barbearias/proprietario/${id_proprietario}`);
-        const barbearias = await response.json();
-
-        if (!response.ok) {
-            console.error(barbearias);
-            throw new Error("Erro ao buscar barbearias no servidor.");
-        }
-
-        container.innerHTML = "";
-
-        if (barbearias.length === 0) {
-            container.innerHTML = "<p class='text-muted'>Nenhuma barbearia cadastrada.</p>";
-            return;
-        }
-
-        barbearias.forEach(b => {
-            const card = document.createElement("div");
-            card.className = "col-md-4";
-            card.innerHTML = `
-                <div class="card shadow-sm h-100 border-0">
-                    <div class="card-body text-center">
-                        <img src="${b.foto_url || 'https://via.placeholder.com/150'}" 
-                            class="rounded-circle mb-3" width="100" height="100">
-                        <h5>${b.nome}</h5>
-                        <p class="text-muted small">${b.endereco}</p>
-                        <p><i class="fas fa-phone"></i> ${b.telefone || '-'}</p>
-                        <p><i class="fas fa-clock"></i> ${b.horario_abertura} - ${b.horario_fechamento}</p>
-                        <p>${b.descricao}</p>
-                    </div>
-                </div>`;
-            container.appendChild(card);
         });
-    } catch (error) {
-        console.error("Erro ao carregar barbearias:", error);
-        container.innerHTML = "<p class='text-danger'>Erro ao carregar barbearias.</p>";
-    }
-});
-
-function abrirDashboard(id_barbearia) {
-    // Salva o ID da barbearia para usar na tela de dashboard
-    localStorage.setItem("id_barbearia", id_barbearia);
-    window.location.href = `index.html?id_barbearia=${id_barbearia}`;
-}
-
-</script>
+    </script>
 </body>
 </html>
