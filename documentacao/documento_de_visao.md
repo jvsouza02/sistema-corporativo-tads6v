@@ -3,7 +3,7 @@
 ## 1. Visão Geral do Produto
 Uma **plataforma web** que centraliza o gerenciamento de barbearias: cadastro da barbearia e profissionais, configuração de serviços, agendamento e calendário, registro de atendimentos no histórico, controle de status de agendamentos (reservado / finalizado / expirado) e mecanismos de avaliação pós-atendimento. O produto visa reduzir atritos no agendamento e permitir personalização do atendimento via histórico.
 
-### 1.1 Minimundo
+### 1.1. Minimundo
 A plataforma de agendamento e gestão de barbearias organiza serviços de cortes de cabelo, barba e coloração capilar, permitindo que clientes, barbeiros e proprietários gerenciem atendimentos de forma prática e eficiente. Ela oferece ferramentas para controle de agendamentos e apresenta relatórios de desempenho por meio de gráficos, facilitando a gestão do negócio e aprimorando a experiência dos clientes.
 
 O proprietário realiza seu cadastro informando dados pessoais como nome, telefone, e-mail e senha. Em seguida, ele é direcionado para o cadastro da barbearia, onde registra informações como nome, CNPJ, e-mail, endereço, telefone, descrição e foto. A plataforma permite que um mesmo proprietário tenha várias barbearias, podendo cadastrar e gerenciar cada unidade de forma independente. Após cadastrar uma barbearia, o proprietário acessa o painel de gerenciamento, centralizando todas as funções administrativas e operacionais. O proprietário pode ver uma listagem das suas barbearias e, ao clicar em cada barbearia, visualizar os agendamentos do dia.
@@ -53,3 +53,4 @@ A plataforma centraliza todas as operações da barbearia em um único ambiente,
 
 ## 7. Prioridades Iniciais 
 1. Registro e consulta de histórico com validação de comentário obrigatório.
+
