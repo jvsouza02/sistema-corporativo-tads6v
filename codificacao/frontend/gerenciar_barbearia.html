@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BarberPro - Área de Gerenciamento</title>
 
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+
     <link rel="stylesheet" href="styles/form_barbearia.css">
+    <link rel="stylesheet" href="styles/gerenciar_barbearia.css">
     <link rel="stylesheet" href="styles/gerenciar_barbearia.css">
 </head>
 <body>
@@ -21,8 +24,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+
 
                     <li class="nav-item">
                         <a class="nav-link" href="#" id="loginLink">
@@ -30,11 +35,13 @@
                         </a>
                     </li>
 
+
                     <li class="nav-item">
                         <a class="nav-link" href="form_barbearia.html">
                             <i class="fas fa-plus-circle me-1"></i>Cadastrar Barbearia
                         </a>
                     </li>
+
 
                     <li class="nav-item">
                         <a class="nav-link" href="gerenciar_profissionais.html">
@@ -42,11 +49,13 @@
                         </a>
                     </li>
 
+
                     <li class="nav-item">
                         <a class="nav-link" href="historico_atendimento.html">
                             <i class="fas fa-history me-1"></i>Histórico
                         </a>
                     </li>
+
 
                 </ul>
             </div>
@@ -60,6 +69,9 @@
                     <img src="https://via.placeholder.com/150"
                          alt="Proprietário"
                          class="profile-image rounded-circle"
+                    <img src="https://via.placeholder.com/150"
+                         alt="Proprietário"
+                         class="profile-image rounded-circle"
                          id="fotoProprietario">
                 </div>
                 <div class="col-md-10">
@@ -70,6 +82,7 @@
         </div>
     </section>
 
+    <section>
     <section>
         <div class="container mt-4">
             <div class="alert alert-info welcome-alert d-flex align-items-center" role="alert">
@@ -86,6 +99,7 @@
                 </button>
             </div>
 
+            <div id="listaBarbearias" class="row mt-3"></div>
             <div id="listaBarbearias" class="row mt-3"></div>
         </div>
     </section>
@@ -118,12 +132,54 @@
                                 <input type="email" name="email" class="form-control" required>
                             </div>
                         </div>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <form id="addBarbershopForm"
+                      action="http://127.0.0.1:8000/criar_barbearia_existente"
+                      method="POST"
+                      enctype="multipart/form-data">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addBarbershopLabel">Cadastrar Nova Barbearia</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <input type="hidden" name="id_proprietario" id="id_proprietario_modal">
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nome</label>
+                                <input type="text" name="nome" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">E-mail</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+                        </div>
 
                         <div class="mb-3">
                             <label class="form-label">Endereço</label>
                             <input type="text" name="endereco" class="form-control" required>
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label">Endereço</label>
+                            <input type="text" name="endereco" class="form-control" required>
+                        </div>
 
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Telefone</label>
+                                <input type="text" name="telefone" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Foto</label>
+                                <input type="file" name="foto_url" class="form-control" accept="image/*">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Telefone</label>
@@ -147,7 +203,23 @@
                                 <input type="time" name="horario_fechamento" class="form-control" required>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Horário de Abertura</label>
+                                <input type="time" name="horario_abertura" class="form-control" required>
+                            </div>
 
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Horário de Fechamento</label>
+                                <input type="time" name="horario_fechamento" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Descrição</label>
+                            <textarea name="descricao" class="form-control" rows="3" required></textarea>
+                        </div>
+                    </div>
                         <div class="mb-3">
                             <label class="form-label">Descrição</label>
                             <textarea name="descricao" class="form-control" rows="3" required></textarea>
@@ -166,14 +238,33 @@
 
             </div>
         </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+                        <button type="submit" class="btn btn-primary" id="salvarBarbeariaBtn">
+                            Salvar
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+
     <script>
+
 
         document.addEventListener("DOMContentLoaded", async () => {
             const params = new URLSearchParams(window.location.search);
+            const idProprietarioURL = params.get("id_proprietario");
+            const idProprietarioLocal = localStorage.getItem("id_proprietario");
+
+            
+            const idProprietario = idProprietarioURL || idProprietarioLocal;
             const idProprietarioURL = params.get("id_proprietario");
             const idProprietarioLocal = localStorage.getItem("id_proprietario");
 
@@ -192,7 +283,20 @@
                 hiddenField.value = idProprietario;
             }
 
+            const hiddenField = document.getElementById("id_proprietario_modal");
+            if (hiddenField) {
+                hiddenField.value = idProprietario;
+            }
+
             try {
+                const respProprietario = await fetch(`http://127.0.0.1:8000/proprietario/${idProprietario}`);
+                if (respProprietario.ok) {
+                    const proprietario = await respProprietario.json();
+
+                    document.getElementById("nomeProprietario").textContent = proprietario.nome || "Proprietário";
+                    document.getElementById("emailProprietario").textContent = proprietario.email || "";
+
+                    document.getElementById("fotoProprietario").src = proprietario.foto_url
                 const respProprietario = await fetch(`http://127.0.0.1:8000/proprietario/${idProprietario}`);
                 if (respProprietario.ok) {
                     const proprietario = await respProprietario.json();
@@ -203,6 +307,7 @@
                     document.getElementById("fotoProprietario").src = proprietario.foto_url
                         ? `http://127.0.0.1:8000/${proprietario.foto_url}`
                         : "https://via.placeholder.com/150";
+
 
                 } else {
                     console.warn("Proprietário não encontrado.");
@@ -221,6 +326,9 @@
                 if (!response.ok) {
                     throw new Error("Erro ao buscar barbearias");
                 }
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar barbearias");
+                }
 
                 lista.innerHTML = "";
 
@@ -233,8 +341,12 @@
                     const col = document.createElement("div");
                     col.className = "col-md-4";
 
+
                     col.innerHTML = `
                         <div class="card mb-4 shadow-sm border-0 h-100">
+                            <img src="http://127.0.0.1:8000/${b.foto_url || 'uploads/default.jpg'}"
+                                 class="card-img-top"
+                                 alt="${b.nome}">
                             <img src="http://127.0.0.1:8000/${b.foto_url || 'uploads/default.jpg'}"
                                  class="card-img-top"
                                  alt="${b.nome}">
@@ -252,17 +364,33 @@
                                     <i class="fas fa-clock"></i>
                                     ${b.horario_abertura} - ${b.horario_fechamento}
                                 </p>
+                                <p class="card-text">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    ${b.endereco}
+                                </p>
+                                <p class="card-text">
+                                    <i class="fas fa-phone"></i>
+                                    ${b.telefone}
+                                </p>
+                                <p class="card-text">
+                                    <i class="fas fa-clock"></i>
+                                    ${b.horario_abertura} - ${b.horario_fechamento}
+                                </p>
                                 <p class="text-muted">${b.descricao}</p>
                             </div>
                         </div>
                     `;
 
+
                     lista.appendChild(col);
                 });
+
 
             } catch (err) {
                 console.error(err);
                 lista.innerHTML = `<p class='text-danger'>Erro ao carregar barbearias.</p>`;
+            }
+        });
             }
         });
     </script>
