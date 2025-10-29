@@ -1,9 +1,8 @@
 # REQ002 — Cadastrar Barbearia
 
 **ESCOPO:** Cadastro de uma nova barbearia, permitindo que o proprietário registre informações essenciais para iniciar o gerenciamento de sua unidade no sistema.  
-
 **PROPÓSITO:** Permitir que o proprietário cadastre uma barbearia informando dados como nome, CNPJ, e-mail, endereço, telefone, horário de funcionamento, descrição e foto, para começar a utilizá-la no sistema como administrador.  
-**ATOR PRINCIPAL:** Proprietário  
+**ATOR:** Proprietário  
 
 ---
 
