@@ -1,70 +1,75 @@
-# CDU003 — Gerenciar Cabeleireiros
+# REQ004 — Gerenciar Barbeiros
 
-## ESCOPO
+**ESCOPO:** Permitir que o proprietário cadastre, edite e remova barbeiros vinculados à sua barbearia, configurando dados pessoais, horários de trabalho e funções, mantendo a equipe sempre atualizada e integrada à agenda da barbearia.  
+**PROPÓSITO:** Permitir que o proprietário mantenha o cadastro dos barbeiros atualizado, definindo horários, funções e disponibilidade, assegurando a correta operação dos agendamentos e a organização da equipe.  
+**ATOR:** Proprietário  
 
-- Permitir o cadastro de novos profissionais (cabeleireiros).
-- Permitir a edição dos dados cadastrais e horários de trabalho dos profissionais.
-- Permitir a remoção (ou desativação) de profissionais que não possuam vínculos futuros.
-- Apresentar a lista de todos os profissionais cadastrados.
-
-## PROPÓSITO
-
-- Manter o cadastro da equipe de profissionais atualizado, organizando quem está disponível para agendamentos e garantindo que a capacidade da barbearia esteja correta na plataforma.
-
-## ATOR
-
-- **Ator principal:** Proprietário da Barbearia
-- **Ator secundário / sistema externo:** Sistema de Agendamento (é impactado pelas alterações de disponibilidade).
+---
 
 ## PRÉ-CONDIÇÕES
-
-- O Proprietário deve estar autenticado (logado) no sistema.
-- O Proprietário deve ter permissões de acesso à área de "Gerenciar Profissionais".
+- O proprietário deve estar autenticado no sistema.  
+- O proprietário deve ter uma barbearia cadastrada.  
 
 ## PÓS-CONDIÇÕES
+- O barbeiro é cadastrado, editado ou removido com sucesso.  
+- A lista de barbeiros e a agenda da barbearia são atualizadas conforme as alterações realizadas.  
 
-- A lista de profissionais está atualizada no sistema (após cadastro, edição ou remoção).
-- O Sistema de Agendamento reflete a nova disponibilidade (ou indisponibilidade) do profissional alterado para futuros agendamentos.
+---
 
 ## FLUXO NORMAL
+1. O proprietário acessa o módulo **“Gerenciar Barbeiros”**.  
+2. O sistema exibe a lista de barbeiros cadastrados na barbearia.  
+3. O proprietário seleciona uma das opções:  
+   - **Cadastrar novo barbeiro**;  
+   - **Editar barbeiro existente**;  
+   - **Remover barbeiro**.  
+4. O sistema exibe o formulário com os campos obrigatórios: nome completo, e-mail, telefone, cargo/função, horário de trabalho e foto (opcional).  
+5. O proprietário preenche ou ajusta os dados do barbeiro e clica em **“Salvar”** ou **“Confirmar Remoção”**, conforme o caso.  
+6. O sistema valida as informações fornecidas.  
+7. O sistema realiza a operação solicitada (criação, atualização ou remoção).  
+8. O sistema exibe uma mensagem de sucesso e atualiza a lista de barbeiros na interface.  
 
-1.  O [Proprietário] acessa a funcionalidade "Gerenciar Profissionais".
-2.  O [Sistema] exibe a lista de todos os profissionais atualmente cadastrados.
-3.  O [Proprietário] seleciona uma das ações: "Cadastrar Novo Profissional", "Editar" (em um profissional existente) ou "Remover" (em um profissional existente).
-
-**Fluxo 3a: Cadastrar Novo Profissional (Cenário 1)**
-4.  O [Proprietário] preenche o formulário com os dados do novo profissional (ex: nome, horários de trabalho).
-5.  O [Proprietário] clica em "Salvar".
-6.  O [Sistema] valida os dados, salva o novo profissional.
-7.  O [Sistema] exibe uma mensagem de sucesso e atualiza a lista de profissionais, exibindo o novo cadastro.
-
-**Fluxo 3b: Editar Profissional Existente (Cenário 2)**
-4.  O [Proprietário] localiza o profissional (ex: "Carlos Andrade") e clica em "Editar".
-5.  O [Sistema] exibe os dados atuais do profissional.
-6.  O [Proprietário] altera os dados desejados (ex: altera o horário de trabalho para incluir sábados).
-7.  O [Proprietário] clica em "Salvar Alterações".
-8.  O [Sistema] valida os dados, salva as alterações.
-9.  O [Sistema] exibe uma mensagem de confirmação e atualiza a disponibilidade desse profissional no Sistema de Agendamento.
-
-**Fluxo 3c: Remover Profissional (Cenário 4)**
-4.  O [Proprietário] localiza o profissional (ex: "Jorge Martins") e clica em "Remover".
-5.  O [Sistema] verifica se o profissional *não* possui agendamentos futuros.
-6.  Sendo negativo (sem agendamentos), o [Sistema] exibe uma caixa de diálogo de confirmação.
-7.  O [Proprietário] confirma a ação.
-8.  O [Sistema] remove (ou desativa) o profissional.
-9.  O [Sistema] exibe uma mensagem de sucesso e o profissional não aparece mais na lista de profissionais ativos nem como opção para novos agendamentos.
+---
 
 ## FLUXO DE EXCEÇÃO
+- **E1 — Campos obrigatórios ausentes:**  
+  O sistema exibe mensagem de erro informando que todos os campos obrigatórios devem ser preenchidos antes de salvar.  
 
-- **Exceção 1: Tentar salvar com dados obrigatórios ausentes.**
-    - [Fluxo Normal, 3a.5 ou 3b.7] Se o Proprietário tentar salvar sem preencher campos obrigatórios (ex: Nome).
-    - O [Sistema] exibe uma mensagem de validação indicando os campos pendentes e não salva o registro.
+- **E2 — Tentativa de remover barbeiro com agendamentos futuros:**  
+  O sistema impede a exclusão e exibe a mensagem:  
+  *“Não é possível remover barbeiros com agendamentos futuros.”*  
 
-- **Exceção 2: Tentar remover profissional com agendamentos futuros (Cenário 3).**
-    - [Fluxo Normal, 3c.5] Se o Proprietário tentar remover um profissional (ex: "Ana Souza") que possui agendamentos futuros confirmados.
-    - O [Sistema] impede a remoção.
-    - O [Sistema] exibe a mensagem de erro: "Não é possível remover profissionais com agendamentos futuros".
+- **E3 — Falha no salvamento ou atualização:**  
+  O sistema informa o erro e solicita que o proprietário tente novamente.  
+
+---
+
+## FLUXO ALTERNATIVO
+  **A1 — Cadastrar novo barbeiro:**  
+  1. O proprietário clica em **“Adicionar Barbeiro”**.  
+  2. O sistema exibe o formulário com os campos obrigatórios: nome completo, e-mail, telefone, cargo/função, horário de trabalho e foto (opcional).  
+  3. O proprietário preenche os dados e confirma.  
+  4. O sistema valida, salva o registro e exibe mensagem de sucesso.  
+
+  **A2 — Editar barbeiro existente:**  
+  1. O proprietário seleciona um barbeiro e clica em **“Editar”**.  
+  2. O sistema exibe os dados atuais do barbeiro em um formulário com os mesmos campos do cadastro.  
+  3. O proprietário altera as informações desejadas e confirma.  
+  4. O sistema salva as alterações e atualiza a listagem.  
+
+  **A3 — Remover barbeiro:**  
+  1. O proprietário seleciona um barbeiro e clica em **“Remover”**.  
+  2. O sistema verifica se há agendamentos futuros.  
+  3. Caso não haja, o sistema solicita confirmação.  
+  4. O proprietário confirma e o barbeiro é removido.  
+  5. O sistema exibe mensagem de sucesso e atualiza a lista.  
+
+---
 
 ## REQUISITOS RELACIONADOS
-
-- **RF002:** Cadastrar Barbearia
+- **RF04:** Gerenciar Barbeiros  
+- **RF02:** Cadastrar Barbearia  
+- **RF06:** Gerenciar Agenda  
+- **RN02:** Vincular Profissionais e Serviços à Barbearia  
+- **RN11:** Controlar o Acesso de Cada Tipo de Usuário  
+- **RNF03:** Implementar Segurança 
