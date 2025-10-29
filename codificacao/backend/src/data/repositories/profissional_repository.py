@@ -2,6 +2,7 @@ from config.database import SessionLocal
 from sqlalchemy import select as Select
 from src.application.entities.profissional_entity import Profissional
 from src.data.models.profissional_model import ProfissionalModel
+from src.data.models.usuario_model import UsuarioModel
 
 
 class ProfissionalRepository:
@@ -9,20 +10,34 @@ class ProfissionalRepository:
         self.db = SessionLocal()
 
     def cadastrar_profissional(self, profissional: Profissional):
+        usuario_model = UsuarioModel(
+            email=profissional.email,
+            papel="profissional"
+        )
+
+        try:
+            self.db.add(usuario_model)
+            self.db.commit()
+        except Exception as e:
+            self.db.rollback()
+            raise e
+
         profissional_model = ProfissionalModel(
             id_profissional=profissional.id_profissional,
             nome=profissional.nome,
             horario_inicio=profissional.horario_inicio,
             horario_fim=profissional.horario_fim,
-            id_barbearia=profissional.id_barbearia
+            id_barbearia=profissional.id_barbearia,
+            id_usuario=usuario_model.id_usuario
         )
+
         self.db.add(profissional_model)
         self.db.commit()
         self.db.refresh(profissional_model)
         return profissional_model
     
-    def buscar_profissional(self, id_profissional):
-        profissional = self.db.query(ProfissionalModel).filter(ProfissionalModel.id_profissional == id_profissional).first()
+    def buscar_profissional(self, id_usuario):
+        profissional = self.db.query(ProfissionalModel).filter(ProfissionalModel.id_usuario == id_usuario).first()
         return profissional
 
     def listar_todos(self):

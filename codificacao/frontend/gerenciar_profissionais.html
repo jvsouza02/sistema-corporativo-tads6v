@@ -75,15 +75,19 @@
                 <h5 class="card-title mb-3">Cadastrar Novo Cabeleireiro</h5>
                 <form id="formCabeleireiro">
                     <div class="row g-3">
-                        <div class="col-md-4">
-                            <label for="nomeCabeleireiro" class="form-label">Nome Completo</label>
+                        <div class="col-md-6">
+                            <label for="nome" class="form-label">Nome Completo</label>
                             <input type="text" class="form-control" id="nome" required>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="col-md-6">
                             <label for="horarioInicio" class="form-label">Horário Início</label>
                             <input type="time" class="form-control" id="horarioInicio" required>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label for="horarioFim" class="form-label">Horário Fim</label>
                             <input type="time" class="form-control" id="horarioFim" required>
                         </div>
@@ -116,6 +120,10 @@
                 <div class="modal-body">
                     <form id="formEditar">
                         <input type="hidden" id="editarId">
+                        <div class="mb-3">
+                            <label for="editarEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="editarEmail" required>
+                        </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="editarHorarioInicio" class="form-label">Horário Início</label>
@@ -167,6 +175,7 @@
                 },
                 body: JSON.stringify({
                     nome: document.getElementById('nome').value,
+                    email: document.getElementById('email').value,
                     horario_inicio: document.getElementById('horarioInicio').value,
                     horario_fim: document.getElementById('horarioFim').value,
                     id_barbearia: barbearia.id_barbearia
@@ -174,10 +183,13 @@
             })
             .then(response => response.json())
             .then(data => {
+                document.getElementById('formCabeleireiro').reset();
                 listarProfissionais();
             })
-
-
+            .catch(error => {
+                console.error('Erro ao cadastrar profissional:', error);
+                alert('Erro ao cadastrar profissional. Tente novamente.');
+            });
         }
 
         function listarProfissionais() {
@@ -193,57 +205,87 @@
                         card.innerHTML = `
                             <div class="card-body">
                                 <h5 class="card-title">${cabeleireiro.nome}</h5>
-                                <p class="card-text">Horário: ${cabeleireiro.horario_inicio} - ${cabeleireiro.horario_fim}</p>
+                                <p class="card-text mb-1"><strong>Email:</strong> ${cabeleireiro.email || 'Não informado'}</p>
+                                <p class="card-text"><strong>Horário:</strong> ${cabeleireiro.horario_inicio} - ${cabeleireiro.horario_fim}</p>
                                 <button class="btn btn-primary" onclick="editarProfissional('${cabeleireiro.id_profissional}')">Editar</button>
                                 <button class="btn btn-danger" onclick="deletarProfissional('${cabeleireiro.id_profissional}')">Remover</button>
                             </div>
                         `;
                         listaCabeleireiros.appendChild(card);
                     });
+                })
+                .catch(error => {
+                    console.error('Erro ao listar profissionais:', error);
                 });
         }
 
         async function editarProfissional(id) {
-            const resp = await fetch(`http://localhost:8000/profissional/${id}`, {method: 'GET'});
-            if (!resp.ok) throw new Error('Erro ao buscar profissional');
-            const data = await resp.json();
+            try {
+                const resp = await fetch(`http://localhost:8000/profissional/${id}`, {method: 'GET'});
+                if (!resp.ok) throw new Error('Erro ao buscar profissional');
+                const data = await resp.json();
 
-            document.getElementById('editarId').value = id;
-            document.getElementById('editarHorarioInicio').value = data.horario_inicio || '';
-            document.getElementById('editarHorarioFim').value = data.horario_fim || '';
+                document.getElementById('editarId').value = id;
+                document.getElementById('editarEmail').value = data.email || '';
+                document.getElementById('editarHorarioInicio').value = data.horario_inicio || '';
+                document.getElementById('editarHorarioFim').value = data.horario_fim || '';
 
-            const modalEl = document.getElementById('modalEditar');
-            const modal = new bootstrap.Modal(modalEl);
-            modal.show();
+                const modalEl = document.getElementById('modalEditar');
+                const modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            } catch (error) {
+                console.error('Erro ao editar profissional:', error);
+                alert('Erro ao carregar dados do profissional.');
+            }
         }
 
         function salvarEdicao() {
             const id = document.getElementById('editarId').value;
+            const email = document.getElementById('editarEmail').value;
             const horarioInicio = document.getElementById('editarHorarioInicio').value;
             const horarioFim = document.getElementById('editarHorarioFim').value;
+            
             fetch(`http://localhost:8000/profissional/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ horario_inicio: horarioInicio, horario_fim: horarioFim })
+                body: JSON.stringify({ 
+                    email: email,
+                    horario_inicio: horarioInicio, 
+                    horario_fim: horarioFim 
+                })
             })
                 .then(response => response.json())
                 .then(data => {
+                    const modalEl = document.getElementById('modalEditar');
+                    const modal = bootstrap.Modal.getInstance(modalEl);
+                    modal.hide();
                     listarProfissionais();
+                })
+                .catch(error => {
+                    console.error('Erro ao salvar edição:', error);
+                    alert('Erro ao salvar alterações. Tente novamente.');
                 });
         }
 
         function deletarProfissional(id_profissional) {
-            fetch(`http://localhost:8000/profissional/${id_profissional}`, {
-                method: 'DELETE'
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    listarProfissionais();
-                });
+            if (confirm('Tem certeza que deseja remover este profissional?')) {
+                fetch(`http://localhost:8000/profissional/${id_profissional}`, {
+                    method: 'DELETE'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        listarProfissionais();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao deletar profissional:', error);
+                        alert('Erro ao remover profissional. Tente novamente.');
+                    });
+            }
         }
+        
         listarProfissionais();
     </script>
 </body>

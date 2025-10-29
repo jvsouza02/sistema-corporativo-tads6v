@@ -3,14 +3,14 @@ from src.data.repositories.profissional_repository import ProfissionalRepository
 
 repository = ProfissionalRepository()
 class ProfissionalService:
-    def cadastrar_profissional(self, nome, horario_inicio, horario_fim, id_barbearia):
-        profissional = Profissional(nome, horario_inicio, horario_fim, id_barbearia)
+    def cadastrar_profissional(self, nome, email, horario_inicio, horario_fim, id_barbearia):
+        profissional = Profissional(nome, email, horario_inicio, horario_fim, id_barbearia)
         if not profissional.vefificar_nome() or not profissional.verificar_horario():
             raise ValueError("Profissional inválido.")
         return repository.cadastrar_profissional(profissional)
     
-    def buscar_profissional(self, id_profissional):
-        return repository.buscar_profissional(id_profissional)
+    def buscar_profissional(self, id_usuario):
+        return repository.buscar_profissional(id_usuario)
     
     def listar_profissionais(self):
         return repository.listar_todos()

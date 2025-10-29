@@ -3,7 +3,6 @@ from config.database import SessionLocal
 from sqlalchemy import UUID, select as Select
 from src.application.entities.barbearia_entity import Barbearia
 from src.data.models.barbearia_model import BarbeariaModel
-from sqlalchemy import String, cast
 
 class BarbeariaRepository:
     def __init__(self):
@@ -21,8 +20,8 @@ class BarbeariaRepository:
             "descricao": model.descricao,
             "foto_url": model.foto_url,
             "id_proprietario": str(model.id_proprietario),
-            "data_cadastro": model.data_cadastro.isoformat() if model.data_cadastro else None,
-            "data_atualizacao": model.data_atualizacao.isoformat() if model.data_atualizacao else None
+            "data_cadastro": model.data_cadastro.isoformat(),
+            "data_atualizacao": model.data_atualizacao.isoformat()
         }
 
     def salvar(self, barbearia_entity):

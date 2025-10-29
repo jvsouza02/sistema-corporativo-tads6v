@@ -1,9 +1,10 @@
 from uuid import uuid4
 
 class Profissional:
-    def __init__(self, nome, horario_inicio, horario_fim, id_barbearia):
+    def __init__(self, nome, email, horario_inicio, horario_fim, id_barbearia):
         self.id_profissional = str(uuid4())
         self.nome = nome
+        self.email = email
         self.horario_inicio = horario_inicio
         self.horario_fim = horario_fim
         self.id_barbearia = id_barbearia
