@@ -167,3 +167,18 @@ body {
   font-size: 0.9rem;
   margin-top: 0.25rem;
 }
+
+#addBarbershopModal .modal-content {
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+#addBarbershopModal label {
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+#addBarbershopModal .btn-primary {
+  background-color: var(--accent-color);
+  border: none;
+}

@@ -208,3 +208,13 @@ def listar_barbearias_por_proprietario(id_proprietario: str):
         raise HTTPException(status_code=404, detail=str(ve))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/proprietario/{id_proprietario}")
+def obter_proprietario(id_proprietario: str):
+    controller = ProprietarioController()
+    try:
+        return controller.obter_proprietario(id_proprietario)
+    except ValueError as ve:
+        raise HTTPException(status_code=404, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

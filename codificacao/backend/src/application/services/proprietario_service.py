@@ -20,3 +20,9 @@ class ProprietarioService:
         if not proprietario:
             raise ValueError("Proprietário nao encontrado.")
         return proprietario
+    
+    def obter_proprietario(self, id_proprietario):
+        proprietario = repository.buscar_por_id(id_proprietario)
+        if not proprietario:
+            raise ValueError("Proprietário nao encontrado.")
+        return proprietario
