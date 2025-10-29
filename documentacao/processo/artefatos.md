@@ -74,50 +74,65 @@ As **Especificações** descrevem uma funcionalidade do sistema a partir da pers
 ### Template
 
 ```markdown
-# CDU## — <Título do Caso de Uso>
+# REQ## — <Título do Requisito>
 
-## ESCOPO
-
+**ESCOPO:**  
 - [Funcionalidade essencial 1]  
 - [Funcionalidade essencial 2]  
-- [Funcionalidade essencial 3]
+- [Funcionalidade essencial 3]  
 
-## PROPÓSITO
+**PROPÓSITO:**  
+- [Descrição resumida do objetivo do requisito]  
 
-- [Propósito resumido do caso de uso]
+**ATOR:**  
+- [Ator responsável pela execução do caso de uso]  
 
-## ATOR
-
-- [Ator principal]  
-- [Ator secundário / sistema externo]
+---
 
 ## PRÉ-CONDIÇÕES
-
-- [Pré-condição 1]  
-- [Pré-condição 2]
+- [Condição necessária antes da execução do caso de uso]  
+- [Outra condição, se aplicável]  
 
 ## PÓS-CONDIÇÕES
+- [Resultado esperado após a execução bem-sucedida]  
+- [Outro efeito decorrente da execução, se aplicável]  
 
-- [Pós-condição 1]  
-- [Pós-condição 2]
+---
 
 ## FLUXO NORMAL
+1. O [ator] acessa o módulo **“<nome da funcionalidade>”**.  
+2. O sistema exibe o formulário ou interface correspondente.  
+3. O [ator] preenche os campos obrigatórios ou seleciona as opções desejadas.  
+4. O sistema valida as informações inseridas.  
+5. O sistema executa a ação solicitada (ex: salvar, editar, excluir).  
+6. O sistema confirma a operação com uma mensagem de sucesso e atualiza a interface.  
 
-1. [Ator] acessa "<nome da funcionalidade>".
-2. [Ator] seleciona [profissional] e [período desejado].
-3. [Sistema] exibe [horários] e [agendamentos].
-4. [Ator] executa ação (bloquear / liberar / reorganizar horários).
+---
 
 ## FLUXO DE EXCEÇÃO
+- **E1 — Dados obrigatórios ausentes:**  
+  O sistema exibe mensagem de erro informando que todos os campos obrigatórios devem ser preenchidos.  
 
-- [Exceção 1] — [Comportamento esperado do sistema]  
-- [Exceção 2] — [Mensagem de erro / validação]
+- **E2 — Dados inválidos ou duplicados:**  
+  O sistema impede a ação e informa o motivo (ex: formato incorreto ou duplicidade).  
+
+- **E3 — Falha no processamento:**  
+  O sistema informa o erro e orienta o usuário a tentar novamente.  
+
+---
+
+## FLUXO ALTERNATIVO
+- **A1 — Variação opcional do fluxo principal:**  
+  1. O [ator] opta por uma ação alternativa.  
+  2. O sistema executa o comportamento correspondente.  
+
+---
 
 ## REQUISITOS RELACIONADOS
+- **RF##:** [Requisito funcional relacionado]  
+- **RN##:** [Regra de negócio relacionada]  
+- **RNF##:** [Requisito não funcional relacionado]
 
-- RF## — [Requisito funcional relacionado 1]  
-- RF## — [Requisito funcional relacionado 2]  
-- RN## — [Requisito não funcional relacionado]
 ```
 
 ---
