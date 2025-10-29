@@ -1,6 +1,6 @@
 # REQ001 — Registrar Atendimento
 
-**ESCOPO:** Este caso de uso trata do registro de atendimentos realizados pelo barbeiro, permitindo documentar detalhes dos serviços prestados e manter o histórico de cada cliente.  
+**ESCOPO:** Registro de atendimentos realizados pelo barbeiro, permitindo documentar detalhes dos serviços prestados e manter o histórico de cada cliente.  
 
 **PROPÓSITO:** Permitir que o barbeiro registre os detalhes de um atendimento realizado para documentar o serviço e alimentar o histórico do cliente.  
 **ATOR PRINCIPAL:** Barbeiro  
@@ -52,7 +52,7 @@
   **A3 — Exclusão de atendimento:**  
   1. O barbeiro seleciona um atendimento e clica em **“Excluir”**.  
   2. O sistema solicita confirmação.  
-  3. O registro é removido, preservando os demais dados.  
+  3. O registro é removido.
 
 ---
 
@@ -62,3 +62,4 @@
 - **RN07:** Registrar Informações do Atendimento  
 - **RN09:** Gerar Histórico de Atendimentos  
 - **RNF03:** Implementar Segurança  
+
