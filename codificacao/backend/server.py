@@ -7,7 +7,7 @@ from fastapi import FastAPI, Body, File, Form, HTTPException, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from src.presentation.schemas.barbearia_response import BarbeariaResponse
 from src.presentation.schemas.proprietario_request import ProprietarioRequest
 from src.presentation.controllers.profissional_controller import ProfissionalController
 from src.presentation.controllers.comentario_controller import ComentarioController
@@ -199,6 +199,70 @@ def criar_proprietario(
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
+@app.post("/criar_barbearia_existente", status_code=status.HTTP_201_CREATED)
+def criar_barbearia_existente(
+    id_proprietario: str = Form(...),
+    nome: str = Form(...),
+    email: str = Form(...),
+    endereco: str = Form(...),
+    telefone: str = Form(...),
+    horario_abertura: str = Form(...),
+    horario_fechamento: str = Form(...),
+    descricao: str = Form(""),
+    foto_url: UploadFile | None = File(None)
+):
+
+    try:
+        proprietario_controller = ProprietarioController()
+        proprietario = proprietario_controller.obter_proprietario(id_proprietario)
+
+        caminho_imagem = ""
+        if foto_url:
+            os.makedirs("uploads", exist_ok=True)
+            nome_arquivo = f"{uuid.uuid4()}_{foto_url.filename}"
+            caminho_absoluto = os.path.join("uploads", nome_arquivo)
+            with open(caminho_absoluto, "wb") as f:
+                f.write(foto_url.file.read())
+            caminho_imagem = f"uploads/{nome_arquivo}"
+
+        barbearia_request = BarbeariaRequest(
+            nome=nome,
+            email=email,
+            endereco=endereco,
+            telefone=telefone,
+            foto_url=caminho_imagem or "",
+            horario_abertura=horario_abertura,
+            horario_fechamento=horario_fechamento,
+            descricao=descricao,
+            id_proprietario=id_proprietario
+        )
+
+        barbearia_controller = BarbeariaController()
+        nova_barbearia: BarbeariaResponse = barbearia_controller.cadastrar_barbearia(barbearia_request)
+
+        params = urlencode({
+            "id_proprietario": id_proprietario,
+            "id_barbearia": nova_barbearia.id_barbearia,
+            "nome": nova_barbearia.nome,
+            "email": nova_barbearia.email,
+            "endereco": nova_barbearia.endereco,
+            "telefone": nova_barbearia.telefone,
+            "foto_url": nova_barbearia.foto_url or "",
+            "horario_abertura": nova_barbearia.horario_abertura or "",
+            "horario_fechamento": nova_barbearia.horario_fechamento or "",
+            "descricao": nova_barbearia.descricao or ""
+        })
+
+        return RedirectResponse(
+            url=f"http://localhost:5173/gerenciar_barbearia.html?{params}",
+            status_code=303
+        )
+
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.get("/barbearias/{id_proprietario}", status_code=status.HTTP_200_OK)
 def listar_barbearias_por_proprietario(id_proprietario: str):
     controller = BarbeariaController()
