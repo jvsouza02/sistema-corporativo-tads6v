@@ -1,39 +1,64 @@
-# Histórias de Usuário: REQ001 — Registrar Atendimento
+# REQ001 — Registrar Atendimento
 
-## 1. Narrativa (O Quê, Quem, Por Quê)
+**ESCOPO:** Este caso de uso trata do registro de atendimentos realizados pelo barbeiro, permitindo documentar detalhes dos serviços prestados e manter o histórico de cada cliente.  
 
-**COMO UM** *[Barbeiro](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/dicionario_de_dados.md#barbeiro)*,  
-**EU DESEJO** *registrar os detalhes do atendimento de um cliente, incluindo produtos utilizados e observações*,  
-**PARA QUE** *eu possa documentar os serviços realizados, acompanhar o histórico de cada cliente e personalizar atendimentos futuros*.
+**PROPÓSITO:** Permitir que o barbeiro registre os detalhes de um atendimento realizado para documentar o serviço e alimentar o histórico do cliente.  
+**ATOR PRINCIPAL:** Barbeiro  
 
-## 2. Critérios de Aceitação (Regras de Negócio e Cenários)
+---
 
-### Cenário 1: Registrar atendimento de um agendamento concluído
+## PRÉ-CONDIÇÕES
+- O barbeiro deve estar autenticado no sistema.  
+- Deve existir um agendamento com status **“Concluído”**.  
 
-- **Dado** que um agendamento possui status “Concluído”.  
-- **Quando** o barbeiro acessa o formulário de registro de atendimento.  
-- **E** insere os detalhes do serviço, produtos utilizados e observações.  
-- **E** clica em “Salvar”.  
-- **Então** o sistema deve registrar o atendimento no histórico do cliente.
+## PÓS-CONDIÇÕES
+- O atendimento é registrado e vinculado ao cliente e ao barbeiro.  
+- As informações passam a constar no histórico de atendimentos.  
 
-### Cenário 2: Consultar atendimentos registrados
+---
 
-- **Dado** que o barbeiro deseja visualizar atendimentos anteriores.  
-- **Quando** ele acessa o histórico de atendimentos de um cliente.  
-- **Então** ele deve visualizar todos os registros anteriores com detalhes, produtos utilizados e observações.
+## FLUXO NORMAL
+1. O barbeiro acessa o módulo **“Registrar Atendimento”**.  
+2. O sistema exibe os agendamentos com status **“Concluído”**.  
+3. O barbeiro seleciona um agendamento e preenche o formulário com:  
+   - Tipo de serviço executado;  
+   - Observações sobre o cliente.  
+4. O barbeiro confirma clicando em **“Salvar”**.  
+5. O sistema valida os dados inseridos.  
+6. O sistema registra o atendimento e o associa ao histórico do cliente.  
+7. O sistema exibe uma mensagem de sucesso.  
 
-### Cenário 3: Editar um registro de atendimento
+---
 
-- **Dado** que o barbeiro identificou uma informação incorreta em um atendimento registrado.  
-- **Quando** ele acessa o registro e clica em “Editar”.  
-- **E** altera os dados necessários e confirma a alteração.  
-- **Então** o sistema deve atualizar o registro no histórico com as novas informações.
+## FLUXO DE EXCEÇÃO
+- **E1 — Dados inválidos ou ausentes:**  
+  O sistema exibe mensagem de erro solicitando correção dos campos obrigatórios.  
 
-### Cenário 4: Excluir um registro de atendimento
+- **E2 — Falha no salvamento:**  
+  O sistema informa erro de persistência e orienta o barbeiro a tentar novamente.  
 
-- **Dado** que o barbeiro deseja remover um registro do histórico.  
-- **Quando** ele clica em “Excluir” e confirma a ação.  
-- **Então** o registro deve ser removido do histórico, garantindo a integridade dos demais dados.
+---
 
+## FLUXO ALTERNATIVO
+  **A1 — Consulta de atendimentos anteriores:**  
+  1. O barbeiro acessa o histórico de um cliente.  
+  2. O sistema exibe todos os atendimentos anteriores com tipo de serviço e observações registradas.  
 
+  **A2 — Edição de atendimento existente:**  
+  1. O barbeiro acessa um registro e seleciona **“Editar”**.  
+  2. Após ajustar as informações, confirma a alteração.  
+  3. O sistema atualiza o registro no histórico.  
 
+  **A3 — Exclusão de atendimento:**  
+  1. O barbeiro seleciona um atendimento e clica em **“Excluir”**.  
+  2. O sistema solicita confirmação.  
+  3. O registro é removido, preservando os demais dados.  
+
+---
+
+## REQUISITOS RELACIONADOS
+- **RF09:** Registrar Atendimento  
+- **RF11:** Consultar Histórico de Atendimentos  
+- **RN07:** Registrar Informações do Atendimento  
+- **RN09:** Gerar Histórico de Atendimentos  
+- **RNF03:** Implementar Segurança  
