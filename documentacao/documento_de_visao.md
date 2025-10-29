@@ -1,7 +1,7 @@
 # Documento de Visão do Produto — Sistema de Agendamento e Gestão para Barbearias
 
 ## 1. Visão Geral do Produto
-Uma **plataforma web** que centraliza o gerenciamento de barbearias: cadastro da barbearia e profissionais, configuração de serviços, agendamento e calendário, registro de atendimentos no histórico, controle de status de agendamentos (reservado / finalizado / expirado) e mecanismos de avaliação pós-atendimento. O produto visa reduzir atritos no agendamento e permitir personalização do atendimento via histórico.
+Uma **plataforma web** que centraliza o gerenciamento de barbearias: cadastro da barbearia e barbeiros, configuração de serviços, agendamento e calendário, registro de atendimentos no histórico, controle de status de agendamentos (reservado / finalizado / expirado) e mecanismos de avaliação pós-atendimento. O produto visa reduzir atritos no agendamento e permitir personalização do atendimento via histórico.
 
 ### 1.1. Minimundo
 A plataforma de agendamento e gestão de barbearias organiza serviços de cortes de cabelo, barba e coloração capilar, permitindo que clientes, barbeiros e proprietários gerenciem atendimentos de forma prática e eficiente. Ela oferece ferramentas para controle de agendamentos e apresenta relatórios de desempenho por meio de gráficos, facilitando a gestão do negócio e aprimorando a experiência dos clientes.
@@ -18,7 +18,7 @@ A plataforma centraliza todas as operações da barbearia em um único ambiente,
 
 ## 2. Público-alvo
 - **Proprietário** — administra a barbearia, gerencia horários, profissionais, serviços, visualiza relatórios e mantém históricos de atendimento.  
-- **Cabeleireiro / Profissional** — consulta sua agenda, registra atendimentos e adiciona observações no histórico.  
+- **Barbeiro** — consulta sua agenda, registra atendimentos e adiciona observações no histórico.  
 - **Cliente** — cria conta, pesquisa serviços, reserva horário, visualiza histórico de atendimentos e avalia serviços. 
 
 ## 3. Necessidade de Negócio / Justificativa
@@ -28,8 +28,8 @@ A plataforma centraliza todas as operações da barbearia em um único ambiente,
 
 ## 4. Escopo (o que está incluído / excluído)
 **Incluído:**
-- Cadastro de barbearia, profissionais e serviços.  
-- Calendário/agenda por profissional.  
+- Cadastro de barbearia, barbeiros e serviços.  
+- Calendário/agenda.  
 - Agendamento pelo cliente (data, horário, serviço).  
 - Registro de atendimento / histórico (comentários com data/hora).  
 - Alteração de status de agendamento (reservado, finalizado, expirado).  
@@ -44,7 +44,7 @@ A plataforma centraliza todas as operações da barbearia em um único ambiente,
 1. **Administração da Barbearia:** cadastro, horário de funcionamento, informações de contato.  
 2. **Gestão de Profissionais:** cadastro, escala/horários, perfil.  
 3. **Catálogo de Serviços:** criação/edição de serviços (nome, preço, duração, categoria).  
-4. **Agenda e Agendamentos:** visualização por dia/profissional, criação/edição/remoção e bloqueio de horários.  
+4. **Agenda e Agendamentos:** visualização por dia, criação/edição/remoção e bloqueio de horários.  
 5. **Histórico de Atendimentos:** criar, listar, editar e excluir comentários com timestamp.  
 6. **Avaliações e Feedbacks:** clientes avaliam atendimentos e deixam comentários.  
 
@@ -53,4 +53,5 @@ A plataforma centraliza todas as operações da barbearia em um único ambiente,
 
 ## 7. Prioridades Iniciais 
 1. Registro e consulta de histórico com validação de comentário obrigatório.
+
 
