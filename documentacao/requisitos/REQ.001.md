@@ -2,7 +2,7 @@
 
 **ESCOPO:** Registro de atendimentos realizados pelo barbeiro, permitindo documentar detalhes dos serviços prestados e manter o histórico de cada cliente.  
 **PROPÓSITO:** Permitir que o barbeiro registre os detalhes de um atendimento realizado para documentar o serviço e alimentar o histórico do cliente.  
-**ATOR PRINCIPAL:** Barbeiro  
+**ATOR:** Barbeiro  
 
 ---
 
@@ -61,5 +61,6 @@
 - **RN07:** Registrar Informações do Atendimento  
 - **RN09:** Gerar Histórico de Atendimentos  
 - **RNF03:** Implementar Segurança  
+
 
 
