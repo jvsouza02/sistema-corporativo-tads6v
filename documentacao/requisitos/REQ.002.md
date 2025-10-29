@@ -1,41 +1,59 @@
-# Histórias de Usuário: REQ002 — Cadastrar Barbearia
+# REQ002 — Cadastrar Barbearia
 
-## 1. Narrativa (O Quê, Quem, Por Quê)
+**ESCOPO:** Cadastro de uma nova barbearia, permitindo que o proprietário registre informações essenciais para iniciar o gerenciamento de sua unidade no sistema.  
 
-**COMO UM** *Proprietário da barbearia*,  
-**EU DESEJO** *registrar informações essenciais da barbearia, como nome, CNPJ, e-mail, endereço, telefone, horário de funcionamento, descrição e foto*,  
-**PARA QUE** *eu possa iniciar imediatamente o uso do sistema como administrador e gestor da minha nova barbearia*.
+**PROPÓSITO:** Permitir que o proprietário cadastre uma barbearia informando dados como nome, CNPJ, e-mail, endereço, telefone, horário de funcionamento, descrição e foto, para começar a utilizá-la no sistema como administrador.  
+**ATOR PRINCIPAL:** Proprietário  
 
-## 2. Critérios de Aceitação (Regras de Negócio e Cenários)
+---
 
-### Cenário 1: Cadastrar uma nova barbearia com sucesso
+## PRÉ-CONDIÇÕES
+- O proprietário deve estar cadastrado e autenticado no sistema.  
+- Nenhum CNPJ ou e-mail informado pode estar previamente registrado.  
 
-- **Dado** que o proprietário acessa a tela de cadastro de barbearia.  
-- **Quando** ele preenche todos os campos obrigatórios (nome, CNPJ, e-mail, endereço, telefone, horário de funcionamento, descrição e foto).  
-- **E** clica em “Salvar”.  
-- **Então** o sistema deve criar o registro da barbearia e salvar todos os dados.
+## PÓS-CONDIÇÕES
+- A barbearia é criada com sucesso e vinculada ao proprietário.  
+- O sistema redireciona o proprietário para o painel de gerenciamento da barbearia.  
 
-### Cenário 2: Validação de campos obrigatórios
+---
 
-- **Dado** que o proprietário deixa algum campo obrigatório vazio.  
-- **Quando** ele tenta submeter o formulário.  
-- **Então** o sistema deve bloquear o cadastro e exibir mensagens de erro indicando os campos que precisam ser preenchidos.
+## FLUXO NORMAL
+1. O proprietário acessa o módulo **“Cadastrar Barbearia”**.  
+2. O sistema exibe o formulário com os campos obrigatórios: nome, CNPJ, e-mail, endereço, telefone, horário de funcionamento, descrição e foto.  
+3. O proprietário preenche todos os campos e clica em **“Salvar”**.  
+4. O sistema valida os dados inseridos.  
+5. O sistema verifica se o e-mail e o CNPJ informados não estão em uso por outra barbearia.  
+6. O sistema registra a nova barbearia.  
+7. O sistema exibe mensagem de sucesso.  
+8. O proprietário é direcionado automaticamente ao **painel de gerenciamento da barbearia**.  
 
-### Cenário 3: Confirmação e acesso ao painel
+---
 
-- **Dado** que o cadastro foi realizado com sucesso.  
-- **Quando** o proprietário conclui o registro.  
-- **Então** ele deve ser direcionado automaticamente ao painel de gerenciamento da barbearia.
+## FLUXO DE EXCEÇÃO
+**E1 — Campos obrigatórios não preenchidos:**  
+  O sistema bloqueia o cadastro e exibe mensagens indicando quais campos devem ser preenchidos.  
 
-### Cenário 4: Consulta dos dados cadastrados
+- **E2 — E-mail já cadastrado:**  
+  O sistema impede o registro e exibe mensagem informando que o e-mail já está em uso.  
 
-- **Dado** que o proprietário deseja verificar os dados da barbearia.  
-- **Quando** ele acessa a página de informações da barbearia.  
-- **Então** ele deve visualizar todas as informações cadastradas corretamente.
+- **E3 — CNPJ duplicado:**  
+  O sistema bloqueia o cadastro e exibe mensagem informando que o CNPJ já está registrado.  
 
-### Cenário 5: Regra de unicidade de e-mail
+**E4 — Falha no salvamento:**  
+  O sistema informa erro de persistência e orienta o proprietário a tentar novamente.  
 
-- **Dado** que já existe uma barbearia registrada com determinado e-mail.  
-- **Quando** o proprietário tenta cadastrar outra barbearia usando o mesmo e-mail.  
-- **Então** o sistema deve impedir o cadastro e exibir uma mensagem de erro informando que o e-mail já está em uso.
+---
 
+## FLUXO ALTERNATIVO
+**A1 — Consulta dos dados cadastrados:**  
+  1. Após o cadastro, o proprietário acessa **“Informações da Barbearia”**.  
+  2. O sistema exibe todos os dados registrados, incluindo foto e horário de funcionamento.  
+
+---
+
+## REQUISITOS RELACIONADOS
+- **RF02:** Cadastrar Barbearia  
+- **RF01:** Cadastrar Proprietário  
+- **RN03:** Gerenciar Várias Barbearias por Proprietário  
+- **RN11:** Controlar o Acesso de Cada Tipo de Usuário  
+- **RNF03:** Implementar Segurança  
