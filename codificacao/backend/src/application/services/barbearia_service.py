@@ -33,3 +33,6 @@ class BarbeariaService:
 
     def listar_barbearias_por_proprietario(self, id_proprietario: str):
         return repository.listar_por_proprietario(id_proprietario)
+    
+    def buscar_barbearia(self, id_barbearia: str):
+        return repository.buscar_por_id(id_barbearia)

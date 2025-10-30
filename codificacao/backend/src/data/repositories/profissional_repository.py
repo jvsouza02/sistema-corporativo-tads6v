@@ -15,15 +15,10 @@ class ProfissionalRepository:
             papel="profissional"
         )
 
-        try:
-            self.db.add(usuario_model)
-            self.db.commit()
-        except Exception as e:
-            self.db.rollback()
-            raise e
+        self.db.add(usuario_model)
+        self.db.flush()
 
         profissional_model = ProfissionalModel(
-            id_profissional=profissional.id_profissional,
             nome=profissional.nome,
             horario_inicio=profissional.horario_inicio,
             horario_fim=profissional.horario_fim,
@@ -33,13 +28,32 @@ class ProfissionalRepository:
 
         self.db.add(profissional_model)
         self.db.commit()
+        self.db.refresh(usuario_model)
         self.db.refresh(profissional_model)
-        return profissional_model
+
+        return {
+            'id_profissional': profissional_model.id_profissional,
+            'nome': profissional_model.nome,
+            'horario_inicio': profissional_model.horario_inicio,
+            'horario_fim': profissional_model.horario_fim,
+            'id_barbearia': profissional_model.id_barbearia,
+            'papel': 'profissional'
+        }
+    
+    def model_to_entity(self, profissional_model: ProfissionalModel):
+        return {
+            'id_profissional': profissional_model.id_profissional,
+            'nome': profissional_model.nome,
+            'horario_inicio': profissional_model.horario_inicio,
+            'horario_fim': profissional_model.horario_fim,
+            'id_barbearia': profissional_model.id_barbearia,
+            'papel': 'profissional'
+        }
     
     def buscar_profissional(self, id_usuario):
         profissional = self.db.query(ProfissionalModel).filter(ProfissionalModel.id_usuario == id_usuario).first()
-        return profissional
-
+        return self.model_to_entity(profissional)
+    
     def listar_todos(self):
         result = self.db.execute(Select(ProfissionalModel).order_by(ProfissionalModel.data_atualizacao.desc()))
         return result.scalars().all()

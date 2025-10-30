@@ -148,7 +148,7 @@
                             Entre com seu email para acessar o sistema
                         </p>
 
-                        <form id="formLogin" onsubmit="realizarLogin(event)">
+                        <form id="formLogin">
                             <div class="mb-4">
                                 <label for="email" class="form-label fw-semibold">Email</label>
                                 <div class="input-group">
@@ -193,7 +193,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 
     <script>
-        function realizarLogin(event) {
+        const form = document.getElementById('formLogin');
+
+        form.addEventListener('submit', function(event) {
             event.preventDefault();
             
             const email = document.getElementById('email').value;
@@ -212,15 +214,14 @@
             })
             .then(response => response.json())
             .then(data => {
-                localStorage.setItem('usuario', JSON.stringify(data));
-                
-                window.location.href = 'gerenciar_barbearia.html';
+                localStorage.setItem('usuario', JSON.stringify(data.usuario));
+                window.location.href = data.redirect_url;
             })
             .catch(error => {
                 console.error('Erro ao fazer login:', error);
                 alert('Erro ao fazer login. Verifique seu email e tente novamente.');
             });
-        }
+        })
 
         function irParaCadastro() {
             window.location.href = 'form_usuario.html';

@@ -62,3 +62,10 @@ class BarbeariaRepository:
             return [self._to_entity(b) for b in barbearias]
         except Exception as e:
             raise e
+        
+    def buscar_por_id(self, id_barbearia: str):
+        try:
+            result = self.db.query(BarbeariaModel).filter(BarbeariaModel.id_barbearia == id_barbearia).first()
+            return self._to_entity(result)
+        except Exception as e:
+            raise e

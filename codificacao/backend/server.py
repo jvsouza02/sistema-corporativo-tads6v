@@ -34,12 +34,11 @@ os.makedirs("uploads", exist_ok=True)
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 @app.post("/auth/registrar")
-def registrar(request: Request, usuario_request: dict = Body(...)):
+def registrar(usuario_request: dict = Body(...)):
     controller = AuthController()
     try:
         usuario = controller.cadastrar_usuario(usuario_request)
         if usuario['papel'] == 'proprietario':
-            request.session['usuario'] = usuario
             return {
                 "success": True,
                 "message": "Usuário cadastrado com sucesso",
@@ -49,7 +48,7 @@ def registrar(request: Request, usuario_request: dict = Body(...)):
         elif usuario['papel'] == 'profissional':
             return {
                 "success": True,
-                "usuario": usuario['usuario']
+                "usuario": usuario
             }
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
@@ -57,17 +56,26 @@ def registrar(request: Request, usuario_request: dict = Body(...)):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/auth/login")
-def login(request: Request, email: str = Form(...)):
+def login(usuario_request = Body(...)):
     controller = AuthController()
     try:
-        usuario = controller.login(email)
-        request.session['usuario'] = usuario
+        usuario = controller.login(usuario_request['email'])
         if not usuario:
             raise ValueError("Usuario nao encontrado.")
         if usuario['papel'] == 'proprietario':
-            return RedirectResponse(url=f"http://localhost:5173/gerenciar_barbearia.html", status_code=status.HTTP_302_FOUND)
+            return {
+                "success": True,
+                "message": "Usuário logado com sucesso",
+                "redirect_url": "http://localhost:5173/gerenciar_barbearia.html",
+                "usuario": usuario
+            }
         elif usuario['papel'] == 'profissional':
-            return RedirectResponse(url=f"http://localhost:5173/gerenciar_agendamentos.html", status_code=status.HTTP_302_FOUND)
+            return {
+                "success": True,
+                "message": "Usuário logado com sucesso",
+                "redirect_url": "http://localhost:5173/gerenciar_agendamentos.html",
+                "usuario": usuario
+            }
             
     except ValueError as ve:
         raise HTTPException(status_code=404, detail=str(ve))
@@ -248,10 +256,9 @@ def criar_barbearia_existente(
 ):
 
     try:
-        proprietario_controller = ProprietarioController()
-        proprietario = proprietario_controller.obter_proprietario(id_proprietario)
-
+        print(id_proprietario)
         caminho_imagem = ""
+
         if foto_url:
             os.makedirs("uploads", exist_ok=True)
             nome_arquivo = f"{uuid.uuid4()}_{foto_url.filename}"
@@ -299,10 +306,21 @@ def criar_barbearia_existente(
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/barbearias/{id_proprietario}", status_code=status.HTTP_200_OK)
-def listar_barbearias_por_proprietario(id_proprietario: str):
+def listar_barbearias_por_proprietario(id_proprietario: str = Path(...)):
     controller = BarbeariaController()
     try:
+        print(id_proprietario)
         return controller.listar_barbearias_por_proprietario(id_proprietario)
+    except ValueError as ve:
+        raise HTTPException(status_code=404, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/barbearia/{id_barbearia}")
+def obter_barbearia(id_barbearia: str):
+    controller = BarbeariaController()
+    try:
+        return controller.buscar_barbearia(id_barbearia)
     except ValueError as ve:
         raise HTTPException(status_code=404, detail=str(ve))
     except Exception as e:
@@ -312,7 +330,7 @@ def listar_barbearias_por_proprietario(id_proprietario: str):
 def obter_proprietario(id_proprietario: str):
     controller = ProprietarioController()
     try:
-        return controller.obter_proprietario(id_proprietario)
+        return controller.buscar_proprietario(id_proprietario)
     except ValueError as ve:
         raise HTTPException(status_code=404, detail=str(ve))
     except Exception as e:

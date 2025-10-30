@@ -24,3 +24,6 @@ class BarbeariaController:
 
     def listar_barbearias_por_proprietario(self, id_proprietario: str):
         return self.service.listar_barbearias_por_proprietario(id_proprietario)
+    
+    def buscar_barbearia(self, id_barbearia: str):
+        return self.service.buscar_barbearia(id_barbearia)

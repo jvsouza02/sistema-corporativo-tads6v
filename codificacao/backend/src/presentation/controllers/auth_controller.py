@@ -21,12 +21,11 @@ class AuthController:
         usuario = self.service.login(email)
         if usuario['papel'] == 'proprietario':
             proprietario_service = ProprietarioService()
-            proprietario = proprietario_service.buscar_proprietario(usuario['id_usuario'])
-            return {"usuario": proprietario, "papel": 'proprietario'}
+            return proprietario_service.buscar_proprietario(usuario['id_usuario'])
         elif usuario['papel'] == 'profissional':
             profissional_service = ProfissionalService()
-            profissional = profissional_service.buscar_profissional(usuario['id_usuario'])
-            return {"usuario": profissional, "papel": 'profissional'}
+            return profissional_service.buscar_profissional(usuario['id_usuario'])
+            
             
             
 

@@ -16,5 +16,5 @@ class ProprietarioController:
     def deletar_profissional(self, id_proprietario):
         return self.proprietario_service.deleter_proprietario(id_proprietario)
     
-    def obter_proprietario(self, id_proprietario):
-        return self.proprietario_service.obter_proprietario(id_proprietario)
+    def buscar_proprietario(self, id_proprietario):
+        return self.proprietario_service.buscar_proprietario(id_proprietario)

@@ -53,8 +53,18 @@ class ProprietarioRepository():
         result = self.db.execute(Select(ProprietarioModel).order_by(ProprietarioModel.data_atualizacao.desc()))
         return result.scalars().all()
 
+    def model_to_entity(self, model: ProprietarioModel):
+        return {
+            'id_proprietario': model.id_proprietario,
+            'id_usuario': model.id_usuario,
+            'nome': model.nome,
+            'email': model.email,
+            'papel': 'proprietario'
+        }
+
     def buscar_por_id(self, id_usuario: str):
-        return self.db.query(ProprietarioModel).filter(ProprietarioModel.id_usuario == id_usuario).first()
+        proprietario = self.db.query(ProprietarioModel).filter(ProprietarioModel.id_usuario == id_usuario).first()
+        return self.model_to_entity(proprietario)
 
     def atualizar(self, id_proprietario, nome, email, senha):
         proprietario_model = self.db.query(ProprietarioModel).filter(ProprietarioModel.id_proprietario == id_proprietario).first()
