@@ -3,6 +3,7 @@ from src.application.entities.barbearia_entity import Barbearia
 from src.data.repositories.barbearia_repository import BarbeariaRepository
 
 repository = BarbeariaRepository()
+
 class BarbeariaService:
 
     def cadastrar_barbearia(self, nome, email, endereco, telefone, horario_abertura,
@@ -29,6 +30,10 @@ class BarbeariaService:
             raise ValueError("Barbearia inválida.")
 
         nova_barbearia = repository.salvar(barbearia)
+
+        if nova_barbearia is None:
+            raise ValueError("Erro ao salvar barbearia no banco.")
+
         return BarbeariaResponse(**nova_barbearia)
 
     def listar_barbearias_por_proprietario(self, id_proprietario: str):

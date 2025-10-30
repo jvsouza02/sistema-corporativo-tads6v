@@ -3,12 +3,13 @@ from config.database import SessionLocal
 from sqlalchemy import UUID, select as Select
 from src.application.entities.barbearia_entity import Barbearia
 from src.data.models.barbearia_model import BarbeariaModel
-
 class BarbeariaRepository:
     def __init__(self):
         self.db = SessionLocal()
 
-    def _to_entity(self, model: BarbeariaModel):
+    def _to_entity(self, model):
+        if model is None:
+            return None
         return {
             "id_barbearia": str(model.id_barbearia),
             "nome": model.nome,
@@ -30,7 +31,7 @@ class BarbeariaRepository:
             email=barbearia_entity.email,
             endereco=barbearia_entity.endereco,
             telefone=barbearia_entity.telefone,
-            horario_abertura=barbearia_entity.horario_abertura, 
+            horario_abertura=barbearia_entity.horario_abertura,
             horario_fechamento=barbearia_entity.horario_fechamento,
             descricao=barbearia_entity.descricao,
             foto_url=barbearia_entity.foto_url,
@@ -42,16 +43,9 @@ class BarbeariaRepository:
             self.db.refresh(model)
             return self._to_entity(model)
         except Exception as e:
-            self.db.rollback()
+            self.db.rollback()            
             raise e
 
-    def listar_todos(self):
-        try:
-            result = self.db.query(BarbeariaModel).all()
-            return [self._to_entity(m) for m in result]
-        except Exception as e:
-            raise e
-        
     def listar_por_proprietario(self, id_proprietario: str):
         try:
             barbearias = (
@@ -61,11 +55,25 @@ class BarbeariaRepository:
             )
             return [self._to_entity(b) for b in barbearias]
         except Exception as e:
+            self.db.rollback()           
             raise e
-        
+
     def buscar_por_id(self, id_barbearia: str):
         try:
-            result = self.db.query(BarbeariaModel).filter(BarbeariaModel.id_barbearia == id_barbearia).first()
-            return self._to_entity(result)
+            result = (
+                self.db.query(BarbeariaModel)
+                .filter(BarbeariaModel.id_barbearia == id_barbearia)
+                .first()
+            )
+            return self._to_entity(result) if result else None
         except Exception as e:
+            self.db.rollback()      
+            raise e
+        
+    def listar_todos(self):
+        try:
+            result = self.db.query(BarbeariaModel).all()
+            return [self._to_entity(m) for m in result]
+        except Exception as e:
+            self.db.rollback()
             raise e

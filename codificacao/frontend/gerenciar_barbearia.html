@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BarberPro - Área de Gerenciamento</title>
 
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 
     <link rel="stylesheet" href="styles/form_barbearia.css">
     <link rel="stylesheet" href="styles/gerenciar_barbearia.css">
@@ -25,13 +23,12 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
 
                     <li class="nav-item">
                         <a type="button" class="nav-link" onclick="logout()">
-                            <i class="fas fa-history me-1"></i>Deslogar
+                            <i class="fas fa-sign-out-alt me-1"></i>Deslogar
                         </a>
                     </li>
 
@@ -44,7 +41,7 @@
         <div class="container text-center text-md-start">
             <div class="row align-items-center">
                 <div class="col-md-2 text-center mb-3 mb-md-0">
-                    <img src="https://via.placeholder.com/150" alt="Proprietário" class="profile-image rounded-circle">
+                    <img src="https://via.placeholder.com/150" alt="Proprietário" class="profile-image rounded-circle" id="fotoProprietario">
                 </div>
                 <div class="col-md-10">
                     <h1 id="nomeProprietario">Nome do Proprietário</h1>
@@ -55,211 +52,168 @@
     </section>
 
     <section>
-        <section>
-            <div class="container mt-4">
-                <div class="alert alert-info welcome-alert d-flex align-items-center" role="alert">
-                    <i class="fas fa-info-circle me-2 fs-4"></i>
-                    <div>
-                        <strong>Bem-vindo de volta!</strong> Aqui estão suas barbearias cadastradas.
-                    </div>
+        <div class="container mt-4">
+            <div class="alert alert-info welcome-alert d-flex align-items-center" role="alert">
+                <i class="fas fa-info-circle me-2 fs-4"></i>
+                <div>
+                    <strong>Bem-vindo de volta!</strong> Aqui estão suas barbearias cadastradas.
                 </div>
-
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h2>Minhas Barbearias</h2>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBarbershopModal">
-                        <i class="fas fa-plus-circle me-2"></i> Nova Barbearia
-                    </button>
-                </div>
-
-                <div id="listaBarbearias" class="row mt-3"></div>
             </div>
-        </section>
 
-        <div class="modal fade" id="addBarbershopModal" tabindex="-1" aria-labelledby="addBarbershopLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <!-- Modal: Cadastrar Nova Barbearia -->
-                    <form id="addBarbershopForm" action="http://127.0.0.1:8000/criar_barbearia_existente" method="POST"
-                        enctype="multipart/form-data">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="addBarbershopLabel">Cadastrar Nova Barbearia</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Fechar"></button>
-                        </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2>Minhas Barbearias</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBarbershopModal">
+                    <i class="fas fa-plus-circle me-2"></i> Nova Barbearia
+                </button>
+            </div>
 
-                        <div class="modal-body">
-                            <!-- Nome + E-mail + Telefone -->
-                            <input type="hidden" id="id_proprietario_modal" name="id_proprietario">
-                            <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">Nome da Barbearia</label>
-                                    <input type="text" name="nome" class="form-control" required>
-                                </div>
+            <div id="listaBarbearias" class="row mt-3"></div>
+        </div>
+    </section>
 
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">E-mail</label>
-                                    <input type="email" name="email" class="form-control" required>
-                                </div>
+    <!-- MODAL -->
+    <div class="modal fade" id="addBarbershopModal" tabindex="-1" aria-labelledby="addBarbershopLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="addBarbershopForm" action="http://127.0.0.1:8000/criar_barbearia_existente" method="POST"
+                    enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addBarbershopLabel">Cadastrar Nova Barbearia</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Fechar"></button>
+                    </div>
 
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label">Telefone</label>
-                                    <input type="tel" name="telefone" class="form-control" required>
-                                </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="id_proprietario_modal" name="id_proprietario">
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Nome da Barbearia</label>
+                                <input type="text" name="nome" class="form-control" required>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Endereço</label>
-                                <input type="text" name="endereco" class="form-control" required>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">E-mail</label>
+                                <input type="email" name="email" class="form-control" required>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Horário de Abertura</label>
-                                    <input type="time" name="horario_abertura" class="form-control" required>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Horário de Fechamento</label>
-                                    <input type="time" name="horario_fechamento" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Foto</label>
-                                <input type="file" name="foto_url" class="form-control" accept="image/*">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Descrição</label>
-                                <textarea name="descricao" class="form-control" rows="3" required></textarea>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Telefone</label>
+                                <input type="tel" name="telefone" class="form-control" required>
                             </div>
                         </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary" id="salvarBarbeariaBtn">Salvar</button>
+                        <div class="mb-3">
+                            <label class="form-label">Endereço</label>
+                            <input type="text" name="endereco" class="form-control" required>
                         </div>
-                    </form>
-                </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Horário de Abertura</label>
+                                <input type="time" name="horario_abertura" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Horário de Fechamento</label>
+                                <input type="time" name="horario_fechamento" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Foto</label>
+                            <input type="file" name="foto_url" class="form-control" accept="image/*">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Descrição</label>
+                            <textarea name="descricao" class="form-control" rows="3" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="salvarBarbeariaBtn">Salvar</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const params = new URLSearchParams(window.location.search);
+            const idUrl = params.get("id_proprietario");
+            const usuarioLocal = JSON.parse(localStorage.getItem("usuario"));
 
-        <script>
+            const idProprietario = idUrl || (usuarioLocal ? usuarioLocal.id_proprietario : null);
 
+            if (!idProprietario) {
+                alert("Erro: proprietário não identificado.");
+                return window.location.href = "index.html";
+            }
 
-            document.addEventListener("DOMContentLoaded", async () => {
-                const params = new URLSearchParams(window.location.search);
-                let idProprietarioURL = params.get("id_proprietario");
-                let idProprietarioLocal = JSON.parse(localStorage.getItem("usuario"));
+            document.getElementById("id_proprietario_modal").value = idProprietario;
 
+            if (usuarioLocal) {
+                document.getElementById("nomeProprietario").textContent = usuarioLocal.nome;
+                document.getElementById("emailProprietario").textContent = usuarioLocal.email;
+            }
 
-                let proprietario = idProprietarioURL || idProprietarioLocal;
+            const lista = document.getElementById("listaBarbearias");
+            lista.innerHTML = "<p>Carregando barbearias...</p>";
 
-                if (!proprietario) {
-                    alert("Erro: proprietário não identificado.");
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/barbearias/${idProprietario}`);
+                const barbearias = await response.json();
+
+                if (!response.ok) throw new Error("Erro ao buscar barbearias");
+
+                lista.innerHTML = "";
+
+                if (!barbearias.length) {
+                    lista.innerHTML = `<p class='text-muted'>Nenhuma barbearia cadastrada.</p>`;
                     return;
                 }
 
-                const hiddenField = document.getElementById("id_proprietario_modal");
-                if (hiddenField) {
-                    hiddenField.value = proprietario.id_proprietario;
-                }
-                document.getElementById("nomeProprietario").textContent = proprietario.nome || "Proprietário";
-                document.getElementById("emailProprietario").textContent = proprietario.email || "";
+                barbearias.forEach(b => {
+                    const col = document.createElement("div");
+                    col.className = "col-md-4";
 
-                // document.getElementById("fotoProprietario").src = proprietario.foto_url
-
-
-                const lista = document.getElementById("listaBarbearias");
-                lista.innerHTML = "<p>Carregando barbearias...</p>";
-
-                try {
-                    const response = await fetch(`http://127.0.0.1:8000/barbearias/${proprietario.id_proprietario}`, {
-                        method: "GET",
-                    });
-                    const barbearias = await response.json();
-                    console.log(barbearias);
-
-                    if (!response.ok) {
-                        throw new Error("Erro ao buscar barbearias");
-                    }
-
-                    lista.innerHTML = "";
-
-                    if (!barbearias.length) {
-                        lista.innerHTML = `<p class='text-muted'>Nenhuma barbearia cadastrada.</p>`;
-                        return;
-                    }
-
-                    barbearias.forEach(b => {
-                        const col = document.createElement("div");
-                        col.className = "col-md-4";
-
-
-                        col.innerHTML = `
-                        <a href="http://localhost:5173/gerenciar_barbearia_detalhes.html?id=${b.id_barbearia}" class="text-decoration-none">
-                            <div class="card mb-4 border-0 h-100 hover-card">
-                                <div class="card-img-wrapper">
-                                    <img src="http://127.0.0.1:8000/${b.foto_url || 'uploads/default.jpg'}"
-                                        class="card-img-top"
-                                        alt="${b.nome}">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title mb-3">${b.nome}</h5>
-                                    
-                                    <div class="card-info mb-3">
-                                        <div class="info-row">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                            <span>${b.endereco}</span>
-                                        </div>
-                                        <div class="info-row">
-                                            <i class="fas fa-phone"></i>
-                                            <span>${b.telefone}</span>
-                                        </div>
-                                        <div class="info-row">
-                                            <i class="fas fa-clock"></i>
-                                            <span>${b.horario_abertura} - ${b.horario_fechamento}</span>
-                                        </div>
-                                    </div>
-
-                                    <p class="card-description">${b.descricao}</p>
-
-                                    <div class="card-stats">
-                                        <div class="stat-circle stat-atendimentos">
-                                            <div class="stat-number">${b.total_atendimentos || 0}</div>
-                                            <div class="stat-label">Atendimentos</div>
-                                        </div>
-                                        <div class="stat-circle stat-profissionais">
-                                            <div class="stat-number">${b.total_profissionais || 0}</div>
-                                            <div class="stat-label">Profissionais</div>
-                                        </div>
-                                    </div>
-                                </div>
+                    col.innerHTML = `
+                    <a href="gerenciar_barbearia_detalhes.html?id=${b.id_barbearia}" class="text-decoration-none">
+                        <div class="card mb-4 border-0 h-100 hover-card">
+                            <img src="http://127.0.0.1:8000/${b.foto_url || 'uploads/default.jpg'}"
+                                class="card-img-top"
+                                alt="${b.nome}">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3">${b.nome}</h5>
+                                <p><i class="fas fa-map-marker-alt"></i> ${b.endereco}</p>
+                                <p><i class="fas fa-phone"></i> ${b.telefone}</p>
+                                <p><i class="fas fa-clock"></i> ${b.horario_abertura} - ${b.horario_fechamento}</p>
+                                <p class="text-muted">${b.descricao}</p>
                             </div>
-                        </a>
+                        </div>
+                    </a>
                     `;
 
+                    lista.appendChild(col);
+                });
 
-
-                        lista.appendChild(col);
-                    });
-
-
-                } catch (err) {
-                    console.error(err);
-                    lista.innerHTML = `<p class='text-danger'>Erro ao carregar barbearias.</p>`;
-                }
-            });
-
-            function logout() {
-                localStorage.removeItem("usuario");
-                window.location.href = "index.html";
+            } catch (err) {
+                console.error(err);
+                lista.innerHTML = `<p class='text-danger'>Erro ao carregar barbearias.</p>`;
             }
-        </script>
-</body>
+        });
 
+        function logout() {
+            localStorage.removeItem("usuario");
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
 </html>

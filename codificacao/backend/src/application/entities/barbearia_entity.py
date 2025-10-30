@@ -3,7 +3,7 @@ from datetime import datetime, time
 
 class Barbearia:
     def __init__(self, nome, email, endereco, telefone, horario_abertura, horario_fechamento, descricao, id_proprietario, foto_url=None):
-        self.id_barbearia = str(uuid4())
+        self.id_barbearia = None
         self.nome = nome
         self.email = email
         self.endereco = endereco
@@ -15,6 +15,7 @@ class Barbearia:
         self.id_proprietario = id_proprietario
         self.data_cadastro = datetime.now()
         self.data_atualizacao = datetime.now()
+
 
     # --- Métodos de verificação ---
     def verificar_nome(self):

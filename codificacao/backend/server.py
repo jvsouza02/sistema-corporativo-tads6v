@@ -287,7 +287,7 @@ def criar_barbearia_existente(
             "id_barbearia": nova_barbearia.id_barbearia,
             "nome": nova_barbearia.nome,
             "email": nova_barbearia.email,
-            "endereco": nova_barbearia.endereco,
+            "endereco": nova_barbearia.endereco,    
             "telefone": nova_barbearia.telefone,
             "foto_url": nova_barbearia.foto_url or "",
             "horario_abertura": nova_barbearia.horario_abertura or "",
