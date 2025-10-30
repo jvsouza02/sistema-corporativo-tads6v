@@ -386,8 +386,8 @@
                     const card = document.createElement("div");
                     card.className = "atendimento-card";
                     
-                    const dataFormatada = atendimento.data_comentario 
-                        ? new Date(atendimento.data_comentario).toLocaleDateString('pt-BR')
+                    const dataFormatada = atendimento.data_atualizacao 
+                        ? new Date(atendimento.data_atualizacao).toLocaleDateString('pt-BR')
                         : 'Data não disponível';
 
                     const comentarioEscapado = (atendimento.comentario || '').replace(/'/g, "\\'");
@@ -398,16 +398,6 @@
                             <div>
                                 <div class="atendimento-author">${atendimento.nome_cliente || 'Cliente'}</div>
                                 <div class="atendimento-date">${dataFormatada}</div>
-                            </div>
-                            <div>
-                                <button class="btn btn-action btn-edit btn-sm me-2" 
-                                        onclick="editarAtendimento('${atendimento.id_comentario}', '${nomeClienteEscapado}', '${comentarioEscapado}')">
-                                    <i class="fas fa-edit"></i> Editar
-                                </button>
-                                <button class="btn btn-action btn-delete btn-sm" 
-                                        onclick="deletarAtendimento('${atendimento.id_comentario}')">
-                                    <i class="fas fa-trash"></i> Excluir
-                                </button>
                             </div>
                         </div>
                         <div class="atendimento-text">${atendimento.comentario}</div>
@@ -493,11 +483,11 @@
         }
 
         function irParaProfissionais() {
-            window.location.href = `gerenciar_profissionais.html?id=${idBarbearia}`;
+            window.location.href = `gerenciar_profissionais.html?id_barbearia=${idBarbearia}`;
         }
 
         function irParaAdicionarAtendimento() {
-            window.location.href = `historico_atendimento.html?id=${idBarbearia}`;
+            window.location.href = `historico_atendimento.html?id_barbearia=${idBarbearia}`;
         }
 
         function logout() {

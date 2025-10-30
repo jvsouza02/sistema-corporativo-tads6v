@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BarberPro - Histórico de Atendimento</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles/form_barbearia.css">
   <link rel="stylesheet" href="styles/historico_atendimento.css">
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
     <div class="container">
@@ -21,16 +24,14 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#" id="loginLink">Login</a>
+            <a class="nav-link" href="gerenciar_barbearia.html">
+              <i class="fas fa-arrow-left me-1"></i>Início
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="form_barbearia.html">Cadastrar Barbearia</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="gerenciar_profissionais.html">Gerenciar Profissionais</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="historico_atendimento.html">Histórico</a>
+            <a class="nav-link" style="cursor: pointer;" onclick="logout()">
+              <i class="fas fa-sign-out-alt me-1"></i>Deslogar
+            </a>
           </li>
         </ul>
       </div>
@@ -43,12 +44,13 @@
 
     <div class="card mb-4">
       <div class="card-body">
-        <h5 class="card-title mb-3">Adicionar Comentário</h5>
+        <h5 class="card-title mb-3">Adicionar Atendimento</h5>
         <form id="formComentario">
           <div class="row g-3">
             <div class="col-md-8">
               <label for="comentario" class="form-label">Comentário</label>
-              <input type="text" class="form-control" id="comentario" name="comentario" placeholder="Digite um comentário sobre o atendimento..." required>
+              <input type="text" class="form-control" id="comentario" name="comentario"
+                placeholder="Digite um comentário sobre o atendimento..." required>
             </div>
             <div class="col-md-4 d-flex align-items-end">
               <button type="submit" class="btn btn-primary w-100">
@@ -62,7 +64,7 @@
 
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title mb-3">Histórico de Atendimentos</h5>
+        <h5 class="card-title mb-3">Atendimentos</h5>
         <div id="listaAtendimentos">
           <div class="text-center text-muted py-4">
             <i class="bi bi-inbox display-4"></i>
@@ -135,13 +137,13 @@
   <script>
     let comentarioParaRemover = null;
 
-    document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('formComentario').addEventListener('submit', function(event) {
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('formComentario').addEventListener('submit', function (event) {
         event.preventDefault();
         adicionarComentario();
       });
 
-      document.getElementById('btnConfirmarRemocao').addEventListener('click', function() {
+      document.getElementById('btnConfirmarRemocao').addEventListener('click', function () {
         if (comentarioParaRemover !== null) {
           removerComentario(comentarioParaRemover);
         }
@@ -150,84 +152,66 @@
       carregarComentarios();
     });
 
-  function adicionarComentario() {
+    function adicionarComentario() {
       const comentario = document.getElementById('comentario').value;
+      const params = new URLSearchParams(window.location.search);
+      const idBarbearia = params.get("id_barbearia");
 
       if (!comentario) {
-          alert('Por favor, digite um comentário!');
-          return;
+        alert('Por favor, digite um comentário!');
+        return;
       }
 
-      fetch('http://127.0.0.1:8000/profissionais')
-      .then(response => response.json())
-      .then(profissionais => {
-          if (profissionais.length === 0) {
-              throw new Error('Nenhum profissional cadastrado');
-          }
-          
-          const idProfissional = profissionais[0].id_profissional;
-          
-          return fetch('http://127.0.0.1:8000/observacoes', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                  comentario: comentario,
-                  id_profissional: idProfissional
-              })
-          });
+      fetch('http://127.0.0.1:8000/observacoes/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ comentario: comentario, id_barbearia: idBarbearia })
       })
-      .then(response => {
-          if (!response.ok) {
-              return response.json().then(err => { throw err; });
-          }
-          return response.json();
-      })
-      .then(data => {
-          console.log('Comentário adicionado:', data);
-          document.getElementById('comentario').value = '';
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('formComentario').reset();
           carregarComentarios();
-          alert('Comentário adicionado com sucesso!');
-      })
-      .catch(error => {
-          console.error('Erro:', error);
-          alert('Erro ao adicionar comentário: ' + (error.message || 'Tente novamente'));
-      });
-  }
+        })
+        .catch(error => {
+          console.error('Erro ao adicionar comentário:', error);
+          alert('Erro ao adicionar comentário. Tente novamente.');
+        })
+    }
 
     function carregarComentarios() {
-      fetch('http://127.0.0.1:8000/observacoes', { 
+      fetch('http://127.0.0.1:8000/observacoes', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         }
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro ao carregar comentários');
-        }
-        return response.json();
-      })
-      .then(data => {
-        const listaAtendimentos = document.getElementById('listaAtendimentos');
-        
-        if (data.length === 0) {
-          listaAtendimentos.innerHTML = `
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erro ao carregar comentários');
+          }
+          return response.json();
+        })
+        .then(data => {
+          const listaAtendimentos = document.getElementById('listaAtendimentos');
+
+          if (data.length === 0) {
+            listaAtendimentos.innerHTML = `
             <div class="text-center text-muted py-4">
               <i class="bi bi-inbox display-4"></i>
               <p class="mt-2">Nenhum atendimento registrado</p>
             </div>
           `;
-          return;
-        }
+            return;
+          }
 
-        listaAtendimentos.innerHTML = '';
-        
-        data.forEach(comentario => {
-          const item = document.createElement('div');
-          item.className = 'attendance-item d-flex justify-content-between align-items-center';
-          item.innerHTML = `
+          listaAtendimentos.innerHTML = '';
+
+          data.forEach(comentario => {
+            const item = document.createElement('div');
+            item.className = 'attendance-item d-flex justify-content-between align-items-center';
+            item.innerHTML = `
             <div class="flex-grow-1">
               <strong>${comentario.comentario}</strong>
               <div class="text-muted small">${formatarData(comentario.data_atualizacao)}</div>
@@ -241,19 +225,19 @@
               </button>
             </div>
           `;
-          listaAtendimentos.appendChild(item);
-        });
-      })
-      .catch(error => {
-        console.error('Erro ao carregar comentários:', error);
-        const listaAtendimentos = document.getElementById('listaAtendimentos');
-        listaAtendimentos.innerHTML = `
+            listaAtendimentos.appendChild(item);
+          });
+        })
+        .catch(error => {
+          console.error('Erro ao carregar comentários:', error);
+          const listaAtendimentos = document.getElementById('listaAtendimentos');
+          listaAtendimentos.innerHTML = `
           <div class="text-center text-danger py-4">
             <i class="bi bi-exclamation-triangle display-4"></i>
             <p class="mt-2">Erro ao carregar comentários</p>
           </div>
         `;
-      });
+        });
     }
 
     function editarComentario(id, comentarioAtual) {
@@ -282,28 +266,28 @@
           comentario: comentario
         })
       })
-      .then(response => {
-        if (!response.ok) {
-          return response.json().then(err => { throw err; });
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Comentário atualizado:', data);
-        const modalEditar = bootstrap.Modal.getInstance(document.getElementById('modalEditar'));
-        modalEditar.hide();
-        carregarComentarios();
-        alert('Comentário atualizado com sucesso!');
-      })
-      .catch(error => {
-        console.error('Erro:', error);
-        alert('Erro ao atualizar comentário: ' + (error.detail || 'Tente novamente'));
-      });
+        .then(response => {
+          if (!response.ok) {
+            return response.json().then(err => { throw err; });
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Comentário atualizado:', data);
+          const modalEditar = bootstrap.Modal.getInstance(document.getElementById('modalEditar'));
+          modalEditar.hide();
+          carregarComentarios();
+          alert('Comentário atualizado com sucesso!');
+        })
+        .catch(error => {
+          console.error('Erro:', error);
+          alert('Erro ao atualizar comentário: ' + (error.detail || 'Tente novamente'));
+        });
     }
 
     function confirmarRemocao(id, comentario) {
       comentarioParaRemover = id;
-      document.getElementById('mensagemConfirmacao').textContent = 
+      document.getElementById('mensagemConfirmacao').textContent =
         `Tem certeza que deseja remover o comentário: "${comentario}"?`;
       const modalConfirmar = new bootstrap.Modal(document.getElementById('modalConfirmar'));
       modalConfirmar.show();
@@ -313,29 +297,29 @@
       fetch(`http://127.0.0.1:8000/observacoes/${id}`, {
         method: 'DELETE'
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro ao remover comentário');
-        }
-        return response;
-      })
-      .then(() => {
-        const modalConfirmar = bootstrap.Modal.getInstance(document.getElementById('modalConfirmar'));
-        modalConfirmar.hide();
-        comentarioParaRemover = null;
-        carregarComentarios();
-        alert('Comentário removido com sucesso!');
-      })
-      .catch(error => {
-        console.error('Erro:', error);
-        alert('Erro ao remover comentário: ' + (error.detail || 'Tente novamente'));
-      });
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erro ao remover comentário');
+          }
+          return response;
+        })
+        .then(() => {
+          const modalConfirmar = bootstrap.Modal.getInstance(document.getElementById('modalConfirmar'));
+          modalConfirmar.hide();
+          comentarioParaRemover = null;
+          carregarComentarios();
+          alert('Comentário removido com sucesso!');
+        })
+        .catch(error => {
+          console.error('Erro:', error);
+          alert('Erro ao remover comentário: ' + (error.detail || 'Tente novamente'));
+        });
     }
 
     function formatarData(dataString) {
       try {
         const data = new Date(dataString);
-        return data.toLocaleDateString('pt-BR') + ' ' + data.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+        return data.toLocaleDateString('pt-BR') + ' ' + data.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
       } catch (e) {
         return dataString;
       }
@@ -346,4 +330,5 @@
     }
   </script>
 </body>
+
 </html>

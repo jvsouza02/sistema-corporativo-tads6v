@@ -7,19 +7,16 @@ class ComentarioController:
         self.comentario_service = ComentarioService()
 
     def criar_comentario(self, comentario_request: ComentarioRequest):
-        comentario = self.comentario_service.adicionar_comentario(comentario_request.comentario, comentario_request.id_profissional)
-        return ComentarioResponse(
-            id_comentario=str(comentario.id_comentario),
-            comentario=str(comentario.comentario),
-            data_atualizacao=str(comentario.data_atualizacao)
-        )
+        comentario = self.comentario_service.adicionar_comentario(comentario_request.comentario, comentario_request.id_barbearia)
+        return {"id_comentario": comentario["id_comentario"], "comentario": comentario["comentario"], "data_atualizacao": comentario["data_atualizacao"]}
     
     def listar_comentarios(self):
         comentarios = self.comentario_service.listar_comentarios()
         return [ComentarioResponse(
             id_comentario=str(c.id_comentario),
             comentario=str(c.comentario),
-            data_atualizacao=str(c.data_atualizacao)
+            data_atualizacao=str(c.data_atualizacao),
+            id_barbearia=str(c.id_barbearia)
         ) for c in comentarios]
 
     def atualizar_comentario(self, comentario_request):

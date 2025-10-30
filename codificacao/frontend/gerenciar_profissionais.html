@@ -41,31 +41,29 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="gerenciar_barbearia.html">
-        <i class="fas fa-cut"></i> BarberPro
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="loginLink">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="form_barbearia.html">Cadastrar Barbearia</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="gerenciar_profissionais.html">Gerenciar Profissionais</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="historico_atendimento.html">Histórico</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+        <div class="container">
+            <a class="navbar-brand" href="gerenciar_barbearia.html">
+                <i class="fas fa-cut"></i> BarberPro
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="gerenciar_barbearia.html">
+                            <i class="fas fa-arrow-left me-1"></i>Início
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="cursor: pointer;" onclick="logout()">
+                            <i class="fas fa-sign-out-alt me-1"></i>Deslogar
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <div class="container">
         <h2 class="mb-4">Gerenciar Profissionais</h2>
@@ -167,7 +165,8 @@
     <script>
         function cadastrarProfissional() {
             event.preventDefault();
-            const barbearia = JSON.parse(localStorage.getItem("barbearia") || "{}");
+            const params = new URLSearchParams(window.location.search);
+            const idBarbearia = params.get("id_barbearia");
             fetch('http://localhost:8000/profissional', {
                 method: 'POST',
                 headers: {
@@ -178,22 +177,22 @@
                     email: document.getElementById('email').value,
                     horario_inicio: document.getElementById('horarioInicio').value,
                     horario_fim: document.getElementById('horarioFim').value,
-                    id_barbearia: barbearia.id_barbearia
+                    id_barbearia: idBarbearia
                 })
             })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('formCabeleireiro').reset();
-                listarProfissionais();
-            })
-            .catch(error => {
-                console.error('Erro ao cadastrar profissional:', error);
-                alert('Erro ao cadastrar profissional. Tente novamente.');
-            });
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('formCabeleireiro').reset();
+                    listarProfissionais();
+                })
+                .catch(error => {
+                    console.error('Erro ao cadastrar profissional:', error);
+                    alert('Erro ao cadastrar profissional. Tente novamente.');
+                });
         }
 
         function listarProfissionais() {
-            fetch('http://localhost:8000/profissionais', {method: 'GET'})
+            fetch('http://localhost:8000/profissionais', { method: 'GET' })
                 .then(response => response.json())
                 .then(data => {
                     const listaCabeleireiros = document.getElementById('listaCabeleireiros');
@@ -205,7 +204,6 @@
                         card.innerHTML = `
                             <div class="card-body">
                                 <h5 class="card-title">${cabeleireiro.nome}</h5>
-                                <p class="card-text mb-1"><strong>Email:</strong> ${cabeleireiro.email || 'Não informado'}</p>
                                 <p class="card-text"><strong>Horário:</strong> ${cabeleireiro.horario_inicio} - ${cabeleireiro.horario_fim}</p>
                                 <button class="btn btn-primary" onclick="editarProfissional('${cabeleireiro.id_profissional}')">Editar</button>
                                 <button class="btn btn-danger" onclick="deletarProfissional('${cabeleireiro.id_profissional}')">Remover</button>
@@ -221,7 +219,7 @@
 
         async function editarProfissional(id) {
             try {
-                const resp = await fetch(`http://localhost:8000/profissional/${id}`, {method: 'GET'});
+                const resp = await fetch(`http://localhost:8000/profissional/${id}`, { method: 'GET' });
                 if (!resp.ok) throw new Error('Erro ao buscar profissional');
                 const data = await resp.json();
 
@@ -244,16 +242,16 @@
             const email = document.getElementById('editarEmail').value;
             const horarioInicio = document.getElementById('editarHorarioInicio').value;
             const horarioFim = document.getElementById('editarHorarioFim').value;
-            
+
             fetch(`http://localhost:8000/profissional/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ 
+                body: JSON.stringify({
                     email: email,
-                    horario_inicio: horarioInicio, 
-                    horario_fim: horarioFim 
+                    horario_inicio: horarioInicio,
+                    horario_fim: horarioFim
                 })
             })
                 .then(response => response.json())
@@ -285,7 +283,7 @@
                     });
             }
         }
-        
+
         listarProfissionais();
     </script>
 </body>

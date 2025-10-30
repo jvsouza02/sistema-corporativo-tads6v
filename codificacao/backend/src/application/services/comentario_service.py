@@ -4,8 +4,8 @@ from src.data.repositories.comentario_repository import ComentarioRepository
 repository = ComentarioRepository()
 class ComentarioService:
 
-    def adicionar_comentario(self, comentario_texto: str, id_profissional: str):
-        comentario = Comentario(comentario_texto, id_profissional)
+    def adicionar_comentario(self, comentario_texto: str, id_barbearia: str):
+        comentario = Comentario(comentario_texto, id_barbearia)
         if not comentario.verificar_comentario():
             raise ValueError("Comentário inválido.")
         return repository.salvar(comentario)
