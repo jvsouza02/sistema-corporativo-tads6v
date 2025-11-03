@@ -27,7 +27,7 @@ Funciona como o principal intermediário entre os stakeholders e a equipe de des
 
 ---
 
-## Analista de Requisitos e Qualidade (Req/Q)  
+## Analista de Requisitos e Qualidade (REQ/QA)  
 
 **Perfil**  
 
@@ -44,7 +44,7 @@ Responsável em expecificar o que é necessário para que se cheque no produto f
 
 ---
 
-## Desenvolvedor  
+## Desenvolvedor (DEV)
 
 **Perfil**  
 
