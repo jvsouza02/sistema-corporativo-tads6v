@@ -335,3 +335,22 @@ def obter_proprietario(id_proprietario: str):
         raise HTTPException(status_code=404, detail=str(ve))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+@app.get("/profissionais/barbearia/{id_barbearia}")
+def listar_profissionais_por_barbearia(id_barbearia: str):
+    try:
+        controller = ProfissionalController()
+        return controller.listar_profissionais_por_barbearia(id_barbearia)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.put("/profissionais/{id_profissional}/transferir")
+def transferir_profissional(
+    id_profissional: str,
+    id_barbearia_destino: str = Form(...)
+):
+    controller = ProfissionalController()
+    try:
+        return controller.transferir_profissional(id_profissional, id_barbearia_destino)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))

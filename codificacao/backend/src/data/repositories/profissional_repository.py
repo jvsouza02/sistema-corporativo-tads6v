@@ -83,3 +83,45 @@ class ProfissionalRepository:
                 self.db.rollback()
                 raise e
         return profissional
+    
+    def listar_profissionais_por_barbearia(self, id_barbearia: str):
+        profissionais = (
+            self.db.query(ProfissionalModel)
+            .filter(ProfissionalModel.id_barbearia == id_barbearia)
+            .all()
+        )
+
+        return [
+            {
+                "id_profissional": str(p.id_profissional),
+                "nome": p.nome,
+                "horario_inicio": p.horario_inicio,
+                "horario_fim": p.horario_fim,
+                "id_barbearia": str(p.id_barbearia),
+                "id_usuario": str(p.id_usuario)
+            }
+            for p in profissionais
+        ]
+
+    def buscar_por_id(self, id_profissional):
+        p = self.db.query(ProfissionalModel).filter_by(id_profissional=id_profissional).first()
+        if not p:
+            return None
+
+        return {
+            "id_profissional": str(p.id_profissional),
+            "nome": p.nome,
+            "horario_inicio": p.horario_inicio,
+            "horario_fim": p.horario_fim,
+            "id_barbearia": str(p.id_barbearia),
+            "id_usuario": str(p.id_usuario)
+        }
+
+    def atualizar_barbearia(self, id_profissional, id_barbearia):
+        profissional = (
+            self.db.query(ProfissionalModel)
+            .filter(ProfissionalModel.id_profissional == id_profissional)
+            .first()
+        )
+        profissional.id_barbearia = id_barbearia
+        self.db.commit()

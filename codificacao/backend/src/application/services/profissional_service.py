@@ -23,3 +23,23 @@ class ProfissionalService:
         if not profissional:
             raise ValueError("Profissional nao encontrado.")
         return profissional
+    
+    def listar_profissionais_por_barbearia(self, id_barbearia: str):
+        return repository.listar_profissionais_por_barbearia(id_barbearia)
+    
+    def transferir_profissional(self, id_profissional, id_barbearia_destino):
+        profissional = self.repository.buscar_profissional(id_profissional)
+        if not profissional:
+            raise ValueError("Profissional não encontrado")
+
+        origem = self.barbearia_repository.buscar_barbearia(profissional["id_barbearia"])
+        destino = self.barbearia_repository.buscar_barbearia(id_barbearia_destino)
+
+        if not destino:
+            raise ValueError("Barbearia destino inválida")
+
+        if origem["id_proprietario"] != destino["id_proprietario"]:
+            raise ValueError("Operação não permitida")
+
+        self.repository.atualizar_barbearia(id_profissional, id_barbearia_destino)
+        return {"mensagem": "Profissional transferido com sucesso!"}
