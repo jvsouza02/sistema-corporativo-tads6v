@@ -17,13 +17,14 @@ Detalhar e configurar novas demandas levantadas, decidindo prioridade, responsá
 | Elemento     | Descrição                                                                                                                                                                   |
 | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Entradas** | Solicitações de stakeholders, Documento de Visão (quando disponível), Produto.                                                                    |
-| **Saídas**   | Iteração |
+| **Saídas**   | Iteração | EAP
 
 ### Tarefas principais
 
 1. Convocar participantes necessários e preparar material de apoio (documentos, protótipos, minimundo).
 2. Revisar cada demanda a ser analisada.
 3. Definir/confirmar: responsável, prioridade (Baixa/Média/Alta/Crítica), iteração/posição no backlog e datas previstas.
+4. Reajustar diagrama EAP
 
 ---
 
