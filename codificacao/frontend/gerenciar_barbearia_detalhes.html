@@ -292,6 +292,26 @@
         </div>
     </div>
 
+    <div class="container mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="section-title mb-0">Profissionais desta Barbearia</h2>
+        </div>
+
+        <table class="table table-hover table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>Horário</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaProfissionais">
+                <tr><td colspan="3" class="text-center">Carregando...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+
     <!-- Modal para Editar Atendimento -->
     <div class="modal fade" id="editAtendimentoModal" tabindex="-1">
         <div class="modal-dialog">
@@ -319,8 +339,46 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalTransferir" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Transferir Profissional</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+
+            <input type="hidden" id="idProfissionalTransferir">
+
+            <div class="mb-3">
+            <label class="form-label">Selecione a nova barbearia</label>
+            <select id="selectBarbeariaDestino" class="form-select"></select>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button class="btn btn-primary" onclick="confirmarTransferencia()">Transferir</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+
+        (function ensureProprietario() {
+            const params = new URLSearchParams(window.location.search);
+            const idPropParam = params.get("id_proprietario");
+            const idPropStorage = localStorage.getItem("id_proprietario");
+
+            if (idPropParam && !idPropStorage) {
+                localStorage.setItem("id_proprietario", idPropParam);
+            }
+        })();
+
         let idBarbearia = null;
         let editModal = null;
 
@@ -338,6 +396,7 @@
 
             await carregarDadosBarbearia();
             await carregarAtendimentos();
+            await carregarProfissionais();
         });
 
         async function carregarDadosBarbearia() {
@@ -481,6 +540,96 @@
                 alert("Erro ao excluir atendimento.");
             }
         }
+
+        async function carregarProfissionais() {
+            const tabela = document.getElementById("tabelaProfissionais");
+            tabela.innerHTML = "<tr><td colspan='3' class='text-center'>Carregando...</td></tr>";
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/profissionais/barbearia/${idBarbearia}`);
+                const profissionais = await response.json();
+
+                if (!profissionais.length) {
+                    tabela.innerHTML = "<tr><td colspan='3' class='text-center text-muted'>Nenhum profissional encontrado.</td></tr>";
+                    return;
+                }
+
+                tabela.innerHTML = "";
+                profissionais.forEach(p => {
+                    tabela.innerHTML += `
+                        <tr>
+                            <td>${p.nome}</td>
+                            <td>${p.horario_inicio} - ${p.horario_fim}</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" onclick="abrirModalTransferir('${p.id_profissional}')">
+                                    <i class="fas fa-exchange-alt"></i> Transferir
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } catch (err) {
+                console.error(err);
+                tabela.innerHTML = "<tr><td colspan='3' class='text-danger text-center'>Erro ao carregar profissionais.</td></tr>";
+            }
+        }
+
+        async function abrirModalTransferir(id) {
+        document.getElementById("idProfissionalTransferir").value = id;
+
+        const idProp = localStorage.getItem("id_proprietario");
+
+        if (!idProp) {
+            alert("Erro: proprietário não identificado!");
+            return;
+        }
+
+        const select = document.getElementById("selectBarbeariaDestino");
+
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/barbearias/${idProp}`);
+            const barbearias = await response.json();
+
+            const filtradas = barbearias.filter(b => b.id_barbearia !== idBarbearia);
+
+            if (filtradas.length === 0) {
+                select.innerHTML = "<option>Nenhuma outra barbearia</option>";
+            } else {
+                select.innerHTML = filtradas
+                    .map(b => `<option value="${b.id_barbearia}">${b.nome}</option>`)
+                    .join("");
+            }
+
+            new bootstrap.Modal(document.getElementById("modalTransferir")).show();
+            
+        } catch (error) {
+            console.error("Erro ao carregar barbearias para transferência:", error);
+            alert("Erro ao carregar lista de barbearias.");
+        }
+    }
+
+
+        async function confirmarTransferencia() {
+        const idProfissional = document.getElementById("idProfissionalTransferir").value;
+        const idBarbeariaDestino = document.getElementById("selectBarbeariaDestino").value;
+
+        const formData = new FormData();
+        formData.append("id_barbearia_destino", idBarbeariaDestino);
+
+        const response = await fetch(`http://127.0.0.1:8000/profissionais/${idProfissional}/transferir`, {
+            method: "PUT",
+            body: formData
+        });
+
+        if (response.ok) {
+            alert("Profissional transferido com sucesso!");
+            location.reload();
+        } else {
+            const err = await response.json();
+            alert(`Erro: ${err.detail}`);
+        }
+    }
+
 
         function irParaProfissionais() {
             window.location.href = `gerenciar_profissionais.html?id_barbearia=${idBarbearia}`;

@@ -18,3 +18,9 @@ class ProfissionalController:
 
     def deletar_profissional(self, id_profissional):
         return self.profissional_service.deletar_profissional(id_profissional)
+    
+    def listar_profissionais_por_barbearia(self, id_barbearia: str):
+        return self.profissional_service.listar_profissionais_por_barbearia(id_barbearia)
+    
+    def transferir_profissional(self, id_profissional, id_barbearia_destino):
+        return self.profissional_service.transferir_profissional(id_profissional, id_barbearia_destino)
