@@ -17,7 +17,7 @@ Detalhar e configurar novas demandas levantadas, decidindo prioridade, responsá
 | Elemento     | Descrição                                                                                                                                                                   |
 | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Entradas** | Solicitações de stakeholders, Documento de Visão (quando disponível), Produto.                                                                    |
-| **Saídas**   | Iteração | EAP
+| **Saídas**   | Iteração, EAP
 
 ### Tarefas principais
 
