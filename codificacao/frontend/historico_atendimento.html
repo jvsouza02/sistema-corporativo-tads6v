@@ -328,6 +328,11 @@
     if (!localStorage.getItem("id_profissional")) {
       localStorage.setItem("id_profissional", "abc123");
     }
+
+    function logout() {
+      localStorage.removeItem("usuario");
+      window.location.href = "index.html";
+    }
   </script>
 </body>
 

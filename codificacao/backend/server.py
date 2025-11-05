@@ -103,10 +103,20 @@ def buscar_profissional(id: str = Path(...)):
         raise HTTPException(status_code=500, detail=str(e))
     
 @app.get('/profissionais', status_code=status.HTTP_200_OK)
-def listar_profissional():
+def listar_profissional(id_barbearia: str):
     controller = ProfissionalController()
     try:
         return controller.listar_profissionais()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.get('/profissionais/barbearia/{id_barbearia}', status_code=status.HTTP_200_OK)
+def listar_profissionais_barbearia(id_barbearia: str = Path(...)):
+    controller = ProfissionalController()
+    try:
+        return controller.listar_profissionais_por_barbearia(id_barbearia)
+    except ValueError as ve:
+        raise HTTPException(status_code=404, detail=str(ve))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
@@ -309,7 +319,6 @@ def criar_barbearia_existente(
 def listar_barbearias_por_proprietario(id_proprietario: str = Path(...)):
     controller = BarbeariaController()
     try:
-        print(id_proprietario)
         return controller.listar_barbearias_por_proprietario(id_proprietario)
     except ValueError as ve:
         raise HTTPException(status_code=404, detail=str(ve))

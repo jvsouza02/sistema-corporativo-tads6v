@@ -160,13 +160,40 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalTransferir" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Transferir Profissional</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+
+                    <input type="hidden" id="idProfissionalTransferir">
+
+                    <div class="mb-3">
+                        <label class="form-label">Selecione a nova barbearia</label>
+                        <select id="selectBarbeariaDestino" class="form-select"></select>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" onclick="confirmarTransferencia()">Transferir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        const params = new URLSearchParams(window.location.search);
+        const idBarbearia = params.get("id_barbearia");
+
         function cadastrarProfissional() {
             event.preventDefault();
-            const params = new URLSearchParams(window.location.search);
-            const idBarbearia = params.get("id_barbearia");
             fetch('http://localhost:8000/profissional', {
                 method: 'POST',
                 headers: {
@@ -192,7 +219,7 @@
         }
 
         function listarProfissionais() {
-            fetch('http://localhost:8000/profissionais', { method: 'GET' })
+            fetch(`http://localhost:8000/profissionais/barbearia/${idBarbearia}`, { method: 'GET' })
                 .then(response => response.json())
                 .then(data => {
                     const listaCabeleireiros = document.getElementById('listaCabeleireiros');
@@ -206,11 +233,22 @@
                                 <h5 class="card-title">${cabeleireiro.nome}</h5>
                                 <p class="card-text"><strong>Horário:</strong> ${cabeleireiro.horario_inicio} - ${cabeleireiro.horario_fim}</p>
                                 <button class="btn btn-primary" onclick="editarProfissional('${cabeleireiro.id_profissional}')">Editar</button>
+                                <button class="btn btn-warning" onclick="abrirModalTransferir('${cabeleireiro.id_profissional}')"> Transferir
+                                </button>
                                 <button class="btn btn-danger" onclick="deletarProfissional('${cabeleireiro.id_profissional}')">Remover</button>
                             </div>
                         `;
                         listaCabeleireiros.appendChild(card);
                     });
+
+                    if (listaCabeleireiros.innerHTML === '') {
+                        listaCabeleireiros.innerHTML = `
+                            <div class="text-center text-muted py-4">
+                                <i class="bi bi-inbox display-4"></i>
+                                <p class="mt-2">Nenhum cabeleireiro registrado</p>
+                            </div>
+                        `;
+                    }
                 })
                 .catch(error => {
                     console.error('Erro ao listar profissionais:', error);
@@ -284,7 +322,68 @@
             }
         }
 
+        async function abrirModalTransferir(id) {
+            document.getElementById("idProfissionalTransferir").value = id;
+            const proprietario = JSON.parse(localStorage.getItem("usuario"));
+            const idProp = proprietario.id_proprietario;
+
+            if (!idProp) {
+                alert("Erro: proprietário não identificado!");
+                return;
+            }
+
+            const select = document.getElementById("selectBarbeariaDestino");
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/barbearias/${idProp}`);
+                const barbearias = await response.json();
+
+                const filtradas = barbearias.filter(b => b.id_barbearia !== idBarbearia);
+
+                if (filtradas.length === 0) {
+                    select.innerHTML = "<option>Nenhuma outra barbearia</option>";
+                } else {
+                    select.innerHTML = filtradas
+                        .map(b => `<option value="${b.id_barbearia}">${b.nome}</option>`)
+                        .join("");
+                }
+
+                new bootstrap.Modal(document.getElementById("modalTransferir")).show();
+
+            } catch (error) {
+                console.error("Erro ao carregar barbearias para transferência:", error);
+                alert("Erro ao carregar lista de barbearias.");
+            }
+        }
+
+
+        async function confirmarTransferencia() {
+            const idProfissional = document.getElementById("idProfissionalTransferir").value;
+            const idBarbeariaDestino = document.getElementById("selectBarbeariaDestino").value;
+
+            const formData = new FormData();
+            formData.append("id_barbearia_destino", idBarbeariaDestino);
+
+            const response = await fetch(`http://127.0.0.1:8000/profissionais/${idProfissional}/transferir`, {
+                method: "PUT",
+                body: formData
+            });
+
+            if (response.ok) {
+                alert("Profissional transferido com sucesso!");
+                location.reload();
+            } else {
+                const err = await response.json();
+                alert(`Erro: ${err.detail}`);
+            }
+        }
+
         listarProfissionais();
+
+        function logout() {
+            localStorage.removeItem("usuario");
+            window.location.href = "index.html";
+        }
     </script>
 </body>
 

@@ -11,6 +11,8 @@ class BarbeariaService:
 
         existentes = repository.listar_todos()
         for b in existentes:
+            if not b:
+                raise ValueError("Nenhuma barbearia cadastrada.")
             if b["nome"] == nome or b["email"] == email:
                 raise ValueError("Já existe uma barbearia com esse nome ou email.")
 

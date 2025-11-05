@@ -123,5 +123,7 @@ class ProfissionalRepository:
             .filter(ProfissionalModel.id_profissional == id_profissional)
             .first()
         )
+        if not profissional:
+            return None
         profissional.id_barbearia = id_barbearia
         self.db.commit()

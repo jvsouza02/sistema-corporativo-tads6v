@@ -1,3 +1,4 @@
+from datetime import date, datetime, time, timedelta
 from config.database import SessionLocal
 from sqlalchemy import select as Select
 from src.application.entities.comentario_entity import Comentario
@@ -36,7 +37,37 @@ class ComentarioRepository():
     def listar_todos(self):
         result = self.db.execute(Select(ComentarioModel).order_by(ComentarioModel.data_atualizacao.desc()))
         return result.scalars().all()
+    
+    def listar_atendimentos_por_barbearia(self, id_barbearia: str):
+        """
+        Lista comentários da semana (domingo a domingo) para a barbearia informada.
+        Se ref_date for None, usa hoje como referência.
+        Retorna uma lista de dicionários usando self._to_dict(model).
+        """
+        # referência: hoje em data (sem hora)
+        ref_date = datetime.now().date()
 
+        days_since_sunday = (ref_date.weekday() + 1) % 7
+        start_sunday = ref_date - timedelta(days=days_since_sunday)
+        next_sunday = start_sunday + timedelta(days=7)                       
+
+        # converte para datetimes (início do dia)
+        start_dt = datetime.combine(start_sunday, time.min)
+        end_dt = datetime.combine(next_sunday, time.min)
+
+        # consulta filtrando pelo intervalo [start_dt, end_dt)
+        query = (
+            self.db.query(ComentarioModel)
+                   .filter(
+                       ComentarioModel.id_barbearia == id_barbearia,
+                       ComentarioModel.data_criacao >= start_dt,
+                       ComentarioModel.data_criacao < end_dt
+                   )
+                   .order_by(ComentarioModel.data_criacao.desc())
+        )
+
+        return query.count()
+    
     def buscar_por_id(self, comentario_id: str):
         return self.db.query(ComentarioModel).filter(ComentarioModel.id_comentario == comentario_id).first()
 

@@ -13,6 +13,9 @@ class ComentarioService:
     def listar_comentarios(self):
         return repository.listar_todos()
     
+    def listar_atendimentos_por_barbearia(self, id_barbearia: str):
+        return repository.listar_atendimentos_por_barbearia(id_barbearia)
+    
     def editar_comentario(self, comentario_id, novo_texto):
         return repository.atualizar(comentario_id, novo_texto)
     

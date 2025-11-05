@@ -41,7 +41,8 @@
         <div class="container text-center text-md-start">
             <div class="row align-items-center">
                 <div class="col-md-2 text-center mb-3 mb-md-0">
-                    <img src="https://via.placeholder.com/150" alt="Proprietário" class="profile-image rounded-circle" id="fotoProprietario">
+                    <img src="https://via.placeholder.com/150" alt="Proprietário" class="profile-image rounded-circle"
+                        id="fotoProprietario">
                 </div>
                 <div class="col-md-10">
                     <h1 id="nomeProprietario">Nome do Proprietário</h1>
@@ -80,8 +81,7 @@
                     enctype="multipart/form-data">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addBarbershopLabel">Cadastrar Nova Barbearia</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Fechar"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                     </div>
 
                     <div class="modal-body">
@@ -181,23 +181,53 @@
 
                 barbearias.forEach(b => {
                     const col = document.createElement("div");
+                    col.setAttribute('style', 'margin-bottom: 20px;');
                     col.className = "col-md-4";
 
                     col.innerHTML = `
-                    <a href="gerenciar_barbearia_detalhes.html?id=${b.id_barbearia}" class="text-decoration-none">
-                        <div class="card mb-4 border-0 h-100 hover-card">
-                            <img src="http://127.0.0.1:8000/${b.foto_url || 'uploads/default.jpg'}"
-                                class="card-img-top"
-                                alt="${b.nome}">
-                            <div class="card-body">
-                                <h5 class="card-title mb-3">${b.nome}</h5>
-                                <p><i class="fas fa-map-marker-alt"></i> ${b.endereco}</p>
-                                <p><i class="fas fa-phone"></i> ${b.telefone}</p>
-                                <p><i class="fas fa-clock"></i> ${b.horario_abertura} - ${b.horario_fechamento}</p>
-                                <p class="text-muted">${b.descricao}</p>
+                        <a href="http://localhost:5173/gerenciar_barbearia_detalhes.html?id=${b.id_barbearia}" class="text-decoration-none">
+                            <div class="card mb-4 border-0 h-100 hover-card">
+                                <div class="card-img-wrapper">
+                                    <img src="http://127.0.0.1:8000/${b.foto_url || 'uploads/default.jpg'}"
+                                        class="card-img-top"
+                                        alt="${b.nome}">
+                                    <div class="card-badge">
+                                        <span class="badge-premium">Premium</span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title mb-3">${b.nome}</h5>
+                                    
+                                    <div class="card-info mb-3">
+                                        <div class="info-row">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span>${b.endereco}</span>
+                                        </div>
+                                        <div class="info-row">
+                                            <i class="fas fa-phone"></i>
+                                            <span>${b.telefone}</span>
+                                        </div>
+                                        <div class="info-row">
+                                            <i class="fas fa-clock"></i>
+                                            <span>${b.horario_abertura} - ${b.horario_fechamento}</span>
+                                        </div>
+                                    </div>
+
+                                    <p class="card-description">${b.descricao}</p>
+
+                                    <div class="card-stats">
+                                        <div class="stat-circle stat-atendimentos">
+                                            <div class="stat-number">${b.total_atendimentos || 0}</div>
+                                            <div class="stat-label">Atendimentos Semanais</div>
+                                        </div>
+                                        <div class="stat-circle stat-profissionais">
+                                            <div class="stat-number">${b.total_profissionais || 0}</div>
+                                            <div class="stat-label">Profissionais</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
                     `;
 
                     lista.appendChild(col);
@@ -216,4 +246,5 @@
     </script>
 
 </body>
+
 </html>

@@ -1,7 +1,9 @@
 from src.application.entities.profissional_entity import Profissional
 from src.data.repositories.profissional_repository import ProfissionalRepository
+from src.data.repositories.barbearia_repository import BarbeariaRepository
 
 repository = ProfissionalRepository()
+barbearia_repository = BarbeariaRepository()
 class ProfissionalService:
     def cadastrar_profissional(self, nome, email, horario_inicio, horario_fim, id_barbearia):
         profissional = Profissional(nome, email, horario_inicio, horario_fim, id_barbearia)
@@ -28,12 +30,15 @@ class ProfissionalService:
         return repository.listar_profissionais_por_barbearia(id_barbearia)
     
     def transferir_profissional(self, id_profissional, id_barbearia_destino):
-        profissional = self.repository.buscar_profissional(id_profissional)
+        profissional = repository.buscar_profissional(id_profissional)
         if not profissional:
             raise ValueError("Profissional não encontrado")
 
-        origem = self.barbearia_repository.buscar_barbearia(profissional["id_barbearia"])
-        destino = self.barbearia_repository.buscar_barbearia(id_barbearia_destino)
+        origem = barbearia_repository.buscar_por_id(profissional["id_barbearia"])
+        if not origem:
+            raise ValueError("Barbearia origem inválida")
+
+        destino = barbearia_repository.buscar_por_id(id_barbearia_destino)
 
         if not destino:
             raise ValueError("Barbearia destino inválida")
@@ -41,5 +46,5 @@ class ProfissionalService:
         if origem["id_proprietario"] != destino["id_proprietario"]:
             raise ValueError("Operação não permitida")
 
-        self.repository.atualizar_barbearia(id_profissional, id_barbearia_destino)
+        repository.atualizar_barbearia(id_profissional, id_barbearia_destino)
         return {"mensagem": "Profissional transferido com sucesso!"}
