@@ -14,6 +14,9 @@ class ProfissionalService:
     def buscar_profissional(self, id_usuario):
         return repository.buscar_profissional(id_usuario)
     
+    def buscar_por_id(self, id_profissional):
+        return repository.buscar_por_id(id_profissional)
+    
     def listar_profissionais(self):
         return repository.listar_todos()
     
@@ -30,7 +33,7 @@ class ProfissionalService:
         return repository.listar_profissionais_por_barbearia(id_barbearia)
     
     def transferir_profissional(self, id_profissional, id_barbearia_destino):
-        profissional = repository.buscar_profissional(id_profissional)
+        profissional = repository.buscar_por_id(id_profissional)
         if not profissional:
             raise ValueError("Profissional não encontrado")
 

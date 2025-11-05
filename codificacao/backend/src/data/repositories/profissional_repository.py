@@ -118,12 +118,28 @@ class ProfissionalRepository:
         }
 
     def atualizar_barbearia(self, id_profissional, id_barbearia):
-        profissional = (
-            self.db.query(ProfissionalModel)
-            .filter(ProfissionalModel.id_profissional == id_profissional)
-            .first()
-        )
-        if not profissional:
-            return None
-        profissional.id_barbearia = id_barbearia
-        self.db.commit()
+        try:
+            profissional = (
+                self.db.query(ProfissionalModel)
+                .filter(ProfissionalModel.id_profissional == id_profissional)
+                .first()
+            )
+
+            if not profissional:
+                # lançar exceção para o chamador saber que não encontrou
+                raise ValueError(f"Profissional com id {id_profissional} não encontrado")
+
+            # atualiza e salva
+            profissional.id_barbearia = id_barbearia
+            self.db.add(profissional)
+            self.db.commit()
+            self.db.refresh(profissional)  # garante que o objeto esteja atualizado
+            return profissional
+
+        except Exception:
+            # garante rollback em caso de erro
+            try:
+                self.db.rollback()
+            except Exception:
+                pass
+            raise

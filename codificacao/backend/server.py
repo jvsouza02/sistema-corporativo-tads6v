@@ -353,13 +353,12 @@ def listar_profissionais_por_barbearia(id_barbearia: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-@app.put("/profissionais/{id_profissional}/transferir")
-def transferir_profissional(
-    id_profissional: str,
-    id_barbearia_destino: str = Form(...)
-):
+@app.put("/profissionais/transferir")
+def transferir_profissional(dados: dict = Body(...)):
     controller = ProfissionalController()
     try:
-        return controller.transferir_profissional(id_profissional, id_barbearia_destino)
+        return controller.transferir_profissional(dados['id_profissional'], dados['id_barbearia_destino'])
+    except ValueError as ve:
+        raise HTTPException(status_code=404, detail=str(ve))
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=500, detail=str(e))

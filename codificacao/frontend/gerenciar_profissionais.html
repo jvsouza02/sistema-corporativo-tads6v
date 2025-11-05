@@ -361,12 +361,15 @@
             const idProfissional = document.getElementById("idProfissionalTransferir").value;
             const idBarbeariaDestino = document.getElementById("selectBarbeariaDestino").value;
 
-            const formData = new FormData();
-            formData.append("id_barbearia_destino", idBarbeariaDestino);
-
-            const response = await fetch(`http://127.0.0.1:8000/profissionais/${idProfissional}/transferir`, {
+            const response = await fetch(`http://127.0.0.1:8000/profissionais/transferir`, {
                 method: "PUT",
-                body: formData
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id_barbearia_destino: idBarbeariaDestino,
+                    id_profissional: idProfissional
+                })
             });
 
             if (response.ok) {
