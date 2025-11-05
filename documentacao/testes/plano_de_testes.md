@@ -5,11 +5,11 @@
 
 ---
 
-| **Seção**                     | **Detalhes**                                                                                 |
-|-------------------------------|----------------------------------------------------------------------------------------------|
-| **Título do Plano de Testes** | Plano de Testes - Sistema de Agendamento e Gestão de Barbearias - Versão 1.0               |
-| **Preparado por**             | Yuri Fernandes, Maria da Paz (Analistas de Requisito e Qualidade)                          |
-| **Data**                      | 03/11/2025                                                                                  |
+| **Seção**          | **Detalhes**                                                                 |
+|--------------------|------------------------------------------------------------------------------|
+| **Título do Plano de Testes** | Plano de Testes - Sistema de Agendamento e Gestão de Barbearias - Versão 1.0 |
+| **Preparado por**  | Yuri Fernandes, Maria da Paz (Analistas de Requisito e Qualidade)            |
+| **Data**           | 03/11/2025                                                                  |
 
 ---
 
@@ -49,20 +49,20 @@ Testes manuais e automatizados, com foco nas funcionalidades mais importantes.
 ---
 
 ## 5. Cronograma de Testes
-| **Fase**                     | **Data de Início** | **Data de Término** |
-|-------------------------------|--------------------|---------------------|
-| Planejamento de testes        | 29/10/2025         | 02/11/2025          |
-| Projeto de Caso de Teste      | 06/11/2025         | 08/11/2025          |
-| Testes Unitários              | 08/11/2025         | 11/11/2025          |
+| **Fase**                 | **Data de Início** | **Data de Término** |
+|---------------------------|-------------------|---------------------|
+| Planejamento de testes    | 29/10/2025        | 02/11/2025          |
+| Projeto de Caso de Teste  | 06/11/2025        | 08/11/2025          |
+| Testes Unitários          | 08/11/2025        | 11/11/2025          |
 
 ---
 
 ## 6. Riscos e Como Vamos Evitá-los
-| **Risco**                     | **Estratégia**                                               |
-|-------------------------------|--------------------------------------------------------------|
-| Pouco tempo para testar       | Priorizar testes das funcionalidades mais críticas           |
-| Dificuldade com automação     | Focar em testes manuais para telas complexas                 |
-| Mudanças durante o projeto    | Manter comunicação próxima com a equipe de desenvolvimento   |
+| **Risco**                   | **Estratégia**                                               |
+|-----------------------------|--------------------------------------------------------------|
+| Pouco tempo para testar     | Priorizar testes das funcionalidades mais críticas           |
+| Dificuldade com automação   | Focar em testes manuais para telas complexas                 |
+| Mudanças durante o projeto  | Manter comunicação próxima com a equipe de desenvolvimento   |
 
 ---
 
