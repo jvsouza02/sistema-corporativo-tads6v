@@ -1,4 +1,4 @@
-# Plano de Testes - Sistema de Agendamento e Gestão de Barbearias - Versão 1.0
+# Plano de Testes - Sistema de Agendamento e Gestão de Barbearias
 
 **Discentes:** Yuri Fernandes, Maria da Paz, João Victor, Lucas Freitas  
 **Projeto:** Sistema de Agendamento e Gestão de Barbearias  
