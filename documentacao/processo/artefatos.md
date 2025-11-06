@@ -13,54 +13,79 @@ A **Documento de Visão** é o alicerce estratégico do projeto. Ele articula a 
 ### Template
 
 ```markdown
-# Visão do Produto: [Nome do Projeto]
+# **Documento de Visão**
 
-# Documento de Visão do Produto — [Nome do Sistema]
+**Discentes:** [Nomes dos integrantes do grupo]  
+**Projeto:** [Nome do sistema/produto]
 
-## 1. Visão Geral do Produto
-*(Descrição em alto nível do sistema, seus principais objetivos e o problema que resolve. Destaque o diferencial ou propósito central.)*  
+---
 
-**Exemplo:** Uma plataforma web que centraliza o gerenciamento de [tipo de negócio], incluindo cadastro de entidades principais, configuração de serviços, agenda, histórico e controle de status.
+## **Registro de Alterações**
 
-## 2. Público-alvo
-- **[Tipo de Usuário 1]** — *(descrição das responsabilidades e objetivos deste ator dentro do sistema).*  
-- **[Tipo de Usuário 2]** — *(descrição).*  
-- **[Tipo de Usuário 3]** — *(descrição).*  
+| **Versão** | **Responsável** | **Data** | **Alterações** |
+|-------------|------------------|-----------|----------------|
+| 1.0 | [Nome] | [dd/mm/aaaa] | Criação do documento |
+| 1.1 | [Nome] | [dd/mm/aaaa] | [Descrição das alterações realizadas] |
+| 1.2 | [Nome] | [dd/mm/aaaa] | [Descrição das alterações realizadas] |
 
-## 3. Necessidade de Negócio / Justificativa
-*(Quais problemas o sistema resolve? Quais ganhos ele traz? Pode ser separado em dimensões como Operacional, Comercial, Decisional, etc.)*  
+---
 
-- **Operacional:** [Exemplo: eliminar uso de papel, reduzir conflitos de horário].  
-- **Comercial:** [Exemplo: melhorar retenção de clientes e personalização de atendimento].  
-- **Decisional:** [Exemplo: fornecer relatórios de desempenho].  
+## **1. Introdução**
 
-## 4. Escopo (o que está incluído / excluído)
-**Incluído:**  
-- [Funcionalidade essencial 1]  
-- [Funcionalidade essencial 2]  
-- [Funcionalidade essencial 3]  
+Esta seção apresenta a visão geral do sistema, descrevendo seus objetivos, contexto e escopo.  
+O documento visa detalhar os principais aspectos funcionais e não funcionais do sistema, bem como as regras de negócio que norteiam seu funcionamento.
 
-**Excluído:**  
-- [Funcionalidade fora do escopo 1]  
-- [Funcionalidade fora do escopo 2]  
+---
 
-## 5. Principais Funcionalidades / Épicos
-1. **[Nome do Épico 1]:** descrição breve.  
-2. **[Nome do Épico 2]:** descrição breve.  
-3. **[Nome do Épico 3]:** descrição breve.  
-*(Liste os principais blocos de funcionalidades do sistema.)*  
+## **2. Descrição do Propósito do Sistema**
 
-## 6. Riscos
-*(Liste riscos que podem afetar a adoção, uso ou sucesso do sistema.)*  
+Descreva o **propósito principal** do sistema, explicando **o que ele faz**, **quem são seus usuários principais** e **quais problemas ele resolve**.
 
-**Exemplo:** Baixa adoção por resistência à mudança de processo manual.  
+> Exemplo:  
+> O sistema tem como objetivo centralizar o processo de [gestão/atendimento/agendamento/etc.], oferecendo aos usuários uma plataforma simples e eficiente para [funções principais].
 
-## 7. Prioridades Iniciais
-*(Defina quais funcionalidades ou épicos têm prioridade no desenvolvimento inicial.)*  
+---
 
-1. [Funcionalidade crítica 1]  
-2. [Funcionalidade crítica 2]  
+## **3. Descrição do Minimundo (Contexto de Negócio)**
 
+Apresente o **cenário real** onde o sistema será aplicado, explicando:
+- Quem são os **atores envolvidos** (ex: clientes, funcionários, administradores);
+- Quais **processos** o sistema vai automatizar;
+- Como as **informações** são organizadas e tratadas;
+- Quais **interações** principais ocorrem entre os usuários e o sistema.
+
+> Exemplo:  
+> O sistema permite que [usuário X] realize [ação Y], enquanto [usuário Z] pode gerenciar [entidade A].  
+> Ele centraliza as informações sobre [dados principais] e otimiza o fluxo de [atividade do negócio].
+
+---
+
+## **4. Requisitos de Usuário**
+
+### **4.1. Requisitos Funcionais**
+
+| **ID** | **Nome** | **Descrição** | **Prioridade** | **Dependência** |
+|--------|-----------|---------------|----------------|-----------------|
+| **RF01** | [Nome do requisito] | [Descrição breve e clara da funcionalidade] | [Alta/Média/Baixa] | [Dependência se houver] |
+| **RF02** | [Nome do requisito] | [Descrição breve e clara da funcionalidade] | [Alta/Média/Baixa] | [Dependência se houver] |
+
+---
+
+### **4.2. Requisitos Não Funcionais**
+
+| **ID** | **Nome** | **Descrição** | **Prioridade** | **Dependência** |
+|--------|-----------|---------------|----------------|-----------------|
+| **RNF01** | [Nome do requisito] | [Descrição do requisito de desempenho, segurança, compatibilidade, etc.] | [Alta/Média/Baixa] | [Dependência se houver] |
+| **RNF02** | [Nome do requisito] | [Descrição do requisito de desempenho, segurança, compatibilidade, etc.] | [Alta/Média/Baixa] | [Dependência se houver] |
+
+---
+
+### **4.3. Regras de Negócio**
+
+| **ID** | **Nome** | **Descrição** | **Prioridade** | **Dependência** |
+|--------|-----------|---------------|----------------|-----------------|
+| **RN01** | [Nome da regra] | [Descrição clara da regra de negócio] | [Alta/Média/Baixa] | [Dependência se houver] |
+| **RN02** | [Nome da regra] | [Descrição clara da regra de negócio] | [Alta/Média/Baixa] | [Dependência se houver] |
 ```
 
 ---
