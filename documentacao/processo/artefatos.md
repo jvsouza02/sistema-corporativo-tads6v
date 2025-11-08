@@ -99,7 +99,8 @@ Define o propósito, o contexto de negócio e as funcionalidades que o sistema d
 É o ponto de partida para o entendimento do que o sistema fará e como deverá se comportar.
 
 ### Template
-```
+
+```markdown
 # Documento de Requisitos do Sistema
 
 ---
@@ -181,6 +182,7 @@ Inclua o diagrama de domínio representando as entidades principais e seus relac
 ---
 
 ```
+
 ---
 ## 3. Documento de Especificação de Requisitos
 
@@ -189,7 +191,8 @@ Detalha tecnicamente o comportamento do sistema, descrevendo os casos de uso, at
 Serve como guia para desenvolvimento, testes e validação, garantindo que todos os requisitos sejam corretamente implementados.
 
 ### Template
-```
+
+```markdown
 # Documento de Especificação de Requisitos
 
 ---
@@ -267,7 +270,8 @@ Cada caso de uso deve seguir o formato abaixo:
 
 ```
 
-## 2. Especificação
+---
+## 4. Especificação
 
 ### Propósito
 
@@ -339,7 +343,7 @@ As **Especificações** descrevem uma funcionalidade do sistema a partir da pers
 
 ---
 
-## 3. Dicionário de Dados
+## 5. Dicionário de Dados
 
 ### Finalidade
 
@@ -372,13 +376,13 @@ O **Dicionário de Dados** descreve detalhadamente todas as entidades, atributos
 
 ---
 
-## 4. Produto (Software Executável)
+## 6. Produto (Software Executável)
 
 O Produto é o artefato final e tangível de todo o processo. Representa o software funcional, testado e pronto para ser entregue aos usuários ou disponibilizado em um ambiente de produção/teste. É a manifestação concreta das especificações implementadas.
 
 ---
 
-## 5. Plano de Testes
+## 7. Plano de Testes
 
 Documento que define a estratégia, técnicas e métricas usadas para validar o sistema, garantindo que todas as funcionalidades atendam aos requisitos e critérios de aceitação estabelecidos.
 

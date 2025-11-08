@@ -71,6 +71,6 @@ O sistema gera histórico com timestamps, calcula automaticamente valores de ate
 - Resistência de proprietários à migração do papel para a plataforma.  
 - Erros de cálculo de valores se o catálogo não estiver corretamente cadastrado.  
 - Conflitos de agenda se horários de profissionais não forem validados adequadamente.  
-- Falta de adoção por ausência de funcionalidades de pagamento no MVP (dependendo do modelo de negócio).
+- Falta de adoção por ausência de funcionalidades de pagamento.
 
 ---
