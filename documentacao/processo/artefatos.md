@@ -13,82 +13,259 @@ A **Documento de Visão** é o alicerce estratégico do projeto. Ele articula a 
 ### Template
 
 ```markdown
-# **Documento de Visão**
+# Documento de Visão do Produto — [Nome do Sistema]
 
 **Discentes:** [Nomes dos integrantes do grupo]  
 **Projeto:** [Nome do sistema/produto]
 
 ---
 
-## **Registro de Alterações**
-
-| **Versão** | **Responsável** | **Data** | **Alterações** |
-|-------------|------------------|-----------|----------------|
-| 1.0 | [Nome] | [dd/mm/aaaa] | Criação do documento |
-| 1.1 | [Nome] | [dd/mm/aaaa] | [Descrição das alterações realizadas] |
-| 1.2 | [Nome] | [dd/mm/aaaa] | [Descrição das alterações realizadas] |
+## 1. Visão Geral do Produto
+Descreva de forma clara e resumida o propósito do sistema, seu público principal e os principais objetivos.  
+Exemplo:  
+> O [nome do sistema] é uma plataforma [web/mobile/etc.] desenvolvida para [finalidade principal], oferecendo funcionalidades de [resumo das principais operações]. O objetivo é [problema que resolve] e [benefício que traz].
 
 ---
 
-## **1. Introdução**
+## 2. Público-alvo
+Liste os tipos de usuários e descreva o papel de cada um no sistema.
 
-Esta seção apresenta a visão geral do sistema, descrevendo seus objetivos, contexto e escopo.  
-O documento visa detalhar os principais aspectos funcionais e não funcionais do sistema, bem como as regras de negócio que norteiam seu funcionamento.
-
----
-
-## **2. Descrição do Propósito do Sistema**
-
-Descreva o **propósito principal** do sistema, explicando **o que ele faz**, **quem são seus usuários principais** e **quais problemas ele resolve**.
-
-> Exemplo:  
-> O sistema tem como objetivo centralizar o processo de [gestão/atendimento/agendamento/etc.], oferecendo aos usuários uma plataforma simples e eficiente para [funções principais].
+- **[Tipo de Usuário 1]:** [Descrição resumida das responsabilidades e uso do sistema].  
+- **[Tipo de Usuário 2]:** [Descrição].  
+- **[Tipo de Usuário 3]:** [Descrição].
 
 ---
 
-## **3. Descrição do Minimundo (Contexto de Negócio)**
+## 3. Necessidade de Negócio / Justificativa
+Explique o **problema** ou **necessidade** que o produto resolve e os **benefícios esperados**.
 
-Apresente o **cenário real** onde o sistema será aplicado, explicando:
-- Quem são os **atores envolvidos** (ex: clientes, funcionários, administradores);
-- Quais **processos** o sistema vai automatizar;
-- Como as **informações** são organizadas e tratadas;
-- Quais **interações** principais ocorrem entre os usuários e o sistema.
-
-> Exemplo:  
-> O sistema permite que [usuário X] realize [ação Y], enquanto [usuário Z] pode gerenciar [entidade A].  
-> Ele centraliza as informações sobre [dados principais] e otimiza o fluxo de [atividade do negócio].
+- **Operacional:** [Melhorias internas, automação, eliminação de processos manuais].  
+- **Comercial:** [Aumento de receita, fidelização de clientes, competitividade].  
+- **Decisional:** [Dados e métricas que o sistema oferece para tomada de decisão].  
 
 ---
 
-## **4. Requisitos de Usuário**
+## 4. Fluxos de Acesso / Autenticação
+Descreva como cada tipo de usuário acessa o sistema e quais permissões possui.
 
-### **4.1. Requisitos Funcionais**
-
-| **ID** | **Nome** | **Descrição** | **Prioridade** | **Dependência** |
-|--------|-----------|---------------|----------------|-----------------|
-| **RF01** | [Nome do requisito] | [Descrição breve e clara da funcionalidade] | [Alta/Média/Baixa] | [Dependência se houver] |
-| **RF02** | [Nome do requisito] | [Descrição breve e clara da funcionalidade] | [Alta/Média/Baixa] | [Dependência se houver] |
+- **[Tipo de usuário]:** [Como se cadastra / faz login / o que visualiza].  
+- **[Tipo de usuário]:** [Fluxo de autenticação e acesso].  
 
 ---
 
-### **4.2. Requisitos Não Funcionais**
+## 5. Escopo
 
-| **ID** | **Nome** | **Descrição** | **Prioridade** | **Dependência** |
-|--------|-----------|---------------|----------------|-----------------|
-| **RNF01** | [Nome do requisito] | [Descrição do requisito de desempenho, segurança, compatibilidade, etc.] | [Alta/Média/Baixa] | [Dependência se houver] |
-| **RNF02** | [Nome do requisito] | [Descrição do requisito de desempenho, segurança, compatibilidade, etc.] | [Alta/Média/Baixa] | [Dependência se houver] |
+### Incluído
+Liste tudo o que **faz parte do projeto (MVP)**:
+
+- [Funcionalidade 1].  
+- [Funcionalidade 2].  
+- [Funcionalidade 3].  
+- [Outros recursos planejados].  
+
+### Excluído
+Liste o que **não será incluído inicialmente**:
+
+- [Funcionalidade ou módulo fora do escopo].  
+- [Tecnologias ou integrações futuras].  
 
 ---
 
-### **4.3. Regras de Negócio**
+## 6. Principais Funcionalidades / Épicos
+Apresente os grandes blocos de funcionalidades (épicos) do sistema.  
+Cada item pode representar um módulo principal.
 
-| **ID** | **Nome** | **Descrição** | **Prioridade** | **Dependência** |
-|--------|-----------|---------------|----------------|-----------------|
-| **RN01** | [Nome da regra] | [Descrição clara da regra de negócio] | [Alta/Média/Baixa] | [Dependência se houver] |
-| **RN02** | [Nome da regra] | [Descrição clara da regra de negócio] | [Alta/Média/Baixa] | [Dependência se houver] |
+- **[Nome do épico/módulo]:** [Descrição resumida do que faz].  
+- **[Outro módulo]:** [Descrição].  
+
+---
+
+## 7. Riscos
+Liste os principais riscos que podem afetar o sucesso do projeto.
+
+- [Risco 1: descrição e possível impacto].  
+- [Risco 2: descrição].  
+- [Risco 3: descrição].  
+---
+
 ```
 
 ---
+
+## Documento de Requisitos
+
+### Finalidade
+Define o propósito, o contexto de negócio e as funcionalidades que o sistema deve oferecer, incluindo os requisitos funcionais, não funcionais e regras de negócio.
+É o ponto de partida para o entendimento do que o sistema fará e como deverá se comportar.
+
+### Template
+```
+# Documento de Requisitos do Sistema
+
+---
+
+**Discentes:** [Nomes dos autores]  
+**Projeto:** [Nome do Projeto]  
+
+---
+
+## Registro de Alterações
+
+| Versão | Responsável | Data | Alterações |
+|:------:|:-------------|:------:|:-----------|
+| 1.0 | [Nome] | [Data] | Criação do documento de requisitos. |
+
+---
+
+## 1. Introdução
+Este documento apresenta a especificação inicial para o sistema **[Nome do Sistema]**.  
+Ele tem como objetivo detalhar o propósito, contexto de negócio, diagrama de domínio e os requisitos funcionais, não funcionais e regras de negócio.
+
+---
+
+## 2. Descrição do Propósito do Sistema
+Descreva o propósito principal do sistema.  
+> Exemplo:  
+> O sistema tem como objetivo centralizar as operações de [setor/negócio] em um ambiente digital, facilitando o gerenciamento de [recursos/processos] e promovendo maior eficiência e organização para todos os envolvidos.
+
+---
+
+## 3. Descrição do Minimundo
+Apresente o contexto do negócio (o “mundo real” representado pelo sistema).  
+Explique:
+- Quem são os principais atores;
+- Quais operações eles realizam;
+- Como as informações são organizadas e relacionadas.  
+
+> Exemplo:  
+> O sistema permite que [usuário principal] realize [ações], enquanto [outro ator] gerencia [tarefas específicas].  
+> As informações sobre [entidades] são armazenadas e relacionadas para garantir [benefício ou automação].
+
+---
+
+## 4. Diagrama de Domínio
+Inclua o diagrama de domínio representando as entidades principais e seus relacionamentos.
+
+---
+
+## 5. Requisitos de Usuário
+
+### 5.1 Requisitos Funcionais
+
+| ID | Nome | Descrição | Prioridade | Dependência |
+|:---:|:------|:-------------|:-----------:|:-------------|
+| RF01 | [Nome do requisito] | [Descrição funcional detalhada] | [Alta/Média/Baixa] | [Outros RFs] |
+| RF02 |  |  |  |  |
+| RF03 |  |  |  |  |
+
+---
+
+### 5.2 Requisitos Não Funcionais
+
+| ID | Nome | Descrição | Prioridade | Dependência |
+|:---:|:------|:-------------|:-----------:|:-------------|
+| RNF01 | [Nome do requisito] | [Descrição técnica ou restrição] | [Alta/Média/Baixa] | [Dependências] |
+| RNF02 |  |  |  |  |
+| RNF03 |  |  |  |  |
+
+---
+
+### 5.3 Regras de Negócio
+
+| ID | Nome | Descrição | Prioridade | Dependência |
+|:---:|:------|:-------------|:-----------:|:-------------|
+| RN01 | [Nome da regra] | [Descrição da regra de negócio] | [Alta/Média/Baixa] | [Dependências] |
+| RN02 |  |  |  |  |
+| RN03 |  |  |  |  |
+
+---
+
+```
+---
+## 3. Documento de Especificação de Requisitos
+
+### Finalidade
+Detalha tecnicamente o comportamento do sistema, descrevendo os casos de uso, atores, fluxos de interação e diagramas.
+Serve como guia para desenvolvimento, testes e validação, garantindo que todos os requisitos sejam corretamente implementados.
+
+### Template
+```
+# Documento de Especificação de Requisitos
+
+---
+
+**Discentes:** [Nomes dos autores]  
+**Projeto:** [Nome do Projeto]  
+
+---
+
+## Registro de Alterações
+
+| Versão | Responsável | Data | Alterações |
+|:------:|:-------------|:------:|:-----------|
+| 1.0 | [Nome] | [Data] | Criação do documento e diagramas. |
+
+---
+
+## 1. Introdução
+A presente especificação tem como objetivo descrever de forma clara e estruturada as funcionalidades e regras do sistema **[Nome do Sistema]**.  
+Serve como base para alinhamento entre desenvolvedores, stakeholders e usuários, descrevendo:
+- Casos de uso e fluxos de interação;
+- Condições e regras para o correto funcionamento do sistema;
+- Requisitos que devem ser implementados e testados.
+
+---
+
+## 2. Modelo de Caso de Uso do Sistema
+
+### 2.1 Diagrama de Caso de Uso
+
+### 2.2 Descrição dos Atores
+
+| Nome | Descrição |
+|:------|:------------|
+| [Ator 1] | [Função e papel no sistema]. |
+| [Ator 2] | [Função e papel]. |
+| [Ator 3] | [Função e papel]. |
+
+---
+
+### 2.3 Descrição Geral dos Casos de Uso (ICAE)
+| ID | Nome | Descrição | Ações Possíveis | Observações | Atores | Requisitos Relacionados | Classes Envolvidas |
+|:---:|:------|:-------------|:----------------|:-------------|:-----------|:--------------------------|:-------------------|
+| CDU01 | [Nome do caso de uso] | [Descrição geral da funcionalidade] | [I, C, A, E] | [Observações complementares] | [Atores envolvidos] | [RFs / RNs] | [Entidades do modelo] |
+| CDU02 |  |  |  |  |  |  |  |
+| CDU03 |  |  |  |  |  |  |  |
+
+---
+
+### 2.4 Especificação Detalhada dos Casos de Uso
+Cada caso de uso deve seguir o formato abaixo:
+
+#### CDUXX — [Nome do Caso de Uso]
+**Escopo:** [Nome do Sistema]  
+**Propósito:** [Objetivo principal do caso de uso]  
+**Ator:** [Principal ator envolvido]  
+**Pré-condições:** [Condições necessárias antes da execução]  
+**Pós-condições:** [Resultados esperados após execução]
+
+**Fluxo Normal:**
+1. [Etapa 1]
+2. [Etapa 2]
+3. [Etapa 3]
+4. [Etapa 4]
+
+**Fluxo de Exceção:**
+- [Condição de erro 1 → resposta do sistema]
+- [Condição de erro 2 → resposta do sistema]
+
+**Requisitos Relacionados:** [RFs e RNs vinculados]  
+
+---
+
+## 3. Diagrama de Classe do Sistema
+
+```
 
 ## 2. Especificação
 
