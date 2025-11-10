@@ -62,43 +62,67 @@ No nosso processo usamos estes status para gerir o trabalho. Cada status possui 
 
 ### Papéis
 
-* [Gerente de Projeto](papeis.md#gerente-de-projeto): definir e configurar tudo sobre as tarefas (atribuir responsáveis quando necessário, definir datas, prioridade e iteração), aprovar início de iterações e coordenar a comunicação entre papéis. O Gerente de Projeto é a autoridade para mover itens da coluna *Indefinido* para *Pronto* quando todos os requisitos formais estiverem atendidos, ou para recuar itens quando for necessário. Além disso ele também é responsável pelas revisões dos itens.
-* [Analista de Negócio](papeis.md#analista-de-negocio)
-  Responsável por compreender as necessidades do dono da barbearia e dos clientes, traduzindo-as em funcionalidades que agregam valor. Produz visão de negócio e valida entregas com o cliente.
-* [Analista de Requisitos](papeis.md#analista-de-requisitos)
-  Responsável por documentar e detalhar as necessidades, transformando-as em requisitos claros, critérios de aceitação e roteiros de testes.
-* [Desenvolvedor](papeis.md#desenvolvedor)
-  Responsável por construir e implementar o sistema, transformando os requisitos em funcionalidades práticas, escrevendo código, testes e mantendo a qualidade.
+* [Gerente de Projeto (GP)](papeis.md#gerente-de-projeto-gp)  
+  Responsável por planejar, acompanhar e coordenar as atividades do projeto. Define prioridades, atribui responsáveis, gerencia prazos e comunica os papéis envolvidos. Também realiza revisões das entregas, validando critérios de aceitação e aprovando ou solicitando ajustes nos produtos desenvolvidos.
+
+* [Analista de Negócio (AN)](papeis.md#analista-de-negócio-an)  
+  Compreende o contexto e as necessidades do cliente, levantando informações de negócio e traduzindo-as em objetivos e funcionalidades do sistema. Produz o **Documento de Visão** e apoia a validação das entregas junto aos stakeholders.
+
+* [Analista de Requisitos e Qualidade (Req/Q)](papeis.md#analista-de-reqq-analista-de-requisitos-e-qualidade)  
+  Transforma os requisitos de negócio em especificações técnicas detalhadas, garantindo clareza e rastreabilidade. Define critérios de aceitação, elabora o **Plano de Testes** e os **Cenários de Teste**, assegurando a qualidade e a conformidade das entregas com os requisitos definidos.
+
+* [Desenvolvedor](papeis.md#desenvolvedor)  
+  Constrói e implementa as funcionalidades do sistema conforme as especificações. Escreve o código-fonte, realiza testes unitários e integra módulos, garantindo desempenho, manutenibilidade e aderência aos padrões de qualidade.
+
 
 ### Atividades
 
-* [Planejamento de Demandas](atividades.md#1-planejamento-de-demandas): detalhar novas demandas levantadas, decidir prioridades iniciais, identificar dependências e definir os elementos mínimos necessários para que um item **saiba** se permanecerá em *Indefinido* ou seja promovido a *Pronto* (data, responsável, prioridade, iteração, critérios de aceitação mínimos).
-* [Analisar Negócio](atividades.md#1-analisar-negocio)
-  Identificar e compreender as necessidades da barbearia e de seus clientes; gerar o Documento de Visão.
-* [Especificar](atividades.md#2-especificar-funcionalidades)
-  Documentar requisitos funcionais e não-funcionais; escrever critérios de aceitação testáveis.
-* [Elaborar Plano de Testes](atividades.md#4-elaborar-plano-de-testes)
-  Definir objetivos, estratégias, técnicas e indicadores para validar requisitos, garantir qualidade e medir a efetividade dos testes ao longo do desenvolvimento.
-* [Codificar](atividades.md#3-codificar)
-  Implementar funcionalidades seguindo padrões de código e cobertura de testes.
-* [Revisar](atividades.md#4-revisar)
-  Revisar código, requisitos e validar critérios de aceitação antes da entrega final.
+* [Planejamento de Demandas](atividades.md#1-planejamento-de-demandas)  
+  Registrar, priorizar e configurar novas demandas levantadas, definindo responsáveis, iterações, dependências e critérios para que uma demanda seja considerada **Pronta**. Também atualiza o **Plano de Projeto** conforme o planejamento das iterações.
 
+* [Analisar Negócio](atividades.md#2-analisar-negócio)  
+  Entender o contexto do cliente, levantar o minimundo/domínio, identificar objetivos e delimitar o escopo inicial do projeto, gerando o **Documento de Visão** e o **Documento de Requisitos**.
+
+* [Especificar](atividades.md#3-especificar)  
+  Transformar os requisitos levantados e o escopo definido em especificações técnicas detalhadas e verificáveis, garantindo rastreabilidade entre requisitos e implementações.
+
+* [Planejamento e Especificação de Testes](atividades.md#4-planejamento-e-especificação-de-testes)  
+  Definir a estratégia, os tipos e os critérios de aceitação dos testes, além de elaborar o **Plano de Testes** e os **Cenários de Teste** que validam a conformidade do sistema com os requisitos definidos.
+
+* [Codificar](atividades.md#5-codificar)  
+  Implementar e integrar o código-fonte com base nas especificações, garantindo qualidade, cobertura de testes unitários e geração do **Produto Executável**.
+
+* [Revisar](atividades.md#6-revisar)  
+  Verificar a qualidade do código e a aderência aos requisitos, validando os critérios de aceitação e aprovando ou retornando o produto para ajustes.
 
 ---
 
 ## Artefatos
 
-* [Documento de Visão](artefatos.md#1-documento-de-visao)
-  Descreve objetivos, público, escopo e funcionalidades principais do sistema.
-* [Especificação](artefatos.md#2-especificacao)
-  Detalha requisitos funcionais com critérios de aceitação e exemplos de uso.
-  [Dicionário de Dados](artefatos.md#3-dicionário-de-dados)
-  O Dicionário de Dados documenta entidades, atributos e regras para garantir clareza e consistência no sistema.
-* [Produto](artefatos.md#3-produto)
-  Resultado da codificação e integração, disponível para uso.
-* [Plano de Testes](artefatos.md#5-plano-de-testes)
-  A validação do sistema envolve estratégias, técnicas e métricas para assegurar o cumprimento dos requisitos definidos
+* [Documento de Visão](artefatos.md#1-documento-de-visao)  
+  Descreve objetivos, público-alvo, escopo de alto nível, justificativa de negócio e principais funcionalidades do produto.
+
+* [Documento de Requisitos](artefatos.md#2-documento-de-requisitos)  
+  Registra requisitos funcionais, não funcionais e regras de negócio; inclui prioridades, dependências e histórico de alterações.
+
+* [Documento de Especificação de Requisitos](artefatos.md#3-documento-de-especificacao-de-requisitos)  
+  Detalha casos de uso, atores, fluxos (normais e de exceção) e diagramas que orientam implementação e testes.
+
+* [Especificação (REQ##)](artefatos.md#4-especificacao)  
+  Unidade de trabalho concisa e testável que descreve uma funcionalidade do ponto de vista do usuário, com pré/pós-condições, fluxo, exceções e critérios de aceitação.
+
+* [Dicionário de Dados](artefatos.md#5-dicionario-de-dados)  
+  Documenta entidades, atributos, tipos, exemplos e restrições (PK/FK/índices), garantindo consistência entre análise, desenvolvimento e testes.
+
+* [Produto (Software Executável)](artefatos.md#6-produto)  
+  Resultado da codificação e integração: o software funcional, compilado/empacotado e pronto para testes ou entrega.
+
+* [Planejamento e Cenários de Teste](artefatos.md#7-planejamento-e-cenarios-de-teste)  
+  Consolida a estratégia, técnicas, métricas e os cenários de teste (casos práticos) que verificam o atendimento dos requisitos e critérios de aceitação.
+
+* [Plano de Projeto](artefatos.md#8-plano-de-projeto)  
+  Define escopo detalhado, EAP, estimativas de esforço e custo, cronograma (Gantt) e marcos para acompanhamento e controle do projeto.
+
 
 
 ---

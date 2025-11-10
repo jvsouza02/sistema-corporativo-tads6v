@@ -6,7 +6,7 @@ Este documento apresenta as etapas do processo de desenvolvimento, destacando os
 
 ### Objetivo
 
-Detalhar e configurar novas demandas levantadas, decidindo prioridade, responsável, iteração, dependências e critérios mínimos necessários para que um item possa ser promovido de **Indefinido** para **Pronto**.
+Registrar, priorizar e configurar novas demandas levantadas, definindo responsáveis, iterações, dependências e critérios para que uma demanda seja considerada **Pronta**. Também atualiza o plano de projeto conforme o planejamento das iterações.
 
 ### Responsáveis
 
@@ -17,18 +17,18 @@ Detalhar e configurar novas demandas levantadas, decidindo prioridade, responsá
 | Elemento     | Descrição                                                                                                                                                                   |
 | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Entradas** | Solicitações de stakeholders, Documento de Visão (quando disponível), Produto.                                                                    |
-| **Saídas**   | Iteração, EAP
+| **Saídas**   | Iteração, Manutenção do **[Plano de Projeto](artefatos.md#8-plano-de-projeto)** |
 
 ### Tarefas principais
 
 1. Convocar participantes necessários e preparar material de apoio (documentos, protótipos, minimundo).
 2. Revisar cada demanda a ser analisada.
 3. Definir/confirmar: responsável, prioridade (Baixa/Média/Alta/Crítica), iteração/posição no backlog e datas previstas.
-4. Reajustar diagrama EAP
+4. Atualizar o **Plano de Projeto** com as novas demandas e ajustes de cronograma.
 
 ---
 
-## 1. Analisar Negócio
+## 2. Analisar Negócio
 
 ### Objetivo
 Entender o contexto do cliente, levantar o minimundo/domínio, identificar objetivos e delimitar o escopo inicial do projeto.
@@ -41,13 +41,13 @@ Entender o contexto do cliente, levantar o minimundo/domínio, identificar objet
 | Elemento | Descrição |
 | :--- | :--- |
 | **Entradas** | Solicitações de Clientes, demandas de mercado, estratégias de negócio. |
-| **Saídas** | Declaração de Escopo, Requisitos Iniciais, **[Documento de Visão](artefatos.md#1-documento-de-visão)**. |
+| **Saídas** | **[Documento de Visão](artefatos.md#1-documento-de-visão)**, **[Documento de Requisitos](artefatos.md#2-documento-de-requisitos)** |
 
 ### Tarefas principais
 1. Conduzir entrevistas com stakeholders (cliente, docentes).
 2. Documentar o minimundo (modelo de domínio / diagrama de classes).
 3. Identificar funcionalidades essenciais e restrições.
-4. Escrever a Declaração de Escopo (contexto, objetivo, funções principais, performance/restrições).
+4. Delimitar o escopo inicial (contexto, objetivo, funções principais).
 5. Encaminhar artefatos para o Analista de Req/Q para especificação. 
 
 ---
@@ -55,7 +55,7 @@ Entender o contexto do cliente, levantar o minimundo/domínio, identificar objet
 ## 3. Especificar
 
 ### Objetivo
-Converter visão/escopo em requisitos claros, verificáveis e rastreáveis (Especificações, REQ.xxx).
+Transformar os requisitos levantados e o escopo definido em especificações técnicas detalhadas e verificáveis, garantindo rastreabilidade entre requisitos e implementações.
 
 ### Responsável
 **[Analista de Req/Q](papeis.md#analista-de-reqq-analista-de-requisitos-e-qualidade)**.
@@ -64,8 +64,8 @@ Converter visão/escopo em requisitos claros, verificáveis e rastreáveis (Espe
 
 | Elemento | Descrição |
 | :--- | :--- |
-| **Entradas** | **[Documento de Visão](artefatos.md#1-documento-de-visão)**, Declaração de Escopo, Modelo de Domínio / Diagrama de Classes |
-| **Saídas** | **[Especificação](artefatos.md#2-especificação)**, **[Dicionário de Dados](artefatos.md#3-dicionário-de-dados)**|
+| **Entradas** | **[Documento de Visão](artefatos.md#1-documento-de-visão)**, **[Documento de Requisitos](artefatos.md#2-documento-de-requisitos)** |
+| **Saídas** |  **[Documento de Especificação de Requisitos](artefatos.md#3-documento-de-especificação-de-requisitos)**, **[Especificação](artefatos.md#4-especificação)**, **[Dicionário de Dados](artefatos.md#5-dicionário-de-dados)**|
 
 ### Tarefas principais
 1. Identificar e registrar o **Escopo** de cada caso de uso, delimitando funcionalidades essenciais.  
@@ -79,10 +79,10 @@ Converter visão/escopo em requisitos claros, verificáveis e rastreáveis (Espe
 
 ---
 
-## 4. Elaborar plano de testes
+## 4. Planejamento e Especificação de Testes
 
 ### Objetivo
-Definir e documentar a estratégia, técnicas e indicadores que orientarão a execução dos testes do sistema, assegurando que todas as funcionalidades e requisitos especificados sejam devidamente validados. Essa atividade visa garantir a qualidade e a conformidade do produto com as expectativas do cliente.
+Esta atividade tem como objetivo definir a estratégia e os elementos necessários para o processo de teste do sistema. Envolve a criação do Plano de Testes, que descreve o escopo, os objetivos, os critérios e os recursos necessários, e dos Cenários de Teste, que especificam as situações práticas a serem executadas para validar as funcionalidades implementadas e garantir a conformidade com os requisitos definidos.
 
 ### Responsável
 **[Analista de Req/Q](papeis.md#analista-de-reqq-analista-de-requisitos-e-qualidade)**.
@@ -90,22 +90,22 @@ Definir e documentar a estratégia, técnicas e indicadores que orientarão a ex
 ### Artefatos
 | Elemento | Descrição |
 | :--- | :--- |
-| **Entradas** | **[Especificação](artefatos.md#2-especificação)**, **[Dicionário de Dados](artefatos.md#3-dicionário-de-dados)** |
-| **Saídas** | **[Plano de Testes](artefatos.md#5-plano-de-testes)**|
+| **Entradas** | **[Especificação](artefatos.md#4-especificação)**, **[Dicionário de Dados](artefatos.md#5-dicionário-de-dados)** |
+| **Saídas** | **[Plano de Testes](artefatos.md#7-plano-de-testes)**, **[Cenários de Teste](artefatos.md#9-cenarios-de-teste)**|
 
 ### Tarefas Principais
-1. Descrever o propósito do plano e o que se pretende garantir com a execução dos testes.
-2. Determinar os tipos de testes que serão aplicados (funcional, desempenho, segurança etc.) e como serão distribuídos ao longo do desenvolvimento.
-3. Especificar se os testes serão manuais, automatizados, exploratórios, entre outros.
-4. Escolher métricas que permitam avaliar a eficácia dos testes (como taxa de defeitos, tempo de execução, cobertura de código etc.).
-5. Revisar o documento junto aos desenvolvedores e demais envolvidos para garantir que o escopo e os critérios estejam corretos.
+1. Identificar os objetivos e o escopo dos testes.  
+2. Definir os tipos e níveis de teste que serão aplicados.  
+3. Especificar os recursos, ferramentas e ambientes necessários.  
+4. Elaborar o Plano de Testes com a estratégia e critérios de aceitação.  
+5. Definir os Cenários de Teste com base nos requisitos e funcionalidades do sistema. 
 
 ---
 
 ## 5. Codificar
 
 ### Objetivo
-A atividade **Codificar** corresponde à implementação. Nessa fase, o time desenvolve e integra o **código-fonte**, transformando a **[especificação](artefatos.md#2-especificação)** em um **[Produto Executável](artefatos.md#3-produto-software-executável)** de acordo com os padrões de qualidade. Além disso, o desenvolvedor é responsável pela criação e manutenção dos **testes unitários**, garantindo que cada módulo do código funcione de forma isolada e conforme especificado.
+A atividade **Codificar** corresponde à implementação. Nessa fase, o time desenvolve e integra o **código-fonte**, transformando a **[especificação](artefatos.md#4-especificação)** em um **[Produto Executável](artefatos.md#6-produto-software-executável)** de acordo com os padrões de qualidade. Além disso, o desenvolvedor é responsável pela criação e manutenção dos **testes unitários**, garantindo que cada módulo do código funcione de forma isolada e conforme especificado.
 
 
 ### Responsável
@@ -115,15 +115,15 @@ A atividade **Codificar** corresponde à implementação. Nessa fase, o time des
 
 | Elemento | Descrição |
 | :--- | :--- |
-| **Entradas** | **[Especificação](artefatos.md#2-especificação)** com Critérios de Aceitação, Requisitos e Diagramas, **[Dicionário de Dados](artefatos.md#3-dicionário-de-dados)**|
-| **Saídas** | **[Produto Executável](artefatos.md#3-produto-software-executável)**, Código-fonte, Testes Unitários. |
+| **Entradas** | **[Especificação](artefatos.md#4-especificação)** com Critérios de Aceitação, Requisitos e Diagramas, **[Dicionário de Dados](artefatos.md#5-dicionário-de-dados)**|
+| **Saídas** | **[Produto Executável](artefatos.md#6-produto-software-executável)**, Código-fonte, Testes Unitários. |
 
 ### Tarefas Principais
 1. **Planejamento Técnico:** Definir a arquitetura de baixo nível (classes, funções, módulos).  
 2. **Implementação:** Escrever o código de acordo com as Especificações.  
 3. **Integração:** Unir os módulos ao sistema e resolver dependências.  
 5. **Elaboração de Testes Unitários:** Desenvolver testes automatizados para validar o comportamento esperado de classes, funções e métodos de forma isolada.
-4. **Entrega do Produto:** Compilar e gerar o **[Produto Executável](artefatos.md#3-produto-software-executável)** para testes.
+4. **Entrega do Produto:** Compilar e gerar o **[Produto Executável](artefatos.md#6-produto-software-executável)** para testes.
 
 ## 6. Revisar
 
@@ -135,7 +135,7 @@ Verificar qualidade do código e aderência aos requisitos, garantindo que a ent
 
 | Elemento | Descrição |
 | :--- | :--- |
-| **Entradas** | **[Especificação](artefatos.md#2-especificação)**, Documentação, [Produto/Código](artefatos.md#4-produto-software-executável)|
+| **Entradas** | **[Especificação](artefatos.md#4-especificação)**, Documentação, **[Produto/Código](artefatos.md#6-produto-software-executável)**|
 | **Saídas** | Aprovação ou devolução com comentários,  observações/pendências documentadas.|
 
 ### Tarefas principais

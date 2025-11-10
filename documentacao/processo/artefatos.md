@@ -92,7 +92,7 @@ Liste os principais riscos que podem afetar o sucesso do projeto.
 
 ---
 
-## Documento de Requisitos
+## 2. Documento de Requisitos
 
 ### Finalidade
 Define o propósito, o contexto de negócio e as funcionalidades que o sistema deve oferecer, incluindo os requisitos funcionais, não funcionais e regras de negócio.
@@ -413,3 +413,104 @@ Especificar as técnicas de teste que serão aplicadas, como testes manuais, aut
 
 Definir os indicadores que serão usados para medir o sucesso dos testes, como taxa de defeitos encontrados, cobertura de código, tempo de execução de testes, entre outros. Estes indicadores ajudarão a avaliar a qualidade do processo de testes e a efetividade das atividades realizadas.
 ```
+
+## 8. Plano de Projeto
+
+O Plano de Projeto é um artefato que organiza as principais informações sobre o planejamento e execução do projeto. Ele define o escopo, apresenta o cronograma de atividades, detalha a EAP (Estrutura Analítica do Projeto), e inclui as estimativas de esforço e custo, além de um cronograma em formato de Gantt para visualização das etapas e prazos. Esse documento serve como guia para o acompanhamento e controle do andamento do projeto.
+
+``` markdown
+# Template de Artefato — Plano de Projeto
+
+> **Discentes:** [Nomes dos integrantes]  
+> **Projeto:** [Nome do projeto]  
+> **Versão:** [v1.0]  
+> **Data:** [DD/MM/AAAA]
+
+---
+
+## 1. Escopo do Projeto
+
+### 1.1 Objetivo
+[Descreva de forma breve o objetivo principal do projeto.]
+
+### 1.2 Entregáveis
+- [Entregável 1]  
+- [Entregável 2]  
+- [Entregável 3]
+
+### 1.3 Limites do Escopo
+- [Itens que não estão incluídos no escopo do projeto.]
+
+---
+
+## 2. Cronograma
+
+| Etapa | Descrição | Início | Término | Responsável |
+|---|---|---|---|---|
+| 1 | [Ex.: Planejamento] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| 2 | [Ex.: Desenvolvimento] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| 3 | [Ex.: Testes] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| 4 | [Ex.: Implantação] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+
+---
+
+## 3. EAP — Estrutura Analítica do Projeto
+
+1. **Projeto:** [Nome do Projeto]  
+   1.1 Planejamento  
+   - 1.1.1 Levantamento de requisitos  
+   - 1.1.2 Definição do cronograma  
+   1.2 Execução  
+   - 1.2.1 Desenvolvimento  
+   - 1.2.2 Testes  
+   1.3 Encerramento  
+   - 1.3.1 Entrega final  
+   - 1.3.2 Avaliação do projeto  
+
+---
+
+## 4. Estimativas de Esforço e Custo
+
+| ID | Atividade | Esforço (horas) | Custo/hora (R$) | Custo total (R$) | Responsável |
+|---|---|---:|---:|---:|---|
+| 1 | [Ex.: Levantamento de requisitos] | [40] | [50,00] | [2000,00] | [Nome] |
+| 2 | [Ex.: Desenvolvimento do sistema] | [100] | [60,00] | [6000,00] | [Nome] |
+| 3 | [Ex.: Testes e correções] | [40] | [45,00] | [1800,00] | [Nome] |
+
+**Custo total estimado:** [Soma dos custos totais]  
+**Esforço total estimado:** [Soma das horas]  
+
+---
+
+## 5. Cronograma (Gantt e Atividades)
+
+### 5.1 Lista de Atividades
+
+| ID | Atividade | Início | Término | Duração (dias) | Dependência | Status |
+|---|---|---|---|---:|---|---|
+| 1 | Planejamento | [DD/MM/AAAA] | [DD/MM/AAAA] | [5] | — | Planejado |
+| 2 | Desenvolvimento | [DD/MM/AAAA] | [DD/MM/AAAA] | [20] | 1 | Em andamento |
+| 3 | Testes | [DD/MM/AAAA] | [DD/MM/AAAA] | [10] | 2 | Planejado |
+| 4 | Implantação | [DD/MM/AAAA] | [DD/MM/AAAA] | [3] | 3 | Planejado |
+
+### 5.2 Diagrama de Gantt (Mermaid)
+
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD
+    title Cronograma do Projeto — [Nome do Projeto]
+    excludes    weekends
+
+    section Planejamento
+    Planejamento :done, a1, 2025-01-05, 5d
+
+    section Execução
+    Desenvolvimento :active, a2, after a1, 20d
+    Testes :a3, after a2, 10d
+
+    section Encerramento
+    Implantação :a4, after a3, 3d
+
+```
+
+

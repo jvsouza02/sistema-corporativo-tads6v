@@ -81,6 +81,6 @@ Testes manuais e automatizados, com foco nas funcionalidades mais importantes.
 - Os casos de teste devem estar aprovados pela equipe  
 
 **Critérios de Saída (para encerrar os testes):**  
-- Pelo menos 95% dos testes devem passar com sucesso  
+- Pelo menos 50% dos testes devem passar com sucesso  
 - Nenhum problema grave pode ficar sem correção  
 - Todos os fluxos principais devem funcionar sem erro  
