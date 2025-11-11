@@ -35,10 +35,6 @@ Este documento serve como guia para a equipe de desenvolvimento e qualidade.
 - Exibição de mensagens de validação e feedback do sistema.  
 - Visualização de histórico de atendimentos.
 
-**Fora do escopo:**
-
-- Testes de desempenho, carga e segurança avançada.  
-
 ---
 
 ## 3. Objetivos de Testes
