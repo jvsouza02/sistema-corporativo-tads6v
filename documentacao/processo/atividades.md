@@ -91,7 +91,7 @@ Esta atividade tem como objetivo definir a estratégia e os elementos necessári
 | Elemento | Descrição |
 | :--- | :--- |
 | **Entradas** | **[Especificação](artefatos.md#4-especificação)**, **[Dicionário de Dados](artefatos.md#5-dicionário-de-dados)** |
-| **Saídas** | **[Plano de Testes](artefatos.md#7-plano-de-testes)**, **[Cenários de Teste](artefatos.md#9-cenarios-de-teste)**|
+| **Saídas** | **[Plano de Testes](artefatos.md#7-plano-de-testes)**, **[Cenários de Teste](artefatos.md#9-cenários-de-teste)**|
 
 ### Tarefas Principais
 1. Identificar os objetivos e o escopo dos testes.  

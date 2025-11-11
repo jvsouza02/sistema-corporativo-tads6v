@@ -418,6 +418,8 @@ Definir os indicadores que serão usados para medir o sucesso dos testes, como t
 
 O Plano de Projeto é um artefato que organiza as principais informações sobre o planejamento e execução do projeto. Ele define o escopo, apresenta o cronograma de atividades, detalha a EAP (Estrutura Analítica do Projeto), e inclui as estimativas de esforço e custo, além de um cronograma em formato de Gantt para visualização das etapas e prazos. Esse documento serve como guia para o acompanhamento e controle do andamento do projeto.
 
+### Template
+
 ``` markdown
 # Template de Artefato — Plano de Projeto
 
@@ -513,4 +515,21 @@ gantt
 
 ```
 
+## 9. Cenários de Teste
 
+O artefato Cenários de Teste descreve situações práticas de validação do sistema, detalhando condições, ações e resultados esperados para verificar o correto funcionamento das funcionalidades implementadas.
+
+### Template
+
+``` markdown
+| **Componente**      | **Descrição** |
+|----------------------|---------------|
+| **Identificador**    | CT### |
+| **Nome**             | [Título do cenário de teste] |
+| **Objetivo**         | [Descreva o objetivo do teste] |
+| **Pré-condições**    | 1. [Pré-condição 1]<br>2. [Pré-condição 2] |
+| **Dado**             | [Situação inicial ou condição do teste] |
+| **Comportamento**    | [Ação ou evento que será executado] |
+| **Etapas do teste**  | 1. [Passo 1]<br>2. [Passo 2]<br>3. [Passo 3] |
+| **Resultados esperados** | [Resultado esperado do teste] |
+```

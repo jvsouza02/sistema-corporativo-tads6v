@@ -117,11 +117,14 @@ No nosso processo usamos estes status para gerir o trabalho. Cada status possui 
 * [Produto (Software Executável)](artefatos.md#6-produto)  
   Resultado da codificação e integração: o software funcional, compilado/empacotado e pronto para testes ou entrega.
 
-* [Planejamento e Cenários de Teste](artefatos.md#7-planejamento-e-cenarios-de-teste)  
-  Consolida a estratégia, técnicas, métricas e os cenários de teste (casos práticos) que verificam o atendimento dos requisitos e critérios de aceitação.
+* [Planejamento e Cenários de Teste](artefatos.md#7-plano-de-testes)  
+  Consolida a estratégia, técnicas e métricas que verificam o atendimento dos requisitos e critérios de aceitação.
 
 * [Plano de Projeto](artefatos.md#8-plano-de-projeto)  
   Define escopo detalhado, EAP, estimativas de esforço e custo, cronograma (Gantt) e marcos para acompanhamento e controle do projeto.
+
+* [Cenários de Teste](artefatos.md#8-cenarios-de-teste)  
+  Registra situações práticas que descrevem condições, ações e resultados esperados para validar o correto funcionamento das funcionalidades do sistema.
 
 
 

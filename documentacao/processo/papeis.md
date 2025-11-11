@@ -40,7 +40,7 @@ Responsável em expecificar o que é necessário para que se cheque no produto f
     2. **Saída Principal**: [Especificação](artefatos.md#4-especificação)
 * [Planejamento e Especificação de Testes](atividades.md#4-planejamento-e-especificação-de-testes): Elaborar Plano de Testes: Definir a estratégia, técnicas e indicadores que orientarão a execução dos testes, garantindo que o sistema atenda aos requisitos e padrões de qualidade.
     1. **Entrada Principal**: [Especificação](artefatos.md#4-especificação)
-    2. **Saída Principal**: [Cenários de Teste](artefatos.md#9-cenarios-de-teste)
+    2. **Saída Principal**: [Cenários de Teste](artefatos.md#9-cenários-de-teste)
 
 ---
 
