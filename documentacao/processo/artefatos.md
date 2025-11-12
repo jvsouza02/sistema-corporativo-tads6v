@@ -485,14 +485,6 @@ Plano de Testes
 - [Critério 2]  
 - [Critério 3]  
 
----
-
-## 9. Observações
-
-[Inserir observações adicionais, restrições ou informações complementares sobre o plano de testes.]
-
-
-
 
 ```
 
