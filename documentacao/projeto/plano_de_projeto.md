@@ -49,7 +49,6 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 - Não vamos criar **aplicativo para celular** – o sistema vai funcionar pelo navegador do celular e computador.  
 - Não vai ter **login por redes sociais** – os usuários vão fazer cadastro direto no sistema.  
 - Não terá **controle de estoque** – não vamos gerenciar produtos em estoque.  
-- Não terá **relatórios muito complexos** – apenas números básicos sobre o movimento.
 
 ---
 
@@ -78,6 +77,8 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 ---
 
 ## 4. EAP - Estrutura Analítica do Projeto
+
+![EAP - Estrutura Analítica do Projeto](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/EAP.jpg)
 
 ---
 
@@ -222,10 +223,10 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 
 ## 6. Diagrama de Gantt
 
-![Diagrama de Gantt](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/gantt.png)
+![Diagrama de Gantt](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/grafico_de_gantt.png)
 
 ---
 
 ## 7. Diagrama de Atividades do Projeto
 
-![Diagrama de Atividades](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/atividade_projeto.png)
+![Diagrama de Atividades](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/diagrama_de_atvidade_do_projeto.png)
