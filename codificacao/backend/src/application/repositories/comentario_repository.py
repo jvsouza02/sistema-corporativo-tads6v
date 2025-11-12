@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from src.application.entities.comentario_entity import Comentario
+from codificacao.backend.src.application.entities.comentario_entity import Comentario
 
 class IComentarioRepository(ABC):
     @abstractmethod

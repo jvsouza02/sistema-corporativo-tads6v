@@ -1,4 +1,4 @@
-from datetime import date, datetime, time, timedelta
+from datetime import datetime, time, timedelta
 from config.database import SessionLocal
 from sqlalchemy import select as Select
 from src.application.entities.comentario_entity import Comentario
@@ -8,19 +8,27 @@ class ComentarioRepository():
     def __init__(self):
         self.db = SessionLocal()
 
-    def _to_dict(self, model: ComentarioModel):
+    def _to_dict(self, comentario: Comentario):
+        """Converte entidade Comentario para dicionário"""
         return {
-            "id_comentario": model.id_comentario,
-            "comentario": model.comentario,
-            "id_barbearia": model.id_barbearia,
-            "data_criacao": model.data_criacao,
-            "data_atualizacao": model.data_atualizacao
+            "id_comentario": comentario.id_comentario,
+            "comentario": comentario.comentario,
+            "servico": comentario.servico,
+            "produto": comentario.produto,
+            "valor_total": comentario.valor_total,
+            "id_barbearia": comentario.id_barbearia,
+            "data_criacao": comentario.data_criacao,
+            "data_atualizacao": comentario.data_atualizacao
         }
 
-    def salvar(self, comentario):
+    def salvar(self, comentario: Comentario):
+        """Salva um novo comentário no banco de dados"""
         comentario_salvo = ComentarioModel(
             id_comentario=comentario.id_comentario,
             comentario=comentario.comentario,
+            servico=comentario.servico,
+            produto=comentario.produto,
+            valor_total=comentario.valor_total,
             id_barbearia=comentario.id_barbearia,
             data_criacao=comentario.data_criacao,
             data_atualizacao=comentario.data_atualizacao
@@ -35,14 +43,16 @@ class ComentarioRepository():
         return self._to_dict(comentario)
 
     def listar_todos(self):
-        result = self.db.execute(Select(ComentarioModel).order_by(ComentarioModel.data_atualizacao.desc()))
+        """Lista todos os comentários ordenados por data de atualização"""
+        result = self.db.execute(
+            Select(ComentarioModel).order_by(ComentarioModel.data_atualizacao.desc())
+        )
         return result.scalars().all()
     
     def listar_atendimentos_por_barbearia(self, id_barbearia: str):
         """
         Lista comentários da semana (domingo a domingo) para a barbearia informada.
-        Se ref_date for None, usa hoje como referência.
-        Retorna uma lista de dicionários usando self._to_dict(model).
+        Retorna a contagem de atendimentos.
         """
         # referência: hoje em data (sem hora)
         ref_date = datetime.now().date()
@@ -68,24 +78,35 @@ class ComentarioRepository():
 
         return query.count()
     
-    def buscar_por_id(self, comentario_id: str):
-        return self.db.query(ComentarioModel).filter(ComentarioModel.id_comentario == comentario_id).first()
+    def buscar_por_id(self, comentario_id: str) -> ComentarioModel | None:
+        """Busca um comentário pelo ID"""
+        return self.db.query(ComentarioModel).filter(
+            ComentarioModel.id_comentario == comentario_id
+        ).first()
 
-    def atualizar(self, id_comentario, comentario):
-        comentario_model = self.db.query(ComentarioModel).filter(ComentarioModel.id_comentario == id_comentario).first()
-        if not comentario_model:
+    def atualizar(self, id_comentario, comentario_texto, servico, produto, valor_total) -> ComentarioModel | None:
+        """Atualiza um comentário existente"""
+        comentario = self.buscar_por_id(id_comentario)
+        if not comentario:
             return None
-        comentario_model.comentario = comentario
+        
+        comentario.comentario = comentario_texto
+        comentario.servico = servico
+        comentario.produto = produto
+        comentario.valor_total = valor_total
+
         try:
-            self.db.merge(comentario_model)
+            self.db.merge(comentario)
             self.db.commit()
             self.db.refresh(comentario)
         except Exception as e:
             self.db.rollback()
             raise e
+        
         return comentario
 
-    def deletar(self, comentario_id: str):
+    def deletar(self, comentario_id: str) -> ComentarioModel | None:
+        """Deleta um comentário"""
         comentario = self.buscar_por_id(comentario_id)
         if comentario:
             try:
