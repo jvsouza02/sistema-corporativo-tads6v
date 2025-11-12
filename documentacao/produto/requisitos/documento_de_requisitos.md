@@ -1,13 +1,13 @@
 # Documento de Requisitos do Sistema
 
 **Discentes:** Yuri Fernandes, Maria da Paz, João Victor, Lucas Freitas  
-**Projeto:** Sistema de Agendamento e Gestão de Barbearias  
+**Projeto:** Sistema Gestão de Barbearias  
 
 ---
 
 ## 1. Introdução
 
-Este documento apresenta a especificação inicial para o Sistema de Agendamento e Gestão da Barbearia.  
+Este documento apresenta a especificação inicial para o Sistema de Gestão da Barbearia.  
 A Seção 2 detalha o propósito do sistema, explicando sua função central no gerenciamento de horários e recursos.  
 Na Seção 3 é estabelecido o minimundo (contexto de negócio)**, ilustrando como o sistema organiza as informações sobre serviços, profissionais e clientes para otimizar a operação da barbearia.  
 A Seção 4 apresenta o Diagrama de Domínio, uma representação visual das classes conceituais, atributos e relacionamentos-chave do minimundo.  
