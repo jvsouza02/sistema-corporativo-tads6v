@@ -43,7 +43,8 @@ def registrar(usuario_request: dict = Body(...)):
                 "success": True,
                 "message": "Usuário cadastrado com sucesso",
                 "redirect_url": "http://localhost:5173/gerenciar_barbearia.html",
-                "usuario": usuario
+                "usuario": usuario,
+                "cargo": "proprietario"
             }
         elif usuario['papel'] == 'profissional':
             return {
