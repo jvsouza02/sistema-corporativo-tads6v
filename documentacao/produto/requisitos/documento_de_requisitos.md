@@ -5,18 +5,6 @@
 
 ---
 
-## Registro de Alterações
-
-| Versão | Responsável     | Data       | Alterações                                                                                                   |
-|:-------|:----------------|:-----------|:-------------------------------------------------------------------------------------------------------------|
-| 1.0    | Yuri Fernandes  | 05/10/2025 | Criação do documento de requisitos, abrangendo minimundo, diagrama de domínio, requisitos e regras de negócio |
-| 1.1    | Yuri Fernandes  | 20/10/2025 | Adição de novas funcionalidades do sistema, mudança em terminologias, alterações feitas no minimundo e requisitos do usuário |
-| 1.2    | Yuri Fernandes  | 28/10/2025 | Incrementação de uma nova funcionalidade no gerenciamento de barbearias |
-| 1.3    | Yuri Fernandes  | 02/11/2025 | Ajustes de funcionalidades sugeridas após reunião com o cliente, alterações nas descrições do minimundo e nos requisitos funcionais e regras de negócio |
-| 1.4    | Yuri Fernandes  | 10/11/2025 | Realizando alterações em descrições de algumas funcionalidades |
-
----
-
 ## 1. Introdução
 
 Este documento apresenta a especificação inicial para o Sistema de Agendamento e Gestão da Barbearia.  
