@@ -382,94 +382,116 @@ Documento que define a estratégia, técnicas e métricas usadas para validar o 
 ### Template
 
 ```markdown
-# Plano de Testes
 
+Plano de Testes
+
+> **Discentes:** [Nomes dos integrantes]  
 > **Projeto:** [Nome do projeto]  
-> **Área testada:** [Descreva o módulo, funcionalidade ou fluxo testado]  
-> **Preparado por:** [Nome do responsável pelo teste]  
-> **Data:** [DD/MM/AAAA]  
 
 ---
 
-## 1. Objetivo
+## Seção | Detalhes
 
-[Descreva o propósito do plano de teste — o que será validado e qual o resultado esperado.]
-
-Exemplo:  
-Garantir que o sistema [nome do módulo ou funcionalidade] funcione conforme os requisitos definidos, permitindo [ação principal] e assegurando a integridade dos dados e o comportamento esperado.
-
----
-
-## 2. Estratégia
-
-[Explique a abordagem de testes a ser utilizada.]
-
-Exemplo:  
-Serão aplicadas técnicas de teste [tipo de teste: unitário, funcional, de integração, etc.] com foco em [objetivo principal].  
-Os testes podem ser automatizados ou manuais, dependendo da disponibilidade de código e ambiente.
+| **Campo** | **Descrição** |
+|---|---|
+| **Título do Plano de Testes** | [Título completo do plano de testes] |
+| **Preparado por** | [Nome(s) e função(ões)] |
+| **Data** | [DD/MM/AAAA] |
 
 ---
 
-## 3. Técnica
+## 1. Introdução
 
-[Informe a técnica de teste utilizada.]
-
-Exemplo:  
-Técnica funcional (caixa-preta) — os casos de teste serão criados com base nas especificações e requisitos do sistema, cobrindo tanto os fluxos principais (happy path) quanto os alternativos e de erro.
+[Descreva o objetivo do plano de testes, seu propósito e importância para o projeto.]
 
 ---
 
-## 4. Indicadores
+## 2. Escopo de Testes
 
-[Liste os indicadores e metas de qualidade a serem observados durante os testes.]
+**Módulos e funcionalidades a serem testados:**
+- [Item 1]  
+- [Item 2]  
+- [Item 3]  
 
-| Indicador | Descrição | Meta / Critério |
+**Fora do escopo:**
+- [Item 1]  
+- [Item 2]  
+
+---
+
+## 3. Objetivos de Testes
+
+[Listar os objetivos que os testes devem alcançar.]
+
+---
+
+## 4. Abordagem de Testes
+
+**Metodologias:**  
+[Descrever a metodologia adotada para os testes.]
+
+**Tipos de testes:**  
+- [Tipo 1]  
+- [Tipo 2]  
+- [Tipo 3]  
+
+**Ferramentas utilizadas:**  
+- [Ferramenta 1]  
+- [Ferramenta 2]  
+- [Ferramenta 3]  
+
+---
+
+## 5. Cronograma de Testes
+
+| **Fase** | **Data de Início** | **Data de Término** |
 |---|---|---|
-| Taxa de sucesso dos testes | Percentual de casos de teste aprovados | 100% |
-| Cobertura de testes | Percentual de fluxos e variações cobertos | [Ex.: 80%] |
-| Falhas encontradas | Número de falhas registradas por severidade | [Ex.: Nenhuma falha crítica aceita] |
+| [Fase 1] | [DD/MM/AAAA] | [DD/MM/AAAA] |
+| [Fase 2] | [DD/MM/AAAA] | [DD/MM/AAAA] |
+| [Fase 3] | [DD/MM/AAAA] | [DD/MM/AAAA] |
+| [Fase 4] | [DD/MM/AAAA] | [DD/MM/AAAA] |
 
 ---
 
-## 5. Cenários de Teste
+## 6. Riscos e Estratégias de Mitigação
 
-[Liste os cenários ou casos de teste a serem executados.]
-
-| ID | Descrição do Cenário | Pré-condições | Passos de Execução | Resultado Esperado | Resultado Obtido | Status |
-|---|---|---|---|---|---|---|
-| CT01 | [Ex.: Login do usuário barbeiro] | [Usuário cadastrado] | [1. Acessar tela de login<br>2. Inserir credenciais válidas<br>3. Clicar em “Entrar”] | [Sistema redireciona para a página inicial] | [Resultado real] | [Aprovado/Reprovado] |
-| CT02 | [Ex.: Registrar atendimento] | [Usuário logado] | [1. Abrir módulo de atendimentos<br>2. Clicar em “Novo Atendimento”<br>3. Preencher dados<br>4. Salvar] | [Atendimento registrado e exibido na listagem] | [Resultado real] | [Aprovado/Reprovado] |
-
----
-
-## 6. Critérios de Aceite
-
-[Defina as condições para considerar os testes bem-sucedidos.]
-
-Exemplo:  
-- Todos os casos de teste executados devem ser aprovados.  
-- Nenhuma falha crítica ou bloqueadora deve permanecer aberta.  
-- As funcionalidades principais devem seguir o fluxo previsto nos requisitos.  
+| **Risco** | **Estratégia / Como Evitar** |
+|---|---|
+| [Risco 1] | [Estratégia 1] |
+| [Risco 2] | [Estratégia 2] |
+| [Risco 3] | [Estratégia 3] |
 
 ---
 
-## 7. Ambiente de Testes
+## 7. Entregas
 
-[Descreva o ambiente, ferramentas e configurações utilizadas para a execução dos testes.]
+[Listar os artefatos e resultados esperados do processo de testes.]
 
-Exemplo:  
-- **Ambiente:** [Homologação / Desenvolvimento / Produção de teste]  
-- **Navegadores:** [Chrome, Edge, Firefox]  
-- **Banco de Dados:** [MySQL / PostgreSQL / SQL Server]  
-- **Ferramentas:** [Postman, Selenium, Jira, etc.]
+- [Entrega 1]  
+- [Entrega 2]  
+- [Entrega 3]  
 
 ---
 
-## 8. Observações
+## 8. Critérios de Entrada e Saída
 
-[Adicione notas adicionais, restrições ou informações relevantes sobre os testes.]
+**Critérios de Entrada:**  
+- [Critério 1]  
+- [Critério 2]  
+- [Critério 3]  
+
+**Critérios de Saída:**  
+- [Critério 1]  
+- [Critério 2]  
+- [Critério 3]  
 
 ---
+
+## 9. Observações
+
+[Inserir observações adicionais, restrições ou informações complementares sobre o plano de testes.]
+
+
 
 
 ```
@@ -482,20 +504,21 @@ O Plano de Projeto é um artefato que organiza as principais informações sobre
 
 ``` markdown
 
-#Plano de Projeto
+# Plano de Projeto
 
 > **Discentes:** [Nomes dos integrantes]  
 > **Projeto:** [Nome do projeto]  
+> **Versão:** [v1.0]  
 > **Data:** [DD/MM/AAAA]
 
 ---
 
 ## 1. Escopo do Projeto
 
-[Descreva aqui o propósito geral e o contexto do projeto.]
+[Descrever o propósito geral e o contexto do projeto.]
 
 ### 1.1 Objetivo
-[Explique de forma breve o objetivo principal do projeto.]
+[Descrever de forma breve o objetivo principal do projeto.]
 
 ### 1.2 Entregáveis
 [Listar os produtos e resultados que serão gerados durante o projeto.]
@@ -505,7 +528,7 @@ O Plano de Projeto é um artefato que organiza as principais informações sobre
 - [Entregável 3]  
 
 ### 1.3 Limites do Escopo
-[Indique o que **não** será incluído no projeto.]
+[Indicar o que **não** será incluído no escopo do projeto.]
 
 - [Item fora do escopo 1]  
 - [Item fora do escopo 2]  
@@ -515,25 +538,23 @@ O Plano de Projeto é um artefato que organiza as principais informações sobre
 
 ## 2. Cronograma Geral
 
-| Etapa | Descrição | Início | Término | Responsável |
+| **Etapa** | **Descrição** | **Início** | **Término** | **Responsável** |
 |---|---|---|---|---|
-| 1 | [Etapa 1] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
-| 2 | [Etapa 2] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
-| 3 | [Etapa 3] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
-| 4 | [Etapa 4] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
-| 5 | [Etapa 5] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| [1] | [Etapa 1] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| [2] | [Etapa 2] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| [3] | [Etapa 3] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| [4] | [Etapa 4] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| [5] | [Etapa 5] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
 
 ---
 
 ## 3. Estimativas de Esforço e Custo
 
-| ID | Atividade | Esforço (horas) | Custo/hora (R$) | Custo total (R$) | Responsável |
+| **ID** | **Atividade** | **Esforço (horas)** | **Custo/hora (R$)** | **Custo total (R$)** | **Responsável** |
 |---|---|---:|---:|---:|---|
 | [EC01] | [Atividade 1] | [--] | [--] | [--] | [--] |
 | [EC02] | [Atividade 2] | [--] | [--] | [--] | [--] |
 | [EC03] | [Atividade 3] | [--] | [--] | [--] | [--] |
-| [EC04] | [Atividade 4] | [--] | [--] | [--] | [--] |
-| [EC05] | [Atividade 5] | [--] | [--] | [--] | [--] |
 
 **Custo total estimado:** [Soma dos custos totais]  
 **Esforço total estimado:** [Soma das horas]  
@@ -542,39 +563,41 @@ O Plano de Projeto é um artefato que organiza as principais informações sobre
 
 ## 4. EAP — Estrutura Analítica do Projeto
 
-Exemplo de estrutura:
-
 ### 4.1 Gerenciamento do Projeto
-- [1.1 Levantamento de Demandas do Cliente]  
+- [Tarefa 1]  
   - **Atividades:** [Descrever]  
   - **Recursos:** [Descrever]  
 
-[Adicione aqui outras áreas da EAP conforme necessidade, como:  
-Requisitos do Produto, Construção, Testes e Qualidade, Encerramento, etc.]
+[Adicionar aqui outras áreas da EAP conforme necessário.]
 
 ---
 
 ## 5. Lista de Atividades
 
-| ID | Atividade | Início | Término | Status | Responsável |
+| **ID** | **Atividade** | **Início** | **Término** | **Status** | **Responsável** |
 |---|---|---|---|---|---|
 | [LA01] | [Atividade 1] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Planejado/Concluído] | [Nome] |
 | [LA02] | [Atividade 2] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Planejado/Concluído] | [Nome] |
-| [LA03] | [Atividade 3] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Planejado/Concluído] | [Nome] |
 
 ---
 
 ## 6. Diagrama de Gantt
 
 > **Anexar aqui a imagem do Diagrama de Gantt do projeto.**  
-> *(Exemplo: inserir link ou imagem gerada da ferramenta utilizada.)*
+> *(Inserir link ou imagem gerada da ferramenta utilizada.)*
 
 ---
 
 ## 7. Diagrama de Atividade do Projeto
 
 > **Anexar aqui a imagem do Diagrama de Atividade do Projeto.**  
-> *(Exemplo: inserir link ou imagem exportada do software de modelagem.)*
+> *(Inserir link ou imagem exportada do software de modelagem.)*
+
+---
+
+## 8. Observações
+
+[Inserir observações adicionais, notas ou informações complementares sobre o plano de projeto.]
 
 
 ```
