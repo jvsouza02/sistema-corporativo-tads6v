@@ -154,8 +154,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 
     <script>
-      const usuario = JSON.parse(localStorage.getItem("usuario"));
-      const idBarbearia = usuario["id_barbearia"];
+      // pegar o id da barbearia no parametro da url
+      const urlParams = new URLSearchParams(window.location.search);
+      const idBarbearia = urlParams.get('id_barbearia');
 
       const precos = {
         servicos: {
@@ -225,6 +226,7 @@
       });
 
       function carregarComentarios() {
+        console.log(idBarbearia);
         fetch(`http://127.0.0.1:8000/observacoes/${idBarbearia}`)
           .then(r => r.json())
           .then(data => {
