@@ -21,7 +21,6 @@ class ComentarioService:
         - CT005: Rejeita se valor_total for negativo
         - Verifica se o comentário não está vazio
         """
-        # A validação acontece no construtor do Comentario
         comentario = Comentario(comentario_texto, servico, produto, valor_total, id_barbearia)
         
         if not comentario.verificar_comentario():
