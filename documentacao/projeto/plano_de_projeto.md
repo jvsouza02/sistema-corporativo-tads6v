@@ -2,7 +2,6 @@
 
 **Discentes:** Yuri Fernandes, Maria da Paz, João Victor, Lucas Freitas  
 **Projeto:** Sistema de Gestão de Barbearias  
-**Versão:** 1.0  
 **Data:** 10/11/2025  
 
 ---
