@@ -29,9 +29,10 @@ A especificação apresenta os principais requisitos, casos de uso, regras e dia
 
 ### 2.1. Diagrama de Caso de Uso
 
+**Figura 1:** Diagrama de caso de uso do sistema de agendamento e gestão de barbearias.
+
 ![Diagrama de Caso de Uso](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/diagrama_de_caso_de_uso.png)
 
-**Figura 1:** Diagrama de caso de uso do sistema de agendamento e gestão de barbearias.
 
 ---
 
@@ -202,8 +203,9 @@ A especificação apresenta os principais requisitos, casos de uso, regras e dia
 
 ## 3. Diagrama de Classe do Sistema
 
+**Figura 2:** Diagrama de classes do sistema de agendamento e gestão de barbearias.
+
 ![Diagrama de Classe](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/diagrama_de_classes.png)
 
-**Figura 2:** Diagrama de classes do sistema de agendamento e gestão de barbearias.
 
 ---
