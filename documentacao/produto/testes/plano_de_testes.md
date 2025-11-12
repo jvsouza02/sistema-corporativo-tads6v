@@ -7,7 +7,7 @@
 
 | **Seção** | **Detalhes** |
 |---|---|
-| **Título do Plano de Testes** | Plano de Testes - Sistema de Agendamento e Gestão de Barbearias - Versão 1.0 |
+| **Título do Plano de Testes** | Plano de Testes - Sistema de Agendamento e Gestão de Barbearias |
 | **Preparado por** | Yuri Fernandes, Maria da Paz (Analistas de Requisito e Qualidade) |
 | **Data** | 03/11/2025 |
 
