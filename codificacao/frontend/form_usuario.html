@@ -394,6 +394,7 @@
                     console.log('Sucesso:', data);
                     if (data.success && data.redirect_url) {
                         localStorage.setItem('usuario', JSON.stringify(data.usuario));
+                        localStorage.setItem('cargo', JSON.stringify(data.cargo));
                         window.location.href = data.redirect_url;
                     } else {
                         alert('Cadastro realizado com sucesso!');
