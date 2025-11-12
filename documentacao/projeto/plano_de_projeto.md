@@ -48,9 +48,7 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 - Não vamos fazer **sistema de pagamento** – o sistema não vai processar pagamentos com cartão ou outras formas.  
 - Não vamos criar **aplicativo para celular** – o sistema vai funcionar pelo navegador do celular e computador.  
 - Não vai ter **login por redes sociais** – os usuários vão fazer cadastro direto no sistema.  
-- Não vamos conectar com **sistemas de pagamento** – não terá integração com máquinas de cartão ou outros.  
 - Não terá **controle de estoque** – não vamos gerenciar produtos em estoque.  
-- **Clientes não vão agendar online** – apenas os barbeiros vão registrar os atendimentos.  
 - Não terá **relatórios muito complexos** – apenas números básicos sobre o movimento.
 
 ---
@@ -85,7 +83,7 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 
 ## 4.1 Definição das Atividades dos Pacotes de Trabalho
 
-### 1. GERENCIAMENTO DE PROJETOS
+#### 1. GERENCIAMENTO DE PROJETOS
 
 **1.1 Levantamento de Demandas do Cliente**  
 - **Atividades:** Coletar e documentar necessidades, expectativas e funcionalidades desejadas pelo cliente para o sistema.  
@@ -105,7 +103,7 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 
 ---
 
-### 2. REQUISITOS DO PRODUTO
+#### 2. REQUISITOS DO PRODUTO
 
 **2.1 Elaboração do Documento de Visão**  
 - **Atividades:** Definir objetivos, escopo, atores principais e funcionalidades macro do sistema.  
@@ -129,7 +127,7 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 
 ---
 
-### 3. CONSTRUÇÃO
+#### 3. CONSTRUÇÃO
 
 **3.1 Implementação do Sistema de Cadastro de Proprietários**  
 - **Atividades:** Desenvolver funcionalidades de cadastro e autenticação de proprietários, incluindo validação de e-mail único e armazenamento seguro de senhas.  
@@ -153,7 +151,7 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 
 ---
 
-### 4. TESTES E QUALIDADE
+#### 4. TESTES E QUALIDADE
 
 **4.1 Elaboração do Plano de Testes**  
 - **Atividades:** Definir estratégia, escopo, recursos e cronograma das atividades de teste.  
@@ -173,7 +171,7 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 
 ---
 
-### 5. ENCERRAMENTO
+#### 5. ENCERRAMENTO
 
 **5.1 Consolidação da Documentação**  
 - **Atividades:** Revisar, organizar e versionar toda a documentação técnica e de usuário do projeto.  
