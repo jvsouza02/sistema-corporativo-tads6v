@@ -327,13 +327,6 @@ As **Especificações** descrevem uma funcionalidade do sistema a partir da pers
 
 ---
 
-## FLUXO ALTERNATIVO
-- **A1 — Variação opcional do fluxo principal:**  
-  1. O [ator] opta por uma ação alternativa.  
-  2. O sistema executa o comportamento correspondente.  
-
----
-
 ## REQUISITOS RELACIONADOS
 - **RF##:** [Requisito funcional relacionado]  
 - **RN##:** [Regra de negócio relacionada]  
@@ -389,29 +382,96 @@ Documento que define a estratégia, técnicas e métricas usadas para validar o 
 ### Template
 
 ```markdown
-# Plano de Testes — [Nome do Sistema]
+# Plano de Testes
+
+> **Projeto:** [Nome do projeto]  
+> **Área testada:** [Descreva o módulo, funcionalidade ou fluxo testado]  
+> **Preparado por:** [Nome do responsável pelo teste]  
+> **Data:** [DD/MM/AAAA]  
+
+---
 
 ## 1. Objetivo
 
-Descrever o objetivo principal do plano de testes, como garantir que o sistema ou aplicação atenda aos requisitos e especificações definidas, validando a qualidade e funcionalidade do produto.
+[Descreva o propósito do plano de teste — o que será validado e qual o resultado esperado.]
+
+Exemplo:  
+Garantir que o sistema [nome do módulo ou funcionalidade] funcione conforme os requisitos definidos, permitindo [ação principal] e assegurando a integridade dos dados e o comportamento esperado.
 
 ---
 
 ## 2. Estratégia
 
-Definir a abordagem geral para os testes, incluindo os tipos de testes que serão realizados (como testes de funcionalidade, de desempenho, de segurança, etc.) e como os testes serão distribuídos ao longo do ciclo de vida do desenvolvimento.
+[Explique a abordagem de testes a ser utilizada.]
+
+Exemplo:  
+Serão aplicadas técnicas de teste [tipo de teste: unitário, funcional, de integração, etc.] com foco em [objetivo principal].  
+Os testes podem ser automatizados ou manuais, dependendo da disponibilidade de código e ambiente.
 
 ---
 
 ## 3. Técnica
 
-Especificar as técnicas de teste que serão aplicadas, como testes manuais, automação de testes, testes exploratórios, etc. Incluir também os métodos que serão utilizados para garantir a cobertura de testes eficiente.
+[Informe a técnica de teste utilizada.]
+
+Exemplo:  
+Técnica funcional (caixa-preta) — os casos de teste serão criados com base nas especificações e requisitos do sistema, cobrindo tanto os fluxos principais (happy path) quanto os alternativos e de erro.
 
 ---
 
 ## 4. Indicadores
 
-Definir os indicadores que serão usados para medir o sucesso dos testes, como taxa de defeitos encontrados, cobertura de código, tempo de execução de testes, entre outros. Estes indicadores ajudarão a avaliar a qualidade do processo de testes e a efetividade das atividades realizadas.
+[Liste os indicadores e metas de qualidade a serem observados durante os testes.]
+
+| Indicador | Descrição | Meta / Critério |
+|---|---|---|
+| Taxa de sucesso dos testes | Percentual de casos de teste aprovados | 100% |
+| Cobertura de testes | Percentual de fluxos e variações cobertos | [Ex.: 80%] |
+| Falhas encontradas | Número de falhas registradas por severidade | [Ex.: Nenhuma falha crítica aceita] |
+
+---
+
+## 5. Cenários de Teste
+
+[Liste os cenários ou casos de teste a serem executados.]
+
+| ID | Descrição do Cenário | Pré-condições | Passos de Execução | Resultado Esperado | Resultado Obtido | Status |
+|---|---|---|---|---|---|---|
+| CT01 | [Ex.: Login do usuário barbeiro] | [Usuário cadastrado] | [1. Acessar tela de login<br>2. Inserir credenciais válidas<br>3. Clicar em “Entrar”] | [Sistema redireciona para a página inicial] | [Resultado real] | [Aprovado/Reprovado] |
+| CT02 | [Ex.: Registrar atendimento] | [Usuário logado] | [1. Abrir módulo de atendimentos<br>2. Clicar em “Novo Atendimento”<br>3. Preencher dados<br>4. Salvar] | [Atendimento registrado e exibido na listagem] | [Resultado real] | [Aprovado/Reprovado] |
+
+---
+
+## 6. Critérios de Aceite
+
+[Defina as condições para considerar os testes bem-sucedidos.]
+
+Exemplo:  
+- Todos os casos de teste executados devem ser aprovados.  
+- Nenhuma falha crítica ou bloqueadora deve permanecer aberta.  
+- As funcionalidades principais devem seguir o fluxo previsto nos requisitos.  
+
+---
+
+## 7. Ambiente de Testes
+
+[Descreva o ambiente, ferramentas e configurações utilizadas para a execução dos testes.]
+
+Exemplo:  
+- **Ambiente:** [Homologação / Desenvolvimento / Produção de teste]  
+- **Navegadores:** [Chrome, Edge, Firefox]  
+- **Banco de Dados:** [MySQL / PostgreSQL / SQL Server]  
+- **Ferramentas:** [Postman, Selenium, Jira, etc.]
+
+---
+
+## 8. Observações
+
+[Adicione notas adicionais, restrições ou informações relevantes sobre os testes.]
+
+---
+
+
 ```
 
 ## 8. Plano de Projeto
@@ -421,97 +481,101 @@ O Plano de Projeto é um artefato que organiza as principais informações sobre
 ### Template
 
 ``` markdown
-# Template de Artefato — Plano de Projeto
+
+#Plano de Projeto
 
 > **Discentes:** [Nomes dos integrantes]  
 > **Projeto:** [Nome do projeto]  
-> **Versão:** [v1.0]  
 > **Data:** [DD/MM/AAAA]
 
 ---
 
 ## 1. Escopo do Projeto
 
+[Descreva aqui o propósito geral e o contexto do projeto.]
+
 ### 1.1 Objetivo
-[Descreva de forma breve o objetivo principal do projeto.]
+[Explique de forma breve o objetivo principal do projeto.]
 
 ### 1.2 Entregáveis
+[Listar os produtos e resultados que serão gerados durante o projeto.]
+
 - [Entregável 1]  
 - [Entregável 2]  
-- [Entregável 3]
+- [Entregável 3]  
 
 ### 1.3 Limites do Escopo
-- [Itens que não estão incluídos no escopo do projeto.]
+[Indique o que **não** será incluído no projeto.]
+
+- [Item fora do escopo 1]  
+- [Item fora do escopo 2]  
+- [Item fora do escopo 3]  
 
 ---
 
-## 2. Cronograma
+## 2. Cronograma Geral
 
 | Etapa | Descrição | Início | Término | Responsável |
 |---|---|---|---|---|
-| 1 | [Ex.: Planejamento] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
-| 2 | [Ex.: Desenvolvimento] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
-| 3 | [Ex.: Testes] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
-| 4 | [Ex.: Implantação] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| 1 | [Etapa 1] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| 2 | [Etapa 2] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| 3 | [Etapa 3] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| 4 | [Etapa 4] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
+| 5 | [Etapa 5] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Nome] |
 
 ---
 
-## 3. EAP — Estrutura Analítica do Projeto
-
-1. **Projeto:** [Nome do Projeto]  
-   1.1 Planejamento  
-   - 1.1.1 Levantamento de requisitos  
-   - 1.1.2 Definição do cronograma  
-   1.2 Execução  
-   - 1.2.1 Desenvolvimento  
-   - 1.2.2 Testes  
-   1.3 Encerramento  
-   - 1.3.1 Entrega final  
-   - 1.3.2 Avaliação do projeto  
-
----
-
-## 4. Estimativas de Esforço e Custo
+## 3. Estimativas de Esforço e Custo
 
 | ID | Atividade | Esforço (horas) | Custo/hora (R$) | Custo total (R$) | Responsável |
 |---|---|---:|---:|---:|---|
-| 1 | [Ex.: Levantamento de requisitos] | [40] | [50,00] | [2000,00] | [Nome] |
-| 2 | [Ex.: Desenvolvimento do sistema] | [100] | [60,00] | [6000,00] | [Nome] |
-| 3 | [Ex.: Testes e correções] | [40] | [45,00] | [1800,00] | [Nome] |
+| [EC01] | [Atividade 1] | [--] | [--] | [--] | [--] |
+| [EC02] | [Atividade 2] | [--] | [--] | [--] | [--] |
+| [EC03] | [Atividade 3] | [--] | [--] | [--] | [--] |
+| [EC04] | [Atividade 4] | [--] | [--] | [--] | [--] |
+| [EC05] | [Atividade 5] | [--] | [--] | [--] | [--] |
 
 **Custo total estimado:** [Soma dos custos totais]  
 **Esforço total estimado:** [Soma das horas]  
 
 ---
 
-## 5. Cronograma (Gantt e Atividades)
+## 4. EAP — Estrutura Analítica do Projeto
 
-### 5.1 Lista de Atividades
+Exemplo de estrutura:
 
-| ID | Atividade | Início | Término | Duração (dias) | Dependência | Status |
-|---|---|---|---|---:|---|---|
-| 1 | Planejamento | [DD/MM/AAAA] | [DD/MM/AAAA] | [5] | — | Planejado |
-| 2 | Desenvolvimento | [DD/MM/AAAA] | [DD/MM/AAAA] | [20] | 1 | Em andamento |
-| 3 | Testes | [DD/MM/AAAA] | [DD/MM/AAAA] | [10] | 2 | Planejado |
-| 4 | Implantação | [DD/MM/AAAA] | [DD/MM/AAAA] | [3] | 3 | Planejado |
+### 4.1 Gerenciamento do Projeto
+- [1.1 Levantamento de Demandas do Cliente]  
+  - **Atividades:** [Descrever]  
+  - **Recursos:** [Descrever]  
 
-### 5.2 Diagrama de Gantt (Mermaid)
+[Adicione aqui outras áreas da EAP conforme necessidade, como:  
+Requisitos do Produto, Construção, Testes e Qualidade, Encerramento, etc.]
 
-```mermaid
-gantt
-    dateFormat  YYYY-MM-DD
-    title Cronograma do Projeto — [Nome do Projeto]
-    excludes    weekends
+---
 
-    section Planejamento
-    Planejamento :done, a1, 2025-01-05, 5d
+## 5. Lista de Atividades
 
-    section Execução
-    Desenvolvimento :active, a2, after a1, 20d
-    Testes :a3, after a2, 10d
+| ID | Atividade | Início | Término | Status | Responsável |
+|---|---|---|---|---|---|
+| [LA01] | [Atividade 1] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Planejado/Concluído] | [Nome] |
+| [LA02] | [Atividade 2] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Planejado/Concluído] | [Nome] |
+| [LA03] | [Atividade 3] | [DD/MM/AAAA] | [DD/MM/AAAA] | [Planejado/Concluído] | [Nome] |
 
-    section Encerramento
-    Implantação :a4, after a3, 3d
+---
+
+## 6. Diagrama de Gantt
+
+> **Anexar aqui a imagem do Diagrama de Gantt do projeto.**  
+> *(Exemplo: inserir link ou imagem gerada da ferramenta utilizada.)*
+
+---
+
+## 7. Diagrama de Atividade do Projeto
+
+> **Anexar aqui a imagem do Diagrama de Atividade do Projeto.**  
+> *(Exemplo: inserir link ou imagem exportada do software de modelagem.)*
+
 
 ```
 
