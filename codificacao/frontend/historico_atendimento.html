@@ -15,7 +15,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
     <div class="container">
-      <a class="navbar-brand" href="gerenciar_barbearia.html">
+      <a class="home navbar-brand" href="gerenciar_barbearia.html">
         <i class="fas fa-cut"></i> BarberPro
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -23,11 +23,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="gerenciar_barbearia.html">
-              <i class="fas fa-arrow-left me-1"></i>Início
-            </a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" style="cursor: pointer;" onclick="logout()">
               <i class="fas fa-sign-out-alt me-1"></i>Deslogar
@@ -42,7 +37,7 @@
     <h2 class="mb-4">Histórico de Atendimento</h2>
     <div id="infoProfissional" class="alert alert-info d-none"></div>
 
-     <div class="card mb-4">
+    <div class="card mb-4">
       <div class="card-body">
         <h5 class="card-title mb-3">Registrar Atendimento</h5>
 
@@ -99,49 +94,49 @@
       </div>
     </div>
 
-  <div class="modal fade" id="modalEditar" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Editar Comentário</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <form id="formEditar">
-            <input type="hidden" id="editarId">
-            <div class="mb-3">
-              <label for="editarComentario" class="form-label">Comentário</label>
-              <textarea class="form-control" id="editarComentario" name="comentario" rows="3" required></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" onclick="salvarEdicao()">Salvar Alterações</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="modalConfirmar" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Confirmar Remoção</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <p id="mensagemConfirmacao">Tem certeza que deseja remover este comentário?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-danger" id="btnConfirmarRemocao">Remover</button>
+    <div class="modal fade" id="modalEditar" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Editar Comentário</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formEditar">
+              <input type="hidden" id="editarId">
+              <div class="mb-3">
+                <label for="editarComentario" class="form-label">Comentário</label>
+                <textarea class="form-control" id="editarComentario" name="comentario" rows="3" required></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" onclick="salvarEdicao()">Salvar Alterações</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- <footer class="custom-footer mt-5">
+    <div class="modal fade" id="modalConfirmar" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmar Remoção</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p id="mensagemConfirmacao">Tem certeza que deseja remover este comentário?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="btnConfirmarRemocao">Remover</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <footer class="custom-footer mt-5">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
@@ -155,140 +150,154 @@
     </div>
   </footer> -->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 
-  <script>
-    const precos = {
-      servicos: {
-        "Corte Social": 30,
-        "Corte Navalhado": 35,
-        "Corte Degradê": 40,
-        "Barba": 25,
-        "Sobrancelha": 15
-      },
-      produtos: {
-        "Nenhum": 0,
-        "Shampoo": 10,
-        "Pomada": 12,
-        "Gel": 8,
-        "Tônico": 20
+    <script>
+      const usuario = JSON.parse(localStorage.getItem("usuario"));
+      const idBarbearia = usuario["id_barbearia"];
+
+      const precos = {
+        servicos: {
+          "Corte Social": 30,
+          "Corte Navalhado": 35,
+          "Corte Degradê": 40,
+          "Barba": 25,
+          "Sobrancelha": 15
+        },
+        produtos: {
+          "Nenhum": 0,
+          "Shampoo": 10,
+          "Pomada": 12,
+          "Gel": 8,
+          "Tônico": 20
+        }
+      };
+
+      function atualizarValor() {
+        const servico = document.getElementById("servico").value;
+        const produto = document.getElementById("produto").value;
+
+        const total = (precos.servicos[servico] || 0) + (precos.produtos[produto] || 0);
+        document.getElementById("valorTotal").value = `R$ ${total.toFixed(2)}`;
+
+        return total;
       }
-    };
 
-    function atualizarValor() {
-      const servico = document.getElementById("servico").value;
-      const produto = document.getElementById("produto").value;
+      document.getElementById("servico").addEventListener("change", atualizarValor);
+      document.getElementById("produto").addEventListener("change", atualizarValor);
 
-      const total = (precos.servicos[servico] || 0) + (precos.produtos[produto] || 0);
-      document.getElementById("valorTotal").value = `R$ ${total.toFixed(2)}`;
+      document.getElementById("formAtendimento").addEventListener("submit", function (e) {
+        e.preventDefault();
 
-      return total;
-    }
+        const servico = document.getElementById("servico").value;
+        const produto = document.getElementById("produto").value;
+        const comentario = document.getElementById("comentario").value;
+        const valor = atualizarValor();
 
-    document.getElementById("servico").addEventListener("change", atualizarValor);
-    document.getElementById("produto").addEventListener("change", atualizarValor);
+        if (typeof valor === "string") valor = valor.replace(",", ".");
 
-    document.getElementById("formAtendimento").addEventListener("submit", function (e) {
-      e.preventDefault();
+        if (!servico) return alert("Selecione um serviço!");
 
-      const servico = document.getElementById("servico").value;
-      const produto = document.getElementById("produto").value;
-      const comentario = document.getElementById("comentario").value;
-      const valor = atualizarValor();
 
-      if (!servico) return alert("Selecione um serviço!");
+        const texto = `${servico}|${produto}|${valor}|${comentario}`;
 
-      const params = new URLSearchParams(window.location.search);
-      const idBarbearia = params.get("id_barbearia");
-
-      const texto = `${servico}|${produto}|${valor}|${comentario}`;
-
-      fetch("http://127.0.0.1:8000/observacoes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          comentario: texto,
-          id_barbearia: idBarbearia
+        fetch("http://127.0.0.1:8000/observacoes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            comentario: comentario,
+            servico: servico,
+            produto: produto,
+            valor_total: (() => {
+              const v = parseFloat(valor);
+              return Number.isFinite(v) ? v : null;
+            })(),
+            id_barbearia: idBarbearia
+          })
         })
-      })
-        .then(r => r.json())
-        .then(() => {
-          carregarComentarios();
-          document.getElementById("formAtendimento").reset();
-          document.getElementById("valorTotal").value = "R$ 0,00";
-        });
-    });
+          .then(r => r.json())
+          .then(() => {
+            carregarComentarios();
+            document.getElementById("formAtendimento").reset();
+            document.getElementById("valorTotal").value = "R$ 0,00";
+          });
+      });
 
-    function carregarComentarios() {
-      fetch("http://127.0.0.1:8000/observacoes")
-        .then(r => r.json())
-        .then(data => {
-          const lista = document.getElementById("listaAtendimentos");
-          lista.innerHTML = "";
+      function carregarComentarios() {
+        fetch(`http://127.0.0.1:8000/observacoes/${idBarbearia}`)
+          .then(r => r.json())
+          .then(data => {
+            console.log(data);
+            const lista = document.getElementById("listaAtendimentos");
+            lista.innerHTML = "";
 
-          if (data.length === 0) {
-            lista.innerHTML = `
+            if (data.length === 0) {
+              lista.innerHTML = `
               <div class="text-center text-muted py-4">
                 <i class="bi bi-inbox display-4"></i>
                 <p>Nenhum atendimento registrado</p>
               </div>
             `;
-            return;
-          }
+              return;
+            }
 
-          data.forEach(at => {
-            const partes = at.comentario.split("|");
+            data.forEach(at => {
+              const item = document.createElement("div");
 
-            const servico = partes[0] || "";
-            const produto = partes[1] || "";
-            const valor = partes[2] ? `R$ ${partes[2]}` : "";
-            const obs = partes[3] || "";
+              item.innerHTML = `
+                <div class="card shadow-sm mb-3 atendimento-card">
+                  <div class="card-body p-3">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <div class="info">
+                        <div class="mb-1">
+                          <span class="badge bg-primary me-1 tag-servico">${at.servico ?? ""}</span>
+                          <span class="badge bg-secondary me-1 tag-produto">${at.produto ?? ""}</span>
+                          <span class="badge bg-light text-dark tag-valor">R$ ${at.valor_total}</span>
+                        </div>
+                      </div>
 
-            const item = document.createElement("div");
-            item.className = "attendance-box";
+                      <div class="text-end meta">
+                        <div class="small text-muted">${formatarData(at.data_atualizacao)}</div>
+                      </div>
+                    </div>
 
-            item.innerHTML = `
-              <div class="d-flex mb-2">
-                <span class="tag">${servico}</span>
-                <span class="tag">${produto}</span>
-                <span class="tag valor">${valor}</span>
-              </div>
+                    <div class="comentario-completo mt-3 p-2 bg-light rounded">
+                      <div class="small text-muted mb-1">Comentário completo:</div>
+                      <div class="comentario-texto" style="white-space:pre-wrap;">${at.comentario ?? ""}</div>
+                    </div>
 
-              <div><strong>${obs}</strong></div>
-              <div class="text-muted small mt-1">${formatarData(at.data_atualizacao)}</div>
+                    <div class="d-flex gap-2 mt-3">
+                      <button class="btn btn-sm btn-outline-danger btn-remove" onclick="removerComentario('${at.id_comentario}')">Remover</button>
+                    </div>
+                  </div>
+                </div>
+                `;
 
-              <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-sm btn-outline-primary" onclick="editarComentario('${at.id_comentario}', '${at.comentario}')">Editar</button>
-                <button class="btn btn-sm btn-outline-danger" onclick="removerComentario('${at.id_comentario}')">Remover</button>
-              </div>
-            `;
-
-            lista.appendChild(item);
+              lista.appendChild(item);
+            })
           });
-        });
-    }
+      };
 
-    function formatarData(d) {
-      const data = new Date(d);
-      return data.toLocaleDateString("pt-BR") + " " +
-        data.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
-    }
-    
-    function removerComentario(id) {
-      if (!confirm("Deseja remover este atendimento?")) return;
 
-      fetch(`http://127.0.0.1:8000/observacoes/${id}`, { method: "DELETE" })
-        .then(() => carregarComentarios());
-    }
+      function formatarData(d) {
+        const data = new Date(d);
+        return data.toLocaleDateString("pt-BR") + " " +
+          data.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+      }
 
-    carregarComentarios();
+      function removerComentario(id) {
+        fetch(`http://127.0.0.1:8000/observacoes/${id}`, { method: "DELETE" })
+          .then(() => carregarComentarios());
+      }
 
-    function logout() {
-      localStorage.removeItem("usuario");
-      window.location.href = "index.html";
-    }
-  </script>
+      carregarComentarios();
+
+      function logout() {
+        localStorage.removeItem("usuario");
+        window.location.href = "index.html";
+      }
+    </script>
 
 </html>
 </body>

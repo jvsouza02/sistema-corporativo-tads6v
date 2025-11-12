@@ -67,14 +67,16 @@ def login(usuario_request = Body(...)):
                 "success": True,
                 "message": "Usuário logado com sucesso",
                 "redirect_url": "http://localhost:5173/gerenciar_barbearia.html",
-                "usuario": usuario
+                "usuario": usuario,
+                "cargo": "proprietario"
             }
         elif usuario['papel'] == 'profissional':
             return {
                 "success": True,
                 "message": "Usuário logado com sucesso",
-                "redirect_url": "http://localhost:5173/gerenciar_agendamentos.html",
-                "usuario": usuario
+                "redirect_url": "http://localhost:5173/historico_atendimento.html",
+                "usuario": usuario,
+                "cargo": "barbeiro"
             }
             
     except ValueError as ve:
@@ -165,6 +167,16 @@ def atualizar_observacao(id_comentario: str, comentario_request: ComentarioReque
         comentario_request_dict = comentario_request.dict()
         comentario_request_dict["id_comentario"] = id_comentario
         return controller.atualizar_comentario(comentario_request_dict)
+    except ValueError as ve:
+        raise HTTPException(status_code=404, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/observacoes/{id_barbearia}", status_code=status.HTTP_200_OK)
+def listar_atendimentos_por_barbearia(id_barbearia: str = Path(...)):
+    controller = ComentarioController()
+    try:
+        return controller.listar_atendimentos_por_barbearia(id_barbearia)
     except ValueError as ve:
         raise HTTPException(status_code=404, detail=str(ve))
     except Exception as e:

@@ -78,6 +78,13 @@ class ComentarioRepository():
 
         return query.count()
     
+    def listar_todos_atendimentos_por_barbearia(self, id_barbearia: str):
+        """Lista todos os atendimentos para a barbearia informada."""
+        result = self.db.execute(Select(ComentarioModel).filter(
+            ComentarioModel.id_barbearia == id_barbearia
+        ).order_by(ComentarioModel.data_criacao.desc()))
+        return result.scalars().all()
+    
     def buscar_por_id(self, comentario_id: str) -> ComentarioModel | None:
         """Busca um comentário pelo ID"""
         return self.db.query(ComentarioModel).filter(

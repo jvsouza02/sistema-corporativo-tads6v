@@ -1,7 +1,7 @@
 import uuid
 from config.database import SessionLocal
 from sqlalchemy import select as Select
-from codificacao.backend.src.application.entities.comentario_entity import Comentario
+from src.application.entities.comentario_entity import Comentario
 from src.data.models.proprietario_model import ProprietarioModel
 from src.data.models.usuario_model import UsuarioModel
 

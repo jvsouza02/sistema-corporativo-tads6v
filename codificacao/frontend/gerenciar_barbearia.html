@@ -145,6 +145,12 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
+            const cargo = JSON.parse(localStorage.getItem("cargo"));
+            if (cargo !== "proprietario") {
+                alert("Acesso negado. Apenas proprietários podem acessar esta página.");
+                return window.location.href = "historico_atendimento.html";
+            }
+
             const params = new URLSearchParams(window.location.search);
             const idUrl = params.get("id_proprietario");
             const usuarioLocal = JSON.parse(localStorage.getItem("usuario"));
@@ -168,9 +174,12 @@
 
             try {
                 const response = await fetch(`http://127.0.0.1:8000/barbearias/${idProprietario}`);
+                console.log(response);
                 const barbearias = await response.json();
 
-                if (!response.ok) throw new Error("Erro ao buscar barbearias");
+                console.log(barbearias);
+
+                if (!response) throw new Error("Erro ao buscar barbearias");
 
                 lista.innerHTML = "";
 

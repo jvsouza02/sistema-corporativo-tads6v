@@ -37,6 +37,10 @@ class ComentarioService:
         """Lista comentários de uma barbearia específica"""
         return self.repository.listar_atendimentos_por_barbearia(id_barbearia)
     
+    def listar_todos_atendimentos_por_barbearia(self, id_barbearia: str):
+        """Lista todos os atendimentos de uma barbearia específica"""
+        return self.repository.listar_todos_atendimentos_por_barbearia(id_barbearia)
+    
     def editar_comentario(
         self, 
         comentario_id ,

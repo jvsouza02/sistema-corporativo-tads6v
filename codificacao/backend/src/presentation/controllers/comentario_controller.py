@@ -7,13 +7,6 @@ class ComentarioController:
         self.comentario_service = ComentarioService()
 
     def criar_comentario(self, comentario_request: ComentarioRequest):
-        """
-        Cria um novo comentário
-        
-        Validações automáticas via Service/Entity:
-        - CT001: Rejeita se não houver serviço nem produto
-        - CT005: Rejeita se valor_total for negativo
-        """
         comentario = self.comentario_service.adicionar_comentario(
             comentario_request.comentario,
             comentario_request.servico,
@@ -36,6 +29,10 @@ class ComentarioController:
             data_atualizacao=str(c.data_atualizacao),
             id_barbearia=str(c.id_barbearia)
         ) for c in comentarios]
+
+    def listar_atendimentos_por_barbearia(self, id_barbearia: str):
+        """Lista comentários de uma barbearia específica"""
+        return self.comentario_service.listar_todos_atendimentos_por_barbearia(id_barbearia)
 
     def atualizar_comentario(self, comentario_request):
         """
