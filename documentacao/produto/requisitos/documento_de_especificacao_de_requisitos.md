@@ -5,18 +5,6 @@
 
 ---
 
-## Registro de Alterações
-
-| Versão | Responsável     | Data       | Alterações                                                                 |
-|---------|------------------|------------|----------------------------------------------------------------------------|
-| 1.0     | Yuri Fernandes   | 06/10/2025 | Criação do diagrama de classes e do diagrama de caso de uso e suas especificações. |
-| 1.1     | Yuri Fernandes   | 11/10/2025 | Implementação de uma funcionalidade adicional no módulo de gestão de barbearias. |
-| 1.2     | Yuri Fernandes   | 18/11/2025 | Ajuste nas funcionalidades atuais de acordo com a nova demanda do cliente. |
-| 1.3     | Yuri Fernandes   | 25/11/2025 | Evolução do sistema de gerenciamento de barbearias através da inclusão de uma nova funcionalidade. |
-| 1.4     | Yuri Fernandes   | 10/11/2025 | Ajustes na especificação de caso de uso. |
-
----
-
 ## 1. Introdução
 
 A presente especificação de requisitos tem como objetivo descrever de forma clara e organizada as características e comportamentos esperados do sistema de gestão de barbearias. Este documento busca alinhar o entendimento entre desenvolvedores, stakeholders e usuários, assegurando que todos tenham uma visão unificada sobre o propósito e o funcionamento do sistema.
