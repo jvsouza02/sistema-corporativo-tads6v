@@ -20,7 +20,7 @@ O sistema gera histórico com timestamps, calcula automaticamente valores de ate
 
 ## 3. Justificativa / Necessidade de Negócio
 - **Operacional:** eliminar o uso de papel, reduzir conflitos e sobreposições de horário, facilitar bloqueios e manutenção de agenda.  
-- **Comercial:** aumentar retenção e ticket médio ao personalizar atendimento via histórico e uso de produtos/serviços recomendados.  
+- **Comercial:** aumentar retenção e ticket médio ao personalizar atendimento, via histórico e uso de produtos/serviços recomendados.  
 - **Decisional:** fornecer relatórios para tomada de decisão sobre frequência, serviços mais procurados e desempenho por profissional.
 
 ---
