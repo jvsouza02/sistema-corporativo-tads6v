@@ -229,4 +229,4 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 
 ## 7. Diagrama de Atividades do Projeto
 
-![Diagrama de Atividades](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/diagrama_de_atvidade_do_projeto.png)
+![Diagrama de Atividades](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/diagrama_de_atividade_do_projeto.png)
