@@ -33,12 +33,12 @@ Nessa página inicial, o proprietário tem acesso a uma listagem de todas as sua
 Em cada barbearia listada, são exibidas suas informações principais (nome, email, telefone, endereço, horário de funcionamento e descrição), além da quantidade de atendimentos semanais, quantidade de barbeiros e o valor total gerado pelos atendimentos da semana.
 
 Ao clicar em uma barbearia, o proprietário tem acesso à página de detalhes, onde pode visualizar informações sobre a barbearia e acompanhar o histórico de atendimentos realizados (com comentário, valor, serviço e produto utilizado em cada um).  
-Ele também pode gerenciar os barbeiros vinculados, incluindo cadastro, edição, remoção e transferência de barbeiros entre barbearias, facilitando a redistribuição da equipe conforme a necessidade.
+Ele também pode gerenciar os barbeiros vinculados, incluindo cadastro, edição (horario de início e fim), remoção e transferência de barbeiros entre barbearias, facilitando a redistribuição da equipe conforme a necessidade.
 
 O barbeiro, ao fazer login com o e-mail, pode acessar uma página com a listagem de atendimentos.  
 Ao realizar atendimentos, ele registra os detalhes de cada serviço executado.  
 Os serviços e produtos (ex.: cortes, barba, coloração, shampoos, condicionadores, tintas etc.) já estão previamente cadastrados no sistema, cada um com seu preço.  
-Ao registrar um atendimento, o barbeiro seleciona o serviço prestado e o produto utilizado a partir desse catálogo; o sistema soma automaticamente os valores selecionados para calcular o valor total do atendimento.  
+Ao registrar um atendimento, o barbeiro seleciona o serviço prestado e o produto utilizado a partir desse catálogo; o sistema soma automaticamente os valores selecionados para calcular o valor total do atendimento. Além disso, ele também pode salvar um comentário sobre a realização do atendimento.  
 O barbeiro também pode editar ou remover registros, e o sistema recalcula o valor total sempre que houver alterações.
 
 A plataforma centraliza todas as operações da barbearia em um único ambiente, facilitando o atendimento, o gerenciamento da equipe e o acompanhamento do desempenho do negócio, proporcionando eficiência, organização e uma experiência satisfatória para clientes, barbeiros e proprietários.
