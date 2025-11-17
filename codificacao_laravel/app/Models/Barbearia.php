@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use App\Models\Proprietario;
 use App\Models\Barbeiro;
@@ -10,6 +11,8 @@ use App\Models\Atendimento;
 
 class Barbearia extends Model
 {
+    use HasFactory;
+    
     protected $table = 'barbearias';
     protected $primaryKey = 'id_barbearia';
     protected $keyType = 'string';

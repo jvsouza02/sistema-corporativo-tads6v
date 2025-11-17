@@ -8,39 +8,37 @@ use Illuminate\Support\Str;
 
 class AtendimentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
+        $request->validate([
+            'servico' => 'required|string',
+            'id_barbeiro' => 'required',
+            'id_barbearia' => 'required',
+            'valor_total' => 'required',
+        ], [
+            'servico.required' => 'É obrigatório escolher pelo menos um serviço.',
+            'valor_total.required' => 'O valor total é obrigatório.',
+        ]);
+
         $dados = $request->all();
 
         try {
+            // Limpar e converter valor
             $valorLimpo = str_replace(['R$', ' ', '.'], '', $dados['valor_total']);
             $valorLimpo = str_replace(',', '.', $valorLimpo);
             $valorTotal = (float) $valorLimpo;
 
+            if ($valorTotal < 0) {
+                return redirect()->back()
+                    ->withErrors(['valor_total' => 'O valor não pode ser negativo.'])
+                    ->withInput();
+            }
+
             Atendimento::create([
                 'id_atendimento' => Str::uuid(),
                 'servico' => $dados['servico'],
-                'produto' => $dados['produto'],
-                'comentario' => $dados['comentario'],
+                'produto' => $dados['produto'] ?? 'Nenhum',
+                'comentario' => $dados['comentario'] ?? null,
                 'valor_total' => $valorTotal,
                 'id_barbeiro' => $dados['id_barbeiro'],
                 'id_barbearia' => $dados['id_barbearia'],
@@ -49,63 +47,68 @@ class AtendimentoController extends Controller
             return redirect()->back()->with('success', 'Atendimento registrado com sucesso');
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Erro ao registrar atendimento');
+            return redirect()->back()->with('error', 'Erro ao registrar atendimento: ' . $e->getMessage());
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show()
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit()
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id_atendimento)
     {
+        // Validação
+        $request->validate([
+            'servico' => 'required|string',
+            'valor_total' => 'required',
+        ], [
+            'servico.required' => 'É obrigatório escolher pelo menos um serviço.',
+            'valor_total.required' => 'O valor total é obrigatório.',
+        ]);
+
         $dados = $request->all();
+
         try {
             $atendimento = Atendimento::find($id_atendimento);
+
+            if (!$atendimento) {
+                return redirect()->back()->with('error', 'Atendimento não encontrado');
+            }
 
             $valorLimpo = str_replace(['R$', ' ', '.'], '', $dados['valor_total']);
             $valorLimpo = str_replace(',', '.', $valorLimpo);
             $valorTotal = (float) $valorLimpo;
 
+            if ($valorTotal < 0) {
+                return redirect()->back()
+                    ->withErrors(['valor_total' => 'O valor não pode ser negativo.'])
+                    ->withInput();
+            }
+
             $atendimento->update([
                 'servico' => $dados['servico'],
-                'produto' => $dados['produto'],
-                'comentario' => $dados['comentario'],
+                'produto' => $dados['produto'] ?? 'Nenhum',
+                'comentario' => $dados['comentario'] ?? null,
                 'valor_total' => $valorTotal,
             ]);
 
             return redirect()->back()->with('success', 'Atendimento atualizado com sucesso');
+
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Erro ao atualizar atendimento');
+            return redirect()->back()->with('error', 'Erro ao atualizar atendimento: ' . $e->getMessage());
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id_atendimento)
     {
         try {
             $atendimento = Atendimento::find($id_atendimento);
+
+            if (!$atendimento) {
+                return redirect()->back()->with('error', 'Atendimento não encontrado');
+            }
+
             $atendimento->delete();
-            return redirect()->back()->with('success', 'Atendimento excluído com sucesso');
+            return redirect()->back()->with('success', 'Atendimento excluído com sucesso');
+
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Erro ao excluir atendimento');
+            return redirect()->back()->with('error', 'Erro ao excluir atendimento: ' . $e->getMessage());
         }
     }
 }

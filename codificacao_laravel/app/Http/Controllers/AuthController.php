@@ -22,7 +22,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->route('home');
         }
-        return redirect()->route('login')->with('error', 'Credenciais inválidas');
+        return redirect()->route('login')->with('error', 'Usuário não encontrado');
     }
 
     public function register()

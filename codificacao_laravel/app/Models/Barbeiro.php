@@ -3,12 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use App\Models\Atendimento;
 use App\Models\User;
 use App\Models\Barbearia;
 
 class Barbeiro extends Model
 {
+    use HasFactory;
+    
     protected $table = 'barbeiros';
     protected $primaryKey = 'id_barbeiro';
     protected $keyType = 'string';
