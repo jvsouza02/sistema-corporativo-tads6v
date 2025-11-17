@@ -30,8 +30,8 @@ Esse documento serve como guia para a equipe de desenvolvimento e qualidade, gar
 - Visualização de histórico de atendimentos  
 
 ### **Fora do escopo**
-- Testes de desempenho  
-- Testes de carga  
+- Testes de desempenho
+- Testes de usabilidade
 - Testes de segurança  
 
 ---
