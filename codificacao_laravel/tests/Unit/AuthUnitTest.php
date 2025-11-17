@@ -10,15 +10,12 @@ class AuthUnitTest extends TestCase
     /**
      * CT006: Login de barbeiro com e-mail correto
      * Verificar se o barbeiro consegue acessar o sistema com e-mail válido.
-     *
-     * NOTA: Este é um teste unitário de lógica.
-     * O teste completo de autenticação está em Feature/AtendimentoTest
      */
     public function test_ct006_verifica_mensagem_erro_login()
     {
         $mensagem = AuthHelper::mensagemErroLogin();
 
-        $this->assertEquals('Credenciais inválidas', $mensagem);
+        $this->assertEquals('Usuário não encontrado', $mensagem);
         $this->assertIsString($mensagem);
     }
 

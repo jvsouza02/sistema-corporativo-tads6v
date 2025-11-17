@@ -33,6 +33,6 @@ class AuthHelper
      */
     public static function mensagemErroLogin(): string
     {
-        return 'Credenciais inválidas';
+        return 'Usuário não encontrado';
     }
 }
