@@ -5,66 +5,97 @@ O Dicionário de Dados descreve detalhadamente as entidades implementadas no sis
 
 ---
 
-## Proprietario
+# Descrição das Tabelas
 
-| Tabela.Campo               | Nome lógico        | Tipo (SGBD)    | Obrigatório | Descrição / Significado                                        | Exemplo                                | Restrições / Validações                     | Chave (PK/FK/Índice) |
-| -------------------------- | ------------------ | -------------- | ----------: | -------------------------------------------------------------- | -------------------------------------- | ------------------------------------------- | -------------------- |
-| `proprietarios.id`         | ID do proprietário | `uuid`         |         Sim | Identificador único do proprietário                            | `c1a2b3d4-5e6f-7a8b-9c0d-111213141516` | PK, não nulo                                | PK                   |
-| `proprietarios.nome`       | Nome completo      | `varchar(255)` |         Sim | Nome do proprietário para identificação e contato              | `Carla Santos`                         | não vazio                                   | Índice               |
-| `proprietarios.email`      | E-mail             | `varchar(255)` |         Sim | E-mail para login e comunicação                                | `carla.santos@example.com`             | único, formato email                        | Índice único         |
-| `proprietarios.senha_hash` | Senha (hash)       | `varchar(255)` |         Sim | Hash da senha para autenticação (não armazenar em texto claro) | `(hash)`                               | armazenar apenas hash, comprimento adequado | —                    |
-| `proprietarios.telefone`   | Telefone           | `varchar(20)`  |         Não | Telefone de contato                                            | `+55 11 9 8765-4321`                   | formato E.164 opcional                      | —                    |
-| `proprietarios.cpf`        | CPF                | `varchar(14)`  | Condicional | CPF quando pessoa física                                       | `987.654.321-00`                       | formato CPF, único quando presente          | Índice               |
-| `proprietarios.criado_em`  | Criado em          | `timestamp`    |         Sim | Data/hora de criação do registro                               | `2025-08-15T10:30:00Z`                 | —                                           | —                    |
+## Usuários
+Responsável por armazenar todas as contas do sistema, incluindo proprietários e barbeiros.
 
----
+## Proprietários
+Armazena os dados dos proprietários das barbearias. Cada proprietário está vinculado a um usuário do sistema.
 
-## Barbearia
+## Barbearias
+Representa as barbearias cadastradas no sistema. Cada barbearia pertence a um proprietário.
 
-| Tabela.Campo                 | Nome lógico           | Tipo (SGBD)    | Obrigatório | Descrição / Significado                      | Exemplo                                                 | Restrições / Validações  | Chave (PK/FK/Índice) |
-| ---------------------------- | --------------------- | -------------- | ----------: | -------------------------------------------- | ------------------------------------------------------- | ------------------------ | -------------------- |
-| `barbearias.id`              | ID da barbearia       | `uuid`         |         Sim | Identificador único da unidade da barbearia  | `d4c3b2a1-0f9e-8d7c-6b5a-141312111009`                  | PK, não nulo             | PK                   |
-| `barbearias.proprietario_id` | Proprietário (FK)     | `uuid`         |         Sim | Referência ao proprietário dono da barbearia | `c1a2b3d4-5e6f-7a8b-9c0d-111213141516`                  | FK -> `proprietarios.id` | FK                   |
-| `barbearias.nome`            | Nome comercial        | `varchar(255)` |         Sim | Nome da unidade                              | `Barbearia Nova Estação`                                | não vazio                | Índice               |
-| `barbearias.cnpj`            | CNPJ                  | `varchar(18)`  | Condicional | CNPJ quando aplicável                        | `12.345.678/0001-90`                                    | formato CNPJ             | Índice               |
-| `barbearias.email`           | E-mail da barbearia   | `varchar(255)` |         Não | E-mail de contato da unidade                 | `contato@novaestacao.com`                               | formato email            | —                    |
-| `barbearias.telefone`        | Telefone da barbearia | `varchar(20)`  |         Não | Telefone de contato da unidade               | `+55 21 9 4444-5555`                                    | formato E.164 opcional   | —                    |
-| `barbearias.endereco`        | Endereço completo     | `text`         |         Sim | Rua, número, bairro, cidade, estado, CEP     | `Av. Principal, 200, Centro, São Paulo - SP, 01000-000` | —                        | —                    |
-| `barbearias.descricao`       | Descrição             | `text`         |         Não | Texto descritivo da barbearia                | `Ambiente moderno com atendimento personalizado.`       | —                        | —                    |
-| `barbearias.foto_url`        | Foto / Logo           | `varchar(500)` |         Não | URL da imagem representativa                 | `https://cdn.exemplo.com/logo_nova_estacao.jpg`         | URL válida               | —                    |
-| `barbearias.criado_em`       | Criado em             | `timestamp`    |         Sim | Data/hora de cadastro da barbearia           | `2025-07-01T08:00:00Z`                                  | —                        | —                    |
+## Barbeiros
+Profissionais que atuam dentro de uma barbearia. Cada barbeiro está vinculado a um usuário (para acesso ao sistema) e a uma barbearia específica.
+
+## Atendimentos
+Registra os atendimentos realizados pelos barbeiros. Cada atendimento pertence a um barbeiro e a uma barbearia.
 
 ---
 
-## Barbeiro
+## Usuários
 
-| Tabela.Campo              | Nome lógico         | Tipo (SGBD)     | Obrigatório | Descrição / Significado                               | Exemplo                                   | Restrições / Validações            | Chave (PK/FK/Índice) |
-| ------------------------- | ------------------- | --------------- | ----------: | ----------------------------------------------------- | ----------------------------------------- | ---------------------------------- | -------------------- |
-| `barbeiros.id`            | ID do barbeiro      | `uuid`          |         Sim | Identificador único do barbeiro                       | `a9b8c7d6-5e4f-3a2b-1c0d-192837465564`    | PK, não nulo                       | PK                   |
-| `barbeiros.usuario_id`    | Usuário (FK)        | `uuid`          |         Não | Referência ao usuário associado (quando houver conta) | `b2c3d4e5-6f7a-8b9c-0d1e-212223242526`    | FK -> `usuarios.id` (se aplicável) | FK                   |
-| `barbeiros.barbearia_id`  | Barbearia (FK)      | `uuid`          |         Sim | Barbearia onde o barbeiro atua                        | `d4c3b2a1-0f9e-8d7c-6b5a-141312111009`    | FK -> `barbearias.id`              | FK                   |
-| `barbeiros.nome`          | Nome completo       | `varchar(255)`  |         Sim | Nome do profissional                                  | `Lucas Pereira`                           | não vazio                          | Índice               |
-| `barbeiros.email`         | E-mail              | `varchar(255)`  |         Não | E-mail para contato/login (se houver)                 | `lucas.pereira@novaestacao.com`           | formato email                      | Índice               |
-| `barbeiros.telefone`      | Telefone            | `varchar(20)`   |         Não | Telefone de contato                                   | `+55 31 9 3333-2222`                      | formato E.164 opcional             | —                    |
-| `barbeiros.cargo`         | Cargo / Função      | `varchar(100)`  |         Não | Descrição do cargo/expertise                          | `Barbeiro Senior`                         | —                                  | —                    |
-| `barbeiros.salario`       | Salário             | `numeric(10,2)` |         Não | Remuneração contratual (uso interno)                  | `2800.00`                                 | >= 0                               | —                    |
-| `barbeiros.data_contrato` | Data de contratação | `date`          |         Não | Data de início do vínculo                             | `2023-11-15`                              | formato date                       | —                    |
-| `barbeiros.foto_url`      | Foto do barbeiro    | `varchar(500)`  |         Não | URL da foto de perfil                                 | `https://cdn.exemplo.com/fotos/lucas.jpg` | URL válida                         | —                    |
-| `barbeiros.ativo`         | Ativo               | `boolean`       |         Sim | Indica se o barbeiro está ativo na escala             | `true`                                    | —                                  | Índice               |
+| Campo | Nome lógico | Tipo | Obrigatório | Descrição | Restrições / Validações | Chave |
+|-------|-------------|-------|--------------|------------|---------------------------|--------|
+| `id` | ID do usuário | bigint (auto increment) | Sim | Identificador único | PK | PK |
+| `name` | Nome do usuário | varchar(255) | Sim | Nome cadastrado do usuário | Não vazio | — |
+| `email` | E-mail | varchar(255) | Sim | E-mail utilizado para login | Único | Índice único |
+| `email_verified_at` | Data de verificação | timestamp | Não | Indica se o e-mail foi verificado | — | — |
+| `password` | Senha (hash) | varchar(255) | Sim | Hash da senha do usuário | — | — |
+| `role` | Perfil | varchar(255) | Sim | Perfil do usuário (default: `proprietario`) | Valor padrão | — |
+| `remember_token` | Token de sessão | varchar(100) | Não | Token para sessão persistente | — | — |
+| `created_at` | Criado em | timestamp | Sim | Data de criação | — | — |
+| `updated_at` | Atualizado em | timestamp | Sim | Data da última atualização | — | — |
 
 ---
 
-## Atendimento
+## Tabela: `proprietarios`
 
-| Tabela.Campo                  | Nome lógico       | Tipo (SGBD)     | Obrigatório | Descrição / Significado                         | Exemplo                                       | Restrições / Validações                | Chave (PK/FK/Índice) |
-| ----------------------------- | ----------------- | --------------- | ----------: | ----------------------------------------------- | --------------------------------------------- | -------------------------------------- | -------------------- |
-| `atendimentos.id`             | ID do atendimento | `uuid`          |         Sim | Identificador único do registro de atendimento  | `f1e2d3c4-b5a6-7980-1121-314151617181`        | PK, não nulo                           | PK                   |
-| `atendimentos.agendamento_id` | Agendamento (FK)  | `uuid`          |         Não | Referência ao agendamento associado (se houver) | `e0f1d2c3-4b5a-6c7d-8e9f-101112131415`        | FK -> `agendamentos.id` (se aplicável) | FK                   |
-| `atendimentos.barbeiro_id`    | Barbeiro (FK)     | `uuid`          |         Sim | Profissional que realizou o atendimento         | `a9b8c7d6-5e4f-3a2b-1c0d-192837465564`        | FK -> `barbeiros.id`                   | FK                   |
-| `atendimentos.cliente_id`     | Cliente (FK)      | `uuid`          |         Sim | Cliente atendido (usuário)                      | `e5f6g7h8-9i0j-1k2l-3m4n-515253545556`        | FK -> `usuarios.id`                    | FK                   |
-| `atendimentos.servico_id`     | Serviço (FK)      | `uuid`          |         Sim | Serviço executado no atendimento                | `c3d4e5f6-7a8b-9c0d-1e2f-161718192021`        | FK -> `servicos.id`                    | FK                   |
-| `atendimentos.inicio`         | Início real       | `timestamp`     |         Não | Timestamp de início do atendimento              | `2025-09-10T14:00:00Z`                        | —                                      | —                    |
-| `atendimentos.fim`            | Fim real          | `timestamp`     |         Não | Timestamp de término do atendimento             | `2025-09-10T14:45:00Z`                        | —                                      | —                    |
-| `atendimentos.observacoes`    | Observações       | `text`          |         Não | Notas do barbeiro sobre o atendimento/cliente   | `Preferência por corte degradê nas laterais.` | —                                      | —                    |
-| `atendimentos.valor_cobrado`  | Valor cobrado     | `numeric(10,2)` |         Não | Valor efetivamente cobrado no atendimento       | `55.00`                                       | >= 0                                   | —                    |
-| `atendimentos.criado_em`      | Criado em         | `timestamp`     |         Sim | Data/hora de registro do atendimento no sistema | `2025-09-10T15:00:00Z`                        | —                                      | —                    |
+| Campo | Nome lógico | Tipo | Obrigatório | Descrição | Restrições | Chave |
+|--------|-------------|--------|-----------|-----------|-------------|--------|
+| `id_proprietario` | ID do proprietário | uuid | Sim | Identificador único | PK | PK |
+| `nome` | Nome | varchar(255) | Sim | Nome do proprietário | — | — |
+| `user_id` | Usuário associado | bigint | Sim | Referência ao usuário do sistema | FK → `users.id` | FK |
+| `created_at` | Criado em | timestamp | Sim | Data de criação | — | — |
+| `updated_at` | Atualizado em | timestamp | Sim | Última atualização | — | — |
+
+---
+
+## Barbearias
+
+| Campo | Nome lógico | Tipo | Obrigatório | Descrição | Restrições | Chave |
+|--------|-------------|--------|-----------|-------------|-------------|--------|
+| `id_barbearia` | ID da barbearia | uuid | Sim | Identificador único | PK | PK |
+| `nome` | Nome | varchar(100) | Sim | Nome da barbearia | — | — |
+| `email` | E-mail | varchar(255) | Sim | E-mail da barbearia | Único | Índice único |
+| `endereco` | Endereço | varchar(150) | Sim | Endereço completo | — | — |
+| `telefone` | Telefone | varchar(15) | Sim | Telefone de contato | — | — |
+| `horario_abertura` | Horário abertura | time | Sim | Horário de abertura | — | — |
+| `horario_fechamento` | Horário fechamento | time | Sim | Horário de fechamento | — | — |
+| `descricao` | Descrição | text | Sim | Texto descritivo da barbearia | — | — |
+| `foto_url` | Foto | varchar(255) | Não | URL da foto/logo | — | — |
+| `id_proprietario` | Proprietário | uuid | Sim | FK para o proprietário | FK → `proprietarios.id_proprietario` | FK |
+| `created_at` | Criado em | timestamp | Sim | Data de criação | — | — |
+| `updated_at` | Atualizado em | timestamp | Sim | Última atualização | — | — |
+
+---
+
+## Barbeiros
+
+| Campo | Nome lógico | Tipo | Obrigatório | Descrição | Restrições | Chave |
+|--------|-------------|--------|-----------|-------------|-------------|--------|
+| `id_barbeiro` | ID do barbeiro | uuid | Sim | Identificador único | PK | PK |
+| `nome` | Nome | varchar(255) | Sim | Nome do barbeiro | — | — |
+| `horario_inicio` | Horário de início | time | Sim | Começo do expediente | — | — |
+| `horario_fim` | Horário de fim | time | Sim | Final do expediente | — | — |
+| `user_id` | Usuário associado | bigint | Sim | Conta do barbeiro | FK → `users.id` | FK |
+| `id_barbearia` | Barbearia | uuid | Sim | Barbearia onde trabalha | FK → `barbearias.id_barbearia` | FK |
+| `created_at` | Criado em | timestamp | Sim | Data de criação | — | — |
+| `updated_at` | Atualizado em | timestamp | Sim | Última atualização | — | — |
+
+---
+
+## Atendimentos
+
+| Campo | Nome lógico | Tipo | Obrigatório | Descrição | Restrições | Chave |
+|--------|-------------|--------|-----------|-------------|-------------|--------|
+| `id_atendimento` | ID do atendimento | uuid | Sim | Identificador único | PK | PK |
+| `servico` | Serviço | varchar(255) | Sim | Nome do serviço realizado | — | — |
+| `produto` | Produto | varchar(255) | Não | Produto usado (quando houver) | — | — |
+| `comentario` | Comentário | text | Não | Observações do atendimento | — | — |
+| `valor_total` | Valor total | double | Sim | Valor cobrado | >= 0 | — |
+| `id_barbearia` | Barbearia | uuid | Sim | FK da barbearia | FK → `barbearias.id_barbearia` | FK |
+| `id_barbeiro` | Barbeiro | uuid | Sim | FK do barbeiro | FK → `barbeiros.id_barbeiro` | FK |
+| `created_at` | Criado em | timestamp | Sim | Registro criado | — | — |
+| `updated_at` | Atualizado em | timestamp | Sim | Última atualização | — | — |
