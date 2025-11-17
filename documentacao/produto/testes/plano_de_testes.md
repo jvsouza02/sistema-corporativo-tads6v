@@ -67,7 +67,7 @@ Os testes terão foco nas regras de negócio, utilizando testes unitários para 
 | Fase                          | Início      | Fim         |
 |------------------------------|-------------|-------------|
 | Planejamento de testes       | 29/10/2025  | 02/11/2025  |
-| Criação dos cenários         | 07/11/2025  | 08/11/2025  |
+| Criação dos cenários de teste       | 07/11/2025  | 08/11/2025  |
 | Execução dos testes unitários| 09/11/2025  | 11/11/2025  |
 
 ---
