@@ -49,143 +49,239 @@ A especificação apresenta os principais requisitos, casos de uso, regras e dia
 
 ---
 
-#### **CDU01 – Cadastrar Proprietário**
+# CDU001 - Cadastrar Proprietário
 
-**Escopo:** Cadastro e gerenciamento do proprietário no sistema.  
-**Propósito:** Permitir que o proprietário crie uma conta com nome, e-mail e senha, garantindo que o e-mail não se repita.  
-**Ator:** Proprietário  
-
-**Pré-condições:**
-- O usuário deve acessar a tela de cadastro.  
-- O e-mail informado não pode estar sendo usado por outro proprietário.  
-
-**Pós-condições:**
-- Cadastro realizado com sucesso.  
-- Redirecionamento para a tela inicial.  
-
-**Fluxo Normal:**
-1. Proprietário acessa a tela de cadastro.  
-2. Preenche nome, e-mail e senha.  
-3. Sistema valida e cria o cadastro.  
-4. Exibe mensagem de sucesso.  
-
-**Fluxos de Exceção:**
-- E1: Campos obrigatórios vazios.  
-- E2: E-mail já cadastrado.  
-- E3: Erro ao salvar.  
-
-**Requisitos Relacionados:** RF01, RN01, RNF02
+**ESCOPO:** Cadastro de proprietários no sistema.  
+**PROPÓSÓSITO:** Permitir que proprietários criem contas com nome, e-mail e senha para acessar o sistema de gestão.  
+**ATOR:** Proprietário  
 
 ---
 
-#### **CDU02 – Gerenciar Barbearias**
+### PRÉ-CONDIÇÕES
+- O usuário deve acessar a tela de cadastro.
+- O e-mail informado não pode estar sendo usado por outro usuário.
 
-**Escopo:** Cadastro e gerenciamento das barbearias pertencentes ao proprietário.  
-**Propósito:** Permitir que o proprietário cadastre novas barbearias e edite informações.  
-**Ator:** Proprietário  
-
-**Pré-condições:**  
-- Proprietário deve estar logado.  
-- O e-mail da barbearia deve ser único.  
-
-**Pós-condições:**  
-- Barbearia criada e vinculada.  
-- Listagem atualizada.  
-
-**Fluxo Normal:**  
-1. Proprietário acessa “Minhas Barbearias”.  
-2. Clica em “Cadastrar Barbearia”.  
-3. Preenche dados e salva.  
-4. Sistema valida e confirma o registro.  
-
-**Fluxos de Exceção:**  
-- E1: Campos obrigatórios vazios.  
-- E2: E-mail já usado.  
-- E3: Erro ao salvar.  
-- E4: Nenhuma barbearia cadastrada.  
-
-**Requisitos Relacionados:** RF02, RF03, RN02, RN03, RNF01
+### PÓS-CONDIÇÕES
+- O cadastro do proprietário é criado com sucesso.
+- O usuário é autenticado automaticamente no sistema.
+- O sistema redireciona para o dashboard inicial.
 
 ---
 
-#### **CDU03 – Listar Barbearias**
-
-**Escopo:** Exibir barbearias cadastradas do proprietário.  
-**Propósito:** Visualizar dados e desempenho das barbearias.  
-**Ator:** Proprietário  
-
-**Pré-condições:**  
-- Proprietário logado.  
-- Ao menos uma barbearia cadastrada.  
-
-**Pós-condições:**  
-- Lista exibida corretamente.  
-
-**Fluxo Normal:**  
-1. Proprietário acessa “Minhas Barbearias”.  
-2. Sistema exibe listagem.  
-
-**Fluxos de Exceção:**  
-- E1: Falha na consulta.  
-- E2: Nenhuma barbearia cadastrada.  
-
-**Requisitos Relacionados:** RF03, RN03, RNF01
+### FLUXO NORMAL
+1. O proprietário acessa a tela de registro.
+2. O sistema mostra campos: nome, e-mail, senha.
+3. O proprietário preenche os dados obrigatórios.
+4. O sistema verifica se o e-mail já está cadastrado.
+5. O sistema cria o usuário e o registro de proprietário.
+6. O sistema autentica o usuário automaticamente.
+7. O sistema redireciona para o dashboard.
 
 ---
 
-#### **CDU04 – Gerenciar Barbeiros**
-
-**Escopo:** Cadastrar, editar, remover e transferir barbeiros.  
-**Propósito:** Permitir gestão completa dos barbeiros das barbearias.  
-**Ator:** Proprietário  
-
-**Pré-condições:**  
-- Proprietário logado.  
-- Ao menos uma barbearia cadastrada.  
-
-**Pós-condições:**  
-- Barbeiro cadastrado e vinculado.  
-
-**Fluxo Normal:**  
-1. Proprietário acessa “Barbeiros”.  
-2. Clica em “Novo Barbeiro”.  
-3. Preenche e salva.  
-4. Sistema confirma operação.  
-
-**Fluxos de Exceção:**  
-- E1: Campos obrigatórios vazios.  
-- E2: E-mail já usado.  
-- E3: Erro ao salvar.  
-
-**Requisitos Relacionados:** RF04, RN02, RN05, RN06, RNF01
+### FLUXO DE EXCEÇÃO
+- **E1 - Dados incompletos:** Sistema informa quais campos precisam ser preenchidos.  
+- **E2 - E-mail já existe:** Sistema informa que o e-mail já está em uso.  
+- **E3 - Erro inesperado:** Sistema pede para tentar novamente mais tarde.  
 
 ---
 
-#### **CDU05 – Registrar Atendimento**
+### REQUISITOS RELACIONADOS
+- RF01: Cadastrar Proprietário  
+- RN01: Cadastrar Proprietário de Forma Única  
+- RNF02: Implementar Segurança  
 
-**Escopo:** Registro e histórico dos atendimentos realizados.  
-**Propósito:** Permitir registro de serviços e produtos utilizados.  
-**Ator:** Barbeiro  
+---
 
-**Pré-condições:**  
-- Barbeiro logado.  
-- Vinculado a uma barbearia.  
-- Serviços e produtos cadastrados.  
+---
 
-**Pós-condições:**  
-- Atendimento salvo e histórico atualizado.  
+# CDU002 - Gerenciar Barbearias
 
-**Fluxo Normal:**  
-1. Barbeiro acessa “Atendimentos”.  
-2. Clica em “Novo Atendimento”.  
-3. Seleciona serviços e produtos.  
-4. Sistema calcula e salva.  
+**ESCOPO:** Cadastro e visualização de detalhes de barbearias do proprietário.  
+**PROPÓSITO:** Permitir que proprietários criem e visualizem detalhes de suas barbearias.  
+**ATOR:** Proprietário  
 
-**Fluxos de Exceção:**  
-- E1: Nenhum serviço selecionado.  
-- E2: Erro ao salvar.  
+---
 
-**Requisitos Relacionados:** RF05, RN04, RN06, RNF01
+### PRÉ-CONDIÇÕES
+- Proprietário deve estar autenticado.
+- Proprietário deve ter perfil criado no sistema.
+
+### PÓS-CONDIÇÕES
+- Barbearia criada e vinculada ao proprietário.
+- Foto padrão gerada automaticamente se não fornecida.
+- Dashboard atualizado com nova barbearia.
+
+---
+
+### FLUXO NORMAL
+1. Proprietário acessa área de barbearias.
+2. O sistema lista barbearias existentes.
+3. O proprietário preenche o formulário com dados da barbearia.
+4. O sistema associa automaticamente ao proprietário logado.
+5. O sistema gera imagem automática se não for fornecida.
+6. A barbearia é criada e o sistema redireciona para o dashboard.
+
+---
+
+### FLUXO DE EXCEÇÃO
+- **E1 - Erro ao criar barbearia:** Sistema mostra mensagem de erro.
+
+---
+
+### REQUISITOS RELACIONADOS
+- RF02: Gerenciar Barbearias  
+- RF03: Listar Barbearias  
+- RN02: Vincular Profissionais e Serviços à Barbearia  
+- RN03: Gerenciar Múltiplas Barbearias  
+- RNF01: Garantir Usabilidade  
+
+---
+
+---
+
+# CDU003 - Listar Barbearias
+
+**ESCOPO:** Visualização do dashboard com listagem de barbearias e métricas de desempenho semanal.  
+**PROPÓSITO:** Fornecer visão geral do negócio com indicadores de desempenho semanal.  
+**ATOR:** Proprietário  
+
+---
+
+### PRÉ-CONDIÇÕES
+- Proprietário deve estar autenticado.
+
+### PÓS-CONDIÇÕES
+- Dashboard exibe métricas atualizadas.
+- Dados da última semana calculados automaticamente.
+- Métricas incluem: total de barbeiros, atendimentos na semana, valor total semanal.
+
+---
+
+### FLUXO NORMAL
+1. Proprietário acessa o dashboard.
+2. O sistema busca as barbearias do proprietário.
+3. Para cada barbearia, o sistema calcula automaticamente:
+   - Total de barbeiros ativos.
+   - Atendimentos realizados na última semana.
+   - Valor total gerado na semana.
+4. O sistema exibe as métricas em uma lista organizada.
+
+---
+
+### REQUISITOS RELACIONADOS
+- RF03: Listar Barbearias  
+- RN03: Gerenciar Múltiplas Barbearias  
+- RNF01: Garantir Usabilidade  
+
+---
+
+---
+
+# CDU004 - Gerenciar Barbeiros
+
+**ESCOPO:** Gestão de barbeiros existentes: edição de horários, transferência entre barbearias e remoção.  
+**PROPÓSITO:** Permitir que proprietários administrem a equipe de barbeiros entre suas barbearias.  
+**ATOR:** Proprietário  
+
+---
+
+### PRÉ-CONDIÇÕES
+- Proprietário autenticado.
+- Pelo menos uma barbearia cadastrada.
+- Barbeiros previamente cadastrados no sistema.
+
+### PÓS-CONDIÇÕES
+- Horários atualizados.
+- Barbeiro transferido entre barbearias do mesmo proprietário.
+- Barbeiro removido.
+- Lista de barbeiros atualizada em tempo real.
+
+---
+
+### FLUXO NORMAL
+1. Proprietário acessa lista de barbeiros da barbearia.
+2. O sistema mostra os barbeiros cadastrados.
+3. O sistema lista outras barbearias para transferência.
+4. O proprietário pode:
+   - Editar horários;
+   - Transferir barbeiros entre barbearias;
+   - Remover barbeiros.
+5. O sistema exibe confirmações das ações.
+
+---
+
+### FLUXO DE EXCEÇÃO
+- **E1 - Barbearia não existe:** Sistema redireciona ao dashboard com aviso.  
+- **E2 - Erro ao alterar dados:** Sistema informa falha.  
+- **E3 - Erro ao transferir:** Sistema informa falha.  
+- **E4 - Erro ao remover:** Sistema informa falha.  
+
+---
+
+### REQUISITOS RELACIONADOS
+- RF04: Gerenciar Barbeiros  
+- RN02: Vincular Profissionais e Serviços à Barbearia  
+- RN05: Transferir Barbeiros Entre Barbearias  
+- RN06: Restringir Acesso do Barbeiro  
+- RNF01: Garantir Usabilidade  
+
+---
+
+---
+
+# CDU005 - Registrar Atendimento
+
+**ESCOPO:** Registro, edição e exclusão de atendimentos realizados pelos barbeiros.  
+**PROPÓSITO:** Gerenciar o histórico completo de serviços prestados na barbearia.  
+**ATOR:** Barbeiro  
+
+---
+
+### PRÉ-CONDIÇÕES
+- Barbeiro autenticado.
+- Barbeiro vinculado a uma barbearia.
+- Pelo menos um serviço informado.
+
+### PÓS-CONDIÇÕES
+- Atendimento registrado/atualizado/removido.
+- Valor total processado corretamente.
+- Histórico atualizado automaticamente.
+- Redirecionamento com mensagem de status.
+
+---
+
+### FLUXO NORMAL
+1. Barbeiro acessa detalhes da barbearia onde trabalha.
+2. O sistema mostra histórico de atendimentos ordenado por data.
+3. O barbeiro preenche formulário com:
+   - Serviços prestados;
+   - Produtos utilizados;
+   - Valor total;
+   - Comentários.
+4. O sistema valida que ao menos um serviço foi informado.
+5. O sistema processa a formatação do valor.
+6. O sistema valida que o valor não é negativo.
+7. O atendimento é registrado e vinculado ao barbeiro e à barbearia.
+8. A lista de atendimentos é atualizada em tempo real.
+
+---
+
+### FLUXO DE EXCEÇÃO
+- **E1 - Nenhum serviço informado:** Sistema informa que serviço é obrigatório.  
+- **E2 - Valor negativo:** Sistema informa que valor não pode ser negativo.  
+- **E3 - Valor não preenchido:** Sistema informa que valor deve ser informado.  
+- **E4 - Atendimento não existe:** Sistema avisa ao tentar editar/excluir.  
+- **E5 - Erro ao salvar:** Sistema mostra detalhes do problema.  
+
+---
+
+### REQUISITOS RELACIONADOS
+- RF05: Registrar Atendimento  
+- RN04: Registrar Informações de Atendimento  
+- RN06: Restringir Acesso do Barbeiro  
+- RNF01: Garantir Usabilidade  
+
 
 ---
 
@@ -193,7 +289,7 @@ A especificação apresenta os principais requisitos, casos de uso, regras e dia
 
 **Figura 2:** Diagrama de classes do sistema de agendamento e gestão de barbearias.
 
-![Diagrama de Classe](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/diagrama_de_classes.png)
+![Diagrama de Classe](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/Diagrama%20de%20Classe.png)
 
 
 ---
