@@ -77,146 +77,265 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 
 ## 4. EAP - Estrutura Analítica do Projeto
 
-![EAP - Estrutura Analítica do Projeto](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/EAP.jpg)
+![EAP - Estrutura Analítica do Projeto](image.png)
 
 ---
 
-## 4.1 Definição das Atividades dos Pacotes de Trabalho
+## 4.1 Definição das Atividades dos Pacotes de Trabalho (EAP por Módulo / Sprint)
 
-#### 1. GERENCIAMENTO DE PROJETOS
-
-**1.1 Levantamento de Demandas do Cliente**  
-- **Atividades:** Coletar e documentar necessidades, expectativas e funcionalidades desejadas pelo cliente para o sistema.  
-- **Recursos:** Acesso ao Cliente, Documento de Requisitos.
-
-**1.2 Reuniões de Aceitação com Cliente**  
-- **Atividades:** Apresentar funcionalidades desenvolvidas, coletar feedback e ajustar conforme validação do cliente.  
-- **Recursos:** Versão de Teste do Sistema, Lista de Feedback.
-
-**1.3 Definição de Escopo e Cronograma**  
-- **Atividades:** Delimitar objetivos, entregas e prazos do projeto, alinhando expectativas com o cliente.  
-- **Recursos:** Demandas do Cliente, Template de Escopo, Ferramenta de Cronograma.
-
-**1.4 Elaboração da EAP e Estimativas**  
-- **Atividades:** Decompor o projeto em pacotes de trabalho e estimar esforço, tempo e recursos necessários.  
-- **Recursos:** Documento de Escopo, Template de EAP, Dados para Estimativa.
+> A seção abaixo descreve, **por módulo (sprint)** conforme o diagrama fornecido, os pacotes de trabalho do EAP. Cada módulo segue o processo acordado (Planejar → Analisar → Especificar → Codificar → Testar* → Revisar).  
+> Observação: testes formais aparecem a partir do Módulo 5 (Sprint 5); Módulo 6 inclui validação da documentação.
 
 ---
 
-#### 2. REQUISITOS DO PRODUTO
+### Módulo 1 — Módulo de Atendimento (Sprint 1)  
+**Objetivo:** Entregar o primeiro incremento do módulo de atendimento, permitindo registrar atendimentos e consolidar entendimento do fluxo.  
+**Entregável:** Implementação inicial: Registrar Atendimento (incremento mínimo) + documentação mínima (minimundo).
 
-**2.1 Elaboração do Documento de Visão**  
-- **Atividades:** Definir objetivos, escopo, atores principais e funcionalidades macro do sistema.  
-- **Recursos:** Demandas Iniciais, Template de Documento.
+- **Planejamento da Sprint**  
+  - **Atividades:** definir escopo do incremento, selecionar backlog (histórias), definir critérios de aceite.  
+  - **Recursos:** Backlog, template de critérios de aceite, board.  
+  - **Responsáveis:** GP (coord.), AN (priorização).
 
-**2.2 Desenvolvimento do Minimundo e Diagrama de Domínio**  
-- **Atividades:** Modelar o contexto do negócio e relacionamentos entre entidades do sistema.  
-- **Recursos:** Documento de Visão, Ferramenta de Modelagem (UML).
+- **Análise do processo de atendimento**  
+  - **Atividades:** entrevistar barbeiros/usuários, mapear fluxo (minimundo), identificar regras críticas (horários, campos obrigatórios).  
+  - **Recursos:** Sessões com stakeholders, notas de entrevista.  
+  - **Responsáveis:** AN; ARQ.
 
-**2.3 Levantamento e Especificação de Requisitos**  
-- **Atividades:** Detalhar requisitos funcionais, não funcionais e regras de negócio do sistema.  
-- **Recursos:** Demandas do Cliente, Template de Requisitos.
+- **Especificação inicial**  
+  - **Atividades:** modelar entidades básicas (atendimento, cliente, barbeiro), descrever o caso de uso “Registrar Atendimento”, definir campos e restrições.  
+  - **Recursos:** Ferramenta de modelagem (UML), template de caso de uso.  
+  - **Responsáveis:** ARQ; AN.
 
-**2.4 Criação de Diagrama e Especificações de Caso de Uso**  
-- **Atividades:** Modelar interações entre atores e sistema e especificar fluxos de uso.  
-- **Recursos:** Requisitos Especificados, Ferramenta de Modelagem (UML).
+- **Implementação: Registrar Atendimento**  
+  - **Atividades:** criar migrations/BD mínimos, implementar endpoint/serviço para registro, criar UI/formulário simples.  
+  - **Recursos:** IDE, repositório, ambiente de desenvolvimento.  
+  - **Responsáveis:** Desenvolvedor.
 
-**2.5 Construção do Diagrama de Classes**  
-- **Atividades:** Projetar a estrutura estática do sistema com classes, atributos, métodos e relacionamentos.  
-- **Recursos:** Diagrama de Domínio, Ferramenta de Modelagem (UML).
-
----
-
-#### 3. CONSTRUÇÃO
-
-**3.1 Implementação do Sistema de Cadastro de Proprietários**  
-- **Atividades:** Desenvolver funcionalidades de cadastro e autenticação de proprietários, incluindo validação de e-mail único e armazenamento seguro de senhas.  
-- **Recursos:** IDE, Linguagem de Programação, Banco de Dados, Requisitos Detalhados.
-
-**3.2 Desenvolvimento do Módulo de Gestão de Barbearias**  
-- **Atividades:** Implementar cadastro, edição e exclusão de barbearias, com validação de dados e vinculação ao proprietário.  
-- **Recursos:** IDE, Linguagem de Programação, Banco de Dados, Requisitos Detalhados. 
-
-**3.3 Criação do Sistema de Listagem de Barbearias com Métricas**  
-- **Atividades:** Desenvolver interface para exibição de barbearias com métricas de desempenho (atendimentos, barbeiros, faturamento).  
-- **Recursos:** IDE, Linguagem de Programação, Biblioteca de Métricas, Banco de Dados, Requisitos Detalhados.
-
-**3.4 Implementação da Gestão de Barbeiros**  
-- **Atividades:** Criar funcionalidades de cadastro, edição, transferência e remoção de barbeiros entre barbearias.  
-- **Recursos:** IDE, Linguagem de Programação, Banco de Dados, Requisitos Detalhados.
-
-**3.5 Desenvolvimento do Registro de Atendimentos**  
-- **Atividades:** Implementar registro de atendimentos com seleção de serviços/produtos e cálculo automático de valores.  
-- **Recursos:** IDE, Linguagem de Programação, Banco de Dados, Requisitos Detalhados.
+- **Revisão**  
+  - **Atividades:** demonstrar incremento, coletar feedback, ajustar backlog.  
+  - **Recursos:** Ambiente de teste, checklist de entrega.  
+  - **Responsáveis:** GP; AN; ARQ; Desenvolvedor.
 
 ---
 
-#### 4. TESTES E QUALIDADE
+### Módulo 2 — Incremento do Atendimento (Sprint 2)  
+**Objetivo:** Ampliar o módulo de atendimento com listagem e refinamentos do fluxo.  
+**Entregável:** Listagem de atendimentos e correções no registro.
 
-**4.1 Elaboração do Plano de Testes**  
-- **Atividades:** Definir estratégia, escopo, recursos e cronograma das atividades de teste.  
-- **Recursos:** Requisitos do Sistema, Template de Plano de Testes.
+- **Planejamento da Sprint**  
+  - **Atividades:** priorizar itens (filtros, ordenação, correções), definir critérios de aceite.  
+  - **Recursos:** Backlog atualizado, board.  
+  - **Responsáveis:** GP; AN.
 
-**4.2 Criação de Cenários de Teste**  
-- **Atividades:** Desenvolver casos de teste baseados em requisitos e casos de uso do sistema.  
-- **Recursos:** Plano de Testes.
+- **Levantamento de requisitos adicionais**  
+  - **Atividades:** coletar necessidades de filtragem, paginação, campos adicionais; identificar validações pendentes.  
+  - **Recursos:** Feedback da Sprint 1, logs de uso.  
+  - **Responsáveis:** AN; ARQ.
 
-**4.3 Implementação de Testes Unitários**  
-- **Atividades:** Desenvolver e executar testes automatizados para validar unidades individuais de código.  
-- **Recursos:** Código-fonte, Ferramenta de Teste Unitário.
+- **Especificação: Listagem de atendimentos**  
+  - **Atividades:** detalhar contratos de API para listagem, definir parâmetros (data, barbeiro, status) e formato de resposta.  
+  - **Recursos:** Documento de Especificação em andamento; OpenAPI (se aplicado).  
+  - **Responsáveis:** ARQ; Desenvolvedor (validação técnica).
 
-**4.4 Geração de Relatório de Testes**  
-- **Atividades:** Documentar resultados, defeitos identificados e métricas de qualidade do sistema.  
-- **Recursos:** Dados dos Testes Executados, Template de Relatório.
+- **Implementação: Listar atendimentos + ajustes no registro**  
+  - **Atividades:** implementar endpoints de consulta, UI de listagem/filtragem, aplicar correções no fluxo de registro.  
+  - **Recursos:** Código-base, DB, ambiente dev.  
+  - **Responsáveis:** Desenvolvedor.
+
+- **Revisão**  
+  - **Atividades:** demonstração, validação com stakeholders, consolidar pendências.  
+  - **Recursos:** Ambiente de teste, registro de feedback.  
+  - **Responsáveis:** GP; AN; ARQ; Desenvolvedor.
 
 ---
 
-#### 5. ENCERRAMENTO
+### Módulo 3 — Módulo de Barbearias (Sprint 3)  
+**Objetivo:** Permitir que proprietários cadastrem e visualizem barbearias e gerenciem barbeiros.  
+**Entregável:** Módulo de Gestão de Barbearias (CRUD e telas de gestão).
 
-**5.1 Consolidação da Documentação**  
-- **Atividades:** Revisar, organizar e versionar toda a documentação técnica e de usuário do projeto.  
-- **Recursos:** Documentos de todas as fases, Ferramenta de Armazenamento.
+- **Planejamento da Sprint**  
+  - **Atividades:** selecionar histórias (cadastro, visualização, gestão de barbeiros), definir critérios de aceite.  
+  - **Recursos:** Backlog, reunião de planejamento.  
+  - **Responsáveis:** GP; AN.
 
-**5.2 Entrega do Código Fonte**  
-- **Atividades:** Preparar e entregar código-fonte final com instruções de implantação e configuração.  
-- **Recursos:** Código-fonte Final, Documentação de Instalação.
+- **Análise: regras de barbearia e vínculo com proprietário**  
+  - **Atividades:** mapear permissões, campos obrigatórios, regras de vínculo e restrições operacionais.  
+  - **Recursos:** Documento de Visão; entrevistas.  
+  - **Responsáveis:** AN; ARQ.
 
-**5.3 Demonstração do Sistema Funcional**  
-- **Atividades:** Apresentar sistema em ambiente de produção validando atendimento a todos os requisitos.  
-- **Recursos:** Sistema Pronto.
+- **Especificação: casos de uso e dicionário de dados**  
+  - **Atividades:** descrever casos de uso (Criar/Visualizar Barbearia, Gerenciar Barbeiros), atualizar dicionário de dados.  
+  - **Recursos:** Template de casos de uso; ferramenta de modelagem.  
+  - **Responsáveis:** ARQ.
 
-**5.4 Apresentação e Avaliação Final do Projeto**  
-- **Atividades:** Realizar retrospectiva, documentar lições aprendidas e formalizar encerramento do projeto.  
-- **Recursos:** Relatório Final do Projeto.
+- **Implementação: cadastrar/visualizar barbearias e gerenciar barbeiros**  
+  - **Atividades:** desenvolver CRUD, telas administrativas, endpoints de vínculo e edição.  
+  - **Recursos:** IDE; BD; testes exploratórios.  
+  - **Responsáveis:** Desenvolvedor.
+
+- **Revisão**  
+  - **Atividades:** demonstração para representante do proprietário, coletar ajustes.  
+  - **Recursos:** Checklist de aceite; ambiente de teste.  
+  - **Responsáveis:** GP; AN; ARQ; Desenvolvedor.
+
+---
+
+### Módulo 4 — Transferência de Barbeiros (Sprint 4)  
+**Objetivo:** Implementar transferência de barbeiros entre unidades com regras de integridade.  
+**Entregável:** Funcionalidade de transferência com validações básicas.
+
+- **Planejamento da Sprint**  
+  - **Atividades:** definir escopo (pré-condições, autorizações, atualizações métricas), planejar validações.  
+  - **Recursos:** Backlog; board.  
+  - **Responsáveis:** GP; AN.
+
+- **Análise da regra de transferência**  
+  - **Atividades:** especificar pré-condições (ex.: barbeiro ativo), efeitos colaterais (ajuste de relatórios), permissões.  
+  - **Recursos:** Notas de requisitos; minimundo.  
+  - **Responsáveis:** AN; ARQ.
+
+- **Especificação do caso de uso de transferência**  
+  - **Atividades:** documentar fluxo normal e exceções (conflito de horários, dependências).  
+  - **Recursos:** Template de caso de uso; diagrama de sequência (se necessário).  
+  - **Responsáveis:** ARQ.
+
+- **Implementação da transferência de barbeiros**  
+  - **Atividades:** implementar lógica backend, ajustar relacionamentos no banco, criar UI para selecionar destino/confirmar transferência.  
+  - **Recursos:** IDE; migrações; ambiente dev.  
+  - **Responsáveis:** Desenvolvedor.
+
+- **Revisão**  
+  - **Atividades:** validar com cenários reais e corrigir problemas.  
+  - **Recursos:** Ambiente de teste; logs.  
+  - **Responsáveis:** GP; AN; Desenvolvedor.
+
+---
+
+### Módulo 5 — Refatoração do Atendimento (Sprint 5)  
+**Objetivo:** Melhorar arquitetura e qualidade do módulo de atendimento; introduzir testes automatizados.  
+**Entregável:** Módulo de Atendimento refatorado com cobertura de testes aumentada.
+
+- **Planejamento da Sprint**  
+  - **Atividades:** definir objetivos de qualidade (ex.: metas de cobertura, dívidas técnicas a priorizar), planejar subtarefas.  
+  - **Recursos:** Relatório de issues; métricas de qualidade.  
+  - **Responsáveis:** GP; ARQ; Desenvolvedor.
+
+- **Análise dos problemas encontrados**  
+  - **Atividades:** revisar defeitos recorrentes, identificar pontos de acoplamento e performance.  
+  - **Recursos:** Revisões de código; históricos de defeitos.  
+  - **Responsáveis:** Desenvolvedor; ARQ.
+
+- **Especificação das alterações necessárias**  
+  - **Atividades:** desenhar mudanças (módulos, interfaces), atualizar contratos de API e documentação técnica.  
+  - **Recursos:** Documento de arquitetura; templates técnicos.  
+  - **Responsáveis:** ARQ; Desenvolvedor.
+
+- **Refatoração do código e ajustes**  
+  - **Atividades:** aplicar reorganização de código, extrair responsabilidades, simplificar fluxos.  
+  - **Recursos:** Branch de refatoração; IDE; testes.  
+  - **Responsáveis:** Desenvolvedor.
+
+- **Testes unitários**  
+  - **Atividades:** criar/atualizar testes unitários e de integração; integrar execução em CI (se disponível); executar e corrigir regressões.  
+  - **Recursos:** Framework de testes; pipeline CI; dados de teste.  
+  - **Responsáveis:** Desenvolvedor; ARQ (validação).
+
+- **Revisão**  
+  - **Atividades:** validar critérios de qualidade, aprovar merges, registrar lições aprendidas.  
+  - **Recursos:** Relatórios de cobertura; checklist.  
+  - **Responsáveis:** GP; ARQ; Desenvolvedor.
+
+---
+
+### Módulo 6 — Ajustes de Documentação (Sprint 6)  
+**Objetivo:** Consolidar e validar a documentação técnica e de testes para homologação/entrega.  
+**Entregável:** Documentação atualizada (Especificação, Plano de Testes, Dicionário) e pacote de entrega.
+
+- **Planejamento da Sprint**  
+  - **Atividades:** listar artefatos a atualizar, atribuir responsáveis e prioridades.  
+  - **Recursos:** Repositório de documentos; backlog.  
+  - **Responsáveis:** GP; AN; ARQ.
+
+- **Revisão geral da documentação existente**  
+  - **Atividades:** auditar Visão, Especificação, Dicionário e Plano de Testes para inconsistências.  
+  - **Recursos:** Documentos existentes; versionamento.  
+  - **Responsáveis:** ARQ; AN.
+
+- **Refinamento dos documentos**  
+  - **Atividades:** atualizar casos de uso, dicionário, exemplos de API, instruções de deploy e plano de testes.  
+  - **Recursos:** Ferramentas de edição; templates.  
+  - **Responsáveis:** ARQ; AN.
+
+- **Ajustes no projeto (pequenas melhorias)**  
+  - **Atividades:** aplicar correções menores no código ou scripts de deploy; atualizar README e instruções.  
+  - **Recursos:** Repositório; ambiente de teste.  
+  - **Responsáveis:** Desenvolvedor.
+
+- **Validação da documentação atualizada**  
+  - **Atividades:** verificar cobertura do plano de testes frente às alterações; preparar checklist de homologação.  
+  - **Recursos:** Checklist de homologação; ambiente de homologação.  
+  - **Responsáveis:** GP; ARQ; AN.
+
+- **Revisão**  
+  - **Atividades:** reunião final para registrar lições aprendidas e ajustar plano de encerramento.  
+  - **Recursos:** Registro de retrospectiva.  
+  - **Responsáveis:** Toda a equipe.
 
 ---
 
 ## 5. Lista de Atividades
 
+> **Responsáveis (Mapeamento):**
+> * **Yuri Fernandes** — Analista de Negócio e de Requisitos
+> * **Maria da Paz** — Analista de Negócio e de Requisitos
+> * **João Victor** — Gerente de Projeto e Desenvolvedor
+> * **Lucas Freitas** — Desenvolvedor
+
 | ID | Atividade | Início | Término | Status | Responsável |
-|----|------------|--------|----------|----------|--------------|
-| LA01 | Levantamento de Demandas do Cliente | 18/09/2025 | 20/09/2025 | Concluído | Analista de Negócio |
-| LA02 | Reuniões de Aceitação com Cliente | 21/09/2025 | 23/09/2025 | Concluído | Analista de Negócio |
-| LA03 | Definição de Escopo e Cronograma | 24/09/2025 | 26/09/2025 | Concluído | Gerente de Projeto |
-| LA04 | Elaboração da EAP e Estimativas | 27/09/2025 | 29/09/2025 | Concluído | Analista de Negócio, Gerente de Projeto |
-| LA05 | Elaboração do Documento de Visão | 30/09/2025 | 02/10/2025 | Concluído | Analista de Negócio |
-| LA06 | Desenvolvimento do Minimundo e Diagrama de Domínio | 03/10/2025 | 05/10/2025 | Concluído | Analista de Requisito e Qualidade |
-| LA07 | Levantamento e Especificação de Requisitos | 06/10/2025 | 10/10/2025 | Concluído | Analista de Requisito e Qualidade |
-| LA08 | Criação de Diagrama e Especificações de Caso de Uso | 11/10/2025 | 13/10/2025 | Concluído | Analista de Requisito e Qualidade |
-| LA09 | Construção do Diagrama de Classes | 14/10/2025 | 16/10/2025 | Concluído | Analista de Requisito e Qualidade |
-| LA10 | Implementação do Sistema de Cadastro de Proprietários | 17/10/2025 | 22/10/2025 | Concluído | Desenvolvedor |
-| LA11 | Desenvolvimento do Módulo de Gestão de Barbearias | 23/10/2025 | 30/10/2025 | Concluído | Desenvolvedor |
-| LA12 | Criação do Sistema de Listagem de Barbearias com Métricas | 31/10/2025 | 05/11/2025 | Concluído | Desenvolvedor |
-| LA13 | Implementação da Gestão de Barbeiros | 06/11/2025 | 10/11/2025 | Concluído | Desenvolvedor |
-| LA14 | Desenvolvimento do Registro de Atendimentos | 11/11/2025 | 15/11/2025 | Concluído | Desenvolvedor |
-| LA15 | Elaboração do Plano de Testes | 16/11/2025 | 18/11/2025 | Concluído | Analista de Requisito e Qualidade |
-| LA16 | Criação de Cenários de Teste | 19/11/2025 | 21/11/2025 | Concluído | Analista de Requisito e Qualidade |
-| LA17 | Implementação de Testes Unitários | 22/11/2025 | 26/11/2025 | Concluído | Desenvolvedor |
-| LA18 | Geração de Relatório de Testes | 27/11/2025 | 30/11/2025 | Concluído | Desenvolvedor |
-| LA19 | Consolidação da Documentação | 01/12/2025 | 05/12/2025 | Concluído | Analista de Requisito e Qualidade, Gerente de Projeto |
-| LA20 | Entrega do Código Fonte | 06/12/2025 | 08/12/2025 | Concluído | Desenvolvedor |
-| LA21 | Demonstração do Sistema Funcional | 09/12/2025 | 12/12/2025 | Concluído | Desenvolvedor |
-| LA22 | Apresentação e Avaliação Final do Projeto | 13/12/2025 | 17/12/2025 | Planejado | Toda Equipe |
+|:---|:---|:---:|:---:|:---:|:---|
+| **Sprint 1 – Módulo de Atendimento (08/10/2025 → 14/10/2025)** | | | | | |
+| LA01 | Planejamento da Sprint 1 | 08/10/2025 | 08/10/2025 | Concluído | João Victor |
+| LA02 | Análise do processo de atendimento | 09/10/2025 | 10/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
+| LA03 | Especificação inicial (Minimundo + primeiros casos de uso) | 11/10/2025 | 12/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
+| LA04 | Implementação: Registrar Atendimento | 13/10/2025 | 14/10/2025 | Concluído | João Victor; Lucas Freitas |
+| LA05 | Revisão da Sprint 1 | 14/10/2025 | 14/10/2025 | Concluído | Toda equipe (coord.: João Victor) |
+| **Sprint 2 – Incremento do Atendimento (15/10/2025 → 21/10/2025)** | | | | | |
+| LA06 | Planejamento da Sprint 2 | 15/10/2025 | 15/10/2025 | Concluído | João Victor |
+| LA07 | Levantamento de requisitos adicionais do módulo de atendimento | 16/10/2025 | 17/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
+| LA08 | Especificação: Listagem de atendimentos | 18/10/2025 | 18/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
+| LA09 | Implementação: Listar atendimentos + ajustes no registro | 19/10/2025 | 20/10/2025 | Concluído | João Victor; Lucas Freitas |
+| LA10 | Revisão da Sprint 2 | 21/10/2025 | 21/10/2025 | Concluído | Toda equipe (coord.: João Victor) |
+| **Sprint 3 – Módulo de Barbearias (22/10/2025 → 28/10/2025)** | | | | | |
+| LA11 | Planejamento da Sprint 3 | 22/10/2025 | 22/10/2025 | Concluído | João Victor |
+| LA12 | Análise: regras de barbearia e vínculo com proprietários | 23/10/2025 | 24/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
+| LA13 | Especificação: Casos de uso e Dicionário de Dados | 25/10/2025 | 26/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
+| LA14 | Implementação: cadastrar/visualizar barbearias e gerenciar barbeiros | 27/10/2025 | 28/10/2025 | Concluído | João Victor; Lucas Freitas |
+| LA15 | Revisão da Sprint 3 | 28/10/2025 | 28/10/2025 | Concluído | Toda equipe (coord.: João Victor) |
+| **Sprint 4 – Transferência de Barbeiros (29/10/2025 → 04/11/2025)** | | | | | |
+| LA16 | Planejamento da Sprint 4 | 29/10/2025 | 29/10/2025 | Concluído | João Victor |
+| LA17 | Análise: regra de transferência de barbeiros | 30/10/2025 | 31/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
+| LA18 | Especificação: Caso de uso de transferência | 01/11/2025 | 01/11/2025 | Concluído | Yuri Fernandes; Maria da Paz |
+| LA19 | Implementação da transferência de barbeiros | 02/11/2025 | 03/11/2025 | Concluído | João Victor; Lucas Freitas |
+| LA20 | Revisão da Sprint 4 | 04/11/2025 | 04/11/2025 | Concluído | Toda equipe (coord.: João Victor) |
+| **Sprint 5 – Refatoração do Atendimento (05/11/2025 → 11/11/2025)** | | | | | |
+| LA21 | Planejamento da Sprint 5 | 05/11/2025 | 05/11/2025 | Concluído | João Victor |
+| LA22 | Análise dos problemas encontrados no módulo de atendimento | 06/11/2025 | 07/11/2025 | Concluído | Yuri Fernandes; Maria da Paz |
+| LA23 | Especificação das alterações necessárias | 08/11/2025 | 08/11/2025 | Concluído | Yuri Fernandes; Maria da Paz |
+| LA24 | Refatoração do código e ajustes | 09/11/2025 | 10/11/2025 | Concluído | João Victor; Lucas Freitas |
+| LA25 | Implementação de Testes Unitários | 11/11/2025 | 11/11/2025 | Concluído | João Victor |
+| LA26 | Revisão da Sprint 5 | 11/11/2025 | 11/11/2025 | Concluído | Toda equipe (coord.: João Victor) |
+| **Sprint 6 – Ajustes de Documentação (12/11/2025 → 19/11/2025)** | | | | | |
+| LA27 | Planejamento da Sprint 6 | 12/11/2025 | 12/11/2025 | Concluído | João Victor |
+| LA28 | Revisão geral da documentação existente | 13/11/2025 | 14/11/2025 | Concluído | Yuri Fernandes; Maria da Paz |
+| LA29 | Refinamento dos documentos (visão, requisitos, testes) | 15/11/2025 | 16/11/2025 | Concluído | Yuri Fernandes; Maria da Paz |
+| LA30 | Ajustes no projeto (organização e pequenas melhorias) | 17/11/2025 | 17/11/2025 | Concluído | João Victor; Lucas Freitas |
+| LA31 | Validação da documentação atualizada | 18/11/2025 | 18/11/2025 | Concluído | João Victor |
+| LA32 | Revisão da Sprint 6 | 19/11/2025 | 19/11/2025 | Concluído | Toda equipe (coord.: João Victor) |
+| **Encerramento / Pós-sprints** | | | | | |
+| LA33 | Entrega do Código Fonte Final | 20/11/2025 | 21/11/2025 | Planejado | João Victor |
+| LA34 | Demonstração do Sistema Funcional | 22/11/2025 | 23/11/2025 | Planejado | João Victor; Lucas Freitas |
+| LA35 | Apresentação e Avaliação Final | 24/11/2025 | 25/11/2025 | Planejado | Toda equipe |
 
 ---
 
@@ -229,3 +348,14 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 ## 7. Diagrama de Atividades do Projeto
 
 ![Diagrama de Atividades](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/diagrama_de_atividade_do_projeto.png)
+
+## 8. Ferramentas Utilizadas
+
+Durante o desenvolvimento do sistema foram utilizadas as seguintes ferramentas:
+
+- **GitHub** — repositório de código-fonte, versionamento e controle de versões.  
+- **GitHub Projects (Kanban)** — quadro Kanban para gestão do backlog e organização das sprints.  
+- **Quadro Kanban (Board do repositório)** — organização visual das tarefas por colunas (To Do / In Progress / Done).  
+- **Visual Studio Code (VSCode)** — editor/IDE utilizado pelos desenvolvedores para codificação, debugging e execução de testes locais.  
+
+---
