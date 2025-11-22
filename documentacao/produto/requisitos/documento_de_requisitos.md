@@ -24,24 +24,24 @@ O sistema busca proporcionar maior eficiência administrativa, otimização de p
 
 ## 3. Descrição do Minimundo
 
-A plataforma de gestão de barbearias organiza serviços de cortes de cabelo, barba e coloração capilar, permitindo que barbeiros e proprietários gerenciem atendimentos de forma prática e eficiente.  
-Ela oferece ferramentas para controle de atendimentos e apresenta dados de desempenho, facilitando a gestão do negócio e aprimorando a experiência dos clientes.
+A plataforma de agendamento e gestão de barbearias centraliza todas as operações necessárias para proprietários, barbeiros e clientes, permitindo organizar serviços, controlar atendimentos, gerenciar equipes, administrar estoque e acompanhar o desempenho das unidades de forma prática e integrada.
 
-O proprietário realiza um cadastro informando seu nome, e-mail e senha, ou acessa o sistema por meio de login com o e-mail.  
-Após autenticar-se, ele é redirecionado para a tela inicial, onde pode criar e gerenciar as informações da sua barbearia, como nome, e-mail, endereço, telefone, horário de início e fim, descrição e foto.  
-Nessa página inicial, o proprietário tem acesso a uma listagem de todas as suas barbearias cadastradas.  
-Em cada barbearia listada, são exibidas suas informações principais (nome, email, telefone, endereço, horário de funcionamento e descrição), além da quantidade de atendimentos semanais, quantidade de barbeiros e o valor total gerado pelos atendimentos da semana.
+O proprietário realiza seu cadastro informando nome, e-mail e senha, ou acessa o sistema por meio de login. Após autenticar-se, ele é direcionado para a tela inicial, onde pode visualizar todas as suas barbearias cadastradas. Cada barbearia exibe suas informações principais, como nome, endereço, horário de início e fim de expediente, quantidade de atendimentos da semana, quantidade de barbeiros vinculados e o valor total gerado pelos atendimentos semanais. Além disso, nessa mesma página, ele pode editar ou remover suas barbearias.
 
-Ao clicar em uma barbearia, o proprietário tem acesso à página de detalhes, onde pode visualizar informações sobre a barbearia e acompanhar o histórico de atendimentos realizados (com comentário, valor, serviço e produto utilizado em cada um).  
-Ele também pode gerenciar os barbeiros vinculados, incluindo cadastro, edição (horario de início e fim), remoção e transferência de barbeiros entre barbearias, facilitando a redistribuição da equipe conforme a necessidade.
+O proprietário pode cadastrar novas barbearias, informando nome, e-mail, endereço, telefone, horário de início e fim do expediente, descrição e uma foto de apresentação. Dentro da página de detalhes de uma barbearia, o proprietário tem acesso completo às informações da unidade, podendo editar dados, acompanhar o histórico de atendimentos, gerenciar sua equipe de barbeiros e o estoque de produtos da barbearia.
 
-O barbeiro, ao fazer login com o e-mail, pode acessar uma página com a listagem de atendimentos.  
-Ao realizar atendimentos, ele registra os detalhes de cada serviço executado.  
-Os serviços e produtos (ex.: cortes, barba, coloração, shampoos, condicionadores, tintas etc.) já estão previamente cadastrados no sistema, cada um com seu preço.  
-Ao registrar um atendimento, o barbeiro seleciona o serviço prestado e o produto utilizado a partir desse catálogo; o sistema soma automaticamente os valores selecionados para calcular o valor total do atendimento. Além disso, ele também pode salvar um comentário sobre a realização do atendimento.  
-O barbeiro também pode editar ou remover registros, e o sistema recalcula o valor total sempre que houver alterações.
+Ele pode cadastrar barbeiros vinculados à barbearia, preenchendo nome, e-mail, senha e horário de início e fim de expediente, além de editar ou remover os profissionais. O proprietário também pode transferir barbeiros entre as barbearias que possui, facilitando a redistribuição da equipe conforme as necessidades de cada unidade.
 
-A plataforma centraliza todas as operações da barbearia em um único ambiente, facilitando o atendimento, o gerenciamento da equipe e o acompanhamento do desempenho do negócio, proporcionando eficiência, organização e uma experiência satisfatória para clientes, barbeiros e proprietários.
+Além dos profissionais, o proprietário gerencia os serviços oferecidos, como cortes de cabelo, barba, coloração e outros. Cada serviço possui nome, descrição, preço e produtos associados. O sistema também mantém um catálogo de produtos utilizados na barbearia, como shampoos, condicionadores, loções, tintas e outros itens consumíveis. Cada produto possui preço, descrição e está vinculado ao seu estoque dentro de cada barbearia.
+
+A plataforma realiza a gestão de estoque, armazenando a quantidade disponível de cada produto em cada unidade. Sempre que produtos ficam com quantidade igual ou inferior ao limite mínimo definido, o sistema exibe alertas de estoque baixo, permitindo ao proprietário visualizar rapidamente quais itens precisam ser repostos. Toda saída de produtos durante os atendimentos reduz automaticamente o estoque, e o proprietário também pode registrar reposições.
+
+O barbeiro, ao fazer login, acessa sua página de agendamentos. Ele pode visualizar a lista de todos os agendamentos do dia ou da semana, facilitando o gerenciamento de sua rotina. Durante um atendimento, o barbeiro registra os serviços prestados ao cliente; ao selecionar um serviço, o sistema automaticamente carrega os produtos padrão associados a ele. O barbeiro também pode adicionar mais de um produto extra ao atendimento, escolhendo qualquer item adicional disponível no catálogo da barbearia. Após selecionar os serviços e produtos, o sistema soma automaticamente os valores para calcular o total do atendimento. O barbeiro ainda pode adicionar comentários e editar ou remover o registro, sendo que o sistema recalcula o valor total sempre que alterações são feitas.
+
+O cliente, por sua vez, pode criar uma conta informando nome, e-mail e senha. Após o cadastro, ele pode visualizar barbearias disponíveis e verificar horários disponíveis para agendamento. O cliente escolhe uma barbearia e, com base nos horários de funcionamento da unidade, o sistema exibe apenas horários disponíveis. Assim, o cliente pode selecionar o horário desejado, confirmar o agendamento e, posteriormente, acessar seu histórico de agendamentos.
+
+A plataforma integra todas essas operações em um único ambiente, garantindo organização, eficiência e uma gestão completa da barbearia. Proprietários conseguem controlar suas unidades com facilidade, barbeiros realizam atendimentos de forma estruturada e os clientes têm uma experiência fluida e conveniente ao agendar e acompanhar os seus agendamentos. Dessa forma, o sistema promove automatização, redução de erros, melhora no atendimento e centralização do processo de gestão, contribuindo para o crescimento e o aprimoramento do negócio.
+
 
 ---
 
