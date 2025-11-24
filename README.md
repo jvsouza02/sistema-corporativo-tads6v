@@ -1,6 +1,6 @@
 # Barber Pro
 
-# Como Executar os Testes Unitários
+## Como Executar os Testes Unitários
 
 Este guia fornece instruções passo a passo para configurar o ambiente e executar os testes unitários do projeto.
 
@@ -15,7 +15,8 @@ Antes de começar, certifique-se de ter instalado:
 
 ```bash
 git clone https://github.com/jvsouza02/sistema-corporativo-tads6v.git
-cd codificacao
+cd .\sistema-corporativo-tads6v\
+cd .\codificacao\
 ```
 
 ### Passo 2: Instalar Dependências
@@ -25,30 +26,7 @@ Execute o comando abaixo para instalar todas as dependências do projeto:
 ```bash
 composer install
 ```
-
-### Passo 3: Configurar o Ambiente
-
-Copie o arquivo de exemplo de variáveis de ambiente:
-
-```bash
-cp .env.example .env
-```
-
-### Passo 4: Gerar a Chave da Aplicação (Laravel)
-
-```bash
-php artisan key:generate
-```
-
-### Passo 5: Executar as Migrações
-
-Execute as migrações no banco de dados:
-
-```bash
-php artisan migrate
-```
-
-### Passo 6: Executar os Testes
+### Passo 3: Executar os Testes
 
 Para executar todos os testes unitários:
 
@@ -59,5 +37,5 @@ php artisan test --testsuite=Unit
 Ou usando o PHPUnit diretamente:
 
 ```bash
-./vendor/bin/phpunit
+./vendor/bin/phpunit --testsuite=Unit
 ```
