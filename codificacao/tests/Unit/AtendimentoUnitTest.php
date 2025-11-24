@@ -59,9 +59,9 @@ class AtendimentoUnitTest extends TestCase
     }
 
     /**
-     * CT003 (complementar): Precisão com múltiplos valores decimais
+     * CT004: Precisão com múltiplos valores decimais
      */
-    public function test_ct003_precisao_com_multiplos_decimais()
+    public function test_ct004_precisao_com_multiplos_decimais()
     {
         $atendimento = new Atendimento([
             'servico' => 'Corte Degradê',
@@ -76,11 +76,11 @@ class AtendimentoUnitTest extends TestCase
     }
 
     /**
-     * CT004: Editar atendimento e atualizar valor total
+     * CT005: Editar atendimento e atualizar valor total
      * Verificar se o sistema recalcula o valor total automaticamente
      * quando o atendimento é editado.
      */
-    public function test_ct004_atualiza_valor_ao_editar()
+    public function test_ct005_atualiza_valor_ao_editar()
     {
         $atendimento = new Atendimento([
             'servico' => 'Corte Social',
@@ -98,10 +98,10 @@ class AtendimentoUnitTest extends TestCase
     }
 
     /**
-     * CT005: Impedir valor negativo no atendimento
+     * CT006: Impedir valor negativo no atendimento
      * Garantir que o sistema não aceite itens com valor negativo.
      */
-    public function test_ct005_detecta_valor_negativo()
+    public function test_ct006_detecta_valor_negativo()
     {
         $atendimento = new Atendimento([
             'servico' => 'Corte Social',
@@ -113,9 +113,9 @@ class AtendimentoUnitTest extends TestCase
     }
 
     /**
-     * CT005 (complementar): Aceitar valores positivos
+     * CT007: Aceitar valores positivos
      */
-    public function test_ct005_aceita_valor_positivo()
+    public function test_ct007_aceita_valor_positivo()
     {
         $atendimento = new Atendimento([
             'servico' => 'Corte Social',

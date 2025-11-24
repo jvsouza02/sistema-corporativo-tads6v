@@ -75,7 +75,8 @@ Transformar os requisitos levantados e o escopo definido em especificações té
 5. Descrever o **Fluxo Normal** de interação entre ator e sistema.  
 6. Detalhar os **Fluxos de Exceção**, prevendo comportamentos alternativos e mensagens de erro.  
 7. Relacionar os **Requisitos Funcionais e Não Funcionais** associados ao caso de uso.  
-8. Validar a especificação junto ao Analista de Negócio e Desenvolvedor para garantir clareza e viabilidade.
+8. Atualizar **dicionário de dados** com possíveis novos dados.
+9. Validar a especificação junto ao Analista de Negócio e Desenvolvedor para garantir clareza e viabilidade.
 
 ---
 
