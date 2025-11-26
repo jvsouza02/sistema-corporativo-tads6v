@@ -73,81 +73,106 @@
                 <p>Esta barbearia ainda não possui atendimentos registrados.</p>
             </div>
         @else
-            @foreach ($atendimentos as $atendimento)
-                <div class="atendimento-card">
-                    <div class="atendimento-header">
-                        <div>
-                            <div class="atendimento-cliente">
-                                <i class="fas fa-user-circle"></i>
-                                Cliente
-                            </div>
-                            <div class="atendimento-date">
-                                <i class="far fa-calendar me-1"></i>
-                                {{ \Carbon\Carbon::parse($atendimento->created_at)->format('d/m/Y H:i') }}
+            {{-- CONTAINER PARA CARDS EM COLUNAS --}}
+            <div style="display:flex; flex-wrap:wrap; gap:20px;">
+                @foreach ($atendimentos as $atendimento)
+                    <div class="atendimento-card"
+                         style="flex:0 0 360px; max-width:360px; width:100%;
+                                padding:18px; font-size:0.95rem;">
+
+                        <div class="atendimento-header" style="margin-bottom:8px;">
+                            <div>
+                                <div class="atendimento-cliente" style="font-weight:600;">
+                                    <i class="fas fa-user-circle me-1"></i>
+                                    Cliente
+                                </div>
+                                <div class="atendimento-date" style="font-size:0.85rem; color:#666;">
+                                    <i class="far fa-calendar me-1"></i>
+                                    {{ \Carbon\Carbon::parse($atendimento->created_at)->format('d/m/Y H:i') }}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="atendimento-body">
-                        <div class="info-row">
-                            <i class="fas fa-user-tie"></i>
-                            <span class="info-label">Profissional:</span>
-                            <span class="info-value">{{ ucfirst($atendimento->barbeiro->nome) ?? 'Não informado' }}</span>
-                        </div>
-
-                        <div class="info-row">
-                            <i class="fas fa-cut"></i>
-                            <span class="info-label">Serviço:</span>
-                            <span class="info-value">
-                                {{ $atendimento->servico ?? 'Não informado' }}
-                            </span>
-                        </div>
-
-                        @if ($atendimento->produto)
-                            <div class="info-row">
-                                <i class="fas fa-box"></i>
-                                <span class="info-label">Produto:</span>
-                                <span class="info-value">{{ $atendimento->produto ?? 'Nenhum' }}</span>
+                        <div class="atendimento-body">
+                            <div class="info-row" style="display:flex; align-items:center; margin-bottom:6px;">
+                                <i class="fas fa-user-tie me-2"></i>
+                                <span class="info-label" style="font-weight:500;">Profissional:&nbsp;</span>
+                                <span class="info-value">{{ ucfirst($atendimento->barbeiro->nome) ?? 'Não informado' }}</span>
                             </div>
-                        @endif
 
-                        @if ($atendimento->comentario)
-                            <div class="observacoes-section">
-                                <h6><i class="fas fa-sticky-note me-2"></i>Comentário</h6>
-                                <p class="observacoes-text mb-0">{{ $atendimento->comentario }}</p>
+                            <div class="info-row" style="display:flex; align-items:center; margin-bottom:6px;">
+                                <i class="fas fa-cut me-2"></i>
+                                <span class="info-label" style="font-weight:500;">Serviço:&nbsp;</span>
+                                <span class="info-value">
+                                    {{ $atendimento->servico ?? 'Não informado' }}
+                                </span>
                             </div>
-                        @endif
-                    </div>
 
-                    <div class="atendimento-footer">
-                        <div class="valor-total">
-                            <span class="info-label">Valor Total:</span>
-                            <span class="info-value">R$ {{ number_format($atendimento->valor_total, 2, ',', '.') }}</span>
+                            @if ($atendimento->produto)
+                                <div class="info-row" style="display:flex; align-items:center; margin-bottom:6px;">
+                                    <i class="fas fa-box me-2"></i>
+                                    <span class="info-label" style="font-weight:500;">Produto:&nbsp;</span>
+                                    <span class="info-value">{{ $atendimento->produto ?? 'Nenhum' }}</span>
+                                </div>
+                            @endif
+
+                            @if ($atendimento->comentario)
+                                <div class="observacoes-section" style="margin-top:8px;">
+                                    <h6 style="font-size:0.9rem; font-weight:600;">
+                                        <i class="fas fa-sticky-note me-2"></i>Comentário
+                                    </h6>
+                                    <p class="observacoes-text mb-0" style="font-size:0.9rem;">
+                                        {{ $atendimento->comentario }}
+                                    </p>
+                                </div>
+                            @endif
                         </div>
 
-                        @if (Auth()->user()->role == 'barbeiro')
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-action btn-edit" data-bs-toggle="modal"
-                                    data-bs-target="#editAtendimentoModal" data-id="{{ $atendimento->id_atendimento }}"
-                                    data-servico="{{ $atendimento->servico }}" data-produto="{{ $atendimento->produto }}"
-                                    data-valor="{{ $atendimento->valor_total }}"
-                                    data-comentario="{{ $atendimento->comentario }}">
-                                    <i class="fas fa-edit me-1"></i>Editar
-                                </button>
+                        <div class="atendimento-footer" style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+                            <div class="valor-total"
+                                 style="font-size:0.95rem; font-weight:500;">
+                                <span class="info-label">Valor Total:</span>
+                                <span class="info-value" style="font-weight:600;">
+                                    R$ {{ number_format($atendimento->valor_total, 2, ',', '.') }}
+                                </span>
+                            </div>
 
-                                <form action="{{ route('atendimentos.destroy', $atendimento->id_atendimento) }}" method="POST" style="display: inline;"
-                                    onsubmit="return confirm('Tem certeza que deseja excluir este atendimento?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-action btn-delete">
-                                        <i class="fas fa-trash me-1"></i>Excluir
+                            @if (Auth()->user()->role == 'barbeiro')
+                                <div class="d-flex gap-2 mt-0">
+
+                                    {{-- Botão de editar (ícone) --}}
+                                    <button class="btn"
+                                            style="padding:6px 10px; background:#eef3ff; border-radius:8px;"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editAtendimentoModal"
+                                            data-id="{{ $atendimento->id_atendimento }}"
+                                            data-servico="{{ $atendimento->servico }}"
+                                            data-produto="{{ $atendimento->produto }}"
+                                            data-valor="{{ $atendimento->valor_total }}"
+                                            data-comentario="{{ $atendimento->comentario }}"
+                                            title="Editar atendimento">
+                                        <i class="fas fa-edit" style="color:#3f51b5; font-size:1.1rem;"></i>
                                     </button>
-                                </form>
-                            </div>
-                        @endif
+
+                                    {{-- Botão de excluir (ícone) --}}
+                                    <form action="{{ route('atendimentos.destroy', $atendimento->id_atendimento) }}"
+                                          method="POST"
+                                          onsubmit="return confirm('Deseja excluir este atendimento?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn"
+                                                style="padding:6px 10px; background:#ffecec; border-radius:8px;"
+                                                title="Excluir atendimento">
+                                            <i class="fas fa-trash" style="color:#d32f2f; font-size:1.1rem;"></i>
+                                        </button>
+                                    </form>
+
+                                </div>
+                            @endif
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         @endif
     </div>
 
@@ -288,7 +313,6 @@
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Preços
             const precos = {
                 servicos: {
                     "Corte Social": 30,
@@ -305,8 +329,7 @@
                     "Tônico": 20
                 }
             };
-
-            // ===== MODAL NOVO ATENDIMENTO =====
+            
             function atualizarValor() {
                 const servico = document.getElementById("servico").value;
                 const produto = document.getElementById("produto").value;
@@ -320,11 +343,9 @@
             if (servicoSelect) servicoSelect.addEventListener("change", atualizarValor);
             if (produtoSelect) produtoSelect.addEventListener("change", atualizarValor);
 
-            // ===== MODAL EDITAR ATENDIMENTO =====
             const editModalElement = document.getElementById('editAtendimentoModal');
 
             if (editModalElement) {
-                // Atualizar valor no modal de edição
                 function atualizarValorEdit() {
                     const servico = document.getElementById("editServico").value;
                     const produto = document.getElementById("editProduto").value;
@@ -335,28 +356,22 @@
                 document.getElementById("editServico").addEventListener("change", atualizarValorEdit);
                 document.getElementById("editProduto").addEventListener("change", atualizarValorEdit);
 
-                // Preencher dados quando modal abrir
                 editModalElement.addEventListener('show.bs.modal', function(event) {
                     const button = event.relatedTarget;
 
-                    // Extrair dados dos atributos data-*
                     const id = button.getAttribute('data-id');
                     const servico = button.getAttribute('data-servico');
                     const produto = button.getAttribute('data-produto');
                     const comentario = button.getAttribute('data-comentario');
 
-                    // Preencher os campos
                     document.getElementById('editServico').value = servico || '';
                     document.getElementById('editProduto').value = produto || 'Nenhum';
                     document.getElementById('editComentario').value = comentario || '';
 
-                    // Calcular e atualizar o valor
                     atualizarValorEdit();
 
-                    // Atualizar action do formulário
                     document.getElementById('editAtendimentoForm').action = `/atendimentos/${id}`;
 
-                    // Atualizar título do modal
                     this.querySelector('.modal-title').textContent =
                         `Editar Atendimento #${id.substring(0, 8)}`;
                 });
