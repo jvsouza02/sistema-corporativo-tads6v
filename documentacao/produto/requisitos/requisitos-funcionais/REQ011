@@ -1,0 +1,30 @@
+# REQ011 - Visualizar Histórico de Agendamento
+
+**ESCOPO:** Consulta dos agendamentos do cliente.  
+**PROPÓSITO:** Permitir visualizar registros passados.  
+**ATOR:** Cliente  
+
+---
+
+### PRÉ-CONDIÇÕES
+- Cliente autenticado.
+
+### PÓS-CONDIÇÕES
+- Histórico exibido ao cliente.
+
+---
+
+### FLUXO NORMAL
+1. O cliente acessa o **histórico de agendamentos**.
+2. O sistema lista todos os agendamentos do cliente.
+3. O cliente visualiza data, horário e status.
+
+---
+
+### FLUXO DE EXCEÇÃO
+- **E1 – Nenhum agendamento:** Sistema informa ausência de registros.
+
+---
+
+### REQUISITOS RELACIONADOS
+- RF011
