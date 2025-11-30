@@ -7,6 +7,7 @@ use App\Http\Controllers\BarbeariaController;
 use App\Http\Controllers\ProprietarioController;
 use App\Http\Controllers\BarbeiroController;
 use App\Http\Controllers\AtendimentoController;
+use App\Http\Controllers\ProdutoController;
 
 Route::prefix('auth')->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('login');
@@ -33,6 +34,8 @@ Route::middleware('auth')->group(function () {
         Route::put('/barbeiros/{id_barbeiro}', [BarbeiroController::class, 'update'])->name('barbeiros.update');
         Route::put('/barbeiros/{id_barbeiro}/transferir', [BarbeiroController::class, 'transferir'])->name('barbeiros.transferir');
         Route::delete('barbeiros/{id_barbeiro}', [BarbeiroController::class, 'destroy'])->name('barbeiros.destroy');
+        Route::get('/produtos/{id_barbearia}', [ProdutoController::class, 'index'])->name('produtos.index');
+        Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
     });
 
     Route::middleware('can:barbeiro-access')->group(function () {

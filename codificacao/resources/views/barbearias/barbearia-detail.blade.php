@@ -30,6 +30,14 @@
                             <a href="{{ route('barbeiros.index', $barbearia->id_barbearia) }}" class="btn btn-manage">
                                 <i class="fas fa-users me-2"></i>Gerenciar Barbeiros
                             </a>
+
+                            <a href="{{ route('produtos.index', $barbearia->id_barbearia) }}" class="btn btn-manage">
+                                <i class="fas fa-box-open me-2"></i>Produtos
+                            </a>
+
+                            <a href="" class="btn btn-manage">
+                                <i class="fas fa-briefcase me-2"></i>Serviços
+                            </a>
                         @endif
                         @if (Auth()->user()->role == 'barbeiro')
                             <button class="btn btn-add-atendimento" data-bs-toggle="modal"
@@ -329,7 +337,7 @@
                     "Tônico": 20
                 }
             };
-            
+
             function atualizarValor() {
                 const servico = document.getElementById("servico").value;
                 const produto = document.getElementById("produto").value;

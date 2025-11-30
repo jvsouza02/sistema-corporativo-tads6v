@@ -173,7 +173,7 @@ body {
 }
 
 .btn-manage:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--highlight-color);
     transform: translateY(-3px);
     box-shadow: 0 5px 20px rgba(15, 52, 96, 0.4);
 }

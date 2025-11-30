@@ -178,7 +178,7 @@
                         <div class="col-md-4">
                             <label for="senha" class="form-label">Senha</label>
                             <div class="input-group">
-                                <input type="senha" class="form-control @error('senha') is-invalid @enderror"
+                                <input type="password" class="form-control @error('senha') is-invalid @enderror"
                                     id="senha" name="senha" placeholder="Mínimo 6 caracteres" required minlength="6">
                                 @error('senha')
                                     <div class="invalid-feedback">{{ $message }}</div>

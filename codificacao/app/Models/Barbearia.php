@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Proprietario;
 use App\Models\Barbeiro;
 use App\Models\Atendimento;
+use App\Models\Estoque;
 
 class Barbearia extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'barbearias';
     protected $primaryKey = 'id_barbearia';
     protected $keyType = 'string';
@@ -44,5 +45,17 @@ class Barbearia extends Model
     public function atendimentos()
     {
         return $this->hasMany(Atendimento::class, 'id_barbearia');
+    }
+
+    public function estoques()
+    {
+        return $this->hasMany(Estoque::class, 'id_barbearia');
+    }
+
+    public function produto()
+    {
+        return $this->belongsToMany(Produto::class, 'estoques')
+                    ->withPivot('quantidade', 'quantidade_minima')
+                    ->withTimestamps();
     }
 }

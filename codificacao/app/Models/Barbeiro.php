@@ -12,7 +12,7 @@ use App\Models\Barbearia;
 class Barbeiro extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'barbeiros';
     protected $primaryKey = 'id_barbeiro';
     protected $keyType = 'string';
@@ -34,7 +34,7 @@ class Barbeiro extends Model
 
     public function atendimentos()
     {
-        return $this->hasMany(Atendimento::class);
+        return $this->hasMany(Atendimento::class, 'id_barbeiro');
     }
 
     public function user()
