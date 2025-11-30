@@ -13,11 +13,19 @@ class ProdutoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($id_barbearia)
+    public function index(Request $request)
     {
-        $barbearia = Barbearia::where('id_barbearia', $id_barbearia)->first();
-        $estoques = $barbearia->estoques()->with('produto')->get();
-        return view("barbearias.estoque", compact("estoques", 'barbearia'));
+        try {
+            $barbearia = Barbearia::where('id_barbearia', $request->id_barbearia)->firstOrFail();
+
+            // obtém estoques vinculados à barbearia
+            $estoques = $barbearia->estoques()->with('produto')->get();
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Erro ao buscar produtos');
+        }
+
+        return view("barbearias.estoque", compact("estoques", "barbearia"));
     }
 
     /**
@@ -53,7 +61,7 @@ class ProdutoController extends Controller
                 'id_produto' => $produto->id_produto,
                 'quantidade' => $request->get('quantidade'),
             ]);
-            
+
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
         }
@@ -80,16 +88,41 @@ class ProdutoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, $id_produto)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string|max:255',
+            'preco' => 'required|numeric',
+        ]);
+
+        try {
+            $produto = Produto::findOrFail($id_produto);
+            $produto->update([
+                'nome' => $request->get('nome'),
+                'descricao' => $request->get('descricao'),
+                'preco' => $request->get('preco'),
+            ]);
+
+        } catch (\Exception $e) {
+            return back()->with('error', 'Erro ao editar produto');
+        }
+
+        return back()->with('success','Produto editado com sucesso');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Produto $produto)
+    public function destroy($id_produto)
     {
-        //
+        try {
+            $produto = Estoque::where('id_produto', $id_produto)->first();
+            $produto->delete();
+            return redirect()->back()->with('success','Produto removido com sucesso');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Erro ao excluir produto');
+        }
+
     }
 }

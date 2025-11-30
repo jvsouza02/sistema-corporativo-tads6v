@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unique(['id_produto']);
-            $table->foreign('id_produto')->references('id_produto')->on('produtos');
+            $table->foreign('id_produto')->references('id_produto')->onDelete('cascade')->on('produtos');
             $table->foreign('id_barbearia')->references('id_barbearia')->on('barbearias');
         });
     }

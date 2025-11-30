@@ -29,13 +29,19 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('can:proprietario-access')->group(function () {
         Route::post('/barbearia', [BarbeariaController::class, 'store'])->name('barbearia.store');
-        Route::get('/barbeiros/{id_barbearia}', [BarbeiroController::class, 'index'])->name('barbeiros.index');
-        Route::post('/barbeiros', [BarbeiroController::class, 'store'])->name('barbeiros.store');
-        Route::put('/barbeiros/{id_barbeiro}', [BarbeiroController::class, 'update'])->name('barbeiros.update');
-        Route::put('/barbeiros/{id_barbeiro}/transferir', [BarbeiroController::class, 'transferir'])->name('barbeiros.transferir');
-        Route::delete('barbeiros/{id_barbeiro}', [BarbeiroController::class, 'destroy'])->name('barbeiros.destroy');
-        Route::get('/produtos/{id_barbearia}', [ProdutoController::class, 'index'])->name('produtos.index');
-        Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
+
+        Route::prefix('barbearia')->group(function () {
+            Route::get('{id_barbearia}/barbeiros/', [BarbeiroController::class, 'index'])->name('barbeiros.index');
+            Route::post('/barbeiros', [BarbeiroController::class, 'store'])->name('barbeiros.store');
+            Route::put('/barbeiros/{id_barbeiro}', [BarbeiroController::class, 'update'])->name('barbeiros.update');
+            Route::put('/barbeiros/{id_barbeiro}/transferir', [BarbeiroController::class, 'transferir'])->name('barbeiros.transferir');
+            Route::delete('barbeiros/{id_barbeiro}', [BarbeiroController::class, 'destroy'])->name('barbeiros.destroy');
+
+            Route::get('{id_barbearia}/produtos/', [ProdutoController::class, 'index'])->name('produtos.index');
+            Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
+            Route::put('/produtos/{id_produto}', [ProdutoController::class, 'update'])->name('produtos.update');
+            Route::delete('produtos/{id_produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
+        });
     });
 
     Route::middleware('can:barbeiro-access')->group(function () {
