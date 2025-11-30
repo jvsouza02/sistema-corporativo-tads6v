@@ -53,6 +53,7 @@ class ProdutoController extends Controller
                 'id_produto' => $produto->id_produto,
                 'quantidade' => $request->get('quantidade'),
             ]);
+            
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
         }
