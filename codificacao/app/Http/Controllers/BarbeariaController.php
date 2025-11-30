@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barbearia;
+use App\Models\Estoque;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -50,14 +51,18 @@ class BarbeariaController extends Controller
         return redirect()->route('home')->with('success', 'Barbearia criada com sucesso');
     }
 
-    public function barbeariaDetalhes($id) {
+    public function barbeariaDetalhes($id)
+    {
         $barbearia = Barbearia::where('id_barbearia', $id)->first();
+        $estoque_baixo = Estoque::where('id_barbearia', $barbearia->id_barbearia)
+            ->whereColumn('quantidade', '<', 'quantidade_minima')
+            ->exists();
         if (isset($barbearia)) {
             $atendimentos = $barbearia->atendimentos()->orderByDesc('created_at')->get();
         }
 
         // dd($atendimentos);
-        return view('barbearias.barbearia-detail', compact('barbearia', 'atendimentos'));
+        return view('barbearias.barbearia-detail', compact('barbearia', 'atendimentos', 'estoque_baixo'));
     }
 
     /**
@@ -79,7 +84,7 @@ class BarbeariaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request )
+    public function update(Request $request)
     {
         //
     }

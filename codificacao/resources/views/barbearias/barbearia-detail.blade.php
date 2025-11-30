@@ -31,14 +31,31 @@
                                 <i class="fas fa-users me-2"></i>Gerenciar Barbeiros
                             </a>
 
-                            <a href="{{ route('produtos.index', $barbearia->id_barbearia) }}" class="btn btn-manage">
+                            <a href="{{ route('produtos.index', $barbearia->id_barbearia) }}"
+                                class="btn btn-manage position-relative">
                                 <i class="fas fa-box-open me-2"></i>Produtos
+                                @if ($estoque_baixo)
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        !
+                                    </span>
+                                @endif
                             </a>
 
                             <a href="" class="btn btn-manage">
                                 <i class="fas fa-briefcase me-2"></i>Serviços
                             </a>
+
+                            @if ($estoque_baixo)
+                                <div class="w-100">
+                                    <small class="text-danger">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>Atenção: Há produto(s) com estoque
+                                        abaixo do mínimo
+                                    </small>
+                                </div>
+                            @endif
                         @endif
+
                         @if (Auth()->user()->role == 'barbeiro')
                             <button class="btn btn-add-atendimento" data-bs-toggle="modal"
                                 data-bs-target="#modalNovoAtendimento">
@@ -85,7 +102,7 @@
             <div style="display:flex; flex-wrap:wrap; gap:20px;">
                 @foreach ($atendimentos as $atendimento)
                     <div class="atendimento-card"
-                         style="flex:0 0 360px; max-width:360px; width:100%;
+                        style="flex:0 0 360px; max-width:360px; width:100%;
                                 padding:18px; font-size:0.95rem;">
 
                         <div class="atendimento-header" style="margin-bottom:8px;">
@@ -105,7 +122,8 @@
                             <div class="info-row" style="display:flex; align-items:center; margin-bottom:6px;">
                                 <i class="fas fa-user-tie me-2"></i>
                                 <span class="info-label" style="font-weight:500;">Profissional:&nbsp;</span>
-                                <span class="info-value">{{ ucfirst($atendimento->barbeiro->nome) ?? 'Não informado' }}</span>
+                                <span
+                                    class="info-value">{{ ucfirst($atendimento->barbeiro->nome) ?? 'Não informado' }}</span>
                             </div>
 
                             <div class="info-row" style="display:flex; align-items:center; margin-bottom:6px;">
@@ -136,9 +154,9 @@
                             @endif
                         </div>
 
-                        <div class="atendimento-footer" style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
-                            <div class="valor-total"
-                                 style="font-size:0.95rem; font-weight:500;">
+                        <div class="atendimento-footer"
+                            style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+                            <div class="valor-total" style="font-size:0.95rem; font-weight:500;">
                                 <span class="info-label">Valor Total:</span>
                                 <span class="info-value" style="font-weight:600;">
                                     R$ {{ number_format($atendimento->valor_total, 2, ',', '.') }}
@@ -149,28 +167,24 @@
                                 <div class="d-flex gap-2 mt-0">
 
                                     {{-- Botão de editar (ícone) --}}
-                                    <button class="btn"
-                                            style="padding:6px 10px; background:#eef3ff; border-radius:8px;"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#editAtendimentoModal"
-                                            data-id="{{ $atendimento->id_atendimento }}"
-                                            data-servico="{{ $atendimento->servico }}"
-                                            data-produto="{{ $atendimento->produto }}"
-                                            data-valor="{{ $atendimento->valor_total }}"
-                                            data-comentario="{{ $atendimento->comentario }}"
-                                            title="Editar atendimento">
+                                    <button class="btn" style="padding:6px 10px; background:#eef3ff; border-radius:8px;"
+                                        data-bs-toggle="modal" data-bs-target="#editAtendimentoModal"
+                                        data-id="{{ $atendimento->id_atendimento }}"
+                                        data-servico="{{ $atendimento->servico }}"
+                                        data-produto="{{ $atendimento->produto }}"
+                                        data-valor="{{ $atendimento->valor_total }}"
+                                        data-comentario="{{ $atendimento->comentario }}" title="Editar atendimento">
                                         <i class="fas fa-edit" style="color:#3f51b5; font-size:1.1rem;"></i>
                                     </button>
 
                                     {{-- Botão de excluir (ícone) --}}
                                     <form action="{{ route('atendimentos.destroy', $atendimento->id_atendimento) }}"
-                                          method="POST"
-                                          onsubmit="return confirm('Deseja excluir este atendimento?')">
+                                        method="POST" onsubmit="return confirm('Deseja excluir este atendimento?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn"
-                                                style="padding:6px 10px; background:#ffecec; border-radius:8px;"
-                                                title="Excluir atendimento">
+                                            style="padding:6px 10px; background:#ffecec; border-radius:8px;"
+                                            title="Excluir atendimento">
                                             <i class="fas fa-trash" style="color:#d32f2f; font-size:1.1rem;"></i>
                                         </button>
                                     </form>

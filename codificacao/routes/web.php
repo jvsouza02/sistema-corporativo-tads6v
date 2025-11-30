@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EstoqueController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
             Route::get('{id_barbearia}/produtos/', [ProdutoController::class, 'index'])->name('produtos.index');
             Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
             Route::put('/produtos/{id_produto}', [ProdutoController::class, 'update'])->name('produtos.update');
+            Route::put('/estoque', [EstoqueController::class, 'ajustarQuantidadeMinimaDoEstoque'])->name('estoques.update.minquantity');
             Route::delete('produtos/{id_produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
         });
     });

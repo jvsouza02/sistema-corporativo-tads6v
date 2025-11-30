@@ -37,6 +37,6 @@ class Estoque extends Model
 
     public function estoqueAbaixoDoMinimo(): bool
     {
-        return $this->get('quantidade') < $this->get('quantidade_minima');
+        return $this->quantidade < $this->quantidade_minima;
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('id_produto');
             $table->uuid('id_barbearia');
             $table->integer('quantidade')->default(0);
-            $table->integer('quantidade_minima')->default(0);
+            $table->integer('quantidade_minima')->default(0)->nullable();
             $table->timestamps();
 
             $table->unique(['id_produto']);

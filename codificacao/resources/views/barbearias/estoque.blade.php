@@ -15,9 +15,14 @@
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCadastrarProduto">
                     <i class="fas fa-plus-circle me-2"></i>Cadastrar Produto
                 </button>
-                <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAlerta"
-                    aria-controls="offcanvasAlerta">
+                <button class="btn btn-warning position-relative" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasAlerta" aria-controls="offcanvasAlerta">
                     <i class="fas fa-exclamation-triangle me-2"></i>Alertas de Estoque
+                    @if ($estoque_baixo)
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            !
+                        </span>
+                    @endif
                 </button>
             </div>
         </div>
@@ -113,7 +118,7 @@
                     limite.</small>
             </div>
 
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route('estoques.update.minquantity') }}">
                 @csrf
                 @method('PUT')
 
@@ -138,8 +143,7 @@
                                     <input type="number" class="form-control"
                                         id="quantidade_minima_{{ $estoque->id_estoque }}"
                                         name="produtos[{{ $estoque->id_estoque }}][quantidade_minima]"
-                                        value="{{ $estoque->quantidade_minima }}" step="0.01" min="0"
-                                        required>
+                                        value="{{ $estoque->quantidade_minima }}" min="0" required>
                                     <small class="text-muted">Alerta quando estoque ≤ este valor</small>
                                 </div>
 

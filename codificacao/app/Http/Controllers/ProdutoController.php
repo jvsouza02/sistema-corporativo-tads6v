@@ -21,11 +21,14 @@ class ProdutoController extends Controller
             // obtém estoques vinculados à barbearia
             $estoques = $barbearia->estoques()->with('produto')->get();
 
+            $estoque_baixo = Estoque::where('id_barbearia', $barbearia->id_barbearia)
+                ->whereColumn('quantidade', '<', 'quantidade_minima')
+                ->exists();
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Erro ao buscar produtos');
         }
 
-        return view("barbearias.estoque", compact("estoques", "barbearia"));
+        return view("barbearias.estoque", compact("estoques", "barbearia", 'estoque_baixo'));
     }
 
     /**
@@ -66,7 +69,7 @@ class ProdutoController extends Controller
             return back()->with('error', $e->getMessage());
         }
 
-        return back()->with('success','Produto cadastrado com sucesso');
+        return back()->with('success', 'Produto cadastrado com sucesso');
     }
 
     /**
@@ -104,11 +107,15 @@ class ProdutoController extends Controller
                 'preco' => $request->get('preco'),
             ]);
 
+            $estoque = Estoque::where('id_produto', $id_produto)->first();
+            $estoque->update([
+                'quantidade' => $request->get('quantidade'),
+            ]);
         } catch (\Exception $e) {
             return back()->with('error', 'Erro ao editar produto');
         }
 
-        return back()->with('success','Produto editado com sucesso');
+        return back()->with('success', 'Produto editado com sucesso');
     }
 
     /**
@@ -119,7 +126,7 @@ class ProdutoController extends Controller
         try {
             $produto = Estoque::where('id_produto', $id_produto)->first();
             $produto->delete();
-            return redirect()->back()->with('success','Produto removido com sucesso');
+            return redirect()->back()->with('success', 'Produto removido com sucesso');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Erro ao excluir produto');
         }

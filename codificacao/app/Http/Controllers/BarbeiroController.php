@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barbeiro;
+use App\Models\Estoque;
 use Illuminate\Http\Request;
 use App\Models\Barbearia;
 use Illuminate\Support\Str;
