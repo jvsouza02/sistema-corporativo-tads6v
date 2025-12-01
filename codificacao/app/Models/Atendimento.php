@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+use Illuminate\Http\Request;
+use App\Models\Atendimento;
 use App\Models\Barbearia;
-use App\Models\Barbeiro;
+use App\Models\Agendamento; 
+use App\Models\Barbeiro; 
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class Atendimento extends Model
 {

@@ -51,5 +51,12 @@ Route::middleware('auth')->group(function () {
         Route::put('/atendimentos/{id_atendimento}', [AtendimentoController::class, 'update'])->name('atendimentos.update');
         Route::delete('/atendimentos/{id_atendimento}', [AtendimentoController::class, 'destroy'])->name('atendimentos.destroy');
     });
+
+    Route::middleware('can:cliente-access')->group(function () {
+        Route::get('/cliente/agendamentos/novo', [AtendimentoController::class, 'createCliente'])->name('cliente.agendamentos.create');
+        Route::post('/cliente/agendamentos', [AtendimentoController::class, 'storeCliente'])->name('cliente.agendamentos.store');
+        Route::get('/cliente/agendamentos', [AtendimentoController::class, 'listarAgendamentos'])->name('cliente.agendamentos.listar');
+        Route::delete('/cliente/agendamentos/{id}', [AtendimentoController::class, 'cancelarAgendamento'])->name('cliente.agendamentos.cancelar');
+    });
 })->middleware('auth');
 

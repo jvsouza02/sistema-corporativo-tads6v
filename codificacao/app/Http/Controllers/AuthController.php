@@ -21,7 +21,18 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->route('home');
+            $user = auth()->user();
+            
+            switch ($user->role) {
+                case 'proprietario':
+                    return redirect()->route('dashboard');
+                case 'barbeiro':
+                    return redirect()->route('barbearia.detalhes', $user->barbeiro->id_barbearia);
+                case 'cliente':
+                    return redirect()->route('cliente.agendamentos.create');
+                default:
+                    return redirect()->route('home');
+            }
         }
         return redirect()->route('login')->with('error', 'Usuário não encontrado');
     }

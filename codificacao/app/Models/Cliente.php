@@ -25,4 +25,9 @@ class Cliente extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function agendamentos()
+    {
+        return $this->hasMany(Agendamento::class, 'id_cliente');
+    }
 }
