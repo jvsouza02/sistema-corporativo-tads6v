@@ -18,8 +18,7 @@ class ProdutoController extends Controller
         try {
             $barbearia = Barbearia::where('id_barbearia', $request->id_barbearia)->firstOrFail();
 
-            // obtém estoques vinculados à barbearia
-            $estoques = $barbearia->estoques()->with('produto')->get();
+            $estoques = $barbearia->estoques()->with('produto')->orderBy('created_at', 'desc')->paginate(10);
 
             $estoque_baixo = Estoque::where('id_barbearia', $barbearia->id_barbearia)
                 ->whereColumn('quantidade', '<', 'quantidade_minima')

@@ -41,8 +41,9 @@ Route::middleware('auth')->group(function () {
             Route::get('{id_barbearia}/produtos/', [ProdutoController::class, 'index'])->name('produtos.index');
             Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
             Route::put('/produtos/{id_produto}', [ProdutoController::class, 'update'])->name('produtos.update');
-            Route::put('/estoque', [EstoqueController::class, 'ajustarQuantidadeMinimaDoEstoque'])->name('estoques.update.minquantity');
             Route::delete('produtos/{id_produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
+            Route::put('/estoque', [EstoqueController::class, 'ajustarQuantidadeMinimaDoEstoque'])->name('estoques.update.minquantity');
+            Route::patch('estoque/{id_estoque}', [EstoqueController::class, 'reporEstoque'])->name('estoques.repor');
         });
     });
 

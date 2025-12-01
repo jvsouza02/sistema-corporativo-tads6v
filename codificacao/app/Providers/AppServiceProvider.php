@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
@@ -32,5 +33,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('barbeiro-access', function (User $user) {
             return $user->role === 'barbeiro';
         });
+
+        Paginator::useBootstrap();
     }
 }

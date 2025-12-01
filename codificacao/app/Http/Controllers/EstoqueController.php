@@ -24,4 +24,21 @@ class EstoqueController extends Controller
 
         return back()->with('success','Quantidade mínima dos produtos ajustadas com sucesso');
     }
+
+    public function reporEstoque(Request $request, $id_estoque)
+    {
+        $request->validate([
+            'quantidade_repor' => 'required|numeric',
+        ]);
+
+        try {
+            $estoque = Estoque::findOrFail($id_estoque);
+            $estoque->update([
+                'quantidade' => $estoque->quantidade + $request->get('quantidade_repor'),
+            ]);
+            return back()->with('success','Quantidade ajustada com sucesso');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Erro ao ajustar quantidade');
+        }
+    }
 }
