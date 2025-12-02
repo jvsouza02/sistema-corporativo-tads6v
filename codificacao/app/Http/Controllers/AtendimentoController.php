@@ -112,14 +112,22 @@ class AtendimentoController extends Controller
 
     public function storeCliente(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'id_barbearia' => 'required|exists:barbearias,id_barbearia',
-            'servico' => 'required|string',
+            'servico' => 'required|string|in:Corte Social,Corte Navalhado,Corte Degradê,Barba,Sobrancelha,Completo',
             'data_hora' => 'required|date_format:Y-m-d\TH:i|after:now',
-            'id_barbeiro' => 'nullable|exists:barbeiros,id_barbeiro'
+            'id_barbeiro' => 'nullable|exists:barbeiros,id_barbeiro',
+            'observacao' => 'nullable|string|max:500'
         ], [
+            'id_barbearia.required' => 'Por favor, selecione uma barbearia.',
+            'id_barbearia.exists' => 'A barbearia selecionada não existe.',
+            'servico.required' => 'Por favor, selecione um serviço.',
+            'servico.in' => 'O serviço selecionado é inválido.',
+            'data_hora.required' => 'Por favor, informe a data e horário desejados.',
             'data_hora.after' => 'A data e hora devem ser futuras.',
-            'data_hora.date_format' => 'Formato de data e hora inválido.'
+            'data_hora.date_format' => 'Formato de data e hora inválido.',
+            'id_barbeiro.exists' => 'O barbeiro selecionado não existe.',
+            'observacao.max' => 'A observação não pode ter mais de 500 caracteres.'
         ]);
 
         try {
@@ -127,46 +135,81 @@ class AtendimentoController extends Controller
             
             $dataHora = date('Y-m-d H:i:s', strtotime($request->data_hora));
             
-            // Verificar se o horário está dentro do expediente da barbearia
-            $barbearia = Barbearia::find($request->id_barbearia);
+            $barbearia = Barbearia::findOrFail($request->id_barbearia);
+            
             $horarioAbertura = Carbon::createFromFormat('H:i:s', $barbearia->horario_abertura);
             $horarioFechamento = Carbon::createFromFormat('H:i:s', $barbearia->horario_fechamento);
-            $horaSelecionada = Carbon::createFromFormat('Y-m-d H:i:s', $dataHora)->format('H:i:s');
+            $horaSelecionada = Carbon::createFromFormat('Y-m-d H:i:s', $dataHora);
             
-            if (Carbon::createFromFormat('H:i:s', $horaSelecionada)->lt($horarioAbertura) || 
-                Carbon::createFromFormat('H:i:s', $horaSelecionada)->gt($horarioFechamento)) {
-                return back()->withErrors(['horario' => 'O horário selecionado está fora do expediente da barbearia.']);
+            if ($horaSelecionada->lt($horarioAbertura->setDate(
+                $horaSelecionada->year, 
+                $horaSelecionada->month, 
+                $horaSelecionada->day
+            )) || $horaSelecionada->gt($horarioFechamento->setDate(
+                $horaSelecionada->year, 
+                $horaSelecionada->month, 
+                $horaSelecionada->day
+            ))) {
+                DB::rollBack();
+                return back()
+                    ->withInput()
+                    ->withErrors([
+                        'data_hora' => 'O horário selecionado está fora do expediente da barbearia. ' .
+                                    'Horário de funcionamento: ' . 
+                                    $barbearia->horario_abertura . ' às ' . 
+                                    $barbearia->horario_fechamento
+                    ]);
             }
             
-            // Verificar disponibilidade do horário
             $agendamentoExistente = Agendamento::where('data_hora', $dataHora)
-                ->where('id_barbearia', $request->id_barbearia);
+                ->where('id_barbearia', $request->id_barbearia)
+                ->where('status', '!=', 'cancelado');
                 
             if ($request->id_barbeiro) {
                 $agendamentoExistente->where('id_barbeiro', $request->id_barbeiro);
             }
             
             if ($agendamentoExistente->exists()) {
-                return back()->withErrors(['horario' => 'Este horário já está ocupado. Por favor, escolha outro horário.']);
+                DB::rollBack();
+                return back()
+                    ->withInput()
+                    ->withErrors([
+                        'data_hora' => 'Este horário já está ocupado. Por favor, escolha outro horário.'
+                    ]);
             }
 
-            Agendamento::create([
+            $agendamento = Agendamento::create([
                 'id_agendamento' => Str::uuid(),
                 'data_hora' => $dataHora,
-                'servico' => $request->servico,
-                'observacao' => $request->observacao ?? null,
+                'servico' => $validated['servico'],
+                'observacao' => $validated['observacao'] ?? null,
                 'status' => 'agendado',
                 'id_cliente' => auth()->user()->cliente->id_cliente,
-                'id_barbearia' => $request->id_barbearia,
-                'id_barbeiro' => $request->id_barbeiro ?? null
+                'id_barbearia' => $validated['id_barbearia'],
+                'id_barbeiro' => $validated['id_barbeiro'] ?? null
             ]);
 
             DB::commit();
             
-            return redirect()->route('home')->with('success', 'Agendamento realizado com sucesso!');
+            $dataFormatada = Carbon::parse($dataHora)->format('d/m/Y [às] H:i');
+            $mensagemSucesso = 'Agendamento realizado com sucesso! ' .
+                            'Serviço: ' . $validated['servico'] . ' | ' .
+                            'Data: ' . $dataFormatada;
+            
+            return redirect()
+                ->route('cliente.agendamentos.listar')
+                ->with('success', $mensagemSucesso);
+                
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->withErrors(['error' => 'Erro ao realizar agendamento: ' . $e->getMessage()]);
+            \Log::error('Erro ao criar agendamento: ' . $e->getMessage());
+            
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'error' => 'Erro ao realizar agendamento. Por favor, tente novamente. ' .
+                            'Se o problema persistir, entre em contato com o suporte.'
+                ]);
         }
     }
 

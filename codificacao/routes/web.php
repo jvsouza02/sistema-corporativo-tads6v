@@ -18,6 +18,10 @@ Route::prefix('auth')->group(function () {
     Route::get('register-cliente', [AuthController::class, 'registerCliente'])->name('register.cliente');
     Route::post('register-cliente', [AuthController::class, 'registerClientePOST'])->name('register.cliente.post');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::prefix('api')->group(function () {
+    Route::get('barbearias/{id}/barbeiros', [BarbeariaController::class, 'getBarbeiros']);
+    Route::get('barbearias/{id}/horarios-ocupados', [BarbeariaController::class, 'getHorariosOcupados']);
+});
 })->middleware('guest');
 
 Route::middleware('auth')->group(function () {
