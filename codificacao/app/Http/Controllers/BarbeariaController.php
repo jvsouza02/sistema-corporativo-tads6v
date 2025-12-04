@@ -65,6 +65,38 @@ class BarbeariaController extends Controller
         return view('barbearias.barbearia-detail', compact('barbearia', 'atendimentos', 'estoque_baixo'));
     }
 
+    public function getHorariosOcupados(Request $request, $id)
+    {
+        try {
+            $data = $request->input('data'); // formato: Y-m-d
+            $barbeiro_id = $request->input('barbeiro_id'); // opcional
+
+            if (!$data) {
+                return response()->json(['error' => 'Data é obrigatória'], 400);
+            }
+
+            $query = Agendamento::where('id_barbearia', $id)
+                ->whereDate('data_hora', $data)
+                ->where('status', '!=', 'cancelado');
+
+            if ($barbeiro_id) {
+                $query->where('id_barbeiro', $barbeiro_id);
+            }
+
+            // devolve array de strings "Y-m-d H:i:s" que o JS converte pra HH:MM
+            $agendamentos = $query->pluck('data_hora')
+                ->map(function ($dataHora) {
+                    return $dataHora instanceof \Carbon\Carbon
+                        ? $dataHora->format('Y-m-d H:i:s')
+                        : (string) $dataHora;
+                })
+                ->values();
+
+            return response()->json($agendamentos);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao buscar horários'], 500);
+        }
+    }
     /**
      * Display the specified resource.
      */

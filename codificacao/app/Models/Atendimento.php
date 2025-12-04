@@ -10,6 +10,8 @@ use App\Models\Agendamento;
 use App\Models\Barbeiro; 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
 class Atendimento extends Model
