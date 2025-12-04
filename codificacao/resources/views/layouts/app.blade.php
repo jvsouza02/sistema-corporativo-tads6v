@@ -41,7 +41,6 @@
 @if(auth()->check() && auth()->user()->role == 'cliente')
     <li class="nav-item">
         <a class="nav-link" href="{{ route('cliente.agendamentos.create') }}">
-            <i class="fas fa-calendar-check me-1"></i>Agendar Serviço
         </a>
     </li>
 @endif

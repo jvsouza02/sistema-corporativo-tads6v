@@ -6,7 +6,6 @@
 @section('content')
 <div class="container mt-4">
 
-    <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold">
             <i class="fas fa-calendar-alt me-2 text-primary"></i>
@@ -18,7 +17,6 @@
         </a>
     </div>
 
-    <!-- Mensagens -->
     @if(session('success'))
         <div class="alert alert-success shadow-sm">
             <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
@@ -43,7 +41,6 @@
         </div>
     @else
 
-        <!-- Lista em cards -->
         <div class="row g-4">
 
             @foreach($agendamentos as $agendamento)
@@ -62,7 +59,6 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card shadow-sm border-0 h-100 ag-card">
 
-                        <!-- Cabeçalho -->
                         <div class="card-header bg-white border-0 pb-0">
                             <h5 class="fw-bold mb-1">
                                 <i class="fas fa-store text-primary me-2"></i>
@@ -90,7 +86,6 @@
 
                             <hr>
 
-                            <!-- Ações -->
                             <div class="d-flex justify-content-end">
 
                                 @if($status !== 'cancelado')

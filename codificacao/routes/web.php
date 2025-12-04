@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\EstoqueController;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BarbeariaController;
@@ -9,47 +9,47 @@ use App\Http\Controllers\ProprietarioController;
 use App\Http\Controllers\BarbeiroController;
 use App\Http\Controllers\AtendimentoController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\EstoqueController;
 use App\Http\Controllers\AgendamentoController;
 
-Route::prefix('auth')->group(function () {
+use App\Http\Controllers\Api\BarbeariaController as BarbeariaApiController;
+
+Route::prefix('auth')->middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'loginPost'])->name('login.post');
+
     Route::get('register', [AuthController::class, 'register'])->name('register');
     Route::post('register', [AuthController::class, 'registerPost'])->name('register.post');
+
     Route::get('register-cliente', [AuthController::class, 'registerCliente'])->name('register.cliente');
     Route::post('register-cliente', [AuthController::class, 'registerClientePOST'])->name('register.cliente.post');
-    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+});
 
-    Route::prefix('api')->group(function () {
-        Route::get('barbearias/{id}/barbeiros', [\App\Http\Controllers\Api\BarbeariaController::class, 'getBarbeiros']);
-        Route::get('barbearias/{id}/horarios-ocupados', [\App\Http\Controllers\Api\BarbeariaController::class, 'getHorariosOcupados']);
-    });
-})->middleware('guest');
+Route::post('auth/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
 
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::middleware('can:barbearia-access')->group(function () {
         Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-        Route::get('/barbearia/{id_barbearia}', [BarbeariaController::class, 'barbeariaDetalhes'])->name('barbearia.detalhes');
+        Route::get('/barbearia/{id_barbearia}', [BarbeariaController::class, 'barbeariaDetalhes'])
+            ->name('barbearia.detalhes');
     });
 
-    Route::middleware('can:proprietario-access')->group(function () {
-        Route::post('/barbearia', [BarbeariaController::class, 'store'])->name('barbearia.store');
+    Route::middleware('can:proprietario-access')->prefix('barbearia')->group(function () {
+        Route::post('/', [BarbeariaController::class, 'store'])->name('barbearia.store');
 
-        Route::prefix('barbearia')->group(function () {
-            Route::get('{id_barbearia}/barbeiros/', [BarbeiroController::class, 'index'])->name('barbeiros.index');
-            Route::post('/barbeiros', [BarbeiroController::class, 'store'])->name('barbeiros.store');
-            Route::put('/barbeiros/{id_barbeiro}', [BarbeiroController::class, 'update'])->name('barbeiros.update');
-            Route::put('/barbeiros/{id_barbeiro}/transferir', [BarbeiroController::class, 'transferir'])->name('barbeiros.transferir');
-            Route::delete('barbeiros/{id_barbeiro}', [BarbeiroController::class, 'destroy'])->name('barbeiros.destroy');
+        Route::get('{id_barbearia}/barbeiros/', [BarbeiroController::class, 'index'])->name('barbeiros.index');
+        Route::post('/barbeiros', [BarbeiroController::class, 'store'])->name('barbeiros.store');
+        Route::put('/barbeiros/{id_barbeiro}', [BarbeiroController::class, 'update'])->name('barbeiros.update');
+        Route::put('/barbeiros/{id_barbeiro}/transferir', [BarbeiroController::class, 'transferir'])->name('barbeiros.transferir');
+        Route::delete('barbeiros/{id_barbeiro}', [BarbeiroController::class, 'destroy'])->name('barbeiros.destroy');
 
-            Route::get('{id_barbearia}/produtos/', [ProdutoController::class, 'index'])->name('produtos.index');
-            Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
-            Route::put('/produtos/{id_produto}', [ProdutoController::class, 'update'])->name('produtos.update');
-            Route::put('/estoque', [EstoqueController::class, 'ajustarQuantidadeMinimaDoEstoque'])->name('estoques.update.minquantity');
-            Route::delete('produtos/{id_produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
-        });
+        Route::get('{id_barbearia}/produtos/', [ProdutoController::class, 'index'])->name('produtos.index');
+        Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
+        Route::put('/produtos/{id_produto}', [ProdutoController::class, 'update'])->name('produtos.update');
+        Route::put('/estoque', [EstoqueController::class, 'ajustarQuantidadeMinimaDoEstoque'])->name('estoques.update.minquantity');
+        Route::delete('produtos/{id_produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
     });
 
     Route::middleware('can:barbeiro-access')->group(function () {
@@ -59,9 +59,24 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('can:cliente-access')->group(function () {
-        Route::get('/cliente/agendamentos/novo', [AgendamentoController::class, 'createCliente'])->name('cliente.agendamentos.create');
-        Route::post('/cliente/agendamentos', [AgendamentoController::class, 'storeCliente'])->name('cliente.agendamentos.store');
-        Route::get('/cliente/agendamentos', [AgendamentoController::class, 'listarAgendamentos'])->name('cliente.agendamentos.listar');
-        Route::delete('/cliente/agendamentos/{id}', [AgendamentoController::class, 'cancelarAgendamento'])->name('cliente.agendamentos.cancelar');
+        Route::get('/cliente/agendamentos/novo', [AgendamentoController::class, 'createCliente'])
+            ->name('cliente.agendamentos.create');
+
+        Route::post('/cliente/agendamentos', [AgendamentoController::class, 'storeCliente'])
+            ->name('cliente.agendamentos.store');
+
+        Route::get('/cliente/agendamentos', [AgendamentoController::class, 'listarAgendamentos'])
+            ->name('cliente.agendamentos.listar');
+
+        Route::delete('/cliente/agendamentos/{id}', [AgendamentoController::class, 'cancelarAgendamento'])
+            ->name('cliente.agendamentos.cancelar');
     });
-})->middleware('auth');
+});
+
+Route::prefix('api')->middleware(['auth', 'can:cliente-access'])->group(function () {
+    Route::get('barbearias/{id}/barbeiros', [BarbeariaApiController::class, 'getBarbeiros'])
+        ->name('api.barbearias.barbeiros');
+
+    Route::get('barbearias/{id}/horarios-ocupados', [BarbeariaApiController::class, 'getHorariosOcupados'])
+        ->name('api.barbearias.horarios_ocupados');
+});

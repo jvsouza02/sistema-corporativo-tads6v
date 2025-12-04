@@ -13,7 +13,7 @@
                         <div style="width: 250px;">
                             <label class="form-label text-white mb-1">Data:</label>
                             <input type="date" class="form-control form-control-sm" id="dataSelecionada" 
-                                   value="{{ date('Y-m-d') }}" 
+                                   value="{{ now()->timezone('America/Sao_Paulo')->format('Y-m-d') }}"
                                    min="{{ date('Y-m-d') }}">
                         </div>
                     </div>
@@ -28,13 +28,11 @@
                         </div>
                     @endif
 
-                    <!-- Formulário -->
                     <form id="formAgendamento" action="{{ route('cliente.agendamentos.store') }}" method="POST">
                         @csrf
                         <input type="hidden" id="id_barbearia" name="id_barbearia">
                         <input type="hidden" id="data_hora" name="data_hora">
                         
-                        <!-- Barbearias em Grid -->
                         <div class="row g-4" id="barbeariasGrid">
                             @foreach($barbearias as $barbearia)
                                 <div class="col-md-3 col-sm-6">
@@ -43,19 +41,15 @@
                                          data-barbearia-nome="{{ $barbearia->nome }}"
                                          data-horario-abertura="{{ $barbearia->horario_abertura }}"
                                          data-horario-fechamento="{{ $barbearia->horario_fechamento }}">
-                                        <!-- Header do Card -->
                                         <div class="card-header bg-light py-2">
                                             <h6 class="mb-0">{{ $barbearia->nome }}</h6>
                                         </div>
                                         
-                                        <!-- Corpo do Card -->
                                         <div class="card-body p-2 d-flex flex-column">
-                                            <!-- Ícone -->
                                             <div class="mb-2">
                                                 <i class="fas fa-store fa-2x text-primary"></i>
                                             </div>
                                             
-                                            <!-- Info básica -->
                                             <div class="mb-3">
                                                 <small class="text-muted d-block">
                                                     <i class="fas fa-map-marker-alt me-1"></i>
@@ -68,7 +62,6 @@
                                                 </small>
                                             </div>
                                             
-                                            <!-- Status -->
                                             <div class="mt-auto">
                                                 <div class="horarios-status" id="status-{{ $barbearia->id_barbearia }}">
                                                     <span class="badge bg-success">Disponível</span>
@@ -83,7 +76,6 @@
                             @endforeach
                         </div>
 
-                        <!-- Agendamento Selecionado -->
                         <div class="mt-4 p-3 border rounded bg-light" id="selecaoInfo" style="display: none;">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
@@ -105,7 +97,6 @@
     </div>
 </div>
 
-<!-- Modal de Horários -->
 <div class="modal fade" id="horariosModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -118,7 +109,6 @@
             </div>
             <div class="modal-body">
                 <div id="modalHorariosContainer" class="row g-2">
-                    <!-- Horários serão gerados aqui -->
                 </div>
                 <div id="modalSemHorarios" class="text-center mt-3" style="display: none;">
                     <p class="text-muted">Nenhum horário disponível para esta data</p>
@@ -216,9 +206,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let barbeariaAtual = null;
     let horariosOcupadosCache = {};
     
-    // Formatar data para exibição
     function formatarDataParaExibicao(dataString) {
-        const data = new Date(dataString);
+        const [ano, mes, dia] = dataString.split('-');
+
+        const data = new Date(ano, mes - 1, dia);
+
         return data.toLocaleDateString('pt-BR', {
             weekday: 'long',
             day: '2-digit',
@@ -226,14 +218,13 @@ document.addEventListener('DOMContentLoaded', function() {
             year: 'numeric'
         });
     }
+
     
-    // Converter hora "HH:MM:SS" para minutos
     function horaParaMinutos(horaString) {
         const [horas, minutos] = horaString.split(':');
         return parseInt(horas) * 60 + parseInt(minutos);
     }
     
-    // Gerar horários de 30 em 30 minutos dentro de um intervalo
     function gerarHorariosIntervalo(inicioMinutos, fimMinutos) {
         const horarios = [];
         
@@ -247,11 +238,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return horarios;
     }
     
-    // Buscar horários ocupados de uma barbearia
     async function buscarHorariosOcupados(barbeariaId, data) {
         const cacheKey = `${barbeariaId}-${data}`;
         
-        // Verificar cache
         if (horariosOcupadosCache[cacheKey]) {
             return horariosOcupadosCache[cacheKey];
         }
@@ -266,19 +255,16 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const horariosOcupados = await response.json();
             
-            // Converter para array de horários no formato "HH:MM"
             const horariosFormatados = horariosOcupados.map(horario => {
                 if (typeof horario === 'string') {
-                    // Se veio como "YYYY-MM-DD HH:MM:SS"
                     const partes = horario.split(' ');
                     if (partes.length > 1) {
-                        return partes[1].substring(0, 5); // Pega "HH:MM"
+                        return partes[1].substring(0, 5); 
                     }
                 }
                 return '';
-            }).filter(h => h !== ''); // Remove strings vazias
+            }).filter(h => h !== ''); /
             
-            // Salvar no cache
             horariosOcupadosCache[cacheKey] = horariosFormatados;
             
             return horariosFormatados;
@@ -288,8 +274,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return [];
         }
     }
-    
-    // Abrir modal para escolher horário
     async function abrirModalHorarios(card) {
         const barbeariaId = card.getAttribute('data-barbearia-id');
         const barbeariaNome = card.getAttribute('data-barbearia-nome');
@@ -304,30 +288,23 @@ document.addEventListener('DOMContentLoaded', function() {
             fechamento: horarioFechamento
         };
         
-        // Atualizar título do modal
         document.getElementById('modalBarbeariaNome').textContent = barbeariaNome;
         document.getElementById('modalDataAtual').textContent = formatarDataParaExibicao(dataSelecionada);
         
-        // Limpar container
         const container = document.getElementById('modalHorariosContainer');
         const semHorariosDiv = document.getElementById('modalSemHorarios');
         container.innerHTML = '<div class="text-center py-3"><div class="spinner-border text-primary"></div></div>';
         semHorariosDiv.style.display = 'none';
         
-        // Mostrar modal
         horariosModal.show();
         
-        // Buscar horários ocupados
         const horariosOcupados = await buscarHorariosOcupados(barbeariaId, dataSelecionada);
         
-        // Converter horários de abertura/fechamento para minutos
         const aberturaMinutos = horaParaMinutos(horarioAbertura);
         const fechamentoMinutos = horaParaMinutos(horarioFechamento);
         
-        // Gerar todos os horários possíveis (30 em 30 minutos)
         const todosHorarios = gerarHorariosIntervalo(aberturaMinutos, fechamentoMinutos);
-        
-        // Limpar container e criar botões
+
         container.innerHTML = '';
         
         if (todosHorarios.length === 0) {
@@ -344,7 +321,6 @@ document.addEventListener('DOMContentLoaded', function() {
             button.className = 'btn btn-outline-primary w-100 horario-btn disponivel';
             button.textContent = horario;
             
-            // Verificar se horário está ocupado
             const ocupado = horariosOcupados.includes(horario);
             
             if (ocupado) {
@@ -354,18 +330,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.title = 'Horário já agendado';
             } else {
                 button.addEventListener('click', function() {
-                    // Remover seleção anterior
                     document.querySelectorAll('.horario-btn').forEach(btn => {
                         btn.classList.remove('selected');
                     });
-                    
-                    // Selecionar este horário
+
                     this.classList.add('selected');
                     
-                    // Selecionar agendamento
+
                     selecionarAgendamento(barbeariaId, barbeariaNome, horario);
                     
-                    // Fechar modal após 500ms (feedback visual)
                     setTimeout(() => {
                         horariosModal.hide();
                     }, 500);
@@ -376,25 +349,21 @@ document.addEventListener('DOMContentLoaded', function() {
             container.appendChild(col);
         });
     }
-    
-    // Selecionar agendamento
+
+
     function selecionarAgendamento(barbeariaId, barbeariaNome, horario) {
-        // Remover seleção anterior dos cards
+
         document.querySelectorAll('.barbearia-card').forEach(card => {
             card.classList.remove('selected');
         });
-        
-        // Marcar card como selecionado
         const cardSelecionado = document.querySelector(`[data-barbearia-id="${barbeariaId}"]`);
         if (cardSelecionado) {
             cardSelecionado.classList.add('selected');
         }
         
-        // Atualizar campos hidden
         document.getElementById('id_barbearia').value = barbeariaId;
         document.getElementById('data_hora').value = `${dataInput.value} ${horario}:00`;
         
-        // Mostrar informações
         document.getElementById('infoBarbearia').textContent = barbeariaNome;
         document.getElementById('infoHorario').textContent = horario;
         document.getElementById('infoData').textContent = formatarDataParaExibicao(dataInput.value);
@@ -403,9 +372,6 @@ document.addEventListener('DOMContentLoaded', function() {
         btnConfirmar.disabled = false;
     }
     
-    // Event Listeners
-    
-    // Botão "Escolher Horário" em cada card
     document.querySelectorAll('.btn-escolher-horario').forEach(button => {
         button.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -414,36 +380,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Clicar no card também abre o modal (exceto no botão)
     document.querySelectorAll('.barbearia-card').forEach(card => {
         card.addEventListener('click', function(e) {
-            // Não disparar se clicou no botão "Escolher Horário"
             if (!e.target.closest('.btn-escolher-horario')) {
                 abrirModalHorarios(this);
             }
         });
     });
     
-    // Ao mudar data, limpar cache e seleção
     dataInput.addEventListener('change', function() {
-        horariosOcupadosCache = {}; // Limpar cache
+        horariosOcupadosCache = {};
         selecaoInfo.style.display = 'none';
         btnConfirmar.disabled = true;
         document.querySelectorAll('.barbearia-card').forEach(card => {
             card.classList.remove('selected');
         });
     });
-    
-    // Formatar data inicial no input
-    function formatarDataInput() {
-        const hoje = new Date();
-        const mes = (hoje.getMonth() + 1).toString().padStart(2, '0');
-        const dia = hoje.getDate().toString().padStart(2, '0');
-        return `${hoje.getFullYear()}-${mes}-${dia}`;
-    }
-    
-    // Inicializar data
-    dataInput.value = formatarDataInput();
 });
 </script>
 @endpush
