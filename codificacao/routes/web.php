@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BarbeariaController;
-use App\Http\Controllers\ProprietarioController;
+use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\BarbeiroController;
 use App\Http\Controllers\AtendimentoController;
 use App\Http\Controllers\ProdutoController;
@@ -18,6 +18,10 @@ Route::prefix('auth')->group(function () {
     Route::get('register-cliente', [AuthController::class, 'registerCliente'])->name('register.cliente');
     Route::post('register-cliente', [AuthController::class, 'registerClientePOST'])->name('register.cliente.post');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::prefix('api')->group(function () {
+        Route::get('barbearias/{id}/barbeiros', [BarbeariaController::class, 'getBarbeiros']);
+        Route::get('barbearias/{id}/horarios-ocupados', [BarbeariaController::class, 'getHorariosOcupados']);
+    });
 })->middleware('guest');
 
 Route::middleware('auth')->group(function () {
@@ -44,6 +48,11 @@ Route::middleware('auth')->group(function () {
             Route::delete('produtos/{id_produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
             Route::put('/estoque', [EstoqueController::class, 'ajustarQuantidadeMinimaDoEstoque'])->name('estoques.update.minquantity');
             Route::patch('estoque/{id_estoque}', [EstoqueController::class, 'reporEstoque'])->name('estoques.repor');
+
+            Route::get('{barbearia}/servicos', [ServicoController::class, 'index'])->name('servicos.index');
+            Route::post('/servicos', [ServicoController::class, 'store'])->name('servicos.store');
+            Route::put('/servicos/{servico}', [ServicoController::class, 'update'])->name('servicos.update');
+            Route::delete('/servicos/{servico}', [ServicoController::class, 'destroy'])->name('servicos.destroy');
         });
     });
 
@@ -51,6 +60,13 @@ Route::middleware('auth')->group(function () {
         Route::post('/atendimentos', [AtendimentoController::class, 'store'])->name('atendimentos.store');
         Route::put('/atendimentos/{id_atendimento}', [AtendimentoController::class, 'update'])->name('atendimentos.update');
         Route::delete('/atendimentos/{id_atendimento}', [AtendimentoController::class, 'destroy'])->name('atendimentos.destroy');
+    });
+
+    Route::middleware('can:cliente-access')->group(function () {
+        Route::get('/cliente/agendamentos/novo', [AtendimentoController::class, 'createCliente'])->name('cliente.agendamentos.create');
+        Route::post('/cliente/agendamentos', [AtendimentoController::class, 'storeCliente'])->name('cliente.agendamentos.store');
+        Route::get('/cliente/agendamentos', [AtendimentoController::class, 'listarAgendamentos'])->name('cliente.agendamentos.listar');
+        Route::delete('/cliente/agendamentos/{id}', [AtendimentoController::class, 'cancelarAgendamento'])->name('cliente.agendamentos.cancelar');
     });
 })->middleware('auth');
 

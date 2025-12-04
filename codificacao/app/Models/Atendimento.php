@@ -4,8 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+
 use App\Models\Barbearia;
 use App\Models\Barbeiro;
+
 
 class Atendimento extends Model
 {

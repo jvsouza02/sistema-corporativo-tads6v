@@ -34,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
             return $user->role === 'barbeiro';
         });
 
+        Gate::define('cliente-access', function ($user) {
+            return $user->role === 'cliente';
+        });
+
         Paginator::useBootstrap();
     }
 }

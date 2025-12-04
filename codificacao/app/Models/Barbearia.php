@@ -52,10 +52,22 @@ class Barbearia extends Model
         return $this->hasMany(Estoque::class, 'id_barbearia');
     }
 
-    public function produto()
+    public function produtos()
     {
-        return $this->belongsToMany(Produto::class, 'estoques')
-                    ->withPivot('quantidade', 'quantidade_minima')
-                    ->withTimestamps();
+        return $this->belongsToMany(
+            Produto::class,
+            'estoques',
+            'id_barbearia',
+            'id_produto',
+            'id_barbearia',    // PK da Barbearia
+            'id_produto'       // PK do Produto
+        )
+            ->withPivot('quantidade', 'quantidade_minima')
+            ->withTimestamps();
+    }
+
+    public function servicos()
+    {
+        return $this->hasMany(Servico::class, 'id_barbearia', 'id_barbearia');
     }
 }

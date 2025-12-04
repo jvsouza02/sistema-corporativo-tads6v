@@ -42,7 +42,7 @@
                                 @endif
                             </a>
 
-                            <a href="" class="btn btn-manage">
+                            <a href="{{ route('servicos.index', $barbearia->id_barbearia) }}" class="btn btn-manage">
                                 <i class="fas fa-briefcase me-2"></i>Serviços
                             </a>
 

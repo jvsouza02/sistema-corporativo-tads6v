@@ -25,8 +25,23 @@ class Produto extends Model
 
     public function barbearias()
     {
-        return $this->belongsToMany(Barbearia::class, 'estoques')
-                    ->withPivot('quantidade', 'quantidade_minima')
-                    ->withTimestamps();
+        return $this->belongsToMany(
+            Barbearia::class,
+            'estoques',           // tabela pivot
+            'id_produto',         // foreign key do produto na pivot
+            'id_barbearia'        // foreign key da barbearia na pivot
+        )
+            ->withPivot('quantidade', 'quantidade_minima')
+            ->withTimestamps();
+    }
+
+    public function servicos()
+    {
+        return $this->belongsToMany(
+            Servico::class,
+            'servico_produtos',
+            'id_produto',
+            'id_servico'
+        )->withTimestamps();
     }
 }
