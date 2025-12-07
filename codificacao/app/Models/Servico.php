@@ -74,6 +74,6 @@ class Servico extends Model
     // Método auxiliar: Retorna preço formatado
     public function getPrecoFormatadoAttribute(): string
     {
-        return 'R$ ' . number_format($this->preco, 2, ',', '.');
+        return 'R$ ' . number_format((float) $this->preco, 2, ',', '.');
     }
 }

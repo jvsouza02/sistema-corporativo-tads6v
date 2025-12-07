@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agendamento;
 use App\Models\Barbearia;
 use App\Models\Estoque;
 use Illuminate\Http\Request;
