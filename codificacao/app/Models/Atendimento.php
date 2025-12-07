@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 use App\Models\Barbearia;
+use App\Models\Agendamento;
 use App\Models\Barbeiro;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class Atendimento extends Model
 {
