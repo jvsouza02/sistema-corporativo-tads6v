@@ -68,35 +68,37 @@ class BarbeariaController extends Controller
 
     public function getHorariosOcupados(Request $request, $id)
     {
-        try {
-            $data = $request->input('data'); // formato: Y-m-d
-            $barbeiro_id = $request->input('barbeiro_id'); // opcional
+        $data = $request->query('data');
 
-            if (!$data) {
-                return response()->json(['error' => 'Data é obrigatória'], 400);
-            }
-
-            $query = Agendamento::where('id_barbearia', $id)
-                ->whereDate('data_hora', $data)
-                ->where('status', '!=', 'cancelado');
-
-            if ($barbeiro_id) {
-                $query->where('id_barbeiro', $barbeiro_id);
-            }
-
-            // devolve array de strings "Y-m-d H:i:s" que o JS converte pra HH:MM
-            $agendamentos = $query->pluck('data_hora')
-                ->map(function ($dataHora) {
-                    return $dataHora instanceof \Carbon\Carbon
-                        ? $dataHora->format('Y-m-d H:i:s')
-                        : (string) $dataHora;
-                })
-                ->values();
-
-            return response()->json($agendamentos);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Erro ao buscar horários'], 500);
+        if (!$data) {
+            return response()->json(['error' => 'Parâmetro "data" é obrigatório (YYYY-MM-DD).'], 400);
         }
+
+        $agendamentos = Agendamento::where('id_barbearia', $id)
+            ->whereDate('data_hora', $data)
+            ->where('status', '!=', 'cancelado')
+            ->get(['data_hora']);
+
+        $horarios = [];
+
+        foreach ($agendamentos as $ag) {
+            $valor = $ag->data_hora;
+
+            if (!$valor) continue;
+
+            if ($valor instanceof \Carbon\Carbon) {
+                $horarios[] = $valor->format('H:i');
+            } else {
+                try {
+                    $hora = \Carbon\Carbon::parse($valor)->format('H:i');
+                    $horarios[] = $hora;
+                } catch (\Exception $e) {
+                    continue;
+                }
+            }
+        }
+
+        return response()->json(array_values($horarios));
     }
     /**
      * Display the specified resource.

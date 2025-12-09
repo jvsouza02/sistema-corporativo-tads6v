@@ -397,5 +397,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+const agora = new Date();
+const dataEscolhida = new Date(`${dataSelecionada}T${horario}:00`);
+
+if (dataEscolhida < agora) {
+    button.classList.remove('disponivel');
+    button.classList.add('fora-expediente'); 
+    button.disabled = true;
+}
+
 </script>
 @endpush

@@ -8,6 +8,7 @@ use App\Models\Barbearia;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use carbon\Carbon;
 
 class AgendamentoController extends Controller
 {
@@ -55,6 +56,15 @@ class AgendamentoController extends Controller
         }
 
         $idCliente = $cliente->id_cliente; // UUID do cliente, compatível com a FK de agendamentos
+
+        $dataHoraAgendada = Carbon::parse($request->data_hora);
+        $agora = Carbon::now();
+
+        if ($dataHoraAgendada->isPast()) {
+            return back()
+                ->withInput()
+                ->with('error', 'Não é permitido agendar horários retroativos.');
+        }
 
         // ===== BLOQUEIA HORÁRIO DUPLICADO =====
         $existe = Agendamento::where('id_barbearia', $request->id_barbearia)

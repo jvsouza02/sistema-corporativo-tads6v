@@ -55,7 +55,7 @@ class Agendamento extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(User::class, 'id_cliente', 'id');
+        return $this->belongsTo(User::class, 'id_cliente', 'id_cliente');
     }
 
     public function barbeiro()
