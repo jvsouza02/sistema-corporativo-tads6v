@@ -349,6 +349,8 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 
 ![Diagrama de Atividades](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/diagrama_de_atividade_do_projeto.png)
 
+---
+
 ## 8. Ferramentas Utilizadas
 
 Durante o desenvolvimento do sistema foram utilizadas as seguintes ferramentas:
@@ -359,3 +361,7 @@ Durante o desenvolvimento do sistema foram utilizadas as seguintes ferramentas:
 - **Visual Studio Code (VSCode)** — editor/IDE utilizado pelos desenvolvedores para codificação, debugging e execução de testes locais.  
 
 ---
+
+## 9. Gráfico Burndown
+
+[Gráfico Burndown](https://docs.google.com/spreadsheets/d/1RyWtdgVLxNj2ofCtK0qOfNu-o7zLXOjH/edit?usp=sharing&ouid=117602761760046031828&rtpof=true&sd=true)
