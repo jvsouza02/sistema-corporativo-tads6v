@@ -61,13 +61,21 @@ Com base no contexto do sistema, foram identificados os seguintes requisitos de 
 
 ### 5.1 Requisitos Funcionais
 
-| ID   | Nome                 | Descrição                                                                                                                                 | Prioridade | Dependência |
-|:-----|:---------------------|:------------------------------------------------------------------------------------------------------------------------------------------|:------------|:-------------|
-| RF01 | Cadastrar Proprietário | Permitir que o proprietário realize seu cadastro informando nome, e-mail e senha. Após o cadastro, ele é direcionado para a tela inicial para criar e gerenciar suas barbearias. | Alta | — |
-| RF02 | Gerenciar Barbearias | Permitir que o proprietário crie, edite e visualize barbearias, informando dados como nome, e-mail, endereço, telefone, horário de início e fim, descrição e foto. | Alta | RF01 |
-| RF03 | Listar Barbearias    | Permitir que o sistema liste todas as barbearias cadastradas do proprietário, exibindo informações principais e dados de desempenho semanal. | Alta | RF02 |
-| RF04 | Gerenciar Barbeiros  | Permitir que o proprietário cadastre, edite, remova e transfira barbeiros entre suas barbearias, com nome, e-mail e horários de trabalho. | Alta | RF02 |
-| RF05 | Registrar Atendimento | Permitir que o barbeiro registre os detalhes de cada atendimento realizado, selecionando serviços e produtos. O sistema soma automaticamente os valores e permite edição. | Alta | RF04 |
+| ID    | Nome                           | Descrição                                                                                                                                                                                                 | Prioridade | Dependência |
+|:------|:-------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------|:-------------|
+| RF001 | Cadastrar Proprietário         | Permitir que o proprietário realize seu cadastro informando nome, e-mail e senha. Após o cadastro, ele é direcionado para a tela inicial para criar e gerenciar suas barbearias.                           | Alta       | —            |
+| RF002 | Cadastrar Cliente              | Permitir que o cliente realize seu cadastro informando nome, e-mail e senha para visualizar barbearias e realizar agendamentos.                                                                           | Alta       | —            |
+| RF003 | Realizar Login                 | Permitir que proprietários, barbeiros e clientes acessem o sistema usando e-mail e senha válidos, sendo redirecionados para sua área específica.                                                          | Alta       | RF001, RF002 |
+| RF004 | Listar Barbearias              | Permitir que o proprietário visualize todas as suas barbearias cadastradas, exibindo dados como nome, endereço, horários de expediente, barbeiros vinculados e resumo semanal de atendimentos.            | Alta       | RF003        |
+| RF005 | Gerenciar Barbearia            | Permitir criar, editar ou remover barbearias, informando nome, e-mail, endereço, telefone, horários de funcionamento, descrição e foto de apresentação.                                                    | Alta       | RF004        |
+| RF006 | Gerenciar Barbeiro             | Permitir cadastrar, editar, remover e transferir barbeiros entre barbearias, registrando nome, e-mail, senha e horários de expediente.                                                                     | Alta       | RF005        |
+| RF007 | Gerenciar Serviço              | Permitir cadastrar, editar e remover serviços, registrando nome, descrição, preço e produtos associados. Para cada produto associado, deve ser registrada a quantidade necessária por atendimento em mililitros (ml). | Alta       | RF005        |
+| RF008 | Gerenciar Produto e Estoque    | Permitir cadastrar produtos usados na barbearia, registrando nome, descrição, preço e quantidade. O estoque e todas as reposições devem ser registrados exclusivamente em mililitros (ml).           | Alta       | RF005        |
+| RF009 | Emitir Alerta de Estoque Baixo | Exibir alertas automáticos quando a quantidade de um produto atingir ou ficar abaixo do limite mínimo definido. A verificação utiliza valores registrados em mililitros (ml).                         | Alta       | RF008        |
+| RF010 | Realizar Agendamento           | Permitir que o cliente visualize horários disponíveis com base no expediente da barbearia e registre um agendamento selecionando data e horário.                                                          | Alta       | RF002, RF003 |
+| RF011 | Visualizar Histórico de Agendamento | Permitir que o cliente visualize seus agendamentos realizados, com data, horário e status.                                                                                                                | Média      | RF010        |
+| RF012 | Registrar Atendimento          | Permitir registrar atendimentos, selecionando serviços e produtos utilizados. O sistema deve descontar automaticamente do estoque da barbearia a quantidade consumida de cada produto em mililitros (ml). | Alta       | RF006, RF007, RF008 |
+| RF013 | Visualizar Histórico de Atendimento | Permitir que barbeiros e proprietários visualizem atendimentos realizados, contendo data, cliente, serviços prestados, produtos utilizados e valor total.                                                 | Média      | RF012        |
 
 ---
 
@@ -82,15 +90,3 @@ Com base no contexto do sistema, foram identificados os seguintes requisitos de 
 
 ---
 
-### 5.3 Regras de Negócio
-
-| ID   | Nome                                | Descrição                                                                                                      | Prioridade | Dependência |
-|:-----|:------------------------------------|:---------------------------------------------------------------------------------------------------------------|:------------|:-------------|
-| RN01 | Cadastrar Proprietário de Forma Única | Cada proprietário deve ter apenas um cadastro no sistema, com e-mail único e não repetido.                     | Alta | RF01 |
-| RN02 | Vincular Profissionais e Serviços à Barbearia | Todo barbeiro e atendimento devem estar vinculados a uma barbearia existente.                                 | Alta | RF02, RF03, RF05 |
-| RN03 | Gerenciar Múltiplas Barbearias       | O proprietário pode cadastrar e gerenciar várias barbearias, cada uma com suas informações independentes.       | Alta | RF02 |
-| RN04 | Registrar Informações de Atendimento | O barbeiro deve registrar os serviços e produtos utilizados em cada atendimento, com cálculo automático do valor total. | Média | RF05 |
-| RN05 | Transferir Barbeiros Entre Barbearias | O sistema deve permitir ao proprietário transferir barbeiros entre barbearias, atualizando vínculos e horários. | Média | RF04 |
-| RN06 | Restringir Acesso do Barbeiro        | Cada barbeiro só pode visualizar seus próprios atendimentos e informações da barbearia onde atua.              | Alta | RF04, RF05 |
-
----
