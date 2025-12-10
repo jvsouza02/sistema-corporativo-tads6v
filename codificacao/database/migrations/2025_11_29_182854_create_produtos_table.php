@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nome')->unique();
             $table->string('descricao')->nullable();
             $table->decimal('preco',10,2);
+            $table->string('unidade_medida', 10)->default('ml');
             $table->timestamps();
         });
     }

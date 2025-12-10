@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Proprietario;
 use App\Models\Barbeiro;
-use App\Models\Cliente; 
+use App\Models\Cliente;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -22,7 +22,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = auth()->user();
-            
+
             switch ($user->role) {
                 case 'proprietario':
                     return redirect()->route('dashboard');
@@ -54,6 +54,13 @@ class AuthController extends Controller
             ]);
 
             switch ($newUser->role) {
+                case 'cliente':
+                    Cliente::create([
+                        'id_cliente' => Str::uuid(),
+                        'nome' => $dados['nome'],
+                        'user_id' => $newUser->id
+                    ]);
+                    break;
                 case 'proprietario':
                     Proprietario::create([
                         'id_proprietario' => Str::uuid(),

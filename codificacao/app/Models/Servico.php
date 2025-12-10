@@ -56,7 +56,8 @@ class Servico extends Model
             'servico_produto',
             'id_servico',
             'id_produto'
-        )->withTimestamps();
+        )->withPivot('quantidade_utilizada')
+            ->withTimestamps();
     }
 
     // Relacionamento: Um serviço pode estar em vários atendimentos

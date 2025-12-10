@@ -18,6 +18,8 @@ class HomeController extends Controller
         } else if (auth()->user()->role == 'barbeiro') {
             return redirect()->route('barbearia.detalhes', auth()->user()->barbeiro->id_barbearia);
 
+        } else if (auth()->user()->role == 'cliente') {
+            return redirect()->route('cliente.agendamentos.create');
         }
     }
 

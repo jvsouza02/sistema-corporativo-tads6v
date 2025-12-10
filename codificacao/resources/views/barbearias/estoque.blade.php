@@ -15,15 +15,6 @@
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCadastrarProduto">
                     <i class="fas fa-plus-circle me-2"></i>Cadastrar Produto
                 </button>
-                <button class="btn btn-warning position-relative" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasAlerta" aria-controls="offcanvasAlerta">
-                    <i class="fas fa-exclamation-triangle me-2"></i>Alertas de Estoque
-                    @if ($estoque_baixo)
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            !
-                        </span>
-                    @endif
-                </button>
             </div>
         </div>
     </div>
@@ -79,15 +70,35 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="quantidade" class="form-label">Quantidade *</label>
-                                    <input type="number" class="form-control @error('quantidade') is-invalid @enderror"
-                                        id="quantidade" name="quantidade" value="{{ old('quantidade') }}" min="0"
-                                        placeholder="0" required>
-                                    @error('quantidade')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <label for="quantidade" class="form-label">Quantidade (ml) *</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control @error('quantidade') is-invalid @enderror"
+                                            id="quantidade" name="quantidade" value="{{ old('quantidade') }}" step="0.01"
+                                            min="0" placeholder="0.00" required>
+                                        <span class="input-group-text">ml</span>
+                                        @error('quantidade')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <small class="text-muted">Ex: 500 ml, 1000 ml, 150.5 ml</small>
                                 </div>
                             </div>
+                        </div>
+
+                        {{-- Opcional: quantidade mínima ao cadastrar --}}
+                        <div class="mb-3">
+                            <label for="quantidade_minima" class="form-label">Quantidade Mínima (ml)</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control @error('quantidade_minima') is-invalid @enderror"
+                                    id="quantidade_minima" name="quantidade_minima"
+                                    value="{{ old('quantidade_minima', 0) }}" step="0.01" min="0"
+                                    placeholder="0.00">
+                                <span class="input-group-text">ml</span>
+                                @error('quantidade_minima')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <small class="text-muted">Define quando será disparado o alerta.</small>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -103,97 +114,7 @@
         </div>
     </div>
 
-    {{-- Offcanvas para Configurar Alertas --}}
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAlerta" aria-labelledby="offcanvasAlertaLabel">
-        <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title" id="offcanvasAlertaLabel">
-                <i class="fas fa-bell text-warning me-2"></i>Alertas e Reposição de Estoque
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="alert alert-info">
-                <i class="fas fa-info-circle me-2"></i>
-                <small>Configure a quantidade mínima para cada produto e faça reposições rapidamente.</small>
-            </div>
-
-            <form method="POST" action="{{ route('estoques.update.minquantity') }}">
-                @csrf
-                @method('PUT')
-
-                @if (isset($estoques) && $estoques->count() > 0)
-                    @foreach ($estoques as $estoque)
-                        <div class="card mb-3 {{ $estoque->estoqueAbaixoDoMinimo() ? 'border-warning' : '' }}">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-start mb-3">
-                                    <h6 class="card-title mb-0">
-                                        <i class="fas fa-box text-primary me-2"></i>
-                                        {{ $estoque->produto->nome }}
-                                    </h6>
-                                    @if ($estoque->estoqueAbaixoDoMinimo())
-                                        <span class="badge bg-warning text-dark">
-                                            <i class="fas fa-exclamation-triangle me-1"></i>Baixo
-                                        </span>
-                                    @endif
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label small text-muted">Quantidade Atual</label>
-                                    <p
-                                        class="fw-bold mb-0 {{ $estoque->estoqueAbaixoDoMinimo() ? 'text-warning' : 'text-success' }}">
-                                        {{ $estoque->quantidade }}
-                                    </p>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="quantidade_minima_{{ $estoque->id_estoque }}" class="form-label">
-                                        Quantidade Mínima *
-                                    </label>
-                                    <input type="number" class="form-control"
-                                        id="quantidade_minima_{{ $estoque->id_estoque }}"
-                                        name="produtos[{{ $estoque->id_estoque }}][quantidade_minima]"
-                                        value="{{ $estoque->quantidade_minima }}" step="0.01" min="0"
-                                        required>
-                                    <small class="text-muted">Alerta quando estoque ≤ este valor</small>
-                                </div>
-
-                                {{-- Botão de Reposição --}}
-                                <div class="d-grid">
-                                    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#modalReporEstoque-{{ $estoque->id_estoque }}">
-                                        <i class="fas fa-plus-circle me-2"></i>Repor Estoque
-                                    </button>
-                                </div>
-
-                                @if ($estoque->estoqueAbaixoDoMinimo())
-                                    <div class="alert alert-warning mt-2 mb-0" role="alert">
-                                        <i class="fas fa-exclamation-triangle me-1"></i>
-                                        <small><strong>Atenção!</strong> Estoque abaixo do mínimo!</small>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    @endforeach
-
-                    <div class="d-grid gap-2 mt-4">
-                        <button type="submit" class="btn btn-warning">
-                            <i class="fas fa-save me-2"></i>Salvar Configurações
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">
-                            Cancelar
-                        </button>
-                    </div>
-                @else
-                    <div class="text-center py-4">
-                        <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
-                        <p class="text-muted">Nenhum produto cadastrado para configurar alertas.</p>
-                    </div>
-                @endif
-            </form>
-        </div>
-    </div>
-
-    {{-- Modais de Reposição (FORA DO OFFCANVAS) --}}
+    {{-- Modais de Reposição (permanece por estoque) --}}
     @if (isset($estoques) && $estoques->count() > 0)
         @foreach ($estoques as $estoque)
             <div class="modal fade" id="modalReporEstoque-{{ $estoque->id_estoque }}" tabindex="-1">
@@ -214,25 +135,24 @@
                             <div class="modal-body">
                                 <div class="alert alert-info">
                                     <strong>{{ $estoque->produto->nome }}</strong><br>
-                                    <small>Quantidade atual: <strong>{{ $estoque->quantidade }}</strong></small><br>
-                                    <small>Quantidade mínima: <strong>{{ $estoque->quantidade_minima }}</strong></small>
+                                    <small>Quantidade atual: <strong>{{ number_format($estoque->quantidade, 2, ',', '.') }}
+                                            ml</strong></small><br>
+                                    <small>Quantidade mínima:
+                                        <strong>{{ number_format($estoque->quantidade_minima, 2, ',', '.') }}
+                                            ml</strong></small>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="quantidade_repor_{{ $estoque->id_estoque }}" class="form-label">
-                                        Quantidade a Adicionar *
+                                        Quantidade a Adicionar (ml) *
                                     </label>
-                                    <input type="number"
-                                        class="form-control @error('quantidade_repor') is-invalid @enderror"
-                                        id="quantidade_repor_{{ $estoque->id_estoque }}" name="quantidade_repor"
-                                        min="0" placeholder="0" required autofocus>
-                                    <div class="form-text">
-                                        <i class="fas fa-info-circle"></i>
-                                        <small class="text-muted">O valor será adicionado à quantidade atual</small>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control"
+                                            id="quantidade_repor_{{ $estoque->id_estoque }}" name="quantidade_repor"
+                                            min="0.01" step="0.01" placeholder="0.00" required>
+                                        <span class="input-group-text">ml</span>
                                     </div>
-                                    @error('quantidade_repor')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <small class="text-muted">Ex: 500.00 para adicionar 500ml</small>
                                 </div>
                             </div>
 
@@ -272,8 +192,8 @@
                     <thead class="table-dark">
                         <tr>
                             <th class="w-20">Nome</th>
-                            <th class="w-50">Descrição</th>
-                            <th class="w-15">Preço</th>
+                            <th class="w-45">Descrição</th>
+                            <th class="w-10">Preço</th>
                             <th class="w-10">Quantidade</th>
                             <th class="text-center">Ações</th>
                         </tr>
@@ -281,9 +201,12 @@
 
                     <tbody>
                         @foreach ($estoques as $estoque)
-                            <tr>
+                            <tr class="{{ $estoque->estoqueAbaixoDoMinimo() ? 'table-warning' : '' }}">
                                 <td class="align-middle">
                                     {{ $estoque->produto->nome }}
+                                    @if ($estoque->estoqueAbaixoDoMinimo())
+                                        <br><small class="badge bg-warning text-dark mt-1">Baixo</small>
+                                    @endif
                                 </td>
                                 <td class="align-middle text-break"
                                     title="{{ $estoque->produto->descricao ?? 'Sem descrição' }}">
@@ -293,10 +216,24 @@
                                     R$ {{ number_format($estoque->produto->preco, 2, ',', '.') }}
                                 </td>
                                 <td class="align-middle">
-                                    {{ $estoque->quantidade }}
+                                    <span class="{{ $estoque->estoqueAbaixoDoMinimo() ? 'text-warning fw-bold' : '' }}">
+                                        {{ number_format($estoque->quantidade, 2, ',', '.') }} ml
+                                    </span>
+                                    <br>
+                                    <small class="text-muted">Mín:
+                                        {{ number_format($estoque->quantidade_minima, 2, ',', '.') }} ml</small>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <div class="gap-2" role="group" aria-label="Ações">
+                                    <div class="gap-2 d-inline-flex" role="group" aria-label="Ações">
+                                        {{-- Botão Repor --}}
+                                        <button class="btn btn-sm btn-success" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#modalReporEstoque-{{ $estoque->id_estoque }}"
+                                            title="Repor">
+                                            <i class="fas fa-plus-circle"></i>
+                                            <span class="d-none d-md-inline ms-1">Repor</span>
+                                        </button>
+
+                                        {{-- Botão Editar (abre modal que agora contém quantidade_minima também) --}}
                                         <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="modal"
                                             data-bs-target="#modalEditProduto-{{ $estoque->produto->id_produto }}"
                                             title="Editar">
@@ -304,6 +241,7 @@
                                             <span class="d-none d-md-inline ms-1">Editar</span>
                                         </button>
 
+                                        {{-- Remover produto --}}
                                         <form action="{{ route('produtos.destroy', $estoque->produto->id_produto) }}"
                                             method="POST" style="display: inline;"
                                             onsubmit="return confirm('Tem certeza que deseja remover este produto?')">
@@ -318,6 +256,7 @@
                                 </td>
                             </tr>
 
+                            {{-- Modal de Edição (agora com quantidade_minima) --}}
                             <div class="modal fade" id="modalEditProduto-{{ $estoque->produto->id_produto }}"
                                 tabindex="-1"
                                 aria-labelledby="modalEditProdutoLabel-{{ $estoque->produto->id_produto }}"
@@ -374,12 +313,33 @@
                                                     <div class="col-md-6 mb-3">
                                                         <label for="quantidade_{{ $estoque->produto->id_produto }}"
                                                             class="form-label">Quantidade *</label>
-                                                        <input type="number"
-                                                            id="quantidade_{{ $estoque->produto->id_produto }}"
-                                                            name="quantidade" class="form-control"
-                                                            value="{{ old('quantidade', $estoque->quantidade) }}"
-                                                            min="0" required>
+                                                        <div class="input-group">
+                                                            <input type="number"
+                                                                id="quantidade_{{ $estoque->produto->id_produto }}"
+                                                                name="quantidade" class="form-control"
+                                                                value="{{ old('quantidade', $estoque->quantidade) }}"
+                                                                min="0" required>
+                                                            <span class="input-group-text">ml</span>
+                                                        </div>
                                                     </div>
+                                                </div>
+
+                                                {{-- Novo campo: quantidade_minima --}}
+                                                <div class="mb-3">
+                                                    <label for="quantidade_minima_{{ $estoque->id_estoque }}"
+                                                        class="form-label">
+                                                        Quantidade Mínima (ml)
+                                                    </label>
+                                                    <div class="input-group">
+                                                        <input type="number" class="form-control"
+                                                            id="quantidade_minima_{{ $estoque->id_estoque }}"
+                                                            name="quantidade_minima"
+                                                            value="{{ old('quantidade_minima', $estoque->quantidade_minima) }}"
+                                                            step="0.01" min="0">
+                                                        <span class="input-group-text">ml</span>
+                                                    </div>
+                                                    <small class="text-muted">Alerta quando estoque ≤ este valor em
+                                                        ml</small>
                                                 </div>
                                             </div>
 
@@ -397,6 +357,7 @@
                         @endforeach
                     </tbody>
                 </table>
+
                 {{ $estoques->links() }}
             </div>
         @else

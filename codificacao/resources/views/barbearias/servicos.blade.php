@@ -39,13 +39,8 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome do Serviço *</label>
-                            <input type="text"
-                                   class="form-control @error('nome') is-invalid @enderror"
-                                   id="nome"
-                                   name="nome"
-                                   value="{{ old('nome') }}"
-                                   placeholder="Ex: Corte Simples"
-                                   required>
+                            <input type="text" class="form-control @error('nome') is-invalid @enderror" id="nome"
+                                name="nome" value="{{ old('nome') }}" placeholder="Ex: Corte Simples" required>
                             @error('nome')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -53,11 +48,8 @@
 
                         <div class="mb-3">
                             <label for="descricao" class="form-label">Descrição</label>
-                            <textarea class="form-control @error('descricao') is-invalid @enderror"
-                                      id="descricao"
-                                      name="descricao"
-                                      rows="3"
-                                      placeholder="Descreva o serviço...">{{ old('descricao') }}</textarea>
+                            <textarea class="form-control @error('descricao') is-invalid @enderror" id="descricao" name="descricao" rows="3"
+                                placeholder="Descreva o serviço...">{{ old('descricao') }}</textarea>
                             @error('descricao')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -67,15 +59,9 @@
                             <label for="preco" class="form-label">Preço *</label>
                             <div class="input-group">
                                 <span class="input-group-text">R$</span>
-                                <input type="number"
-                                       class="form-control @error('preco') is-invalid @enderror"
-                                       id="preco"
-                                       name="preco"
-                                       value="{{ old('preco') }}"
-                                       step="0.01"
-                                       min="0"
-                                       placeholder="0,00"
-                                       required>
+                                <input type="number" class="form-control @error('preco') is-invalid @enderror"
+                                    id="preco" name="preco" value="{{ old('preco') }}" step="0.01" min="0"
+                                    placeholder="0,00" required>
                                 @error('preco')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -86,38 +72,49 @@
                             <label class="form-label">Produtos Associados (opcional)</label>
                             <div class="alert alert-info">
                                 <i class="fas fa-info-circle me-2"></i>
-                                <small>Selecione os produtos que serão utilizados neste serviço. Quando um atendimento for realizado, esses produtos terão suas quantidades reduzidas automaticamente do estoque.</small>
+                                <small>Selecione os produtos que serão utilizados neste serviço. Quando um atendimento for
+                                    realizado, esses produtos terão suas quantidades reduzidas automaticamente do
+                                    estoque.</small>
                             </div>
 
-                            @if(isset($produtos) && $produtos->count() > 0)
+                            @if (isset($produtos) && $produtos->count() > 0)
                                 <div class="border rounded p-3" style="max-height: 300px; overflow-y: auto;">
-                                    @foreach($produtos as $produto)
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input"
-                                                   type="checkbox"
-                                                   name="produtos[]"
-                                                   value="{{ $produto->id_produto }}"
-                                                   id="produto_{{ $produto->id_produto }}"
-                                                   {{ in_array($produto->id_produto, old('produtos', [])) ? 'checked' : '' }}>
-                                            <label class="form-check-label d-flex justify-content-between align-items-center w-100"
-                                                   for="produto_{{ $produto->id_produto }}">
-                                                <span>
-                                                    <strong>{{ $produto->nome }}</strong>
-                                                    @if($produto->descricao)
-                                                        <br><small class="text-muted">{{ Str::limit($produto->descricao, 50) }}</small>
-                                                    @endif
-                                                </span>
-                                                <span class="badge bg-secondary">
-                                                    Estoque: {{ $produto->pivot->quantidade ?? 0 }}
-                                                </span>
-                                            </label>
+                                    @foreach ($produtos as $produto)
+                                        <div class="card mb-2">
+                                            <div class="card-body p-3">
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        name="produtos[{{ $produto->id_produto }}][selecionado]"
+                                                        value="1" id="produto_{{ $produto->id_produto }}"
+                                                        onchange="toggleQuantidadeInput(this, '{{ $produto->id_produto }}')">
+                                                    <label class="form-check-label"
+                                                        for="produto_{{ $produto->id_produto }}">
+                                                        <strong>{{ $produto->nome }}</strong>
+                                                    </label>
+                                                </div>
+
+                                                <div id="quantidade_container_{{ $produto->id_produto }}"
+                                                    style="display: none;">
+                                                    <label class="form-label small">Quantidade utilizada por atendimento
+                                                        (ml)</label>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="number" class="form-control"
+                                                            name="produtos[{{ $produto->id_produto }}][quantidade_utilizada]"
+                                                            step="0.01" min="0.01" placeholder="0.00">
+                                                        <span class="input-group-text">ml</span>
+                                                    </div>
+                                                    <small class="text-muted">Ex: 50 ml por corte</small>
+                                                </div>
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>
                             @else
                                 <div class="alert alert-warning mb-0">
                                     <i class="fas fa-exclamation-triangle me-2"></i>
-                                    Nenhum produto cadastrado. <a href="{{ route('produtos.index', $barbearia->id_barbearia) }}">Cadastre produtos primeiro</a>.
+                                    Nenhum produto cadastrado. <a
+                                        href="{{ route('produtos.index', $barbearia->id_barbearia) }}">Cadastre produtos
+                                        primeiro</a>.
                                 </div>
                             @endif
                         </div>
@@ -137,21 +134,21 @@
     </div>
 
     <div class="container">
-        @if(session('success'))
+        @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
 
-        @if(session('error'))
+        @if (session('error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ session('error') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
 
-        @if(isset($servicos) && $servicos->count() > 0)
+        @if (isset($servicos) && $servicos->count() > 0)
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered align-middle">
                     <thead class="table-dark">
@@ -164,7 +161,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($servicos as $servico)
+                        @foreach ($servicos as $servico)
                             <tr>
                                 <td class="align-middle">
                                     <strong>{{ $servico->nome }}</strong>
@@ -178,11 +175,10 @@
                                     </span>
                                 </td>
                                 <td class="align-middle">
-                                    @if($servico->produtos && $servico->produtos->count() > 0)
-                                        <button type="button"
-                                                class="btn btn-sm btn-outline-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#modalProdutos-{{ $servico->id_servico }}">
+                                    @if ($servico->produtos && $servico->produtos->count() > 0)
+                                        <button type="button" class="btn btn-sm btn-outline-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalProdutos-{{ $servico->id_servico }}">
                                             <i class="fas fa-box me-1"></i>
                                             {{ $servico->produtos->count() }} produto(s)
                                         </button>
@@ -192,19 +188,15 @@
                                 </td>
                                 <td class="align-middle text-center">
                                     <div class="gap-2" role="group">
-                                        <button class="btn btn-sm btn-primary"
-                                                type="button"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#modalEditServico-{{ $servico->id_servico }}"
-                                                title="Editar">
+                                        <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#modalEditServico-{{ $servico->id_servico }}" title="Editar">
                                             <i class="fas fa-edit"></i>
                                             <span class="d-none d-md-inline ms-1">Editar</span>
                                         </button>
 
                                         <form action="{{ route('servicos.destroy', $servico->id_servico) }}"
-                                              method="POST"
-                                              style="display: inline;"
-                                              onsubmit="return confirm('Tem certeza que deseja remover este serviço?')">
+                                            method="POST" style="display: inline;"
+                                            onsubmit="return confirm('Tem certeza que deseja remover este serviço?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">
@@ -217,7 +209,7 @@
                             </tr>
 
                             {{-- Modal para visualizar produtos do serviço --}}
-                            @if($servico->produtos && $servico->produtos->count() > 0)
+                            @if ($servico->produtos && $servico->produtos->count() > 0)
                                 <div class="modal fade" id="modalProdutos-{{ $servico->id_servico }}" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -226,17 +218,23 @@
                                                     <i class="fas fa-box text-primary me-2"></i>
                                                     Produtos - {{ $servico->nome }}
                                                 </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <ul class="list-group">
-                                                    @foreach($servico->produtos as $produto)
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    @foreach ($servico->produtos as $produto)
+                                                        <li
+                                                            class="list-group-item d-flex justify-content-between align-items-center">
                                                             <div>
                                                                 <strong>{{ $produto->nome }}</strong>
-                                                                @if($produto->descricao)
-                                                                    <br><small class="text-muted">{{ $produto->descricao }}</small>
+                                                                @if ($produto->descricao)
+                                                                    <br><small
+                                                                        class="text-muted">{{ $produto->descricao }}</small>
                                                                 @endif
+                                                                <br><small class="text-info">
+                                                                    Quantidade: {{ number_format($produto->pivot->quantidade_utilizada ?? 0, 2, ',', '.') }} ml
+                                                                </small>
                                                             </div>
                                                             <span class="badge bg-primary rounded-pill">
                                                                 R$ {{ number_format($produto->preco, 2, ',', '.') }}
@@ -259,76 +257,81 @@
                             <div class="modal fade" id="modalEditServico-{{ $servico->id_servico }}" tabindex="-1">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <form method="POST" action="{{ route('servicos.update', $servico->id_servico) }}">
+                                        <form method="POST"
+                                            action="{{ route('servicos.update', $servico->id_servico) }}">
                                             @csrf
                                             @method('PUT')
-                                            <input type="hidden" name="id_barbearia" value="{{ $barbearia->id_barbearia }}">
+                                            <input type="hidden" name="id_barbearia"
+                                                value="{{ $barbearia->id_barbearia }}">
 
                                             <div class="modal-header">
                                                 <h5 class="modal-title">
                                                     <i class="fas fa-edit me-2"></i>Editar Serviço
                                                 </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
                                             </div>
 
                                             <div class="modal-body">
                                                 <div class="mb-3">
-                                                    <label for="nome_{{ $servico->id_servico }}" class="form-label">Nome *</label>
-                                                    <input type="text"
-                                                           id="nome_{{ $servico->id_servico }}"
-                                                           name="nome"
-                                                           class="form-control"
-                                                           value="{{ old('nome', $servico->nome) }}"
-                                                           required>
+                                                    <label for="nome_{{ $servico->id_servico }}" class="form-label">Nome
+                                                        *</label>
+                                                    <input type="text" id="nome_{{ $servico->id_servico }}"
+                                                        name="nome" class="form-control"
+                                                        value="{{ old('nome', $servico->nome) }}" required>
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <label for="descricao_{{ $servico->id_servico }}" class="form-label">Descrição</label>
-                                                    <textarea id="descricao_{{ $servico->id_servico }}"
-                                                              name="descricao"
-                                                              class="form-control"
-                                                              rows="3">{{ old('descricao', $servico->descricao) }}</textarea>
+                                                    <label for="descricao_{{ $servico->id_servico }}"
+                                                        class="form-label">Descrição</label>
+                                                    <textarea id="descricao_{{ $servico->id_servico }}" name="descricao" class="form-control" rows="3">{{ old('descricao', $servico->descricao) }}</textarea>
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <label for="preco_{{ $servico->id_servico }}" class="form-label">Preço *</label>
+                                                    <label for="preco_{{ $servico->id_servico }}"
+                                                        class="form-label">Preço *</label>
                                                     <div class="input-group">
                                                         <span class="input-group-text">R$</span>
-                                                        <input type="number"
-                                                               id="preco_{{ $servico->id_servico }}"
-                                                               name="preco"
-                                                               class="form-control"
-                                                               value="{{ old('preco', $servico->preco) }}"
-                                                               step="0.01"
-                                                               min="0"
-                                                               required>
+                                                        <input type="number" id="preco_{{ $servico->id_servico }}"
+                                                            name="preco" class="form-control"
+                                                            value="{{ old('preco', $servico->preco) }}" step="0.01"
+                                                            min="0" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label class="form-label">Produtos Associados</label>
-                                                    @if(isset($produtos) && $produtos->count() > 0)
-                                                        <div class="border rounded p-3" style="max-height: 300px; overflow-y: auto;">
-                                                            @foreach($produtos as $produto)
-                                                                <div class="form-check mb-2">
-                                                                    <input class="form-check-input"
-                                                                           type="checkbox"
-                                                                           name="produtos[]"
-                                                                           value="{{ $produto->id_produto }}"
-                                                                           id="edit_produto_{{ $servico->id_servico }}_{{ $produto->id_produto }}"
-                                                                           {{ $servico->produtos->contains('id_produto', $produto->id_produto) ? 'checked' : '' }}>
-                                                                    <label class="form-check-label d-flex justify-content-between align-items-center w-100"
-                                                                           for="edit_produto_{{ $servico->id_servico }}_{{ $produto->id_produto }}">
-                                                                        <span>
-                                                                            <strong>{{ $produto->nome }}</strong>
-                                                                            @if($produto->descricao)
-                                                                                <br><small class="text-muted">{{ Str::limit($produto->descricao, 50) }}</small>
-                                                                            @endif
-                                                                        </span>
-                                                                        <span class="badge bg-secondary">
-                                                                            Estoque: {{ $produto->pivot->quantidade ?? 0 }}
-                                                                        </span>
-                                                                    </label>
+                                                    @if (isset($produtos) && $produtos->count() > 0)
+                                                        <div class="border rounded p-3"
+                                                            style="max-height: 300px; overflow-y: auto;">
+                                                            @foreach ($produtos as $produto)
+                                                                <div class="card mb-2">
+                                                                    <div class="card-body p-3">
+                                                                        <div class="form-check mb-2">
+                                                                            <input class="form-check-input" type="checkbox"
+                                                                                name="produtos[{{ $produto->id_produto }}][selecionado]"
+                                                                                value="1"
+                                                                                id="edit_produto_{{ $servico->id_servico }}_{{ $produto->id_produto }}"
+                                                                                onchange="toggleQuantidadeInputEdit(this, '{{ $servico->id_servico }}', '{{ $produto->id_produto }}')"
+                                                                                {{ $servico->produtos->contains('id_produto', $produto->id_produto) ? 'checked' : '' }}>
+                                                                            <label class="form-check-label"
+                                                                                for="edit_produto_{{ $servico->id_servico }}_{{ $produto->id_produto }}">
+                                                                                <strong>{{ $produto->nome }}</strong>
+                                                                            </label>
+                                                                        </div>
+
+                                                                        <div id="edit_quantidade_container_{{ $servico->id_servico }}_{{ $produto->id_produto }}"
+                                                                            style="display: {{ $servico->produtos->contains('id_produto', $produto->id_produto) ? 'block' : 'none' }};">
+                                                                            <label class="form-label small">Quantidade utilizada (ml)</label>
+                                                                            <div class="input-group input-group-sm">
+                                                                                <input type="number" class="form-control"
+                                                                                    name="produtos[{{ $produto->id_produto }}][quantidade_utilizada]"
+                                                                                    step="0.01" min="0.01" placeholder="0.00"
+                                                                                    value="{{ $servico->produtos->firstWhere('id_produto', $produto->id_produto)->pivot->quantidade_utilizada ?? '' }}">
+                                                                                <span class="input-group-text">ml</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             @endforeach
                                                         </div>
@@ -364,3 +367,29 @@
         @endif
     </div>
 @endsection
+
+@push('scripts')
+<script>
+    function toggleQuantidadeInput(checkbox, produtoId) {
+        const container = document.getElementById(`quantidade_container_${produtoId}`);
+        container.style.display = checkbox.checked ? 'block' : 'none';
+
+        // Limpa o campo se desmarcar
+        if (!checkbox.checked) {
+            const input = container.querySelector('input[type="number"]');
+            if (input) input.value = '';
+        }
+    }
+
+    function toggleQuantidadeInputEdit(checkbox, servicoId, produtoId) {
+        const container = document.getElementById(`edit_quantidade_container_${servicoId}_${produtoId}`);
+        container.style.display = checkbox.checked ? 'block' : 'none';
+
+        // Limpa o campo se desmarcar
+        if (!checkbox.checked) {
+            const input = container.querySelector('input[type="number"]');
+            if (input) input.value = '';
+        }
+    }
+</script>
+@endpush

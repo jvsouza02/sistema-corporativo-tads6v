@@ -43,33 +43,56 @@ class ServicoController extends Controller
             'descricao' => 'nullable|string',
             'preco' => 'required|numeric|min:0',
             'produtos' => 'nullable|array',
-            'produtos.*' => 'exists:produtos,id_produto',
+            'produtos.*.selecionado' => 'nullable|in:1',
+            'produtos.*.quantidade_utilizada' => 'nullable|numeric|min:0',
         ], [
             'nome.required' => 'O nome do serviço é obrigatório.',
             'preco.required' => 'O preço é obrigatório.',
             'preco.min' => 'O preço deve ser maior ou igual a zero.',
         ]);
 
+
         $barbearia = Barbearia::findOrFail($validated['id_barbearia']);
 
 
-        DB::transaction(function () use ($validated) {
-            $servico = Servico::create([
-                'id_barbearia' => $validated['id_barbearia'],
-                'nome' => $validated['nome'],
-                'descricao' => $validated['descricao'],
-                'preco' => $validated['preco'],
-            ]);
+        try {
+            DB::transaction(function () use ($validated, $request, &$servico) {
+                $servico = Servico::create([
+                    'id_barbearia' => $validated['id_barbearia'],
+                    'nome' => $validated['nome'],
+                    'descricao' => $validated['descricao'] ?? null,
+                    'preco' => $validated['preco'],
+                ]);
 
-            // Associa produtos ao serviço (se houver)
-            if (!empty($validated['produtos'])) {
-                $servico->produtos()->attach($validated['produtos']);
-            }
-        });
+                // Processa produtos (se houver)
+                $produtosInput = $request->input('produtos', []); // mantém estrutura bruta
+                $attachData = [];
 
-        return redirect()
-            ->route('servicos.index', $validated['id_barbearia'])
-            ->with('success', 'Serviço cadastrado com sucesso!');
+                foreach ($produtosInput as $idProduto => $data) {
+                    if (!empty($data['selecionado'])) {
+                        $attachData[$idProduto] = [
+                            'quantidade_utilizada' => $data['quantidade_utilizada'] ?? 0
+                        ];
+                    }
+                }
+
+                if (!empty($attachData)) {
+                    $servico->produtos()->attach($attachData);
+                }
+            });
+
+
+            return redirect()
+                ->route('servicos.index', $validated['id_barbearia'])
+                ->with('success', 'Serviço cadastrado com sucesso!');
+
+        } catch (\Exception $e) {
+            // ⬇️ MOSTRA O ERRO REAL
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao cadastrar serviço: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -83,7 +106,8 @@ class ServicoController extends Controller
             'descricao' => 'nullable|string',
             'preco' => 'required|numeric|min:0',
             'produtos' => 'nullable|array',
-            'produtos.*' => 'exists:produtos,id_produto',
+            'produtos.*.selecionado' => 'nullable|in:1',
+            'produtos.*.quantidade_utilizada' => 'nullable|numeric|min:0',
         ], [
             'nome.required' => 'O nome do serviço é obrigatório.',
             'preco.required' => 'O preço é obrigatório.',
@@ -93,32 +117,56 @@ class ServicoController extends Controller
         $servico = Servico::findOrFail($id_servico);
         $barbearia = Barbearia::findOrFail($validated['id_barbearia']);
 
-
         // Verifica se o serviço pertence à barbearia
         if ($servico->id_barbearia !== $validated['id_barbearia']) {
             abort(403, 'Este serviço não pertence a esta barbearia.');
         }
 
-        DB::transaction(function () use ($servico, $validated) {
-            $servico->update([
-                'nome' => $validated['nome'],
-                'descricao' => $validated['descricao'],
-                'preco' => $validated['preco'],
-            ]);
+        try {
+            DB::transaction(function () use ($servico, $validated, $request) {
+                // Atualiza dados do serviço
+                $servico->update([
+                    'nome' => $validated['nome'],
+                    'descricao' => $validated['descricao'] ?? null,
+                    'preco' => $validated['preco'],
+                ]);
 
-            // Sincroniza produtos (remove os antigos e adiciona os novos)
-            if (isset($validated['produtos'])) {
-                $servico->produtos()->sync($validated['produtos']);
-            } else {
-                // Se não houver produtos selecionados, remove todos
-                $servico->produtos()->detach();
-            }
-        });
+                // Processa produtos recebidos no formato:
+                // produtos => [ '<id_produto>' => ['selecionado' => 1, 'quantidade_utilizada' => '50'], ... ]
+                $produtosInput = $request->input('produtos', []);
+                $syncData = [];
 
-        return redirect()
-            ->route('servicos.index', $validated['id_barbearia'])
-            ->with('success', 'Serviço atualizado com sucesso!');
+                foreach ($produtosInput as $idProduto => $data) {
+                    // Só sincroniza se foi marcado (selecionado)
+                    if (!empty($data['selecionado'])) {
+                        // Normaliza quantidade
+                        $quantidade = isset($data['quantidade_utilizada']) && $data['quantidade_utilizada'] !== ''
+                            ? $data['quantidade_utilizada']
+                            : 0;
+
+                        // Garante que o índice de produto seja tratado como string (UUID) — evita problemas
+                        $syncData[(string) $idProduto] = [
+                            'quantidade_utilizada' => $quantidade
+                        ];
+                    }
+                }
+
+                // Se houver produtos para sincronizar, faz sync com os dados do pivot.
+                // Se não houver, sync([]) remove todas as associações.
+                $servico->produtos()->sync($syncData);
+            });
+
+            return redirect()
+                ->route('servicos.index', $validated['id_barbearia'])
+                ->with('success', 'Serviço atualizado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Erro ao atualizar serviço: ' . $e->getMessage());
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

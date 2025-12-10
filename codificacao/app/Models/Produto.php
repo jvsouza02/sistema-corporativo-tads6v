@@ -16,7 +16,7 @@ class Produto extends Model
     protected $primaryKey = "id_produto";
     protected $keyType = "string";
     public $incrementing = false;
-    protected $fillable = ['id_produto', 'nome', 'descricao', 'preco'];
+    protected $fillable = ['id_produto', 'nome', 'descricao', 'preco', 'unidade_medida'];
 
     public function estoques()
     {
@@ -39,9 +39,10 @@ class Produto extends Model
     {
         return $this->belongsToMany(
             Servico::class,
-            'servico_produtos',
-            'id_produto',
-            'id_servico'
-        )->withTimestamps();
+            'servico_produto', // mesmo nome da migration
+            'id_produto',      // foreign key deste model na pivot
+            'id_servico'       // foreign key do serviço na pivot
+        )->withPivot('quantidade_utilizada')
+            ->withTimestamps();
     }
 }

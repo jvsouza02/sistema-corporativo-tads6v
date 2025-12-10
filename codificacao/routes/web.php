@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EstoqueController;
+use App\Http\Controllers\ServicoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -50,7 +51,14 @@ Route::middleware('auth')->group(function () {
             Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
             Route::put('/produtos/{id_produto}', [ProdutoController::class, 'update'])->name('produtos.update');
             Route::put('/estoque', [EstoqueController::class, 'ajustarQuantidadeMinimaDoEstoque'])->name('estoques.update.minquantity');
+            Route::patch('/estoques/{id_estoque}/repor', [EstoqueController::class, 'reporEstoque'])->name('estoques.repor');
             Route::delete('produtos/{id_produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
+
+
+            Route::get('{id_barbearia}/servicos/', [ServicoController::class, 'index'])->name('servicos.index');
+            Route::post('/servicos', [ServicoController::class, 'store'])->name('servicos.store');
+            Route::put('/servicos/{id_servico}', [ServicoController::class, 'update'])->name('servicos.update');
+            Route::delete('servicos/{id_servico}', [ServicoController::class, 'destroy'])->name('servicos.destroy');
         });
     });
 
@@ -68,11 +76,11 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('api')->middleware(['auth', 'can:cliente-access'])->group(function () {
-    Route::get('barbearias/{id}/barbeiros', [BarbeariaController::class, 'getBarbeiros'])
-        ->name('api.barbearias.barbeiros');
+        Route::get('barbearias/{id}/barbeiros', [BarbeariaController::class, 'getBarbeiros'])
+            ->name('api.barbearias.barbeiros');
 
-    Route::get('barbearias/{id}/horarios-ocupados', [BarbeariaController::class, 'getHorariosOcupados'])
-        ->name('api.barbearias.horarios_ocupados');
-});
+        Route::get('barbearias/{id}/horarios-ocupados', [BarbeariaController::class, 'getHorariosOcupados'])
+            ->name('api.barbearias.horarios_ocupados');
+    });
 
 })->middleware('auth');

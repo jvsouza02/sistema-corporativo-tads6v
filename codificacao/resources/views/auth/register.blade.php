@@ -9,7 +9,8 @@
     <title>BarberPro - Cadastro de Usuário</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -184,7 +185,8 @@
         }
 
         .invalid-feedback {
-            display: none; /* Oculta por padrão */
+            display: none;
+            /* Oculta por padrão */
             color: #dc3545;
             font-size: 0.875rem;
             margin-top: 5px;
@@ -219,9 +221,10 @@
                                 <i class="bi bi-exclamation-triangle me-2"></i>
                                 <strong>Atenção!</strong>
                                 <ul class="mb-0 mt-2">
-                                        <li>{{ session('error') }}</li>
+                                    <li>{{ session('error') }}</li>
                                 </ul>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
                         @endif
 
@@ -230,7 +233,8 @@
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <i class="bi bi-check-circle me-2"></i>
                                 {{ session('success') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
                         @endif
 
@@ -244,15 +248,10 @@
                                     <span class="input-group-text">
                                         <i class="bi bi-person"></i>
                                     </span>
-                                    <input
-                                        type="text"
+                                    <input type="text"
                                         class="form-control with-icon @error('nome') is-invalid @enderror"
-                                        id="nome"
-                                        name="nome"
-                                        value="{{ old('nome') }}"
-                                        placeholder="Digite seu nome completo"
-                                        required
-                                    >
+                                        id="nome" name="nome" value="{{ old('nome') }}"
+                                        placeholder="Digite seu nome completo" required>
                                 </div>
                                 @error('nome')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -266,15 +265,10 @@
                                     <span class="input-group-text">
                                         <i class="bi bi-envelope"></i>
                                     </span>
-                                    <input
-                                        type="email"
+                                    <input type="email"
                                         class="form-control with-icon @error('email') is-invalid @enderror"
-                                        id="email"
-                                        name="email"
-                                        value="{{ old('email') }}"
-                                        placeholder="seu@email.com"
-                                        required
-                                    >
+                                        id="email" name="email" value="{{ old('email') }}"
+                                        placeholder="seu@email.com" required>
                                 </div>
                                 @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -288,15 +282,10 @@
                                     <span class="input-group-text">
                                         <i class="bi bi-lock"></i>
                                     </span>
-                                    <input
-                                        type="password"
+                                    <input type="password"
                                         class="form-control with-icon @error('senha') is-invalid @enderror"
-                                        id="senha"
-                                        name="senha"
-                                        placeholder="Digite uma senha segura"
-                                        required
-                                        minlength="6"
-                                    >
+                                        id="senha" name="senha" placeholder="Digite uma senha segura" required
+                                        minlength="6">
                                 </div>
                                 <div class="password-strength" id="passwordStrength"></div>
                                 <small>Mínimo de 6 caracteres</small>
@@ -312,19 +301,38 @@
                                     <span class="input-group-text">
                                         <i class="bi bi-lock-fill"></i>
                                     </span>
-                                    <input
-                                        type="password"
+                                    <input type="password"
                                         class="form-control with-icon @error('senha_confirmation') is-invalid @enderror"
-                                        id="confirmarSenha"
-                                        name="senha_confirmation"
-                                        placeholder="Digite a senha novamente"
-                                        required
-                                    >
+                                        id="confirmarSenha" name="senha_confirmation"
+                                        placeholder="Digite a senha novamente" required>
                                 </div>
                                 <div class="invalid-feedback" id="confirmarSenhaError"></div>
                             </div>
 
-                            <input type="hidden" name="role" value="proprietario">
+                            <div class="mb-3">
+                                <label class="form-label required-field">Tipo de conta</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input @error('role') is-invalid @enderror"
+                                            type="radio" name="role" id="roleCliente" value="cliente"
+                                            {{ old('role', 'proprietario') == 'cliente' ? 'checked' : '' }} required>
+                                        <label class="form-check-label" for="roleCliente">Cliente</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input @error('role') is-invalid @enderror"
+                                            type="radio" name="role" id="roleProprietario" value="proprietario"
+                                            {{ old('role', 'proprietario') == 'proprietario' ? 'checked' : '' }}
+                                            required>
+                                        <label class="form-check-label" for="roleProprietario">Proprietário</label>
+                                    </div>
+                                </div>
+
+                                @error('role')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
 
                             {{-- Botão Cadastrar --}}
                             <div class="d-grid">
@@ -350,7 +358,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('cadastroForm');
             const senha = document.getElementById('senha');
             const confirmarSenha = document.getElementById('confirmarSenha');
@@ -362,7 +370,7 @@
             let confirmarSenhaTouched = false;
 
             // Validação de senha em tempo real
-            senha.addEventListener('input', function () {
+            senha.addEventListener('input', function() {
                 const strength = checkPasswordStrength(senha.value);
                 updatePasswordStrength(strength);
 
@@ -421,11 +429,11 @@
             // Animação de foco nos inputs
             const inputs = document.querySelectorAll('.form-control');
             inputs.forEach(input => {
-                input.addEventListener('focus', function () {
+                input.addEventListener('focus', function() {
                     this.parentElement.classList.add('focused');
                 });
 
-                input.addEventListener('blur', function () {
+                input.addEventListener('blur', function() {
                     this.parentElement.classList.remove('focused');
                 });
             });

@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('id_servico');
             $table->uuid('id_produto');
+            $table->decimal('quantidade_utilizada', 10,2)->default(0);
             $table->timestamps();
 
             $table->foreign('id_servico')
