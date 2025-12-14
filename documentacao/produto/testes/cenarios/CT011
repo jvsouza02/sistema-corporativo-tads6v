@@ -1,0 +1,11 @@
+## Cenário de Teste 011
+
+| **Componente** | **Descrição** |
+|----------------|---------------|
+| **Identificador** | **CT011** |
+| **Nome** | **Login com senha inválida** |
+| **Objetivo** | Verificar se o sistema valida o tamanho mínimo da senha. |
+| **Tipo** | Teste unitário |
+| **Dado** | Que o barbeiro informe uma senha com menos de 6 caracteres. |
+| **Comportamento** | Ao tentar fazer login. |
+| **Resultados esperados** | O sistema deve exibir uma mensagem informando que a senha deve ter no mínimo 6 caracteres e não deve permitir o login. |
