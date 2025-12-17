@@ -1,6 +1,9 @@
 # Documento de Requisitos do Sistema
 
+**Discentes:**  
 Yuri Fernandes, Maria da Paz, João Victor, Lucas Freitas.
+
+**Projeto:**  
 Sistema de Agendamento e Gestão de Barbearias.
 
 ---
