@@ -2,366 +2,299 @@
 
 **Discentes:** Yuri Fernandes, Maria da Paz, João Victor, Lucas Freitas  
 **Projeto:** Sistema de Gestão de Barbearias  
-**Data:** 10/11/2025  
-
----
 
 ## 1. Escopo do Projeto
 
-Este projeto tem como objetivo principal desenvolver um sistema de gestão completo e acessível para barbearias de pequeno e médio porte.  
-A plataforma web será desenvolvida para substituir métodos tradicionais de organização, como agendas físicas e planilhas, oferecendo uma solução digital integrada que permita o gerenciamento eficiente de clientes, agendamentos, serviços e equipe de trabalho.
+Este projeto tem como objetivo principal desenvolver um sistema de gestão completo e acessível para barbearias de pequeno e médio porte. A plataforma web será desenvolvida para substituir métodos tradicionais de organização, como agendas físicas e planilhas, oferecendo uma solução digital integrada que permita o gerenciamento eficiente de clientes, agendamentos, serviços, equipe de trabalho e estoque de produtos. O sistema busca resolver problemas comuns enfrentados por esses estabelecimentos, como desorganização de horários, dificuldade no controle financeiro e falta de profissionalização no atendimento ao cliente.
 
-O sistema busca resolver problemas comuns enfrentados por esses estabelecimentos, como desorganização de horários, dificuldade no controle financeiro e falta de profissionalização no atendimento ao cliente.
+O desenvolvimento do projeto seguirá boas práticas para garantir que o sistema seja estável, seguro e confiável, atendendo às necessidades reais dos usuários. Dessa forma, o produto final permitirá que proprietários acompanhem o desempenho das barbearias, que barbeiros registrem atendimentos de forma organizada e que clientes façam agendamentos de forma rápida e simples. O sistema também automatiza tarefas do dia a dia, como cálculo de valores de serviços e atualização de estoque, tornando o trabalho mais eficiente.
 
-O desenvolvimento do projeto seguirá boas práticas para garantir que o sistema seja estável, seguro e confiável, atendendo às necessidades reais dos usuários. Dessa forma, o produto final oferecerá uma solução prática e eficiente para a gestão de barbearias, contribuindo para a organização, o controle operacional e a melhoria da experiência tanto dos profissionais quanto dos clientes.
-
-Além disso, o sistema tem o objetivo de modernizar as barbearias, oferecendo uma ferramenta digital que ajude os proprietários a tomarem decisões e acompanhar o desempenho do negócio.  
-Com funções que reúnem as informações em um só lugar e automatizam tarefas do dia a dia, o projeto busca tornar a administração mais rápida, organizada e eficiente.
-
----
+Além disso, o sistema tem o objetivo de modernizar as barbearias, oferecendo uma ferramenta digital que centraliza todas as informações em um só lugar e ajuda os proprietários na tomada de decisões. Com funções para cadastrar e gerenciar barbeiros, serviços e produtos, acompanhar histórico de atendimentos e gerar relatórios, o projeto busca tornar a administração mais rápida, organizada e eficiente, melhorando a experiência dos clientes e a operação do negócio.
 
 ### 1.1 Objetivo
 
-O objetivo do projeto é desenvolver uma plataforma web intuitiva e funcional que auxilie barbearias de pequeno e médio porte na organização e controle de suas atividades.  
-O sistema permitirá o gerenciamento centralizado de clientes, serviços, horários e equipe, promovendo maior eficiência operacional e melhorando a qualidade do atendimento.
-
----
+O objetivo do projeto é desenvolver uma plataforma web intuitiva e funcional que auxilie barbearias de pequeno e médio porte na organização e controle de suas atividades, permitindo o gerenciamento centralizado de clientes, serviços, agendamentos, equipe e estoque de produtos, fornecendo ferramentas para acompanhamento do desempenho do negócio, registro de atendimentos, controle financeiro e geração de relatórios, tornando a administração mais rápida, organizada e eficiente, ao mesmo tempo em que melhora a experiência dos clientes e a produtividade dos profissionais.
 
 ### 1.2 Entregáveis
 
 Os principais produtos e resultados que serão gerados ao longo do projeto incluem:
 
-- **Plano de Projeto:** documento que descreve o planejamento geral do projeto, incluindo cronograma, estimativas de custo, escopo, equipe e metodologia adotada.  
-- **Documento de Visão:** apresenta uma descrição geral do sistema, seus objetivos e público-alvo.  
-- **Documento de Requisitos:** lista detalhada das funcionalidades, restrições e regras de negócio.  
-- **Especificações Técnicas:** informações técnicas sobre a estrutura e funcionamento do sistema.  
-- **Plano de Testes:** documento que define como as funcionalidades serão verificadas e validadas.  
-- **Sistema Pronto:** versão final e funcional da plataforma web acessível pelo navegador.  
-- **Código-Fonte:** todo o código desenvolvido, acompanhado de instruções para implantação.  
-- **Relatório Final:** resumo de todas as etapas do projeto, resultados e conclusões.
-
----
-
-### 1.3 Limites do Escopo
-
-- Não vamos fazer **sistema de pagamento** – o sistema não vai processar pagamentos com cartão ou outras formas.  
-- Não vamos criar **aplicativo para celular** – o sistema vai funcionar pelo navegador do celular e computador.  
-- Não vai ter **login por redes sociais** – os usuários vão fazer cadastro direto no sistema.  
-- Não terá **controle de estoque** – não vamos gerenciar produtos em estoque.  
-
----
-
-## 2. Cronograma
-
-| Etapa | Descrição | Início | Término | Responsável |
-|-------|------------|--------|----------|--------------|
-| 1 | Planejamento e Levantamento de Requisitos | 05/10/2025 | 09/10/2025 | Analista de Negócio, Analista de Requisito e Qualidade |
-| 2 | Especificação e Modelagem | 10/10/2025 | 18/10/2025 | Analista de Requisito e Qualidade |
-| 3 | Desenvolvimento do Sistema | 19/10/2025 | 04/11/2025 | Desenvolvedor |
-| 4 | Testes e Qualidade | 07/11/2025 | 18/11/2025 | Desenvolvedor, Analista de Requisito e Qualidade |
-| 5 | Implantação e Encerramento | 25/11/2025 | 25/11/2025 | Toda Equipe |
-
----
-
-## 3. Estimativas de Esforço e Custo
-
-| ID | Atividade | Esforço (h) | Custo/h (R$) | Custo Total (R$) | Responsável |
-|----|------------|-------------|---------------|------------------|--------------|
-| EC01 | Levantamento de Requisitos e Documento de Visão | 30 | 15,00 | 450,00 | Analista de Negócio, Analista de Requisito e Qualidade |
-| EC02 | Especificação de Requisitos e Diagramas | 40 | 15,00 | 600,00 | Analista de Requisito e Qualidade |
-| EC03 | Desenvolvimento das Funcionalidades do Sistema | 100 | 20,00 | 2.000,00 | Desenvolvedor |
-| EC04 | Elaboração e Execução de Testes | 40 | 15,00 | 600,00 | Desenvolvedor, Analista de Requisito e Qualidade |
-| EC05 | Finalização e Entrega do Produto | 30 | 12,50 | 375,00 | Toda Equipe |
-
----
-
-## 4. EAP - Estrutura Analítica do Projeto
-
-![EAP - Estrutura Analítica do Projeto](image.png)
-
----
-
-## 4.1 Definição das Atividades dos Pacotes de Trabalho (EAP por Módulo / Sprint)
-
-> A seção abaixo descreve, **por módulo (sprint)** conforme o diagrama fornecido, os pacotes de trabalho do EAP. Cada módulo segue o processo acordado (Planejar → Analisar → Especificar → Codificar → Testar* → Revisar).  
-> Observação: testes formais aparecem a partir do Módulo 5 (Sprint 5); Módulo 6 inclui validação da documentação.
-
----
-
-### Módulo 1 — Módulo de Atendimento (Sprint 1)  
-**Objetivo:** Entregar o primeiro incremento do módulo de atendimento, permitindo registrar atendimentos e consolidar entendimento do fluxo.  
-**Entregável:** Implementação inicial: Registrar Atendimento (incremento mínimo) + documentação mínima (minimundo).
-
-- **Planejamento da Sprint**  
-  - **Atividades:** definir escopo do incremento, selecionar backlog (histórias), definir critérios de aceite.  
-  - **Recursos:** Backlog, template de critérios de aceite, board.  
-  - **Responsáveis:** GP (coord.), AN (priorização).
-
-- **Análise do processo de atendimento**  
-  - **Atividades:** entrevistar barbeiros/usuários, mapear fluxo (minimundo), identificar regras críticas (horários, campos obrigatórios).  
-  - **Recursos:** Sessões com stakeholders, notas de entrevista.  
-  - **Responsáveis:** AN; ARQ.
-
-- **Especificação inicial**  
-  - **Atividades:** modelar entidades básicas (atendimento, cliente, barbeiro), descrever o caso de uso “Registrar Atendimento”, definir campos e restrições.  
-  - **Recursos:** Ferramenta de modelagem (UML), template de caso de uso.  
-  - **Responsáveis:** ARQ; AN.
-
-- **Implementação: Registrar Atendimento**  
-  - **Atividades:** criar migrations/BD mínimos, implementar endpoint/serviço para registro, criar UI/formulário simples.  
-  - **Recursos:** IDE, repositório, ambiente de desenvolvimento.  
-  - **Responsáveis:** Desenvolvedor.
-
-- **Revisão**  
-  - **Atividades:** demonstrar incremento, coletar feedback, ajustar backlog.  
-  - **Recursos:** Ambiente de teste, checklist de entrega.  
-  - **Responsáveis:** GP; AN; ARQ; Desenvolvedor.
-
----
-
-### Módulo 2 — Incremento do Atendimento (Sprint 2)  
-**Objetivo:** Ampliar o módulo de atendimento com listagem e refinamentos do fluxo.  
-**Entregável:** Listagem de atendimentos e correções no registro.
-
-- **Planejamento da Sprint**  
-  - **Atividades:** priorizar itens (filtros, ordenação, correções), definir critérios de aceite.  
-  - **Recursos:** Backlog atualizado, board.  
-  - **Responsáveis:** GP; AN.
-
-- **Levantamento de requisitos adicionais**  
-  - **Atividades:** coletar necessidades de filtragem, paginação, campos adicionais; identificar validações pendentes.  
-  - **Recursos:** Feedback da Sprint 1, logs de uso.  
-  - **Responsáveis:** AN; ARQ.
-
-- **Especificação: Listagem de atendimentos**  
-  - **Atividades:** detalhar contratos de API para listagem, definir parâmetros (data, barbeiro, status) e formato de resposta.  
-  - **Recursos:** Documento de Especificação em andamento; OpenAPI (se aplicado).  
-  - **Responsáveis:** ARQ; Desenvolvedor (validação técnica).
-
-- **Implementação: Listar atendimentos + ajustes no registro**  
-  - **Atividades:** implementar endpoints de consulta, UI de listagem/filtragem, aplicar correções no fluxo de registro.  
-  - **Recursos:** Código-base, DB, ambiente dev.  
-  - **Responsáveis:** Desenvolvedor.
-
-- **Revisão**  
-  - **Atividades:** demonstração, validação com stakeholders, consolidar pendências.  
-  - **Recursos:** Ambiente de teste, registro de feedback.  
-  - **Responsáveis:** GP; AN; ARQ; Desenvolvedor.
-
----
-
-### Módulo 3 — Módulo de Barbearias (Sprint 3)  
-**Objetivo:** Permitir que proprietários cadastrem e visualizem barbearias e gerenciem barbeiros.  
-**Entregável:** Módulo de Gestão de Barbearias (CRUD e telas de gestão).
-
-- **Planejamento da Sprint**  
-  - **Atividades:** selecionar histórias (cadastro, visualização, gestão de barbeiros), definir critérios de aceite.  
-  - **Recursos:** Backlog, reunião de planejamento.  
-  - **Responsáveis:** GP; AN.
-
-- **Análise: regras de barbearia e vínculo com proprietário**  
-  - **Atividades:** mapear permissões, campos obrigatórios, regras de vínculo e restrições operacionais.  
-  - **Recursos:** Documento de Visão; entrevistas.  
-  - **Responsáveis:** AN; ARQ.
-
-- **Especificação: casos de uso e dicionário de dados**  
-  - **Atividades:** descrever casos de uso (Criar/Visualizar Barbearia, Gerenciar Barbeiros), atualizar dicionário de dados.  
-  - **Recursos:** Template de casos de uso; ferramenta de modelagem.  
-  - **Responsáveis:** ARQ.
-
-- **Implementação: cadastrar/visualizar barbearias e gerenciar barbeiros**  
-  - **Atividades:** desenvolver CRUD, telas administrativas, endpoints de vínculo e edição.  
-  - **Recursos:** IDE; BD; testes exploratórios.  
-  - **Responsáveis:** Desenvolvedor.
-
-- **Revisão**  
-  - **Atividades:** demonstração para representante do proprietário, coletar ajustes.  
-  - **Recursos:** Checklist de aceite; ambiente de teste.  
-  - **Responsáveis:** GP; AN; ARQ; Desenvolvedor.
-
----
-
-### Módulo 4 — Transferência de Barbeiros (Sprint 4)  
-**Objetivo:** Implementar transferência de barbeiros entre unidades com regras de integridade.  
-**Entregável:** Funcionalidade de transferência com validações básicas.
-
-- **Planejamento da Sprint**  
-  - **Atividades:** definir escopo (pré-condições, autorizações, atualizações métricas), planejar validações.  
-  - **Recursos:** Backlog; board.  
-  - **Responsáveis:** GP; AN.
-
-- **Análise da regra de transferência**  
-  - **Atividades:** especificar pré-condições (ex.: barbeiro ativo), efeitos colaterais (ajuste de relatórios), permissões.  
-  - **Recursos:** Notas de requisitos; minimundo.  
-  - **Responsáveis:** AN; ARQ.
-
-- **Especificação do caso de uso de transferência**  
-  - **Atividades:** documentar fluxo normal e exceções (conflito de horários, dependências).  
-  - **Recursos:** Template de caso de uso; diagrama de sequência (se necessário).  
-  - **Responsáveis:** ARQ.
-
-- **Implementação da transferência de barbeiros**  
-  - **Atividades:** implementar lógica backend, ajustar relacionamentos no banco, criar UI para selecionar destino/confirmar transferência.  
-  - **Recursos:** IDE; migrações; ambiente dev.  
-  - **Responsáveis:** Desenvolvedor.
-
-- **Revisão**  
-  - **Atividades:** validar com cenários reais e corrigir problemas.  
-  - **Recursos:** Ambiente de teste; logs.  
-  - **Responsáveis:** GP; AN; Desenvolvedor.
-
----
-
-### Módulo 5 — Refatoração do Atendimento (Sprint 5)  
-**Objetivo:** Melhorar arquitetura e qualidade do módulo de atendimento; introduzir testes automatizados.  
-**Entregável:** Módulo de Atendimento refatorado com cobertura de testes aumentada.
-
-- **Planejamento da Sprint**  
-  - **Atividades:** definir objetivos de qualidade (ex.: metas de cobertura, dívidas técnicas a priorizar), planejar subtarefas.  
-  - **Recursos:** Relatório de issues; métricas de qualidade.  
-  - **Responsáveis:** GP; ARQ; Desenvolvedor.
-
-- **Análise dos problemas encontrados**  
-  - **Atividades:** revisar defeitos recorrentes, identificar pontos de acoplamento e performance.  
-  - **Recursos:** Revisões de código; históricos de defeitos.  
-  - **Responsáveis:** Desenvolvedor; ARQ.
-
-- **Especificação das alterações necessárias**  
-  - **Atividades:** desenhar mudanças (módulos, interfaces), atualizar contratos de API e documentação técnica.  
-  - **Recursos:** Documento de arquitetura; templates técnicos.  
-  - **Responsáveis:** ARQ; Desenvolvedor.
-
-- **Refatoração do código e ajustes**  
-  - **Atividades:** aplicar reorganização de código, extrair responsabilidades, simplificar fluxos.  
-  - **Recursos:** Branch de refatoração; IDE; testes.  
-  - **Responsáveis:** Desenvolvedor.
-
-- **Testes unitários**  
-  - **Atividades:** criar/atualizar testes unitários e de integração; integrar execução em CI (se disponível); executar e corrigir regressões.  
-  - **Recursos:** Framework de testes; pipeline CI; dados de teste.  
-  - **Responsáveis:** Desenvolvedor; ARQ (validação).
-
-- **Revisão**  
-  - **Atividades:** validar critérios de qualidade, aprovar merges, registrar lições aprendidas.  
-  - **Recursos:** Relatórios de cobertura; checklist.  
-  - **Responsáveis:** GP; ARQ; Desenvolvedor.
-
----
-
-### Módulo 6 — Ajustes de Documentação (Sprint 6)  
-**Objetivo:** Consolidar e validar a documentação técnica e de testes para homologação/entrega.  
-**Entregável:** Documentação atualizada (Especificação, Plano de Testes, Dicionário) e pacote de entrega.
-
-- **Planejamento da Sprint**  
-  - **Atividades:** listar artefatos a atualizar, atribuir responsáveis e prioridades.  
-  - **Recursos:** Repositório de documentos; backlog.  
-  - **Responsáveis:** GP; AN; ARQ.
-
-- **Revisão geral da documentação existente**  
-  - **Atividades:** auditar Visão, Especificação, Dicionário e Plano de Testes para inconsistências.  
-  - **Recursos:** Documentos existentes; versionamento.  
-  - **Responsáveis:** ARQ; AN.
-
-- **Refinamento dos documentos**  
-  - **Atividades:** atualizar casos de uso, dicionário, exemplos de API, instruções de deploy e plano de testes.  
-  - **Recursos:** Ferramentas de edição; templates.  
-  - **Responsáveis:** ARQ; AN.
-
-- **Ajustes no projeto (pequenas melhorias)**  
-  - **Atividades:** aplicar correções menores no código ou scripts de deploy; atualizar README e instruções.  
-  - **Recursos:** Repositório; ambiente de teste.  
-  - **Responsáveis:** Desenvolvedor.
-
-- **Validação da documentação atualizada**  
-  - **Atividades:** verificar cobertura do plano de testes frente às alterações; preparar checklist de homologação.  
-  - **Recursos:** Checklist de homologação; ambiente de homologação.  
-  - **Responsáveis:** GP; ARQ; AN.
-
-- **Revisão**  
-  - **Atividades:** reunião final para registrar lições aprendidas e ajustar plano de encerramento.  
-  - **Recursos:** Registro de retrospectiva.  
-  - **Responsáveis:** Toda a equipe.
-
----
-
-## 5. Lista de Atividades
-
-> **Responsáveis (Mapeamento):**
-> * **Yuri Fernandes** — Analista de Negócio e de Requisitos
-> * **Maria da Paz** — Analista de Negócio e de Requisitos
-> * **João Victor** — Gerente de Projeto e Desenvolvedor
-> * **Lucas Freitas** — Desenvolvedor
-
-| ID | Atividade | Início | Término | Status | Responsável |
-|:---|:---|:---:|:---:|:---:|:---|
-| **Sprint 1 – Módulo de Atendimento (08/10/2025 → 14/10/2025)** | | | | | |
-| LA01 | Planejamento da Sprint 1 | 08/10/2025 | 08/10/2025 | Concluído | João Victor |
-| LA02 | Análise do processo de atendimento | 09/10/2025 | 10/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
-| LA03 | Especificação inicial (Minimundo + primeiros casos de uso) | 11/10/2025 | 12/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
-| LA04 | Implementação: Registrar Atendimento | 13/10/2025 | 14/10/2025 | Concluído | João Victor; Lucas Freitas |
-| LA05 | Revisão da Sprint 1 | 14/10/2025 | 14/10/2025 | Concluído | Toda equipe (coord.: João Victor) |
-| **Sprint 2 – Incremento do Atendimento (15/10/2025 → 21/10/2025)** | | | | | |
-| LA06 | Planejamento da Sprint 2 | 15/10/2025 | 15/10/2025 | Concluído | João Victor |
-| LA07 | Levantamento de requisitos adicionais do módulo de atendimento | 16/10/2025 | 17/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
-| LA08 | Especificação: Listagem de atendimentos | 18/10/2025 | 18/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
-| LA09 | Implementação: Listar atendimentos + ajustes no registro | 19/10/2025 | 20/10/2025 | Concluído | João Victor; Lucas Freitas |
-| LA10 | Revisão da Sprint 2 | 21/10/2025 | 21/10/2025 | Concluído | Toda equipe (coord.: João Victor) |
-| **Sprint 3 – Módulo de Barbearias (22/10/2025 → 28/10/2025)** | | | | | |
-| LA11 | Planejamento da Sprint 3 | 22/10/2025 | 22/10/2025 | Concluído | João Victor |
-| LA12 | Análise: regras de barbearia e vínculo com proprietários | 23/10/2025 | 24/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
-| LA13 | Especificação: Casos de uso e Dicionário de Dados | 25/10/2025 | 26/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
-| LA14 | Implementação: cadastrar/visualizar barbearias e gerenciar barbeiros | 27/10/2025 | 28/10/2025 | Concluído | João Victor; Lucas Freitas |
-| LA15 | Revisão da Sprint 3 | 28/10/2025 | 28/10/2025 | Concluído | Toda equipe (coord.: João Victor) |
-| **Sprint 4 – Transferência de Barbeiros (29/10/2025 → 04/11/2025)** | | | | | |
-| LA16 | Planejamento da Sprint 4 | 29/10/2025 | 29/10/2025 | Concluído | João Victor |
-| LA17 | Análise: regra de transferência de barbeiros | 30/10/2025 | 31/10/2025 | Concluído | Yuri Fernandes; Maria da Paz |
-| LA18 | Especificação: Caso de uso de transferência | 01/11/2025 | 01/11/2025 | Concluído | Yuri Fernandes; Maria da Paz |
-| LA19 | Implementação da transferência de barbeiros | 02/11/2025 | 03/11/2025 | Concluído | João Victor; Lucas Freitas |
-| LA20 | Revisão da Sprint 4 | 04/11/2025 | 04/11/2025 | Concluído | Toda equipe (coord.: João Victor) |
-| **Sprint 5 – Refatoração do Atendimento (05/11/2025 → 11/11/2025)** | | | | | |
-| LA21 | Planejamento da Sprint 5 | 05/11/2025 | 05/11/2025 | Concluído | João Victor |
-| LA22 | Análise dos problemas encontrados no módulo de atendimento | 06/11/2025 | 07/11/2025 | Concluído | Yuri Fernandes; Maria da Paz |
-| LA23 | Especificação das alterações necessárias | 08/11/2025 | 08/11/2025 | Concluído | Yuri Fernandes; Maria da Paz |
-| LA24 | Refatoração do código e ajustes | 09/11/2025 | 10/11/2025 | Concluído | João Victor; Lucas Freitas |
-| LA25 | Implementação de Testes Unitários | 11/11/2025 | 11/11/2025 | Concluído | João Victor |
-| LA26 | Revisão da Sprint 5 | 11/11/2025 | 11/11/2025 | Concluído | Toda equipe (coord.: João Victor) |
-| **Sprint 6 – Ajustes de Documentação (12/11/2025 → 19/11/2025)** | | | | | |
-| LA27 | Planejamento da Sprint 6 | 12/11/2025 | 12/11/2025 | Concluído | João Victor |
-| LA28 | Revisão geral da documentação existente | 13/11/2025 | 14/11/2025 | Concluído | Yuri Fernandes; Maria da Paz |
-| LA29 | Refinamento dos documentos (visão, requisitos, testes) | 15/11/2025 | 16/11/2025 | Concluído | Yuri Fernandes; Maria da Paz |
-| LA30 | Ajustes no projeto (organização e pequenas melhorias) | 17/11/2025 | 17/11/2025 | Concluído | João Victor; Lucas Freitas |
-| LA31 | Validação da documentação atualizada | 18/11/2025 | 18/11/2025 | Concluído | João Victor |
-| LA32 | Revisão da Sprint 6 | 19/11/2025 | 19/11/2025 | Concluído | Toda equipe (coord.: João Victor) |
-| **Encerramento / Pós-sprints** | | | | | |
-| LA33 | Entrega do Código Fonte Final | 20/11/2025 | 21/11/2025 | Planejado | João Victor |
-| LA34 | Demonstração do Sistema Funcional | 22/11/2025 | 23/11/2025 | Planejado | João Victor; Lucas Freitas |
-| LA35 | Apresentação e Avaliação Final | 24/11/2025 | 25/11/2025 | Planejado | Toda equipe |
-
----
-
-## 6. Diagrama de Gantt
-
-![Diagrama de Gantt](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/grafico_de_gantt.png)
-
----
-
-## 7. Diagrama de Atividades do Projeto
-
-![Diagrama de Atividades](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/diagrama_de_atividade_do_projeto.png)
-
----
-
-## 8. Ferramentas Utilizadas
+1.  **Plano de Projeto:** documento que descreve o planejamento geral do projeto, incluindo cronograma, estimativas de custo, escopo, equipe e metodologia adotada.
+2.  **Documento de Visão:** apresenta uma descrição geral do sistema, seus objetivos, público-alvo e justificativa de negócio.
+3.  **Documento de Requisitos:** lista detalhada das funcionalidades, restrições e regras de negócio do sistema.
+4.  **Documento de Especificação de Requisitos:** detalha tecnicamente os casos de uso, atores, fluxos de interação, diagramas e especificações detalhadas de requisitos.
+5.  **Especificações Técnicas:** informações técnicas sobre a arquitetura, diagramas de classe, banco de dados e estrutura de funcionamento do sistema.
+6.  **Dicionário de Dados:** descrição de todas as entidades, atributos e relacionamentos utilizados no sistema, incluindo tipo, formato e restrições.
+7.  **Plano de Testes:** define estratégias, técnicas e métricas para validar as funcionalidades e garantir que os requisitos sejam atendidos.
+8.  **Cenários de Teste:** casos práticos detalhados de validação, com condições, ações e resultados esperados.
+9.  **Código-Fonte:** todo o código desenvolvido, documentado e acompanhado de instruções de implantação.
+10. **Sistema Pronto:** versão funcional do software, testada e pronta para uso em ambiente de produção ou teste.
+11. **Relatórios de Teste:** resultados detalhados dos testes executados, evidenciando conformidade ou falhas.
+12. **Relatório Final:** resumo de todas as etapas do projeto, resultados obtidos, dificuldades enfrentadas e lições aprendidas.
+
+### 1.3 Fora do Escopo
+
+1.  **Não vamos fazer sistema de pagamento** – o sistema não vai processar pagamentos com cartão ou outras formas.
+2.  **Não vamos criar aplicativo para celular** – o sistema vai funcionar pelo navegador do celular e computador.
+3.  **Não vai ter login por redes sociais** – os usuários vão fazer cadastro direto no sistema.
+
+## 2. Gerenciamento de Riscos
+
+**Tabela 1:** Avaliar e tratar incertezas e ameaças
+
+| ID   | Risco Identificado                                       | Probabilidade | Impacto | Prevenção                         | Plano de Ação                           |
+| :--- | :------------------------------------------------------- | :------------ | :------ | :-------------------------------- | :-------------------------------------- |
+| GR01 | Usuários terem dificuldade em usar o sistema no início   | Alta          | Médio   | Orientação básica e telas simples | Apoio inicial e adaptação gradual ao uso |
+| GR02 | Clientes cadastrados com informações incompletas         | Média         | Médio   | Solicitar dados obrigatórios no cadastro | Atualizar os dados manualmente       |
+| GR03 | Agendamentos feitos para horários já ocupados            | Baixa         | Médio   | Verificação de horários disponíveis | Reagendar o atendimento e avisar o cliente |
+| GR04 | Agendamento marcado para horário passado               | Baixa         | Baixo   | Bloquear datas anteriores         | Solicitar novo agendamento              |
+| GR05 | Atendimento registrado sem serviço informado             | Baixa         | Médio   | Exigir escolha do serviço         | Corrigir o atendimento registrado       |
+| GR06 | Valor do atendimento informado incorretamente           | Média         | Médio   | Conferência do valor antes de salvar | Ajustar o valor após o registro       |
+| GR07 | Produto utilizado não registrado no atendimento          | Média         | Alto    | Orientar registro correto dos produtos | Ajustar manualmente o estoque        |
+| GR08 | Estoque ficar incorreto por erro de registro             | Média         | Alto    | Conferência periódica do estoque  | Correção manual das quantidades         |
+| GR09 | Produto acabar sem aviso prévio                          | Baixa         | Médio   | Definir quantidade mínima         | Reposição do produto no estoque         |
+| GR10 | Exclusão acidental de atendimentos ou cadastros          | Baixa         | Médio   | Confirmação antes de excluir      | Recriar o registro excluído             |
+| GR11 | Usuário acessar área que não deveria                     | Baixa         | Alto    | Controle de acesso por tipo de usuário | Bloquear acesso e revisar permissões |
+
+## 3. EAP - Estrutura Analítica do Projeto
+
+**Figura 1:** A seguir o EAP, organizando todas as entregas e tarefas de forma visual.
+
+![Estrutura Analítica do Projeto](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/estrutura_analitica_do_projeto.png)
+
+## 4.1. Definição Das Atividades Dos Pacotes De Trabalho
+
+### 1. Iniciação e Planejamento do Projeto
+
+*   **Objetivo**
+    Compreender o contexto do negócio, definir escopo, riscos, público-alvo e alinhar as responsabilidades iniciais do projeto.
+*   **Descrição**
+    Esta etapa estabelece as bases do projeto, contemplando a análise do negócio, a definição de papéis, escopo e riscos, além da identificação do público-alvo e da necessidade de negócio. O foco é garantir alinhamento entre os envolvidos e direcionamento estratégico para as etapas seguintes.
+*   **Atividades do EAP**
+    1.1 - Análise de Negócio e Contexto do Sistema
+    1.2 - Criação de Papéis e Responsabilidades
+    1.3 - Definição de Escopo
+    1.4 - Definição de Riscos
+    1.5 - Determinando Público-Alvo e Necessidade de Negócio
+*   **Responsáveis**
+    Analista de Negócio (AN), Gerente de Projeto (GP).
+*   **Artefatos**
+    Documento de Visão; Documento de Requisitos; Plano de Projeto
+
+### 2. Inicializar Gestão das Barbearias
+
+*   **Objetivo**
+    Levantar, especificar e implementar as funcionalidades iniciais relacionadas a atendimentos, barbearias e barbeiros.
+*   **Descrição**
+    Esta etapa contempla as funcionalidades centrais do sistema, envolvendo atendimento, barbearias e barbeiros. Os requisitos são levantados junto ao negócio, especificados de forma detalhada e posteriormente implementados, estabelecendo a estrutura básica de funcionamento do sistema.
+*   **Atividades do EAP**
+    2.1 - Levantamento de Requisitos I nas Funcionalidades de Atendimento, Barbearias e Barbeiros
+    2.2 - Especificação de Requisitos I nas Funcionalidades de Atendimento, Barbearias e Barbeiros
+    2.3 - Implementação das Funcionalidades de Barbearias
+    2.4 - Implementação das Funcionalidades de Barbeiros
+    2.5 - Implementação das Funcionalidades de Atendimento
+*   **Responsáveis**
+    Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
+*   **Artefatos**
+    Documento de Requisitos; Documento de Especificação de Requisitos; Dicionário de Dados; Produto
+
+### 3. Cadastrar Proprietários do Sistema
+
+*   **Objetivo**
+    Permitir o cadastro, autenticação e acesso de proprietários ao sistema.
+*   **Descrição**
+    Esta etapa aborda as funcionalidades relacionadas ao cadastro de proprietários e aos mecanismos de autenticação e login. Os requisitos são analisados e especificados considerando regras de acesso e segurança, sendo posteriormente implementados e integrados ao sistema.
+*   **Atividades do EAP**
+    3.1 - Levantamento de Requisitos II nas Funcionalidades de Proprietários e Login
+    3.2 - Especificação de Requisitos II nas Funcionalidades de Proprietários e Login
+    3.3 - Implementação do Cadastro de Proprietários
+    3.4 - Implementação de Autenticação e Login
+*   **Responsáveis**
+    Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
+*   **Artefatos**
+    Documento de Requisitos; Documento de Especificação de Requisitos; Plano de Testes; Produto
+
+### 4. Listar Dados Operacionais
+
+*   **Objetivo**
+    Disponibilizar funcionalidades de consulta e listagem de dados operacionais do sistema.
+*   **Descrição**
+    Esta etapa contempla a inclusão de funcionalidades de listagem de barbearias e agendamentos, permitindo a visualização estruturada dos dados operacionais. Os requisitos são levantados, especificados e implementados, incluindo ajustes e refatorações necessárias nas funcionalidades existentes.
+*   **Atividades do EAP**
+    4.1 - Levantamento de Requisitos IV Adicionando Funcionalidades de Listagem de Barbearias e Agendamentos
+    4.2 - Especificação de Requisitos IV Adicionando Funcionalidades de Listagem de Barbearias e Agendamentos
+    4.3 - Implementação da Listagem de Barbearias
+    4.4 - Implementação da Listagem de Agendamentos
+    4.5 - Refatoração das Funcionalidades de Atendimento e Barbearia
+*   **Responsáveis**
+    Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
+*   **Artefatos**
+    Documento de Requisitos; Documento de Especificação de Requisitos; Produto
+
+### 5. Controlar Barbeiros e Adicionar Métricas
+
+*   **Objetivo**
+    Aprimorar o gerenciamento de barbeiros e incluir métricas de atendimento e desempenho.
+*   **Descrição**
+    Esta etapa foca no reajuste dos requisitos e especificações relacionados ao gerenciamento de barbeiros, incluindo a transferência entre barbearias e a adição de métricas de atendimento e desempenho. As funcionalidades são implementadas e integradas ao sistema, com ajustes estruturais quando necessários.
+*   **Atividades do EAP**
+    5.1 - Reajuste de Requisitos de Listagem de Barbearias e Gerenciamento de Barbeiros, para Adicionar Transferência de Barbeiros e Métricas
+    5.2 - Reajuste na Especificação de Requisitos em Listagem de Barbearias e Gerenciamento de Barbeiros, para Adicionar Transferência de Barbeiros e Métricas
+    5.3 - Implementação da Transferência de Barbeiros entre Barbearias
+    5.4 - Implementação das Métricas de Atendimento e Desempenho
+    5.5 - Criando Plano de Testes
+    5.6 - Refatoração da Funcionalidade de Barbearias
+*   **Responsáveis**
+    Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
+*   **Artefatos**
+    Documento de Requisitos; Documento de Especificação de Requisitos; Plano de Testes; Produto
+
+### 6. Garantir Qualidade
+
+*   **Objetivo**
+    Assegurar que o sistema atenda aos requisitos definidos por meio de testes e validações.
+*   **Descrição**
+    Esta etapa é dedicada à garantia da qualidade do sistema, abrangendo a criação de cenários de teste, planejamento de testes, execução de testes unitários e validação das funcionalidades implementadas, assegurando conformidade com os requisitos especificados.
+*   **Atividades do EAP**
+    6.1 - Criação de Cenários de Teste para as Funcionalidades de Atendimento, Barbeiros, Login e Autenticação
+    6.2 - Criação de Gráfico de Gantt e Plano de Projeto
+    6.3 - Implementação de Testes Unitários nas Funcionalidades de Atendimento, Barbeiros e Login e Autenticação
+    6.4 - Implementação de Testes Unitários nas Funcionalidades de Barbearias
+    6.5 - Implementação de Testes Unitários nas Funcionalidades de Barbeiros
+    6.6 - Implementação de Testes Unitários na Funcionalidade de Atendimento
+*   **Responsáveis**
+    Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
+*   **Artefatos**
+    Plano de Testes; Cenários de Teste; Plano de Projeto; Produto
+
+### 7. Modelar Serviços e Ajustar Experiência de Usuário
+
+*   **Objetivo**
+    Implementar serviços e melhorar a experiência do usuário.
+*   **Descrição**
+    Esta etapa contempla a modelagem e implementação das funcionalidades de gerenciamento de serviços e histórico de atendimentos, bem como ajustes na interface e na experiência do usuário. Os requisitos são analisados, especificados, implementados e integrados ao sistema, garantindo usabilidade e consistência.
+*   **Atividades do EAP**
+    7.1 - Levantamento de Requisitos VI para Funcionalidade de Gerenciamento de Serviços, e um Novo Requisito Relacionado ao Atendimento
+    7.2 - Especificação de Requisitos VI para Funcionalidade de Gerenciamento de Serviços, e um Novo Requisito Relacionado ao Atendimento
+    7.3 - Implementação do Gerenciamento de Serviços
+    7.4 - Implementação do Histórico de Atendimentos
+    7.5 - Ajustes na Interface e Experiência do Usuário
+    7.6 - Reajustando Gráfico de Gantt e Plano de Projeto
+*   **Responsáveis**
+    Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
+*   **Artefatos**
+    Documento de Requisitos; Documento de Especificação de Requisitos; Plano de Projeto; Produto
+
+### 8. Adicionar Funcionalidades de Operação
+
+*   **Objetivo**
+    Expandir o sistema com funcionalidades operacionais de clientes, agendamento e produtos e estoque.
+*   **Descrição**
+    Esta etapa contempla funcionalidades de clientes, agendamento e produtos e estoque. Os requisitos são analisados, especificados, implementados e revisados, garantindo a integração adequada com as funcionalidades existentes.
+*   **Atividades do EAP**
+    8.1 - Levantamento de Requisitos V nas Funcionalidades de Clientes, Agendamento e Produtos/Estoque
+    8.2 - Especificação de Requisitos V nas Funcionalidades de Clientes, Agendamento e Produtos/Estoque
+    8.3 - Implementação das Funcionalidades de Clientes
+    8.4 - Implementação do Agendamento
+    8.5 - Implementação de Gerenciamento de Produtos e Estoque
+    8.6 - Implementação de Alerta de Estoque Baixo
+    8.7 - Implementação de Histórico de Agendamentos
+*   **Responsáveis**
+    Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
+*   **Artefatos**
+    Documento de Requisitos; Documento de Especificação de Requisitos; Produto
+
+## 5. Cronograma
+
+**Tabela 2:** Cronograma de Apresentações
+
+| Etapa | Descrição         | Data       |
+| :---- | :---------------- | :--------- |
+| 01    | Apresentação I    | 12/12/2025 |
+| 02    | Apresentação II   | 17/12/2025 |
+| 03    | Apresentação III  | 04/02/2025 |
+
+**Tabela 3:** Cronograma de Entregas de Tarefas do Projeto de acordo com EAP.
+
+| Etapa | Descrição                          | Início     | Término    | Responsável                                           |
+| :---- | :--------------------------------- | :--------- | :--------- | :---------------------------------------------------- |
+| 01    | Iniciação e Planejamento do Projeto | 08/10/2025 | 15/10/2025 | Analista de Negócio (AN), Gerente de Projeto (GP)     |
+| 02    | Inicializar Gestão das Barbearias | 16/10/2025 | 22/10/2025 | Analista de Negócio (AN), Analista de Requisitos e Qualidade (REQ/QA), Desenvolvedor (DEV) |
+| 03    | Cadastrar Proprietários do Sistema | 23/10/2025 | 29/10/2025 | Analista de Negócio (AN), Analista de Requisitos e Qualidade (REQ/QA), Desenvolvedor (DEV) |
+| 04    | Listar Dados Operacionais          | 30/10/2025 | 05/11/2025 | Analista de Negócio (AN), Analista de Requisitos e Qualidade (REQ/QA), Desenvolvedor (DEV) |
+| 05    | Controlar Barbeiros e Adicionar Métricas | 06/11/2025 | 12/11/2025 | Analista de Negócio (AN), Analista de Requisitos e Qualidade (REQ/QA), Desenvolvedor (DEV) |
+| 06    | Garantir Qualidade                 | 21/11/2025 | 26/11/2025 | Analista de Requisitos e Qualidade (REQ/QA), Desenvolvedor (DEV) |
+| 07    | Modelar Serviços e Ajustar Experiência de Usuário | 27/11/2025 | 03/12/2025 | Analista de Negócio (AN), Analista de Requisitos e Qualidade (REQ/QA), Desenvolvedor (DEV) |
+| 08    | Adicionar Funcionalidades de Operação | 04/12/2025 | 10/12/2025 | Analista de Negócio (AN), Analista de Requisitos e Qualidade (REQ/QA), Desenvolvedor (DEV) |
+
+## 6. Estimativas de Esforço e Custo
+
+**Tabela 4:** Tabela de Custo da Equipe do Projeto
+
+| Cargo                                | Quantidade Profissionais | Horas Totais | Salário por Hora (R$) | Custo Total por Hora da Área (R$) | Custo Total da Área (R$) |
+| :----------------------------------- | :----------------------- | :----------- | :-------------------- | :---------------------------------- | :----------------------- |
+| Gerente de Projeto (GP)              | 1                        | 60h          | 20,00                 | 20,00                               | 1.200,00                 |
+| Analista de Negócio (AN)             | 2                        | 160h         | 10,00                 | 20,00                               | 3.200,00                 |
+| Analista de Requisitos e Qualidade (REQ/QA) | 2                        | 180h         | 14,00                 | 28,00                               | 5040,00                  |
+| Desenvolvedor (DEV)                  | 2                        | 250h         | 16,00                 | 32,00                               | 8.000,00                 |
+
+**Tabela 5:** Estimativa de Esforço e Custo do Projeto com base na Estrutura Analítica do Projeto e na tabela de custo de equipe
+
+| Atividade                              | Esforço (horas) | Custo/hora (R$) | Custo total (R$) | Horas por Responsável               | Responsável                                           |
+| :------------------------------------- | :-------------- | :-------------- | :--------------- | :---------------------------------- | :---------------------------------------------------- |
+| Iniciação e Planejamento do Projeto    | 60              | 30,00           | 1.800,00         | GP: 40h AN: 20h                     | Analista de Negócio (AN); Gerente de Projeto (GP)     |
+| Inicializar Gestão das Barbearias      | 120             | 40,00           | 4.800,00         | AN: 40h REQ/QA: 40h DEV: 40h        | Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV) |
+| Cadastrar Proprietários do Sistema     | 80              | 40,00           | 3.200,00         | AN: 30h REQ/QA: 20h DEV: 30h        | Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV) |
+| Listar Dados Operacionais              | 70              | 40,00           | 2.800,00         | AN: 20h REQ/QA: 20h DEV: 30h        | Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV) |
+| Controlar Barbeiros e Adicionar Métricas | 90              | 40,00           | 3.600,00         | AN: 25h REQ/QA: 30h DEV: 35h        | Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV) |
+| Garantir Qualidade                     | 60              | 30,00           | 1.800,00         | REQ/QA: 40h DEV: 20h                | Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV) |
+| Modelar Serviços e Ajustar Experiência do Usuário | 70              | 40,00           | 2.800,00         | AN: 25h REQ/QA: 20h DEV: 25h        | Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV) |
+| Adicionar Funcionalidades de Operação  | 100             | 40,00           | 4.000,00         | AN: 20h REQ/QA: 10h DEV: 70h        | Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV) |
+
+**Tabela 6:** Totais do Projeto
+
+| Indicador                   | Valor     |
+| :-------------------------- | :-------- |
+| Esforço total estimado      | 650 horas |
+| Custo total estimado        | R$ 17.440,00 |
+| Duração                     | 4 meses   |
+
+## 7. Acompanhamento do Desempenho do Projeto
+
+**Figura 2:** Compara o progresso ideal e o progresso real do projeto ao longo do tempo.
+
+![Progresso Ideal x Real](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/grafico_ideal_x_real.png)
+
+**Figura 3:** Apresenta o valor planejado, o valor agregado e o valor real do projeto.
+
+![Valor Planejado, Agregado e Real](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/grafico_valor_planejado_valor_agregado_valor_real.png)
+
+**Figura 4:** Demonstra o índice de desempenho de prazo (IDT) do projeto.
+
+![Índice de Desempenho de Tempo](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/grafico_indice_desempenho_tempo.png)
+
+**Figura 5:** Apresenta o índice de desempenho de custo (IDC) do projeto.
+
+![Índice de Desempenho de Custo](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/grafico_indice_desempenho_custo.png)
+
+## 8. Diagrama de Gantt
+
+**Figura 6:** O diagrama de Gantt é uma ferramenta visual de gestão de projetos que exibe tarefas e cronogramas em uma linha do tempo.
+
+![Diagrama de Gantt](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/diagrama_de_gantt.jpg)
+
+## 9. Diagrama de Atividades do Projeto
+
+**Figura 7:** A seguir o diagrama de atividade do projeto.
+
+![Diagrama de Atividades do Projeto](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/diagrama_de_atividades_do_projeto.png)
+
+## 10. Ferramentas Utilizadas
 
 Durante o desenvolvimento do sistema foram utilizadas as seguintes ferramentas:
 
-- **GitHub** — repositório de código-fonte, versionamento e controle de versões.  
-- **GitHub Projects (Kanban)** — quadro Kanban para gestão do backlog e organização das sprints.  
-- **Quadro Kanban (Board do repositório)** — organização visual das tarefas por colunas (To Do / In Progress / Done).  
-- **Visual Studio Code (VSCode)** — editor/IDE utilizado pelos desenvolvedores para codificação, debugging e execução de testes locais.  
-
----
-
-## 9. Gráfico Burndown
-
-[Gráfico Burndown](https://docs.google.com/spreadsheets/d/1RyWtdgVLxNj2ofCtK0qOfNu-o7zLXOjH/edit?usp=sharing&ouid=117602761760046031828&rtpof=true&sd=true)
+1.  **GitHub** - Repositório de código-fonte, versionamento e controle de versões.
+2.  **GitHub Projects (Kanban)** - Quadro Kanban para gestão do backlog e organização das sprints.
+3.  **Quadro Kanban (Board do repositório)** - Organização visual das tarefas por colunas
+4.  **Lucidchart** - Ferramenta utilizada para a criação de diagramas conceituais, de arquitetura, de workflow e de classes.
+5.  **VS Code (Visual Studio Code)** - Editor de código-fonte leve e poderoso.
