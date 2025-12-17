@@ -71,11 +71,11 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 *   **Descrição**
     Esta etapa estabelece as bases do projeto, contemplando a análise do negócio, a definição de papéis, escopo e riscos, além da identificação do público-alvo e da necessidade de negócio. O foco é garantir alinhamento entre os envolvidos e direcionamento estratégico para as etapas seguintes.
 *   **Atividades do EAP**
-    1.1 - Análise de Negócio e Contexto do Sistema
-    1.2 - Criação de Papéis e Responsabilidades
-    1.3 - Definição de Escopo
-    1.4 - Definição de Riscos
-    1.5 - Determinando Público-Alvo e Necessidade de Negócio
+    *   1.1 - Análise de Negócio e Contexto do Sistema
+    *   1.2 - Criação de Papéis e Responsabilidades
+    *   1.3 - Definição de Escopo
+    *   1.4 - Definição de Riscos
+    *   1.5 - Determinando Público-Alvo e Necessidade de Negócio
 *   **Responsáveis**
     Analista de Negócio (AN), Gerente de Projeto (GP).
 *   **Artefatos**
@@ -88,11 +88,11 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 *   **Descrição**
     Esta etapa contempla as funcionalidades centrais do sistema, envolvendo atendimento, barbearias e barbeiros. Os requisitos são levantados junto ao negócio, especificados de forma detalhada e posteriormente implementados, estabelecendo a estrutura básica de funcionamento do sistema.
 *   **Atividades do EAP**
-    2.1 - Levantamento de Requisitos I nas Funcionalidades de Atendimento, Barbearias e Barbeiros
-    2.2 - Especificação de Requisitos I nas Funcionalidades de Atendimento, Barbearias e Barbeiros
-    2.3 - Implementação das Funcionalidades de Barbearias
-    2.4 - Implementação das Funcionalidades de Barbeiros
-    2.5 - Implementação das Funcionalidades de Atendimento
+    *   2.1 - Levantamento de Requisitos I nas Funcionalidades de Atendimento, Barbearias e Barbeiros
+    *   2.2 - Especificação de Requisitos I nas Funcionalidades de Atendimento, Barbearias e Barbeiros
+    *   2.3 - Implementação das Funcionalidades de Barbearias
+    *   2.4 - Implementação das Funcionalidades de Barbeiros
+    *   2.5 - Implementação das Funcionalidades de Atendimento
 *   **Responsáveis**
     Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
 *   **Artefatos**
@@ -105,10 +105,10 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 *   **Descrição**
     Esta etapa aborda as funcionalidades relacionadas ao cadastro de proprietários e aos mecanismos de autenticação e login. Os requisitos são analisados e especificados considerando regras de acesso e segurança, sendo posteriormente implementados e integrados ao sistema.
 *   **Atividades do EAP**
-    3.1 - Levantamento de Requisitos II nas Funcionalidades de Proprietários e Login
-    3.2 - Especificação de Requisitos II nas Funcionalidades de Proprietários e Login
-    3.3 - Implementação do Cadastro de Proprietários
-    3.4 - Implementação de Autenticação e Login
+    *   3.1 - Levantamento de Requisitos II nas Funcionalidades de Proprietários e Login
+    *   3.2 - Especificação de Requisitos II nas Funcionalidades de Proprietários e Login
+    *   3.3 - Implementação do Cadastro de Proprietários
+    *   3.4 - Implementação de Autenticação e Login
 *   **Responsáveis**
     Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
 *   **Artefatos**
@@ -121,11 +121,11 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 *   **Descrição**
     Esta etapa contempla a inclusão de funcionalidades de listagem de barbearias e agendamentos, permitindo a visualização estruturada dos dados operacionais. Os requisitos são levantados, especificados e implementados, incluindo ajustes e refatorações necessárias nas funcionalidades existentes.
 *   **Atividades do EAP**
-    4.1 - Levantamento de Requisitos IV Adicionando Funcionalidades de Listagem de Barbearias e Agendamentos
-    4.2 - Especificação de Requisitos IV Adicionando Funcionalidades de Listagem de Barbearias e Agendamentos
-    4.3 - Implementação da Listagem de Barbearias
-    4.4 - Implementação da Listagem de Agendamentos
-    4.5 - Refatoração das Funcionalidades de Atendimento e Barbearia
+    *   4.1 - Levantamento de Requisitos IV Adicionando Funcionalidades de Listagem de Barbearias e Agendamentos
+    *   4.2 - Especificação de Requisitos IV Adicionando Funcionalidades de Listagem de Barbearias e Agendamentos
+    *   4.3 - Implementação da Listagem de Barbearias
+    *   4.4 - Implementação da Listagem de Agendamentos
+    *   4.5 - Refatoração das Funcionalidades de Atendimento e Barbearia
 *   **Responsáveis**
     Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
 *   **Artefatos**
@@ -138,12 +138,12 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 *   **Descrição**
     Esta etapa foca no reajuste dos requisitos e especificações relacionados ao gerenciamento de barbeiros, incluindo a transferência entre barbearias e a adição de métricas de atendimento e desempenho. As funcionalidades são implementadas e integradas ao sistema, com ajustes estruturais quando necessários.
 *   **Atividades do EAP**
-    5.1 - Reajuste de Requisitos de Listagem de Barbearias e Gerenciamento de Barbeiros, para Adicionar Transferência de Barbeiros e Métricas
-    5.2 - Reajuste na Especificação de Requisitos em Listagem de Barbearias e Gerenciamento de Barbeiros, para Adicionar Transferência de Barbeiros e Métricas
-    5.3 - Implementação da Transferência de Barbeiros entre Barbearias
-    5.4 - Implementação das Métricas de Atendimento e Desempenho
-    5.5 - Criando Plano de Testes
-    5.6 - Refatoração da Funcionalidade de Barbearias
+    *   5.1 - Reajuste de Requisitos de Listagem de Barbearias e Gerenciamento de Barbeiros, para Adicionar Transferência de Barbeiros e Métricas
+    *   5.2 - Reajuste na Especificação de Requisitos em Listagem de Barbearias e Gerenciamento de Barbeiros, para Adicionar Transferência de Barbeiros e Métricas
+    *   5.3 - Implementação da Transferência de Barbeiros entre Barbearias
+    *   5.4 - Implementação das Métricas de Atendimento e Desempenho
+    *   5.5 - Criando Plano de Testes
+    *   5.6 - Refatoração da Funcionalidade de Barbearias
 *   **Responsáveis**
     Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
 *   **Artefatos**
@@ -156,12 +156,12 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 *   **Descrição**
     Esta etapa é dedicada à garantia da qualidade do sistema, abrangendo a criação de cenários de teste, planejamento de testes, execução de testes unitários e validação das funcionalidades implementadas, assegurando conformidade com os requisitos especificados.
 *   **Atividades do EAP**
-    6.1 - Criação de Cenários de Teste para as Funcionalidades de Atendimento, Barbeiros, Login e Autenticação
-    6.2 - Criação de Gráfico de Gantt e Plano de Projeto
-    6.3 - Implementação de Testes Unitários nas Funcionalidades de Atendimento, Barbeiros e Login e Autenticação
-    6.4 - Implementação de Testes Unitários nas Funcionalidades de Barbearias
-    6.5 - Implementação de Testes Unitários nas Funcionalidades de Barbeiros
-    6.6 - Implementação de Testes Unitários na Funcionalidade de Atendimento
+    *   6.1 - Criação de Cenários de Teste para as Funcionalidades de Atendimento, Barbeiros, Login e Autenticação
+    *   6.2 - Criação de Gráfico de Gantt e Plano de Projeto
+    *   6.3 - Implementação de Testes Unitários nas Funcionalidades de Atendimento, Barbeiros e Login e Autenticação
+    *   6.4 - Implementação de Testes Unitários nas Funcionalidades de Barbearias
+    *   6.5 - Implementação de Testes Unitários nas Funcionalidades de Barbeiros
+    *   6.6 - Implementação de Testes Unitários na Funcionalidade de Atendimento
 *   **Responsáveis**
     Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
 *   **Artefatos**
@@ -174,12 +174,12 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 *   **Descrição**
     Esta etapa contempla a modelagem e implementação das funcionalidades de gerenciamento de serviços e histórico de atendimentos, bem como ajustes na interface e na experiência do usuário. Os requisitos são analisados, especificados, implementados e integrados ao sistema, garantindo usabilidade e consistência.
 *   **Atividades do EAP**
-    7.1 - Levantamento de Requisitos VI para Funcionalidade de Gerenciamento de Serviços, e um Novo Requisito Relacionado ao Atendimento
-    7.2 - Especificação de Requisitos VI para Funcionalidade de Gerenciamento de Serviços, e um Novo Requisito Relacionado ao Atendimento
-    7.3 - Implementação do Gerenciamento de Serviços
-    7.4 - Implementação do Histórico de Atendimentos
-    7.5 - Ajustes na Interface e Experiência do Usuário
-    7.6 - Reajustando Gráfico de Gantt e Plano de Projeto
+    *   7.1 - Levantamento de Requisitos VI para Funcionalidade de Gerenciamento de Serviços, e um Novo Requisito Relacionado ao Atendimento
+    *   7.2 - Especificação de Requisitos VI para Funcionalidade de Gerenciamento de Serviços, e um Novo Requisito Relacionado ao Atendimento
+    *   7.3 - Implementação do Gerenciamento de Serviços
+    *   7.4 - Implementação do Histórico de Atendimentos
+    *   7.5 - Ajustes na Interface e Experiência do Usuário
+    *   7.6 - Reajustando Gráfico de Gantt e Plano de Projeto
 *   **Responsáveis**
     Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
 *   **Artefatos**
@@ -192,13 +192,13 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 *   **Descrição**
     Esta etapa contempla funcionalidades de clientes, agendamento e produtos e estoque. Os requisitos são analisados, especificados, implementados e revisados, garantindo a integração adequada com as funcionalidades existentes.
 *   **Atividades do EAP**
-    8.1 - Levantamento de Requisitos V nas Funcionalidades de Clientes, Agendamento e Produtos/Estoque
-    8.2 - Especificação de Requisitos V nas Funcionalidades de Clientes, Agendamento e Produtos/Estoque
-    8.3 - Implementação das Funcionalidades de Clientes
-    8.4 - Implementação do Agendamento
-    8.5 - Implementação de Gerenciamento de Produtos e Estoque
-    8.6 - Implementação de Alerta de Estoque Baixo
-    8.7 - Implementação de Histórico de Agendamentos
+    *   8.1 - Levantamento de Requisitos V nas Funcionalidades de Clientes, Agendamento e Produtos/Estoque
+    *   8.2 - Especificação de Requisitos V nas Funcionalidades de Clientes, Agendamento e Produtos/Estoque
+    *   8.3 - Implementação das Funcionalidades de Clientes
+    *   8.4 - Implementação do Agendamento
+    *   8.5 - Implementação de Gerenciamento de Produtos e Estoque
+    *   8.6 - Implementação de Alerta de Estoque Baixo
+    *   8.7 - Implementação de Histórico de Agendamentos
 *   **Responsáveis**
     Analista de Negócio (AN); Analista de Requisitos e Qualidade (REQ/QA); Desenvolvedor (DEV)
 *   **Artefatos**
