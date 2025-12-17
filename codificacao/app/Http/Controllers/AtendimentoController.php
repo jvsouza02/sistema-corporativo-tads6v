@@ -113,6 +113,11 @@ class AtendimentoController extends Controller
                 $servicos = Servico::with('produtos')->whereIn('id_servico', $request->input('servicos'))->get();
 
                 foreach ($servicos as $servico) {
+                    if ((float) $servico->preco < 0) {
+                        throw new \Exception("Serviço {$servico->nome} tem preço inválido.");
+                    }
+
+
                     $valorCobradoServico = (float) $servico->preco;
                     $valorTotal += $valorCobradoServico;
 
@@ -257,6 +262,10 @@ class AtendimentoController extends Controller
 
     public function destroy($id_atendimento)
     {
-        // Deprecado - não será mais usado
+        $atendimento = Atendimento::where('id_atendimento', $id_atendimento)->firstOrFail();
+        $atendimento->delete(); // remove permanentemente
+
+        return redirect()->back()->with('success', 'Atendimento excluído com sucesso.');
     }
+
 }

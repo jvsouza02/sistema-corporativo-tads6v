@@ -1,6 +1,9 @@
 <?php
 
 namespace Database\Factories;
+use Illuminate\Support\Str;
+use App\Models\Barbearia;
+use App\Models\Cliente;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,10 +17,16 @@ class AgendamentoFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            //
+            'id_agendamento' => Str::uuid(),
+            'id_barbearia' => Barbearia::factory(),
+            'id_cliente' => Cliente::factory(),
+            'data_hora' => now()->addDay(),
+            'servico' => 'Corte de cabelo',
+            'status' => 'agendado',
         ];
     }
+
 }

@@ -20,7 +20,7 @@ return new class extends Migration {
 
             $table->decimal('valor_total', 10, 2)->default(0);
 
-            $table->string('status')->default('finalizado');
+            $table->string('status')->default('concluido');
 
             $table->text('observacao')->nullable();
 
