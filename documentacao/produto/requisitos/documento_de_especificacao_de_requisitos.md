@@ -1,19 +1,9 @@
 # Documento de Especificação de Requisitos
 
-**Discentes:** Yuri Fernandes, Maria da Paz, João Victor, Lucas Freitas.
-**Projeto:** Sistema de Agendamento e Gestão de Barbearias.
-
-## Registro de Alterações:
-
-| Versão | Responsável    | Data       | Alterações                                              |
-|--------|----------------|------------|---------------------------------------------------------|
-| 1.0    | Yuri Fernandes | 06/10/2025 | Criação do diagrama de classes e do diagrama de caso de uso e suas especificações. |
-| 1.1    | Yuri Fernandes | 11/10/2025 | Implementação de uma funcionalidade adicional no módulo de gestão de barbearias. |
-| 1.2    | Yuri Fernandes | 18/11/2025 | Ajuste nas funcionalidades atuais de acordo com a nova demanda do cliente. |
-| 1.3    | Yuri Fernandes | 25/11/2025 | Evolução do sistema de gerenciamento de barbearias através da inclusão de uma nova funcionalidade. |
-| 1.4    | Yuri Fernandes | 10/11/2025 | Ajustes na especificação de caso de uso.                 |
-| 1.5    | Yuri Fernandes | 06/12/2025 | Adicionando casos de uso especificados do Github.       |
-| 1.6    | Yuri Fernandes | 15/12/2025 | Ajustando diagrama de classes para ficar de acordo com o sistema até o momento. |
+**Discentes:** 
+Yuri Fernandes, Maria da Paz, João Victor, Lucas Freitas.
+**Projeto:** 
+Sistema de Agendamento e Gestão de Barbearias.
 
 ## 1. Introdução
 
