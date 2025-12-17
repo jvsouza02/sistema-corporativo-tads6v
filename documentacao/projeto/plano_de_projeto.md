@@ -62,7 +62,7 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 
 ![Estrutura Analítica do Projeto](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/estrutura_analitica_do_projeto.png)
 
-## 4.1. Definição Das Atividades Dos Pacotes De Trabalho
+## 3.1 Definição Das Atividades Dos Pacotes De Trabalho
 
 ### 1. Iniciação e Planejamento do Projeto
 
@@ -204,7 +204,7 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 *   **Artefatos**
     Documento de Requisitos; Documento de Especificação de Requisitos; Produto
 
-## 5. Cronograma
+## 4. Cronograma
 
 **Tabela 2:** Cronograma de Apresentações
 
@@ -227,7 +227,7 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 | 07    | Modelar Serviços e Ajustar Experiência de Usuário | 27/11/2025 | 03/12/2025 | Analista de Negócio (AN), Analista de Requisitos e Qualidade (REQ/QA), Desenvolvedor (DEV) |
 | 08    | Adicionar Funcionalidades de Operação | 04/12/2025 | 10/12/2025 | Analista de Negócio (AN), Analista de Requisitos e Qualidade (REQ/QA), Desenvolvedor (DEV) |
 
-## 6. Estimativas de Esforço e Custo
+## 5. Estimativas de Esforço e Custo
 
 **Tabela 4:** Tabela de Custo da Equipe do Projeto
 
@@ -259,7 +259,7 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 | Custo total estimado        | R$ 17.440,00 |
 | Duração                     | 4 meses   |
 
-## 7. Acompanhamento do Desempenho do Projeto
+## 6. Acompanhamento do Desempenho do Projeto
 
 **Figura 2:** Compara o progresso ideal e o progresso real do projeto ao longo do tempo.
 
@@ -277,19 +277,19 @@ Os principais produtos e resultados que serão gerados ao longo do projeto inclu
 
 ![Índice de Desempenho de Custo](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/grafico_indice_desempenho_custo.png)
 
-## 8. Diagrama de Gantt
+## 7. Diagrama de Gantt
 
 **Figura 6:** O diagrama de Gantt é uma ferramenta visual de gestão de projetos que exibe tarefas e cronogramas em uma linha do tempo.
 
 ![Diagrama de Gantt](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/diagrama_de_gantt.jpg)
 
-## 9. Diagrama de Atividades do Projeto
+## 8. Diagrama de Atividades do Projeto
 
 **Figura 7:** A seguir o diagrama de atividade do projeto.
 
 ![Diagrama de Atividades do Projeto](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/diagrama_de_atividades_do_projeto.png)
 
-## 10. Ferramentas Utilizadas
+## 9. Ferramentas Utilizadas
 
 Durante o desenvolvimento do sistema foram utilizadas as seguintes ferramentas:
 
