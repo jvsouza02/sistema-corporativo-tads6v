@@ -117,7 +117,6 @@ class AtendimentoController extends Controller
                         throw new \Exception("Serviço {$servico->nome} tem preço inválido.");
                     }
 
-
                     $valorCobradoServico = (float) $servico->preco;
                     $valorTotal += $valorCobradoServico;
 
