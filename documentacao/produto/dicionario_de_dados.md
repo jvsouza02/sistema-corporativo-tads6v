@@ -22,6 +22,9 @@ Profissionais que atuam dentro de uma barbearia. Cada barbeiro está vinculado a
 ## Atendimentos
 Registra os atendimentos realizados pelos barbeiros. Cada atendimento pertence a um barbeiro e a uma barbearia.
 
+## Agendamentos
+Registra os agendamentos de serviços realizados pelos clientes. Cada agendamento está vinculado a um cliente e a uma barbearia.
+
 ---
 
 ## Usuários
@@ -90,12 +93,34 @@ Registra os atendimentos realizados pelos barbeiros. Cada atendimento pertence a
 
 | Campo | Nome lógico | Tipo | Obrigatório | Descrição | Restrições | Chave |
 |--------|-------------|--------|-----------|-------------|-------------|--------|
-| `id_atendimento` | ID do atendimento | uuid | Sim | Identificador único | PK | PK |
-| `servico` | Serviço | varchar(255) | Sim | Nome do serviço realizado | — | — |
-| `produto` | Produto | varchar(255) | Não | Produto usado (quando houver) | — | — |
-| `comentario` | Comentário | text | Não | Observações do atendimento | — | — |
-| `valor_total` | Valor total | double | Sim | Valor cobrado | >= 0 | — |
-| `id_barbearia` | Barbearia | uuid | Sim | FK da barbearia | FK → `barbearias.id_barbearia` | FK |
-| `id_barbeiro` | Barbeiro | uuid | Sim | FK do barbeiro | FK → `barbeiros.id_barbeiro` | FK |
-| `created_at` | Criado em | timestamp | Sim | Registro criado | — | — |
-| `updated_at` | Atualizado em | timestamp | Sim | Última atualização | — | — |
+| `id_atendimento` | ID do atendimento | uuid | Sim | Identificador único do atendimento | PK | PK |
+| `id_barbearia` | Barbearia | uuid | Sim | Barbearia onde ocorreu o atendimento | FK → `barbearias.id_barbearia` | FK |
+| `id_agendamento` | Agendamento | uuid | Não | Agendamento associado ao atendimento | FK → `agendamentos.id_agendamento` (onDelete: set null) | FK |
+| `id_cliente` | Cliente | uuid | Não | Cliente atendido | FK → `clientes.id_cliente` | FK |
+| `id_barbeiro` | Barbeiro | uuid | Sim | Barbeiro responsável pelo atendimento | FK → `barbeiros.id_barbeiro` | FK |
+| `data_hora_inicio` | Início do atendimento | datetime | Sim | Data e hora de início do atendimento | Default: CURRENT_TIMESTAMP | — |
+| `data_hora_fim` | Fim do atendimento | datetime | Não | Data e hora de término do atendimento | — | — |
+| `valor_total` | Valor total | decimal(10,2) | Sim | Valor total cobrado no atendimento | Default: 0.00 | — |
+| `status` | Status | varchar(255) | Sim | Situação do atendimento | Default: `concluido` | — |
+| `observacao` | Observação | text | Não | Observações gerais do atendimento | — | — |
+| `created_at` | Criado em | timestamp | Sim | Data de criação do registro | — | — |
+| `updated_at` | Atualizado em | timestamp | Sim | Data da última atualização | — | — |
+
+---
+
+## Agendamentos
+
+| Campo | Nome lógico | Tipo | Obrigatório | Descrição | Restrições | Chave |
+|--------|-------------|--------|-----------|-------------|-------------|--------|
+| `id_agendamento` | ID do agendamento | uuid | Sim | Identificador único do agendamento | PK | PK |
+| `data_hora` | Data e hora | datetime | Sim | Data e hora do agendamento | — | — |
+| `servico` | Serviço | varchar(255) | Sim | Serviço agendado pelo cliente | — | — |
+| `status` | Status | enum | Sim | Situação do agendamento | Valores: `agendado`, `concluido`, `cancelado` (default: `agendado`) | — |
+| `observacao` | Observação | text | Não | Observações adicionais do agendamento | — | — |
+| `id_cliente` | Cliente | uuid | Sim | Cliente que realizou o agendamento | FK → `clientes.id_cliente` | FK |
+| `id_barbearia` | Barbearia | uuid | Sim | Barbearia onde ocorrerá o atendimento | FK → `barbearias.id_barbearia` | FK |
+| `id_barbeiro` | Barbeiro | uuid | Não | Barbeiro associado ao agendamento | FK → `barbeiros.id_barbeiro` (onDelete: set null) | FK |
+| `created_at` | Criado em | timestamp | Sim | Data de criação do registro | — | — |
+| `updated_at` | Atualizado em | timestamp | Sim | Data da última atualização | — | — |
+
+
