@@ -25,6 +25,18 @@ Registra os atendimentos realizados pelos barbeiros. Cada atendimento pertence a
 ## Agendamentos
 Registra os agendamentos de serviços realizados pelos clientes. Cada agendamento está vinculado a um cliente e a uma barbearia.
 
+## Clientes
+Armazena os dados dos clientes do sistema. Cada cliente está vinculado a um usuário para autenticação e acesso à plataforma.
+
+## Produtos
+Armazena os produtos utilizados ou comercializados pelas barbearias. Cada produto possui informações de identificação, descrição, preço e unidade de medida, permitindo o controlo e o registo de uso ou venda durante os atendimentos.
+
+## Estoques
+Armazena o controle de estoque dos produtos disponíveis em cada barbearia. Cada registro relaciona um produto a uma barbearia
+
+## Serviços
+Armazena os serviços oferecidos pelas barbearias. Cada serviço está vinculado a uma barbearia específica e contém informações como nome, descrição, preço e status de ativação.
+
 ---
 
 ## Usuários
@@ -43,7 +55,7 @@ Registra os agendamentos de serviços realizados pelos clientes. Cada agendament
 
 ---
 
-## Tabela: `proprietarios`
+## Proprietarios
 
 | Campo | Nome lógico | Tipo | Obrigatório | Descrição | Restrições | Chave |
 |--------|-------------|--------|-----------|-----------|-------------|--------|
@@ -120,6 +132,61 @@ Registra os agendamentos de serviços realizados pelos clientes. Cada agendament
 | `id_cliente` | Cliente | uuid | Sim | Cliente que realizou o agendamento | FK → `clientes.id_cliente` | FK |
 | `id_barbearia` | Barbearia | uuid | Sim | Barbearia onde ocorrerá o atendimento | FK → `barbearias.id_barbearia` | FK |
 | `id_barbeiro` | Barbeiro | uuid | Não | Barbeiro associado ao agendamento | FK → `barbeiros.id_barbeiro` (onDelete: set null) | FK |
+| `created_at` | Criado em | timestamp | Sim | Data de criação do registro | — | — |
+| `updated_at` | Atualizado em | timestamp | Sim | Data da última atualização | — | — |
+
+---
+
+## Clientes
+
+| Campo | Nome lógico | Tipo | Obrigatório | Descrição | Restrições | Chave |
+|--------|-------------|--------|-----------|-------------|-------------|--------|
+| `id_cliente` | ID do cliente | uuid | Sim | Identificador único do cliente | PK | PK |
+| `nome` | Nome | varchar(255) | Sim | Nome completo do cliente | — | — |
+| `user_id` | Usuário associado | bigint | Sim | Usuário vinculado ao cliente para acesso ao sistema | FK → `users.id` (onDelete: cascade) | FK |
+| `created_at` | Criado em | timestamp | Sim | Data de criação do registro | — | — |
+| `updated_at` | Atualizado em | timestamp | Sim | Data da última atualização | — | — |
+
+---
+
+## Produtos
+
+| Campo | Nome lógico | Tipo | Obrigatório | Descrição | Restrições | Chave |
+|--------|-------------|--------|-----------|-------------|-------------|--------|
+| `id_produto` | ID do produto | uuid | Sim | Identificador único do produto | PK | PK |
+| `nome` | Nome | varchar(255) | Sim | Nome do produto | — | — |
+| `descricao` | Descrição | varchar(255) | Não | Descrição detalhada do produto | — | — |
+| `preco` | Preço | decimal(10,2) | Sim | Preço do produto | ≥ 0 | — |
+| `unidade_medida` | Unidade de medida | varchar(10) | Sim | Unidade de medida do produto | Default: `ml` | — |
+| `created_at` | Criado em | timestamp | Sim | Data de criação do registro | — | — |
+| `updated_at` | Atualizado em | timestamp | Sim | Data da última atualização | — | — |
+
+---
+
+## Estoques
+
+| Campo | Nome lógico | Tipo | Obrigatório | Descrição | Restrições | Chave |
+|--------|-------------|--------|-----------|-------------|-------------|--------|
+| `id_estoque` | ID do estoque | uuid | Sim | Identificador único do estoque | PK | PK |
+| `id_produto` | Produto | uuid | Sim | Produto associado ao estoque | FK → `produtos.id_produto` | FK |
+| `id_barbearia` | Barbearia | uuid | Sim | Barbearia proprietária do estoque | FK → `barbearias.id_barbearia` | FK |
+| `quantidade` | Quantidade | decimal(10,2) | Sim | Quantidade atual do produto em estoque | ≥ 0 | — |
+| `quantidade_minima` | Quantidade mínima | decimal(10,2) | Sim | Quantidade mínima para alerta de reposição | Default: 0.00 | — |
+| `created_at` | Criado em | timestamp | Sim | Data de criação do registro | — | — |
+| `updated_at` | Atualizado em | timestamp | Sim | Data da última atualização | — | — |
+
+---
+
+## Serviços
+
+| Campo | Nome lógico | Tipo | Obrigatório | Descrição | Restrições | Chave |
+|--------|-------------|--------|-----------|-------------|-------------|--------|
+| `id_servico` | ID do serviço | uuid | Sim | Identificador único do serviço | PK | PK |
+| `id_barbearia` | Barbearia | uuid | Sim | Barbearia que oferece o serviço | FK → `barbearias.id_barbearia` (onDelete: cascade) | FK |
+| `nome` | Nome | varchar(255) | Sim | Nome do serviço | Indexado | — |
+| `descricao` | Descrição | text | Não | Descrição detalhada do serviço | — | — |
+| `preco` | Preço | decimal(10,2) | Sim | Preço do serviço | ≥ 0 | — |
+| `ativo` | Ativo | boolean | Sim | Indica se o serviço está ativo | Default: true | — |
 | `created_at` | Criado em | timestamp | Sim | Data de criação do registro | — | — |
 | `updated_at` | Atualizado em | timestamp | Sim | Data da última atualização | — | — |
 
