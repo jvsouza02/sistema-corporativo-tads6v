@@ -55,6 +55,7 @@ A seguir são apresentadas as descrições de cada um dos casos de uso identific
 ### 2.4. Descrição Detalhada dos Casos de Uso
 
 A seguir temos a documentação que detalha cada caso de uso do MCDU, com a descrição do fluxo de forma enumerada.
+---
 
 #### CDU001 – Cadastrar Proprietário
 
@@ -101,6 +102,8 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 2. RNF001 - Controlar autenticação e autorização: Todos os acessos devem ser protegidos por autenticação; usuários com perfis distintos acessam apenas funcionalidades permitidas.
 3. RNF005 - Proteger os dados do sistema: Senhas devem ser armazenadas de forma segura (hash) e dados sensíveis não devem ser expostos indevidamente.
 
+---
+
 #### CDU002 – Cadastrar Cliente
 
 **Objetivo:** Permitir que uma pessoa crie uma conta como cliente informando nome, e-mail e senha para visualizar barbearias e realizar agendamentos.
@@ -140,6 +143,8 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 1. RF002 - Cadastrar Cliente: Permite que novos clientes criem conta informando nome, e-mail e senha para visualizar barbearias e realizar agendamentos.
 2. RNF001 - Controlar autenticação e autorização: Todos os acessos devem ser protegidos por autenticação; usuários com perfis distintos acessam apenas funcionalidades permitidas.
 3. RNF005 - Proteger os dados do sistema: Senhas devem ser armazenadas de forma segura (hash) e dados sensíveis não devem ser expostos indevidamente.
+
+---
 
 #### CDU003 – Realizar Login
 
@@ -182,6 +187,8 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 2. RNF001 - Controlar autenticação e autorização: Todos os acessos devem ser protegidos por autenticação; usuários com perfis distintos acessam apenas funcionalidades permitidas.
 3. RNF005 - Proteger os dados do sistema: Senhas devem ser armazenadas de forma segura (hash) e dados sensíveis não devem ser expostos indevidamente.
 
+---
+
 #### CDU004 – Listar Barbearia
 
 **Objetivo:** Permitir que o proprietário visualize todas as suas barbearias cadastradas com informações principais.
@@ -214,6 +221,8 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 1. RF004 - Listar Barbearia: Exibir todas as suas barbearias cadastradas, apresentando nome, endereço, horários de funcionamento, quantidade de atendimentos da semana, número de barbeiros e valor total gerado pelos atendimentos semanais, permitindo clicar em uma barbearia para acessar seus detalhes.
 2. RNF003 - Assegurar desempenho adequado: Listagens e operações principais devem apresentar tempo de resposta aceitável, especialmente para consultas paginadas.
 3. RN005 - Restringir gerenciamento de barbearias ao proprietário: O proprietário só pode ver e administrar as barbearias que estão registradas em seu nome.
+
+---
 
 #### CDU005 – Gerenciar Barbearia
 
@@ -249,6 +258,8 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 1. RF005 - Gerenciar Barbearia: O sistema deve permitir ao proprietário cadastrar novas barbearias informando nome, e-mail, endereço, telefone, horários de expediente, descrição e foto de apresentação.
 2. RNF004 - Permitir escalabilidade do sistema: O sistema deve suportar múltiplas barbearias e usuários simultaneamente sem alteração na lógica de negócio.
 3. RN005 - Restringir gerenciamento de barbearias ao proprietário: O proprietário só pode ver e administrar as barbearias que estão registradas em seu nome.
+
+---
 
 #### CDU006 – Gerenciar Barbeiro
 
@@ -289,6 +300,8 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 2. RNF001 - Controlar autenticação e autorização: Todos os acessos devem ser protegidos por autenticação; usuários com perfis distintos acessam apenas funcionalidades permitidas.
 3. RN004 - Restringir transferência de barbeiro ao proprietário: Um barbeiro só pode ser movido entre barbearias que pertencem ao mesmo proprietário.
 
+---
+
 #### CDU007 – Gerenciar Serviço (Cadastrar)
 
 **Objetivo:** Permitir que o proprietário cadastre, edite e remova os serviços oferecidos pela barbearia.
@@ -326,6 +339,8 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 **REQUISITOS DE USUÁRIO RELACIONADOS**
 1. RF007 - Gerenciar Serviço: O sistema deve permitir cadastrar, editar e remover serviços oferecidos pela barbearia (como corte, barba e coloração), registrando nome, descrição, preço e os produtos associados que serão utilizados no atendimento.
 2. RN006 - Padronizar quantidade de produto por serviço: A quantidade de cada produto usado em um serviço é medida e registrada em mililitros.
+
+---
 
 #### CDU008 – Gerenciar Produto e Estoque
 
@@ -367,6 +382,8 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 2. RNF003 - Assegurar desempenho adequado: Listagens e operações principais devem apresentar tempo de resposta aceitável, especialmente para consultas paginadas.
 3. RN003 - Alertar sobre estoque baixo: Exibe um aviso quando a quantidade de um produto chega ou fica abaixo do limite mínimo estabelecido.
 
+---
+
 #### CDU009 – Emitir Alerta de Estoque Baixo
 
 **Objetivo:** Informar o proprietário quando a quantidade de um produto estiver igual ou abaixo do limite mínimo.
@@ -396,6 +413,8 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 1. RF009 - Emitir Alerta de Estoque Baixo: O sistema deve exibir automaticamente alertas quando a quantidade de um produto atingir ou ficar abaixo do limite mínimo definido para a barbearia, permitindo ao proprietário identificar facilmente itens que precisam de reposição.
 2. RN003 - Alertar sobre estoque baixo: Exibe um aviso quando a quantidade de um produto chega ou fica abaixo do limite mínimo estabelecido.
 3. RNF002 - Garantir disponibilidade do sistema: O sistema deve estar disponível para uso contínuo, permitindo acesso às funcionalidades principais.
+
+---
 
 #### CDU010 – Realizar Agendamento
 
@@ -439,6 +458,8 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 3. RN007 - Validar horário de agendamento: Garante que o cliente só possa marcar horários dentro do período de funcionamento estabelecido pela barbearia.
 4. RN008 - Impedir agendamento retroativo: Não permite que o cliente agende um horário que já passou em relação ao momento atual.
 
+===
+
 #### CDU011 – Visualizar Histórico de Agendamento
 
 **Objetivo:** Permitir que o cliente visualize seus agendamentos realizados.
@@ -469,6 +490,8 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 **REQUISITOS DE USUÁRIO RELACIONADOS**
 1. RF011 - Visualizar Histórico de Agendamento: O sistema deve permitir que o cliente visualize seus agendamentos realizados, incluindo informações como data, horário, barbearia e status.
 2. RNF003 - Assegurar desempenho adequado: Listagens e operações principais devem apresentar tempo de resposta aceitável, especialmente para consultas paginadas.
+
+---
 
 #### CDU012 – Registrar Atendimento
 
@@ -517,6 +540,8 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 3. RN006 - Padronizar quantidade de produto por serviço: A quantidade de cada produto usado em um serviço é medida e registrada em mililitros.
 4. RN009 - Atualizar status do agendamento após atendimento: Quando um atendimento é registrado a partir de um agendamento, o status do agendamento é alterado automaticamente para "concluído".
 5. RN010 - Verificar propriedade do agendamento: Garante que um agendamento pertence à barbearia onde o atendimento está sendo registrado.
+
+---
 
 #### CDU013 – Visualizar Histórico de Atendimento
 
