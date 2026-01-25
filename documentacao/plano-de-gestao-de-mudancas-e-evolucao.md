@@ -25,8 +25,8 @@
 **Visão geral do fluxo**  
 1. Qualquer solicitação (correção, melhoria, nova funcionalidade) é registrada como **Issue** no repositório.  
 2. O **Analista de Negócio (AN)** realiza a pré-análise: impacto no minimundo, requisitos afetados, riscos e dependências.  
-3. A Issue recebe: tipo (`bug|feature|improvement`), prioridade provisória, impacto, estimativa (horas) e responsável provisório.  
-4. Em revisão de iteração (Sprint Review ou reunião de priorização) o **Cliente** e o **Gerente de Projeto (GP)** validam prioridade final e definem se a mudança entra no backlog ativo, fica para iteração futura ou é rejeitada.
+3. A Issue recebe: tipo (`bug|feature|improvement`), prioridade provisória, impacto e responsável provisório.  
+4. Em revisão de iteração (Sprint Review) o **Cliente** e o **Gerente de Projeto (GP)** validam prioridade final e definem fica para iteração futura ou é rejeitada.
 
 **Critérios de priorização**  
 As decisões devem ponderar, pelo menos, os seguintes critérios (em ordem prática de avaliação):
@@ -118,9 +118,7 @@ Board configurado com as colunas:
 - **Título:** `[type] <resumo curto> (#<id se houver>)`  
 - **Descrição:** contexto, problema/necessidade, passos para reproduzir (se bug), cenário esperado.  
 - **Critérios de aceitação:** lista clara e testável.  
-- **Impacto:** sistemas/funcionalidades afetadas.  
-- **Estimativa:** story points ou horas.  
-- **Dependências:** outras Issues/PRs.  
+- **Impacto:** sistemas/funcionalidades afetadas. 
 - **Milestone:** iteração/versão alvo.
 
 **Rastreabilidade**  
@@ -150,15 +148,8 @@ Board configurado com as colunas:
   - Exemplo: `feat(agendamento): permitir reagendamento de horário (#34)`  
 - Mensagem de commit deve descrever concisamente a mudança. Referenciar sempre a Issue.
 
-**Versionamento de documentos**  
-- Documentos importantes (requisitos, especificações) devem conter cabeçalho com: `Versão`, `Data`, `Autor`.  
-- Política:  
-  - Mudanças de conteúdo funcional → incrementar **+0.1** (ex.: 1.0 → 1.1)  
-  - Ajustes menores/ortográficos → incrementar **+0.0.1** (ex.: 1.1 → 1.1.1)
-
 **Pull Request (PR) — checklist mínimo**  
 - PR descreve finalidade e relaciona Issue.  
-- Testes automatizados passam no CI.  
 - Critérios de aceitação da Issue estão cumpridos.  
 - Documentação atualizada (se necessário).  
 - Pelo menos 1 reviewer aprovado.  
@@ -170,39 +161,37 @@ Board configurado com as colunas:
 ### 3.1. Documentação do Histórico de Decisões
 
 **Registro de decisões**  
-- **Decisões arquiteturais e de processo** registradas em `documentacao/DECISIONS.md` ou via ADRs (Architecture Decision Records).  
-- Decisões relacionadas a mudanças específicas: registrar nos comentários da **Issue** e sumarizar na PR. Se a decisão afetar artefatos, atualizar documentos correspondentes.
+- Todas as decisões relacionadas a mudanças (correções, melhorias ou novas funcionalidades) serão registradas **exclusivamente nos comentários das Issues e Pull Requests do GitHub**.  
+- A Issue concentra o contexto da mudança (problema, motivação e alternativas discutidas), enquanto a Pull Request registra as decisões finais tomadas durante a implementação e revisão.  
+- Comentários relevantes devem ser claros e objetivos, descrevendo o *porquê* da decisão, impactos esperados e eventuais compromissos técnicos assumidos.
 
-**Sincronização de documentação**  
-- Qualquer alteração que impacte requisitos ou design exige atualização dos artefatos vinculados (Documentos de Requisitos, Especificação, Diagrama de Domínio/Classe).  
-- Ao concluir uma Issue que altera documentação exigir incremento de versão do(s) documento(s) e incluir cabeçalho `Versão | Data | Autor`.  
-- Revisão da documentação é um item obrigatório no checklist de PR quando aplicável.
+**Sincronização das informações**  
+- Sempre que uma mudança impactar requisitos, regras de negócio ou design do sistema, isso deverá ser explicitamente descrito nos comentários da Issue ou da Pull Request correspondente.  
+- A finalização de uma Issue só ocorre após a confirmação, nos comentários, de que todos os impactos da mudança foram tratados e revisados pela equipe.
 
 **Rastreabilidade do histórico**  
-- Histórico de mudanças consultável via Issues/PRs + changelog gerado a partir das releases/tags.  
-- Manter arquivo `CHANGELOG.md` com entradas geradas a cada tag/versão (resumo das correções e features).
-
----
+- O histórico completo das decisões e mudanças ficará rastreável por meio do encadeamento entre **Issues, Pull Requests, commits e comentários** no GitHub.  
+- Dessa forma, qualquer membro da equipe poderá consultar decisões passadas diretamente no fluxo de trabalho do projeto, garantindo transparência, rastreabilidade e alinhamento contínuo sem a necessidade de documentação paralela.
 
 ### 3.2. Comunicação e Adaptação da Equipe
 
 **Rituais e canais de comunicação**  
-- **Daily standup (curto):** alinhamento rápido de impedimentos.  
-- **Planejamento de Sprint:** priorização e compromisso de iteração (GP + AN + Devs + Cliente opcional).  
-- **Revisão de Sprint (Sprint Review):** apresentação das entregas ao cliente; prioridade das próximas issues.  
-- **Retrospectiva:** melhoria contínua do processo.  
-- **Canal imediato para hotfixes:** grupo de mensagens (ex.: WhatsApp ou Slack) com referência direta à Issue; uso apenas para alertas críticos.  
-- **Release notes / Anúncios:** publicar no GitHub Releases e notificar stakeholders por e-mail ou canal acordado.
+- **Planejamento de Sprint:** definição e priorização das Issues que serão trabalhadas na iteração, alinhando escopo, esforço e responsabilidades da equipe.  
+- **Revisão de Sprint (Sprint Review):** apresentação das funcionalidades implementadas, validação das entregas e definição de ajustes ou novas prioridades para as próximas Issues.  
+- Toda a comunicação sobre mudanças, dúvidas ou decisões ocorre preferencialmente **nos comentários das Issues e Pull Requests**, garantindo registro e rastreabilidade.  
+- Não são utilizados canais paralelos formais (como dailies ou retrospectivas); a coordenação acontece de forma assíncrona pelo GitHub.
 
-**Onboarding e adaptação**  
-- Documentar o fluxo de trabalho no repositório (`documentacao/processo`).  
-- Periodicamente (mensal ou por milestone) revisar o processo; se estiver burocrático, simplificar e documentar as mudanças em `documentacao/processo`.  
-- Garantir que todos os membros saibam: criar Issue corretamente, usar labels e convenções de commit.
+**Adaptação da equipe ao processo**  
+- O fluxo de trabalho adotado (uso de Issues, Pull Requests, commits e revisões) deve ser compreendido por todos os membros da equipe.  
+- Sempre que o processo for ajustado (por necessidade prática ou simplificação), a mudança deve ser discutida durante a Review ou Planejamento e aplicada diretamente no fluxo de trabalho do repositório.  
+- Todos os integrantes devem saber:    
+  - Utilizar comentários para alinhamento e esclarecimento;  
+  - Seguir convenções de commit e vincular commits às Issues correspondentes.
 
 **Minimizar confusão e retrabalho**  
-- Exigir critérios de aceitação claros nas Issues.  
-- Evitar múltiplas alterações em mesmo módulo sem coordenação (usar comentários em Issue).  
-- Usar estimativas realistas e ajustar capacidade durante planejamento.
+- As Issues devem conter descrições claras e critérios mínimos de aceitação antes de serem incluídas no planejamento.  
+- Alterações no mesmo módulo ou funcionalidade devem ser coordenadas por meio de comentários na Issue correspondente.  
+- Durante o Planejamento, as estimativas e a quantidade de Issues selecionadas devem respeitar a capacidade real da equipe, evitando sobrecarga e retrabalho.
 
 ---
 
