@@ -43,8 +43,12 @@
                         <a href="{{ route('barbearia.detalhes', $barbearia->id_barbearia) }}" class="text-decoration-none">
                             <div class="card mb-4 border-0 h-100 hover-card">
                                 <div class="card-img-wrapper">
-                                    <img src="{{ asset($barbearia->foto_url ?? 'uploads/default.jpg') }}"
-                                        class="card-img-top" alt="{{ $barbearia->nome }}">
+                                    <img src="{{ $barbearia->foto_url 
+                                            ? asset('storage/' . $barbearia->foto_url) 
+                                            : asset('images/default-barbearia.jpg') }}"
+                                        class="card-img-top"
+                                        alt="{{ $barbearia->nome }}">
+                                        <class="card-img-top" alt="{{ $barbearia->nome }}">
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title mb-3">{{ $barbearia->nome }}</h5>

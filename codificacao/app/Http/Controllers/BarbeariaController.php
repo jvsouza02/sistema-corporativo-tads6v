@@ -34,28 +34,36 @@ class BarbeariaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $dados = $request->all();
-        try {
-            Barbearia::create([
-                'id_barbearia' => Str::uuid(),
-                'nome' => $dados['nome'],
-                'email' => $dados['email'],
-                'endereco' => $dados['endereco'],
-                'telefone' => $dados['telefone'],
-                'horario_abertura' => $dados['horario_abertura'],
-                'horario_fechamento' => $dados['horario_fechamento'],
-                'descricao' => $dados['descricao'],
-                'foto_url' => $dados['foto_url'] ?? 'https://ui-avatars.com/api/?name=' . urlencode($dados['nome']) . '&size=150',
-                'id_proprietario' => $dados['id_proprietario']
-            ]);
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Erro ao criar barbearia');
+   public function store(Request $request)
+{
+    $dados = $request->all();
+
+    try {
+        $fotoPath = null;
+
+        if ($request->hasFile('foto_url') && $request->file('foto_url')->isValid()) {
+            $fotoPath = $request->file('foto_url')->store('barbearias', 'public');
         }
 
-        return redirect()->route('home')->with('success', 'Barbearia criada com sucesso');
+        Barbearia::create([
+            'id_barbearia' => Str::uuid(),
+            'nome' => $dados['nome'],
+            'email' => $dados['email'],
+            'endereco' => $dados['endereco'],
+            'telefone' => $dados['telefone'],
+            'horario_abertura' => $dados['horario_abertura'],
+            'horario_fechamento' => $dados['horario_fechamento'],
+            'descricao' => $dados['descricao'],
+            'foto_url' => $fotoPath,
+            'id_proprietario' => $dados['id_proprietario']
+        ]);
+
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Erro ao criar barbearia');
     }
+
+    return redirect()->route('home')->with('success', 'Barbearia criada com sucesso');
+}
 
     public function barbeariaDetalhes($id_barbearia)
     {
