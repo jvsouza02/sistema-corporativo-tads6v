@@ -1,0 +1,11 @@
+## Cenário de Teste CT022
+
+| **Componente** | **Descrição** |
+|----------------|---------------|
+| **Identificador** | **CT022** |
+| **Nome** | **Impedir cadastro de produto com preço negativo** |
+| **Objetivo** | Garantir que produtos não sejam cadastrados com preço negativo. |
+| **Tipo** | Teste exploratório |
+| **Dado** | Que o usuário informe um preço menor que zero para o produto. |
+| **Comportamento** | Ao tentar salvar o produto. |
+| **Resultados esperados** | O sistema deve exibir erro e impedir o cadastro. |
