@@ -91,9 +91,9 @@ class BarbeariaController extends Controller
             ->whereDate('data_hora', now())
             ->where('status', '!=', 'concluido')
             ->orderBy('data_hora')
-            ->get();
+            ->paginate(5);
 
-        $atendimentos = $atendimentosQuery->get();
+        $atendimentos = $atendimentosQuery->paginate(6);
 
         // Serviços (com produtos) para o modal
         $servicos = $barbearia->servicos()->with('produtos')->get();

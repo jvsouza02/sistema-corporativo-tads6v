@@ -366,6 +366,9 @@
             </div>
         @endif
     </div>
+    <div class="d-flex justify-content-center mt-4">
+        {{ $servicos->links() }}
+    </div>
 @endsection
 
 @push('scripts')

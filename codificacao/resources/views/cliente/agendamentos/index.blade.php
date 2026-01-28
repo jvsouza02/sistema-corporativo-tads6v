@@ -108,11 +108,11 @@
                         </div>
                     </div>
                 </div>
-
             @endforeach
-
         </div>
-
+        <div class="d-flex justify-content-center mt-4">
+            {{ $agendamentos->links() }}
+        </div>
     @endif
 </div>
 

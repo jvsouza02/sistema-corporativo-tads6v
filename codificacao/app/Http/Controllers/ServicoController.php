@@ -22,7 +22,7 @@ class ServicoController extends Controller
         $servicos = $barbearia->servicos()
             ->with('produtos')
             ->orderBy('nome')
-            ->get();
+            ->paginate(10);
 
         // Busca produtos da barbearia para o formulário
         $produtos = $barbearia->produtos()

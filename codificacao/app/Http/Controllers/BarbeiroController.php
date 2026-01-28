@@ -24,7 +24,7 @@ class BarbeiroController extends Controller
                 ->where('id_proprietario', auth()->user()->proprietario->id_proprietario)
                 ->get();
 
-            $barbeiros = Barbeiro::where('id_barbearia', $request->id_barbearia)->get();
+            $barbeiros = Barbeiro::where('id_barbearia', $request->id_barbearia)->paginate(5);
 
         } catch (\Exception $e) {
             return redirect()->back()

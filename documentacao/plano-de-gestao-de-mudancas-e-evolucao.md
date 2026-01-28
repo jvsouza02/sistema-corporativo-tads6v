@@ -118,8 +118,6 @@ Board configurado com as colunas:
 - **Título:** `[type] <resumo curto> (#<id se houver>)`  
 - **Descrição:** contexto, problema/necessidade, passos para reproduzir (se bug), cenário esperado.  
 - **Critérios de aceitação:** lista clara e testável.  
-- **Impacto:** sistemas/funcionalidades afetadas. 
-- **Milestone:** iteração/versão alvo.
 
 **Rastreabilidade**  
 - Todos os commits devem mencionar a Issue (`#<id>`).  
