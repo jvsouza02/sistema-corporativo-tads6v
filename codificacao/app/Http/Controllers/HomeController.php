@@ -87,7 +87,7 @@ class HomeController extends Controller
                 DB::raw('COALESCE(asw.atendimentos_semana, 0) as atendimentos_semana'),
                 DB::raw('COALESCE(bs.total_barbeiros, 0) as total_barbeiros')
             )
-            ->get();
+            ->paginate(6);
 
         return view('barbearias.dashboard', compact('barbearias'));
     }

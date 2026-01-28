@@ -17,7 +17,7 @@ class AgendamentoController extends Controller
      */
     public function createCliente()
     {
-        $barbearias = Barbearia::all();
+        $barbearias = Barbearia::paginate(8);
 
         return view('cliente.agendamentos.novo', compact('barbearias'));
     }
@@ -118,7 +118,7 @@ class AgendamentoController extends Controller
         $agendamentos = Agendamento::with('barbearia')
             ->where('id_cliente', $idCliente)
             ->orderBy('data_hora', 'asc')
-            ->get();
+            ->paginate(6);
 
         return view('cliente.agendamentos.index', compact('agendamentos'));
     }

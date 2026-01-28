@@ -8,11 +8,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-4 text-center mb-3 mb-md-0">
-                    <img src="{{ $barbearia->foto_url 
-                                            ? asset('storage/' . $barbearia->foto_url) 
-                                            : asset('images/default-barbearia.jpg') }}"
-                                        class="card-img-top"
-                                        alt="{{ $barbearia->nome }}">
+                    <img src="{{ $barbearia->foto_url ? asset('storage/' . $barbearia->foto_url) : asset('images/default-barbearia.jpg') }}"
+                        class="card-img-top" alt="{{ $barbearia->nome }}">
                 </div>
                 <div class="col-md-8">
                     <h1>{{ $barbearia->nome }}</h1>
@@ -88,6 +85,9 @@
             @else
                 <div class="alert alert-info">Nenhum agendamento para hoje.</div>
             @endif
+            <div class="d-flex justify-content-center mt-4">
+                {{ $agendamentos_hoje->links() }}
+            </div>
         </div>
 
         {{-- ATENDIMENTOS REALIZADOS --}}
@@ -171,6 +171,9 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                {{ $atendimentos->links() }}
             </div>
         @endif
     </div>
