@@ -98,11 +98,12 @@ Os testes serão divididos em três camadas:
 | **Fase**                                  | **Data de Início** | **Data de término** |
 | ----------------------------------------- | ------------------ | ------------------- |
 | Planejamento de testes                    | 29/10/2025         | 02/11/2025          |
-| Criação dos cenários de teste (Unitários) | 07/11/2025         | 08/11/2025          |
+| Criação dos cenários de teste unitários   | 07/11/2025         | 08/11/2025          |
 | Execução dos testes unitários             | 09/11/2025         | 11/11/2025          |
-| Criação dos cenários de Integração        | 13/12/2025         | 14/12/2025          |
+| Criação dos cenários de testes de integração        | 13/12/2025         | 14/12/2025          |
 | Execução dos testes de Integração         | 15/12/2025         | 16/12/2025          |
-| Execução dos testes exploratórios         | 19/01/2026         | 03/02/2026          |
+| Criação dos cenários de teste exploratórios         | 27/01/2026        | 29/01/2026          |
+| Execução dos testes exploratórios         | 30/01/2026         | 03/02/2026          |
 
 ## 6. Entregas
 
