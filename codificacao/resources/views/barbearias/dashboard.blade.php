@@ -124,12 +124,12 @@
                         <div class="row">
                             <div class="col-md-4 mb-3">
                                 <label class="form-label">Nome da Barbearia</label>
-                                <input type="text" name="nome" class="form-control" required>
+                                <input type="text" name="nome" class="form-control" placeholder ="Barbearia do Zé" required>
                             </div>
 
                             <div class="col-md-4 mb-3">
                                 <label class="form-label">E-mail</label>
-                                <input type="email" name="email" class="form-control" required>
+                                <input type="email" name="email" class="form-control" placeholder="contato@gmail.com" required>
                             </div>
 
                             <div class="col-md-4 mb-3">
@@ -140,7 +140,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Endereço</label>
-                            <input type="text" name="endereco" class="form-control" required>
+                            <input type="text" name="endereco" class="form-control" placeholder="Rua das Flores, 123 - Centro" required>
                         </div>
 
                         <div class="row">
@@ -157,12 +157,12 @@
 
                         <div class="mb-3">
                             <label class="form-label">Foto</label>
-                            <input type="file" name="foto_url" class="form-control" accept="image/*">
+                            <input type="file" name="foto_url" class="form-control" accept="image/*" placeolhder="Nenhum arquivo selecionado">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Descrição</label>
-                            <textarea name="descricao" class="form-control" rows="3" required></textarea>
+                            <textarea name="descricao" class="form-control" rows="3" placeholder="Barbearia tradicional e moderna, com cortes, barbas e atendimento personalizado para valorizar seu estilo." required></textarea>
                         </div>
                     </div>
 
@@ -179,7 +179,7 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-        
+    
     const telefoneInput = document.getElementById('telefone');
     if (telefoneInput) {
         telefoneInput.addEventListener('input', function(e) {
@@ -198,14 +198,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    function aplicarMascaraHorario(input) {
+        function aplicarMascaraHorario(input) {
         input.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, ''); 
             
             if (value.length > 4) {
-                value = value.slice(0, 4);
+                value = value.slice(0, 4); 
             }
-
+            
+            
             if (value.length >= 3) {
                 value = value.replace(/^(\d{2})(\d)/, '$1:$2');
             }
@@ -219,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (value.length === 4) {
                 let horas = parseInt(value.slice(0, 2));
                 let minutos = parseInt(value.slice(2, 4));
-                
+
                 if (horas > 23) horas = 23;
                 if (minutos > 59) minutos = 59;
                 
