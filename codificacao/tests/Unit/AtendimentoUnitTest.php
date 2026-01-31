@@ -4,9 +4,18 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use App\Models\Atendimento;
+use App\Models\Servico;
+use Illuminate\Database\Eloquent\Collection;
+use Mockery;
 
 class AtendimentoUnitTest extends TestCase
 {
+    protected function tearDown(): void
+    {
+        Mockery::close();
+        parent::tearDown();
+    }
+
     /**
      * CT001: Registrar atendimento sem itens
      * Verificar o que acontece quando o barbeiro tenta registrar
@@ -15,11 +24,22 @@ class AtendimentoUnitTest extends TestCase
     public function test_ct001_verifica_se_atendimento_tem_servico()
     {
         // Atendimento COM serviço
-        $atendimentoComServico = new Atendimento(['servico' => 'Corte Social']);
+        $atendimentoComServico = new Atendimento(['valor_total' => 30.00]);
+
+        // Mock da relação servicos com 1 item
+        $servicoMock = Mockery::mock(Servico::class);
+        $collectionComServico = new Collection([$servicoMock]);
+        $atendimentoComServico->setRelation('servicos', $collectionComServico);
+
         $this->assertTrue($atendimentoComServico->temServico());
 
         // Atendimento SEM serviço
-        $atendimentoSemServico = new Atendimento(['servico' => '']);
+        $atendimentoSemServico = new Atendimento(['valor_total' => 0.00]);
+
+        // Mock da relação servicos vazia
+        $collectionSemServico = new Collection([]);
+        $atendimentoSemServico->setRelation('servicos', $collectionSemServico);
+
         $this->assertFalse($atendimentoSemServico->temServico());
     }
 
@@ -31,8 +51,6 @@ class AtendimentoUnitTest extends TestCase
     public function test_ct002_aceita_valor_zero()
     {
         $atendimento = new Atendimento([
-            'servico' => 'Corte Social',
-            'produto' => 'Nenhum',
             'valor_total' => 0.00
         ]);
 
@@ -48,14 +66,14 @@ class AtendimentoUnitTest extends TestCase
     public function test_ct003_calcula_valores_decimais_corretamente()
     {
         $atendimento = new Atendimento([
-            'servico' => 'Corte + Barba',
-            'produto' => 'Pomada',
             'valor_total' => 45.75
         ]);
 
         $this->assertEquals(45.75, $atendimento->calcularValorTotal());
         $this->assertTrue($atendimento->valorComDecimaisCorreto());
-        $this->assertIsFloat($atendimento->valor_total);
+
+        // Aceita string ou numeric devido ao cast decimal:2
+        $this->assertIsNumeric($atendimento->valor_total);
     }
 
     /**
@@ -64,8 +82,6 @@ class AtendimentoUnitTest extends TestCase
     public function test_ct004_precisao_com_multiplos_decimais()
     {
         $atendimento = new Atendimento([
-            'servico' => 'Corte Degradê',
-            'produto' => 'Gel',
             'valor_total' => 73.50
         ]);
 
@@ -83,17 +99,15 @@ class AtendimentoUnitTest extends TestCase
     public function test_ct005_atualiza_valor_ao_editar()
     {
         $atendimento = new Atendimento([
-            'servico' => 'Corte Social',
-            'produto' => 'Nenhum',
             'valor_total' => 30.00
         ]);
 
-        $this->assertEquals(30.00, $atendimento->valor_total);
+        $this->assertEquals(30.00, (float) $atendimento->valor_total);
 
-        // Editar o valor
+        // Editar o valor (sem salvar no banco em teste unitário)
         $atendimento->atualizarValor(52.00);
 
-        $this->assertEquals(52.00, $atendimento->valor_total);
+        $this->assertEquals(52.00, (float) $atendimento->valor_total);
         $this->assertEquals(52.00, $atendimento->calcularValorTotal());
     }
 
@@ -104,7 +118,6 @@ class AtendimentoUnitTest extends TestCase
     public function test_ct006_detecta_valor_negativo()
     {
         $atendimento = new Atendimento([
-            'servico' => 'Corte Social',
             'valor_total' => -50.00
         ]);
 
@@ -118,7 +131,6 @@ class AtendimentoUnitTest extends TestCase
     public function test_ct007_aceita_valor_positivo()
     {
         $atendimento = new Atendimento([
-            'servico' => 'Corte Social',
             'valor_total' => 50.00
         ]);
 
