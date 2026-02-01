@@ -141,7 +141,7 @@
                         <div class="col-md-6">
                             <label for="nome" class="form-label">Nome Completo</label>
                             <input type="text" class="form-control @error('nome') is-invalid @enderror" id="nome"
-                                name="nome" value="{{ old('nome') }}" required>
+                                name="nome" value="{{ old('nome') }}" placeholder="José Almedia" required>
                             @error('nome')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -150,7 +150,7 @@
                         <div class="col-md-6">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                                name="email" value="{{ old('email') }}" required>
+                                name="email" value="{{ old('email') }}" placeholder="josealmeida@gmail.com" required>
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -158,8 +158,9 @@
 
                         <div class="col-md-4">
                             <label for="horario_inicio" class="form-label">Horário Início</label>
-                            <input type="time" class="form-control @error('horario_inicio') is-invalid @enderror"
-                                id="horario_inicio" name="horario_inicio" value="{{ old('horario_inicio') }}" required>
+                            <input type="text" class="form-control @error('horario_inicio') is-invalid @enderror"
+                                id="horario_inicio" name="horario_inicio" value="{{ old('horario_inicio') }}" 
+                                placeholder="08:00" maxlength="5" required>
                             @error('horario_inicio')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -167,8 +168,9 @@
 
                         <div class="col-md-4">
                             <label for="horario_fim" class="form-label">Horário Fim</label>
-                            <input type="time" class="form-control @error('horario_fim') is-invalid @enderror"
-                                id="horario_fim" name="horario_fim" value="{{ old('horario_fim') }}" required>
+                            <input type="text" class="form-control @error('horario_fim') is-invalid @enderror"
+                                id="horario_fim" name="horario_fim" value="{{ old('horario_fim') }}" 
+                                placeholder="12:00" maxlength="5" required>
                             @error('horario_fim')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -392,6 +394,40 @@
                 });
             };
 
+            function aplicarMascaraHorario(input) {
+                input.addEventListener('input', function(e) {
+                    let valor = this.value.replace(/\D/g, '');
+                    
+                    if (valor.length > 4) {
+                        valor = valor.substring(0, 4);
+                    }
+                    
+                    if (valor.length >= 3) {
+                        this.value = valor.substring(0, 2) + ':' + valor.substring(2, 4);
+                    } else if (valor.length > 0) {
+                        this.value = valor;
+                    } else {
+                        this.value = '';
+                    }
+                });
+                
+                // Validação básica para horas e minutos
+                input.addEventListener('blur', function(e) {
+                    let valor = this.value;
+                    if (valor.length === 5) {
+                        let partes = valor.split(':');
+                        let horas = parseInt(partes[0]);
+                        let minutos = parseInt(partes[1]);
+                        
+                        if (horas > 23 || minutos > 59) {
+                            this.classList.add('is-invalid');
+                        } else {
+                            this.classList.remove('is-invalid');
+                        }
+                    }
+                });
+            }
+
             // ===== VALIDAÇÃO DE SENHA =====
             const password = document.getElementById('senha');
             const passwordConfirm = document.getElementById('password_confirmation');
@@ -400,7 +436,12 @@
             const toggleIcon = document.getElementById('toggleIcon');
             const toggleIconConfirm = document.getElementById('toggleIconConfirm');
             const passwordMatchError = document.getElementById('passwordMatchError');
-
+            const horarioInicio = document.getElementById('horario_inicio');
+            const horarioFim = document.getElementById('horario_fim');
+            
+            if (horarioInicio) aplicarMascaraHorario(horarioInicio);
+            if (horarioFim) aplicarMascaraHorario(horarioFim);
+            
             // Toggle senha principal
             if (togglePassword) {
                 togglePassword.addEventListener('click', function() {
