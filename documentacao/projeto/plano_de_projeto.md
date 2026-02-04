@@ -84,7 +84,7 @@ Não fazem parte deste projeto:
 
 ---
 
-## 4.1. Definição Das Atividades Dos Pacotes De Trabalho
+## 4. Definição Das Atividades Dos Pacotes De Trabalho
 
 ### 1.1 Definir Contexto e Responsabilidades do Sistema
 
@@ -560,7 +560,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 
 ## 5. Estimativa de Esforço e Custo e Cronograma de Atividades
 
-### 5.1 Definir contexto e responsabilidades do sistema
+### 1.1 Definir contexto e responsabilidades do sistema
 
 | Atividade | GP (h) | AN (h) | AR/QA (h) | DEV (h) | Horas Totais | Início | Término | Custo (R$) |
 |-----------|--------|--------|-----------|---------|--------------|--------|---------|------------|
@@ -570,7 +570,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 | 1.1.4 Determinando Público-Alvo e Necessidade do Negócio | 4h | 4h | 0h | 0h | 8h | 04/10/2025 | 04/10/2025 | 526,32 |
 | **Total do Pacote 1** | **20h** | **16h** | **0h** | **0h** | **36h** | **01/10/2025** | **04/10/2025** | **2.381,59** |
 
-### 5.2 Gerenciar Cadastros de Barbearias e Barbeiros, e Registrar Atendimentos
+### 1.2 Gerenciar Cadastros de Barbearias e Barbeiros, e Registrar Atendimentos
 
 | Atividade | GP (h) | AN (h) | AR/QA (h) | DEV (h) | Horas Totais | Início | Término | Custo (R$) |
 |-----------|--------|--------|-----------|---------|--------------|--------|---------|------------|
@@ -583,7 +583,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 | 1.2.7 Criando Documentos de Requisitos e Especificação de Requisitos | 0h | 0h | 4h | 0h | 4h | 14/10/2025 | 14/10/2025 | 225,00 |
 | **Total Pacote 2** | **4h** | **4h** | **12h** | **48h** | **68h** | **08/10/2025** | **14/10/2025** | **2.467,32** |
 
-### 5.3 Administrar Funções ao Proprietário e Acesso ao Sistema
+### 1.3 Administrar Funções ao Proprietário e Acesso ao Sistema
 
 | Atividade | GP (h) | AN (h) | AR/QA (h) | DEV (h) | Horas Totais | Início | Término | Custo (R$) |
 |-----------|--------|--------|-----------|---------|--------------|--------|---------|------------|
@@ -595,7 +595,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 | 1.3.6 Aprimoramento da Funcionalidade I de Registrar Atendimentos e Gerenciar Barbearias | 0h | 0h | 0h | 8h | 8h | 20/10/2025 | 20/10/2025 | 211,00 |
 | **Total Pacote 3** | **4h** | **4h** | **8h** | **40h** | **56h** | **15/10/2025** | **20/10/2025** | **2.031,32** |
 
-### 5.4 Visualizar Consulta de Barbearias e Realização de Agendamentos
+### 1.4 Visualizar Consulta de Barbearias e Realização de Agendamentos
 
 | Atividade | GP (h) | AN (h) | AR/QA (h) | DEV (h) | Horas Totais | Início | Término | Custo (R$) |
 |-----------|--------|--------|-----------|---------|--------------|--------|---------|------------|
@@ -607,7 +607,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 | 1.4.6 Aprimoramento da Funcionalidade II: Registrar Atendimentos e Gerenciar Barbearias | 0h | 0h | 0h | 8h | 8h | 28/10/2025 | 28/10/2025 | 211,00 |
 | **Total Pacote 4** | **4h** | **8h** | **8h** | **40h** | **56h** | **23/10/2025** | **28/10/2025** | **2.031,32** |
 
-### 5.5 Transferir Barbeiros Entre Barbearias
+### 1.5 Transferir Barbeiros Entre Barbearias
 
 | Atividade | GP (h) | AN (h) | AR/QA (h) | DEV (h) | Horas Totais | Início | Término | Custo (R$) |
 |-----------|--------|--------|-----------|---------|--------------|--------|---------|------------|
@@ -618,7 +618,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 | 1.5.5 Criando Plano de Testes | 0h | 0h | 4h | 0h | 4h | 04/11/2025 | 04/11/2025 | 225,00 |
 | **Total Pacote 5** | **4h** | **4h** | **12h** | **16h** | **36h** | **30/10/2025** | **04/11/2025** | **1.623,32** |
 
-### 5.6 Realizar Testes Unitários
+### 1.6 Realizar Testes Unitários
 
 | Atividade | GP (h) | AN (h) | AR/QA (h) | DEV (h) | Horas Totais | Início | Término | Custo (R$) |
 |-----------|--------|--------|-----------|---------|--------------|--------|---------|------------|
@@ -628,7 +628,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 | 1.6.4 Ajuste no Plano de Testes I: Aprimorar Modelo de Documento | 0h | 0h | 4h | 0h | 4h | 10/11/2025 | 10/11/2025 | 225,00 |
 | **Total Pacote 6** | **8h** | **4h** | **8h** | **16h** | **36h** | **06/11/2025** | **10/11/2025** | **1.674,63** |
 
-### 5.7 Resolver Inconsistências na Documentação
+### 1.7 Resolver Inconsistências na Documentação
 
 | Atividade | GP (h) | AN (h) | AR/QA (h) | DEV (h) | Horas Totais | Início | Término | Custo (R$) |
 |-----------|--------|--------|-----------|---------|--------------|--------|---------|------------|
@@ -640,7 +640,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 | 1.7.6 Ajustes no Plano de Projeto II: Correção na EAP e Cronograma | 8h | 4h | 0h | 0h | 12h | 19/11/2025 | 19/11/2025 | 802,63 |
 | **Total Pacote 7** | **8h** | **4h** | **12h** | **16h** | **40h** | **13/11/2025** | **19/11/2025** | **1.899,63** |
 
-### 5.8 Gerenciar Histórico de Atendimentos e Serviços
+### 1.8 Gerenciar Histórico de Atendimentos e Serviços
 
 | Atividade | GP (h) | AN (h) | AR/QA (h) | DEV (h) | Horas Totais | Início | Término | Custo (R$) |
 |-----------|--------|--------|-----------|---------|--------------|--------|---------|------------|
@@ -651,7 +651,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 | 1.8.5 Implementação da Funcionalidade de Histórico de Atendimentos | 0h | 0h | 0h | 16h | 16h | 25/11/2025 | 26/11/2025 | 422,00 |
 | **Total Pacote 8** | **4h** | **4h** | **8h** | **32h** | **48h** | **20/11/2025** | **26/11/2025** | **1.820,32** |
 
-### 5.9 Cadastrar Clientes ao Sistema e Gerenciar Produtos e Estoques
+### 1.9 Cadastrar Clientes ao Sistema e Gerenciar Produtos e Estoques
 
 | Atividade | GP (h) | AN (h) | AR/QA (h) | DEV (h) | Horas Totais | Início | Término | Custo (R$) |
 |-----------|--------|--------|-----------|---------|--------------|--------|---------|------------|
@@ -664,7 +664,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 | 1.9.7 Implementação da Funcionalidade de Alerta de Estoque Baixo | 0h | 0h | 0h | 8h | 8h | 03/12/2025 | 03/12/2025 | 211,00 |
 | **Total Pacote 9** | **4h** | **4h** | **8h** | **56h** | **68h** | **27/11/2025** | **03/12/2025** | **2.453,32** |
 
-### 5.10 Realizar Testes de Integração
+### 1.10 Realizar Testes de Integração
 
 | Atividade | GP (h) | AN (h) | AR/QA (h) | DEV (h) | Horas Totais | Início | Término | Custo (R$) |
 |-----------|--------|--------|-----------|---------|--------------|--------|---------|------------|
@@ -676,7 +676,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 | 1.10.6 Gerando Relatório de Testes II | 0h | 0h | 0h | 4h | 4h | 10/12/2025 | 10/12/2025 | 105,50 |
 | **Total Pacote 10** | **8h** | **4h** | **8h** | **28h** | **48h** | **04/12/2025** | **10/12/2025** | **1.991,13** |
 
-### 5.11 Realizar Testes Exploratórios
+### 1.11 Realizar Testes Exploratórios
 
 | Atividade | GP (h) | AN (h) | AR/QA (h) | DEV (h) | Horas Totais | Início | Término | Custo (R$) |
 |-----------|--------|--------|-----------|---------|--------------|--------|---------|------------|
@@ -684,7 +684,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 | 1.11.2 Ajuste Plano de Testes IV: Incluir Teste Exploratório | 0h | 0h | 4h | 0h | 4h | 23/01/2026 | 23/01/2026 | 225,00 |
 | **Total Pacote 11** | **0h** | **0h** | **8h** | **0h** | **8h** | **22/01/2026** | **23/01/2026** | **450,00** |
 
-### 5.12 Consolidar Documentação e Testes
+### 1.12 Consolidar Documentação e Testes
 
 | Atividade | GP (h) | AN (h) | AR/QA (h) | DEV (h) | Horas Totais | Início | Término | Custo (R$) |
 |-----------|--------|--------|-----------|---------|--------------|--------|---------|------------|
@@ -698,7 +698,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 
 ---
 
-## 6. Resumo Geral do Esforço e Custo
+## Resumo Geral do Esforço e Custo
 
 | Papel | Total de Horas | Custo Total (R$) |
 |-------|----------------|------------------|
@@ -710,7 +710,7 @@ Documento de Especificação de Requisitos Final; Documento de Requisitos Final;
 
 ---
 
-## 7. Acompanhamento do Desempenho do Projeto
+## 6. Acompanhamento do Desempenho do Projeto
 
 ### Figura 2: Gráfico Ideal x Real
 
@@ -738,7 +738,7 @@ Apresenta o índice de desempenho de custo (IDC) do projeto. A linha reta em 1,0
 
 ---
 
-## 8. Diagrama de Gantt
+## 7. Diagrama de Gantt
 
 **Figura 6:** O diagrama de Gantt é uma ferramenta visual de gestão de projetos que exibe tarefas e cronogramas em uma linha do tempo.
 
@@ -746,7 +746,7 @@ Apresenta o índice de desempenho de custo (IDC) do projeto. A linha reta em 1,0
 
 ---
 
-## 9. Diagrama de Atividades do Projeto
+## 8. Diagrama de Atividades do Projeto
 
 **Figura 7:** A seguir o diagrama de atividade do projeto.
 
@@ -754,7 +754,7 @@ Apresenta o índice de desempenho de custo (IDC) do projeto. A linha reta em 1,0
 
 ---
 
-## 10. Ferramentas Utilizadas
+## 9. Ferramentas Utilizadas
 
 Durante o desenvolvimento do sistema foram utilizadas as seguintes ferramentas:
 
