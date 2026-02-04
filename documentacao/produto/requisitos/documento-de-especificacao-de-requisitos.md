@@ -665,10 +665,3 @@ A seguir temos a documentação que detalha cada caso de uso do MCDU, com a desc
 
 ![Diagrama ER](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/Diagrama-ER.png?raw=true)
 
----
-
-## 5. Diagrama de Domínio
-
-**Figura 4:** Diagrama de domínio do sistema de agendamento e gestão de barbearias.
-
-![Diagrama de Domínio](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/Diagrama-Dominio.png?raw=true)
