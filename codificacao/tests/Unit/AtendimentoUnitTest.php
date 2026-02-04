@@ -23,20 +23,16 @@ class AtendimentoUnitTest extends TestCase
      */
     public function test_ct001_verifica_se_atendimento_tem_servico()
     {
-        // Atendimento COM serviço
         $atendimentoComServico = new Atendimento(['valor_total' => 30.00]);
 
-        // Mock da relação servicos com 1 item
         $servicoMock = Mockery::mock(Servico::class);
         $collectionComServico = new Collection([$servicoMock]);
         $atendimentoComServico->setRelation('servicos', $collectionComServico);
 
         $this->assertTrue($atendimentoComServico->temServico());
 
-        // Atendimento SEM serviço
         $atendimentoSemServico = new Atendimento(['valor_total' => 0.00]);
 
-        // Mock da relação servicos vazia
         $collectionSemServico = new Collection([]);
         $atendimentoSemServico->setRelation('servicos', $collectionSemServico);
 

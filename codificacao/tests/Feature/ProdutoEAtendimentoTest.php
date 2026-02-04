@@ -59,7 +59,7 @@ class ProdutoEAtendimentoTest extends TestCase
 
         $barbeiro = Barbeiro::factory()->create(['id_barbearia' => $servico->id_barbearia]);
         $cliente = Cliente::factory()->create();
-        
+
         $this->actingAs($barbeiro->user)->post(route('atendimentos.store'), [
             'id_barbearia' => $servico->id_barbearia,
             'id_cliente' => $cliente->id_cliente,
@@ -73,11 +73,11 @@ class ProdutoEAtendimentoTest extends TestCase
             ->where('id_atendimento', $atendimento->id_atendimento)
             ->where('id_servico', $servico->id_servico)
             ->first();
-        
+
         $valorOriginal = $atendimentoServico->valor_cobrado;
 
         $proprietario = Proprietario::factory()->create();
-        
+
         //atualiza pra 50
         $this->actingAs($proprietario->user)->put(route('servicos.update', $servico->id_servico), [
             'nome' => $servico->nome,
@@ -90,10 +90,10 @@ class ProdutoEAtendimentoTest extends TestCase
             ->where('id_atendimento', $atendimento->id_atendimento)
             ->where('id_servico', $servico->id_servico)
             ->first();
-        
+
         $this->assertEquals($valorOriginal, $atendimentoServicoDepois->valor_cobrado);
     }
-        
+
 
     /**
     * CT020 — Associar mais de um produto a um serviço
@@ -101,22 +101,22 @@ class ProdutoEAtendimentoTest extends TestCase
     public function test_ct020_associar_mais_de_um_produto_a_um_servico()
     {
         $servico = Servico::factory()->create();
-        
+
         $produto1 = Produto::factory()->create();
         $produto2 = Produto::factory()->create();
-        
+
         Estoque::factory()->create([
             'id_barbearia' => $servico->id_barbearia,
             'id_produto' => $produto1->id_produto,
             'quantidade' => 10,
         ]);
-        
+
         Estoque::factory()->create([
             'id_barbearia' => $servico->id_barbearia,
             'id_produto' => $produto2->id_produto,
             'quantidade' => 10,
         ]);
-        
+
         DB::table('servico_produto')->insert([
             [
                 'id_servico' => $servico->id_servico,
@@ -129,23 +129,23 @@ class ProdutoEAtendimentoTest extends TestCase
                 'quantidade_utilizada' => 1,
             ]
         ]);
-        
+
         $barbeiro = Barbeiro::factory()->create(['id_barbearia' => $servico->id_barbearia]);
         $cliente = Cliente::factory()->create();
-        
+
         $this->actingAs($barbeiro->user)->post(route('atendimentos.store'), [
             'id_barbearia' => $servico->id_barbearia,
             'id_cliente' => $cliente->id_cliente,
             'servicos' => [$servico->id_servico],
             'status' => 'finalizado',
         ]);
-        
+
         $atendimento = Atendimento::latest()->first();
-        
+
         $produtosAtendimento = DB::table('atendimento_produto')
             ->where('id_atendimento', $atendimento->id_atendimento)
             ->get();
-        
+
         $this->assertCount(2, $produtosAtendimento);
     }
 
@@ -157,29 +157,29 @@ class ProdutoEAtendimentoTest extends TestCase
         $servico = Servico::factory()->create();
 
         $produto = Produto::factory()->create();
-        
+
         DB::table('servico_produto')->insert([
             'id_servico' => $servico->id_servico,
             'id_produto' => $produto->id_produto,
             'quantidade_utilizada' => 1,
         ]);
-        
+
         Estoque::factory()->create([
             'id_barbearia' => $servico->id_barbearia,
             'id_produto' => $produto->id_produto,
             'quantidade' => 0, //sem estoque
         ]);
-        
+
         $barbeiro = Barbeiro::factory()->create(['id_barbearia' => $servico->id_barbearia]);
         $cliente = Cliente::factory()->create();
-        
+
         $response = $this->actingAs($barbeiro->user)->post(route('atendimentos.store'), [
             'id_barbearia' => $servico->id_barbearia,
             'id_cliente' => $cliente->id_cliente,
             'servicos' => [$servico->id_servico],
             'status' => 'finalizado',
         ]);
-        
+
         $atendimento = Atendimento::first();
         $this->assertNull($atendimento, 'O sistema permitiu criar um atendimento sem estoque disponível.');
     }
@@ -300,19 +300,19 @@ class ProdutoEAtendimentoTest extends TestCase
      */
     public function test_ct025_alterar_preco_produto_nao_afeta_atendimentos_antigos()
     {
-        // Arrange: cria barbeiro (factory já cria barbearia e user)
+
         $barbeiro = Barbeiro::factory()->create();
         $userBarbeiro = $barbeiro->user;
         $barbearia = $barbeiro->barbearia;
 
-        // Proprietario que fará a atualização do produto (rota exige proprietario-access)
+
         $proprietario = Proprietario::factory()->create();
         $userProprietario = $proprietario->user;
 
-        // Cliente necessário para criar o atendimento sem agendamento
+
         $cliente = Cliente::factory()->create();
 
-        // Produto e estoque na mesma barbearia
+
         $produto = Produto::factory()->create(['preco' => 20.00]);
 
         Estoque::factory()->create([
@@ -321,13 +321,13 @@ class ProdutoEAtendimentoTest extends TestCase
             'quantidade' => 10,
         ]);
 
-        // Serviço mínimo para satisfazer a validação de 'servicos'
+
         $servico = Servico::factory()->create([
             'id_barbearia' => $barbearia->id_barbearia,
             'preco' => 0.00,
         ]);
 
-        // Act: cria atendimento como barbeiro, usando produtos_extras (controller processa esse campo)
+
         $this->actingAs($userBarbeiro)->post(route('atendimentos.store'), [
             'id_barbearia' => $barbearia->id_barbearia,
             'id_cliente' => $cliente->id_cliente,
@@ -341,7 +341,7 @@ class ProdutoEAtendimentoTest extends TestCase
             'status' => 'finalizado',
         ])->assertStatus(302);
 
-        // Confirma pivot gravado com o preco original
+
         $pivotAntes = DB::table('atendimento_produto')
             ->where('id_produto', $produto->id_produto)
             ->first();
@@ -349,7 +349,7 @@ class ProdutoEAtendimentoTest extends TestCase
         $this->assertNotNull($pivotAntes, 'Pivot atendimento_produto não foi criado antes da alteração de preço.');
         $this->assertEquals(20.00, (float) $pivotAntes->valor_unitario);
 
-        // Agora atualiza o preço do produto como proprietario
+
         $this->actingAs($userProprietario)->put(route('produtos.update', $produto->id_produto), [
             'nome' => $produto->nome,
             'descricao' => $produto->descricao,
@@ -357,7 +357,7 @@ class ProdutoEAtendimentoTest extends TestCase
             'quantidade' => 10, // mantém estoque
         ])->assertStatus(302);
 
-        // Re-lê pivot — deve permanecer com valor_unitario antigo (20.00)
+
         $pivotDepois = DB::table('atendimento_produto')
             ->where('id_produto', $produto->id_produto)
             ->first();

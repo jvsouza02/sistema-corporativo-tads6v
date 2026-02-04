@@ -22,34 +22,51 @@
 
 ### 1.1. Priorização e Aprovação de Mudanças
 
-**Visão geral do fluxo**  
+#### Visão geral do fluxo
 1. Qualquer solicitação (correção, melhoria, nova funcionalidade) é registrada como **Issue** no repositório.  
 2. O **Analista de Negócio (AN)** realiza a pré-análise: impacto no minimundo, requisitos afetados, riscos e dependências.  
-3. A Issue recebe: tipo (`bug|feature|improvement`), prioridade provisória, impacto e responsável provisório.  
-4. Em revisão de iteração (Sprint Review) o **Cliente** e o **Gerente de Projeto (GP)** validam prioridade final e definem fica para iteração futura ou é rejeitada.
+3. A Issue recebe: tipo (`bug | feature | improvement`), prioridade provisória, impacto e responsável provisório.  
+4. Em revisão de iteração (Sprint Review), o **Cliente** e o **Gerente de Projeto (GP)** validam a prioridade final e definem se a Issue:
+   - entra em uma iteração futura, ou  
+   - é rejeitada.
 
-**Critérios de priorização**  
+---
+
+#### Critérios de priorização
 As decisões devem ponderar, pelo menos, os seguintes critérios (em ordem prática de avaliação):
 
 - **Valor para o cliente / negócio** — impacto direto no fluxo de clientes, agendamento (RF010), faturamento ou integridade de estoque (RF009, RF012).  
-- **Risco / severidade** — potencial de causar perda de dados, indisponibilidade ou impacto financeiro.  
-- **Urgência** — se afeta produção ou entrega contratual.  
-- **Esforço estimado** — custo em horas/pontos e viabilidade dentro da capacidade da equipe.  
-- **Dependências técnicas** — bloqueios que exigem outras entregas antes.  
+- **Risco / severidade** — potencial de causar perda de dados, indisponibilidade do sistema ou impacto financeiro.  
+- **Urgência** — se afeta ambiente de produção ou compromete entregas contratuais.  
+- **Esforço estimado** — custo em horas ou pontos de história e viabilidade dentro da capacidade da equipe.  
+- **Dependências técnicas** — bloqueios que exigem outras entregas antes da implementação.
 
-Cada Issue deverá ter uma nota/taxonomia resultante (ex.: `Prioridade: Alto | Médio | Baixo`) baseada nestes critérios.
+Cada Issue deverá possuir uma classificação final de prioridade, por exemplo:  
+`Prioridade: Alta | Média | Baixa`, baseada na análise conjunta desses critérios.
 
-**Processo de aprovação / rejeição**  
-- **Novas features (mudança de escopo):** decisão tomada pelo GP durante planejamento de sprint, após recomendação do AN; só entram na iteração se houver capacidade e acordo do cliente.  
-- **Correções não-críticas:** aprovadas pelo GP/AN dentro do fluxo normal (serão agendadas).  
-- **Correções críticas (hotfix):** aprovadas imediatamente pelo AN (ver seção 1.2).  
-- **Rejeição:** deve ser registrada na Issue com justificativa, possível alternativa sugerida e, se pertinente, link para outra Issue que trate da solução.
+---
 
-**Responsabilidades**  
-- **Cliente:** valida prioridade final e aceita entregas.  
-- **Analista de Negócio (AN):** analisa impacto, escreve critérios de aceitação e recomenda prioridade.  
-- **Gerente de Projeto (GP):** decide alocação em iterações e resolve conflitos de prioridade.  
-- **Desenvolvedor/QA:** estimam esforço e garantem qualidade das entregas.
+#### Método de Priorização RICE
+
+Como apoio quantitativo à definição de prioridade, pode-se aplicar o **método RICE**, principalmente quando houver conflito ou disputa entre múltiplas Issues.
+
+O método RICE avalia cada Issue a partir de quatro fatores:
+
+- **Reach (Alcance)** — quantidade de usuários, clientes ou operações impactadas em um determinado período (ex.: por sprint ou por mês).  
+- **Impact (Impacto)** — grau de impacto da Issue no negócio ou na experiência do cliente.  
+  - Escala:
+    - 3 = impacto alto  
+    - 2 = impacto médio  
+    - 1 = impacto baixo  
+    - 0,5 = impacto mínimo  
+- **Confidence (Confiança)** — nível de certeza das estimativas de alcance e impacto.  
+  - Escala percentual típica: 100%, 80% ou 50%.  
+- **Effort (Esforço)** — esforço necessário para implementação, estimado em horas ou pontos de história.
+
+**Fórmula do RICE:**
+```
+RICE = (Reach × Impact × Confidence) ÷ Effort
+```
 
 ---
 
