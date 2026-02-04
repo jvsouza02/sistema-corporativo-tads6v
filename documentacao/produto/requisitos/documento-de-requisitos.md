@@ -45,7 +45,9 @@ A plataforma integra todas essas operações em um único ambiente, garantindo o
 
 ## 4. Diagrama de Domínio
 
-O diagrama de domínio é uma representação visual das entidades conceituais.
+**Figura 2:** O diagrama de domínio é uma representação visual das entidades conceituais.
+
+![Diagrama de Domínio](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/produto/diagramas/Diagrama-Dominio.png?raw=true)
 
 ---
 
