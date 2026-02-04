@@ -742,7 +742,7 @@ Apresenta o índice de desempenho de custo (IDC) do projeto. A linha reta em 1,0
 
 **Figura 6:** O diagrama de Gantt é uma ferramenta visual de gestão de projetos que exibe tarefas e cronogramas em uma linha do tempo.
 
-![Diagrama de Gantt](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/Grafico-Gantt.jpeg)
+![Diagrama de Gantt](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/Gantt.jpg)
 
 ---
 
