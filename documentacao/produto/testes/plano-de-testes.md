@@ -1,127 +1,135 @@
-# Plano de Testes
+# Plano de Testes - Sistema de Gestão de Barbearias - Versão 3.0
 
 **Discentes:** Yuri Fernandes, Maria da Paz, João Victor, Lucas Freitas.
 **Projeto:** Sistema de Gestão de Barbearias.
 
-| **Seção**                     | **Detalhes**                                                                 |
-| ----------------------------- | ---------------------------------------------------------------------------- |
-| **Título do Plano de Testes** | Plano de Testes - Sistema de Agendamento e Gestão de Barbearias              |
-| **Preparado por**             | Yuri Fernandes, Maria da Paz (Analistas de Requisito e Qualidade)            |
-| **Data da Ultima Atualização**| 28/01/2026                                                                   |
-
 ## 1. Introdução
 
-Este documento apresenta o Plano de Testes do Sistema de Agendamento e Gestão de Barbearias. Ele tem como objetivo explicar como os testes serão organizados e realizados, garantindo que todas as funcionalidades funcionem corretamente antes da entrega final.
+Este documento apresenta o Plano de Testes do Sistema de Agendamento e Gestão de Barbearias. Seu objetivo é explicar, de forma clara, como os testes foram planejados e executados para garantir que o sistema funcione corretamente antes da entrega final.
 
-O plano descreve o escopo do que será testado, os objetivos, a forma de execução, o cronograma, as entregas e os critérios de entrada e saída dos testes.
+O plano descreve o que será testado, os objetivos dos testes, como eles serão realizados, as etapas do processo, as entregas previstas e os critérios para iniciar e encerrar os testes.
 
-Esse documento serve como guia para a equipe de desenvolvimento e qualidade, garantindo que o sistema atenda aos requisitos, que os componentes se integrem corretamente (banco de dados e regras de negócio) e ofereça boa experiência ao usuário.
+Este documento serve como um guia para a equipe de desenvolvimento e testes, ajudando a garantir que todas as funcionalidades funcionem como esperado, que as regras de negócio e o banco de dados estejam integrados corretamente e que o sistema ofereça uma boa experiência ao usuário.
 
 ## 2. Escopo de Testes
 
-**Módulos e funcionalidades a serem testados (escopo geral):**
+### Módulos e funcionalidades a serem testados (escopo geral):
 
-* Criação e edição de barbearias.
-* Cadastro, edição e gerenciamento de barbeiros.
-* Registro, edição e exclusão de atendimentos.
-* Cálculo automático de valores totais em atendimentos.
-* Controle de acesso e autenticação de usuários (proprietário e barbeiro).
-* Exibição de mensagens de validação e feedback do sistema.
-* Visualização de histórico de atendimentos.
-* Persistência e recuperação de dados no Banco de Dados - Respostas das rotas (Endpoints) da Aplicação
+1.  **Atendimentos:** registro, edição, exclusão, cálculo automático de valores, validação de valores negativos e manutenção do histórico.
+2.  **Autenticação e acesso:** login de barbeiros com validação de e-mail, senha e mensagens de erro.
+3.  **Agendamentos:** criação, bloqueio de horários ocupados e cancelamento de agendamentos.
+4.  **Serviços:** cadastro, validação de valores, associação de produtos e preservação de valores em atendimentos antigos.
+5.  **Produtos e estoque:** cadastro, validação de preços, controle de estoque e cálculo de valores no atendimento.
 
-**Fora do escopo:**
+### Fora do escopo:
 
-* Testes de desempenho.
-* Testes de usabilidade.
-* Testes de segurança avançada (Penetration Testing)
+1.  Testes de desempenho.
+2.  Testes de usabilidade.
+3.  Testes de segurança avançada (Penetration Testing)
 
-## 3. Objetivos de Testes (foco desta etapa)
+## 3. Objetivos de Testes
 
-### Testes Unitários:
+O objetivo dos testes no Sistema de Agendamento e Gestão de Barbearias foi garantir que o sistema funcione corretamente e sem erros. Os testes unitários foram usados para verificar partes específicas do sistema, como os cálculos dos valores dos atendimentos, a validação de dados, o bloqueio de valores inválidos e o funcionamento do login. Esses testes ajudam a garantir que cada regra do sistema funcione corretamente antes de ser usada junto com outras partes.
 
-* Verificar se o sistema impede registrar um atendimento sem itens, garantindo que seja preciso escolher pelo menos um serviço ou produto.
-* Checar se o sistema aceita itens com valor zero e faz o cálculo total corretamente.
-* Testar se o sistema calcula os valores com centavos de forma certa, sem erros de arredondamento.
-* Garantir que não seja possível incluir itens com valor negativo e que o sistema mostre uma mensagem de erro adequada.
-* Confirmar se o valor total é atualizado automaticamente ao editar um atendimento, quando itens são adicionados, removidos ou alterados.
-* Verificar se o login do barbeiro funciona corretamente, tanto quando o e-mail está cadastrado e também quando não está cadastrado.
-* Assegurar que o sistema exiba as mensagens certas em cada situação, informando o usuário de forma clara e fácil de entender.
-
-### Testes de Integração:
-
-* Verificar se os dados de um novo atendimento são salvos corretamente no banco de dados.
-* Confirmar se a exclusão de um registro remove (ou "soft deletes") o dado no banco.
-* Validar se as rotas (URLs) retornam os códigos HTTP corretos (200 OK, 201 Created, 403 Forbidden, 404 Not Found).
-* Testar o fluxo completo de autenticação (Log in -> Acesso a Rota Protegida).
-* Garantir que as relações entre tabelas (ex: Barbeiro pertence a uma Barbearia) estejam íntegras ao salvar.
-
-### Testes Exploratórios:
-
-* Identificar comportamentos inesperados do sistema durante o uso livre, sem seguir roteiros pré-definidos.
-* Explorar fluxos alternativos e combinações de ações que não foram cobertas nos testes unitários e de integração.
-* Avaliar como o sistema reage a entradas incorretas, incompletas ou fora do padrão esperado.
-* Observar mensagens de erro, alertas e feedbacks apresentados ao usuário em situações não previstas.
-* Detectar possíveis falhas de lógica, inconsistências de dados ou problemas de navegação entre telas.
+Os testes de integração foram usados para verificar se todas as partes do sistema funcionam bem juntas, como agendamentos, atendimentos, autenticação e salvamento de dados no banco. Além disso, os testes exploratórios ajudaram a observar o sistema em situações reais de uso, permitindo encontrar possíveis falhas, verificar mudanças de valores e garantir que os atendimentos já finalizados não tenham seus dados alterados.
 
 ## 4. Abordagem de Testes
 
-**Metodologias:**
+### Metodologia
 
-Os testes serão divididos em três camadas:
+Os testes foram organizados em  **três frentes principais** :
 
-1. **Regras de Negócio (Unitários):** Validar funções e classes isoladas.
-2. **Fluxo de Dados (Integração):** Validar a comunicação entre o Controller, o Service e o Banco de Dados.
-3. **Uso Livre do Sistema (Exploratórios):** Utilização do sistema como um usuário real, sem roteiro fixo.
+1.  **Regras de Negócio (Testes Unitários):**
+    Focados na validação da lógica interna do sistema, testando funções e métodos de forma isolada, sem dependência do banco de dados.
+2.  **Fluxo de Dados (Testes de Integração):**
+    Focados em testar o funcionamento completo das funcionalidades, envolvendo Controllers, rotas, autenticação e banco de dados.
+3.  **Uso Real do Sistema (Testes Exploratório):**
+    Focados em simular o uso do sistema no dia a dia, explorando cenários não totalmente previstos nos testes automatizados.
 
-**Tipos de testes:**
+### Tipos de Testes
 
-* **Testes Unitários (Caixa Branca):** Validação da lógica interna, cálculos, validações e fluxos do domínio.
-* **Testes de Integração (Caixa Cinza/Preta):** Validação das rotas, verbos HTTP (GET, POST, PUT, DELETE) e integridade do banco de dados.
-* **Testes Exploratórios (Caixa Preta):** Execução manual do sistema para descobrir falhas não previstas, focando na experiência e comportamento geral.
+#### Testes Unitários (Caixa Branca)
 
-**Ferramentas utilizadas:**
+Utilizados para validar a lógica interna das classes, sem acesso ao banco de dados. De acordo com a codificação, esses testes verificaram:
 
-**PHPUnit (Laravel):**
+1.  Cálculo do valor total do atendimento, incluindo valores zero, positivos e decimais.
+2.  Precisão dos cálculos com casas decimais.
+3.  Bloqueio de valores negativos no atendimento.
+4.  Atualização do valor total ao editar um atendimento.
+5.  Verificação se o atendimento possui serviço informado.
+6.  Validações relacionadas ao login, como formato de e-mail e tamanho mínimo da senha.
+7.  Retorno correto de mensagens de erro no processo de autenticação.
 
-* Criação e execução dos testes automatizados.
-* Geração de relatórios de cobertura (Coverage).
+#### Testes de Integração (Caixa Cinza/Preta)
 
-**Testes Exploratórios:**
+Utilizados para validar o funcionamento completo das funcionalidades através das rotas do sistema, com acesso ao banco de dados. Conforme a codificação, esses testes validaram:
 
-* Execução manual no navegador.
-* Uso de contas com perfis diferentes (cliente, barbeiro, administrador).
-* Registro de evidências por meio de capturas de tela e anotações.
+1.  Criação de agendamentos com dados válidos.
+2.  Bloqueio de agendamentos em horários já ocupados.
+3.  Cancelamento de agendamentos existentes.
+4.  Registro de atendimentos com valores válidos.
+5.  Bloqueio do registro de atendimentos com valores negativos.
+6.  Exclusão de atendimentos existentes.
+7.  Persistência correta dos dados no banco.
+8.  Relação entre barbearia, barbeiro, cliente, atendimento e agendamento.
+
+#### Testes Exploratório
+
+Baseados nos cenários definidos no documento de testes, foram utilizados para avaliar o comportamento do sistema em situações próximas ao uso real, com foco em:
+
+1.  Verificação de comportamentos relacionados a valores inválidos.
+2.  Impacto de alterações de preços em serviços.
+3.  Garantia de que os atendimentos já finalizados mantenham seus valores.
+4.  Análise de regras de negócio que não são totalmente cobertas pelos testes automatizados.
+
+### Ferramentas utilizadas:
+
+1.  **PHPUnit (Laravel):**
+    Usado para criar e executar os testes unitários e de integração do sistema.
+2.  **Laravel Testing Framework:**
+    Usado para simular ações do usuário, como requisições às rotas e login durante os testes.
+3.  **Banco de Dados de Teste (SQLite):**
+    Usado nos testes de integração para armazenar os dados temporariamente, sem afetar o banco real.
+4.  **Coverage (Cobertura de Testes):**
+    Usado para verificar quais partes do código foram testadas, ajudando a identificar trechos que ainda precisam de testes.
 
 ## 5. Cronograma de Testes
 
-| **Fase**                                  | **Data de Início** | **Data de término** |
-| ----------------------------------------- | ------------------ | ------------------- |
-| Planejamento de testes                    | 29/10/2025         | 02/11/2025          |
-| Criação dos cenários de teste unitários   | 07/11/2025         | 08/11/2025          |
-| Execução dos testes unitários             | 09/11/2025         | 11/11/2025          |
-| Criação dos cenários de testes de integração        | 13/12/2025         | 14/12/2025          |
-| Execução dos testes de Integração         | 15/12/2025         | 16/12/2025          |
-| Criação dos cenários de teste exploratórios         | 27/01/2026        | 29/01/2026          |
-| Execução dos testes exploratórios         | 30/01/2026         | 03/02/2026          |
+| Fase                                                      | Data de Início | Data de Término |
+| --------------------------------------------------------- | -------------- | --------------- |
+| Planejamento                                              | 29/10/2025     | 02/11/2025      |
+| Criação dos cenários de teste unitários (11 no total)     | 06/11/2025     | 06/11/2025      |
+| Implementação de testes unitários                         | 08/11/2025     | 09/11/2025      |
+| Criação dos cenários de Integração (6 no total)           | 07/12/2025     | 07/12/2025      |
+| Implementação de testes de integração                     | 04/12/2025     | 05/12/2025      |
+| Criação dos cenários exploratórios (8 no total)           | 22/01/2026     | 22/01/2026      |
+| Implementação de testes exploratórios                     | 31/01/2026     | 02/02/2026      |
 
 ## 6. Entregas
 
-* Plano de testes atualizado
-* Documento de cenários de teste detalhados (Unitários, Integração e Exploratórios)
-* Relatórios de execução dos testes automatizados
+1.  **Plano de testes atualizado:**
+    Documento descrevendo a estratégia, abordagem e tipos de testes aplicados no sistema.
+2.  **Documento de cenários de teste detalhados:**
+    Contendo os cenários de testes unitários, de integração e exploratórios, com objetivos, dados de entrada e resultados esperados.
+3.  **Codificação dos testes automatizados:**
+    Implementação dos testes unitários e de integração utilizando PHPUnit e o framework de testes do Laravel, conforme os cenários definidos.
+4.  **Relatórios de execução dos testes:**
+    Resultados da execução dos testes, incluindo informações de sucesso, falhas e relatório de cobertura de testes.
 
 ## 7. Critérios de Entrada e Saída
 
-* **Para começar os testes (Entrada):**
+### Critérios de Entrada (para iniciar os testes)
 
-  * O sistema precisa estar estável e funcionando
-  * As funcionalidades principais devem estar prontas
-  * Ambiente de testes (Banco de dados de testes) configurado
+1.  O sistema deve estar funcionando corretamente, sem erros críticos.
+2.  As funcionalidades principais devem estar implementadas.
+3.  O ambiente de testes deve estar configurado no Laravel.
+4.  O banco de dados de testes (SQLite) deve estar pronto para uso.
+5.  Os cenários de testes devem estar definidos e documentados.
 
-* **Para encerrar os testes (Saída):**
+### Critérios de Saída (para encerrar os testes)
 
-  * 100% dos testes automatizados planejados devem passar com sucesso
-  * Nenhum problema grave identificado nos testes exploratórios pode ficar sem correção
-  * Todos os fluxos principais devem funcionar sem erro
-  * Cobertura de código aceitável (ex: > 70%)
+1.  Todos os testes devem ser executados com sucesso.
+2.  Nenhum erro crítico deve permanecer sem correção.
+3.  Os principais fluxos do sistema devem funcionar corretamente do início ao fim.
+4.  A cobertura de código deve estar em nível aceitável (exemplo: acima de 70%).
+5.  Os resultados da execução dos testes devem estar registrados em relatório.
