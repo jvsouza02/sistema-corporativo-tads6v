@@ -80,7 +80,7 @@ Não fazem parte deste projeto:
 
 **Figura 1:** A seguir o EAP, organizando todas as entregas e tarefas de forma visual.
 
-![EAP](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/EAP%20-%20Barbearias%20-%20P%C3%A1gina%204%20(1).png)
+![EAP](https://github.com/jvsouza02/sistema-corporativo-tads6v/blob/main/documentacao/projeto/diagramas/EAP.png)
 
 ---
 
