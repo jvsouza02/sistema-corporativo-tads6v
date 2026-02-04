@@ -3,8 +3,6 @@
 **Discentes:** Yuri Fernandes, Maria da Paz, João Victor, Lucas Freitas.</br>
 **Projeto:** Sistema de Agendamento e Gestão de Barbearias.
 
-## Registro de Alterações
-
 ---
 
 ## Introdução
