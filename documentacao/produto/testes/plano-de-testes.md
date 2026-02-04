@@ -25,7 +25,7 @@ Este documento serve como um guia para a equipe de desenvolvimento e testes, aju
 
 1.  Testes de desempenho.
 2.  Testes de usabilidade.
-3.  Testes de segurança avançada (Penetration Testing)
+3.  Testes de segurança avançada
 
 ## 3. Objetivos de Testes
 
