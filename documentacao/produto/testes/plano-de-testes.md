@@ -1,6 +1,6 @@
 # Plano de Testes - Sistema de Gestão de Barbearias - Versão 3.0
 
-**Discentes:** Yuri Fernandes, Maria da Paz, João Victor, Lucas Freitas.
+**Discentes:** Yuri Fernandes, Maria da Paz, João Victor, Lucas Freitas.</br>
 **Projeto:** Sistema de Gestão de Barbearias.
 
 ## 1. Introdução
