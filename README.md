@@ -28,14 +28,8 @@ composer install
 ```
 ### Passo 3: Executar os Testes
 
-Para executar todos os testes unitários:
+Para executar todos os testes:
 
 ```bash
 php artisan test
-```
-
-Ou usando o PHPUnit diretamente:
-
-```bash
-./vendor/bin/phpunit --testsuite=Unit
 ```
