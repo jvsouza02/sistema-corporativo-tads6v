@@ -1,6 +1,6 @@
 # Barber Pro
 
-## Como Executar os Testes Unitários
+## Como Executar os Testes
 
 Este guia fornece instruções passo a passo para configurar o ambiente e executar os testes unitários do projeto.
 
@@ -31,7 +31,7 @@ composer install
 Para executar todos os testes unitários:
 
 ```bash
-php artisan test --testsuite=Unit
+php artisan test
 ```
 
 Ou usando o PHPUnit diretamente:
